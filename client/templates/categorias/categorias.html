@@ -1,0 +1,43 @@
+<ion-view class="layouts-view">
+  <ion-nav-buttons side="right">
+    <button menu-toggle="right" class="button button-icon icon ion-plus" ui-sref="app.nuevaCategoria"></button>
+  </ion-nav-buttons>
+  <ion-nav-title>
+    <span>Categorías</span>
+  </ion-nav-title>
+  <ion-content>
+    <!-- Refresh to get the new posts -->
+<!--
+    <ion-refresher pulling-text="Pull to refresh..." on-refresh="r.doRefresh()">
+    </ion-refresher>
+-->
+		<ion-list
+          show-delete="cc.shouldShowDelete"
+          show-reorder="cc.shouldShowReorder"
+          can-swipe="cc.listCanSwipe">
+		  <ion-item ng-repeat="categoria in cc.categorias">
+		    <h2>{{categoria.nombre}}</h2>
+		    <p>{{categoria.estatus}}</p>
+		    <ion-option-button class="button-royal" ng-click="cc.eliminar(categoria)">
+		      Eliminar
+		    </ion-option-button>
+		    <ion-option-button class="button-assertive" ng-click="cc.editar(categoria._id)">
+		      Editar
+		    </ion-option-button>		
+		  </ion-item>
+		</ion-list>
+<!--
+    <div class="entries-list">
+			
+      <div ng-repeat="categoria in cc.categorias" class="list card entry-item"  ui-sref="app.editarCategoria({categoriaId: categoria._id})">
+        <div class="entry-heading item item-text-wrap" >
+          <h2 class="entry-title">{{categoria.nombre}}</h2>
+          <p class="entry-author">
+            Color: <span>{{categoria.color}}</span>
+          </p>
+        </div>
+      </div>
+    </div>
+-->
+  </ion-content>
+</ion-view>

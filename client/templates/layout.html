@@ -1,0 +1,53 @@
+<ion-side-menus enable-menu-with-back-views="false">
+  <ion-side-menu-content class="post-size-14px">
+    <ion-nav-bar class="bar app-top-bar">
+      <ion-nav-back-button>
+      </ion-nav-back-button>
+      <ion-nav-buttons side="left">
+        <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
+        </button>
+      </ion-nav-buttons>
+    </ion-nav-bar>
+    <ion-nav-view name="menuContent"></ion-nav-view>
+  </ion-side-menu-content>
+
+  <ion-side-menu side="left" class="main-menu" expose-aside-when="large">
+    <ion-content>
+      <ion-list>
+        <ion-item class="heading-item item item-avatar" nav-clear menu-close ui-sref="app.perfil">
+          <div class="user-image-container">
+            <pre-img ratio="_1_1" helper-class="rounded-image">
+              <img class="user-image" ng-src="https://s3.amazonaws.com/uifaces/faces/twitter/brynn/128.jpg" spinner-on-load>
+            </pre-img>
+          </div>
+          <h2 class="greeting">Hi Roberto</h2>
+          <p class="message">Bienvenido</p>
+        </ion-item>
+        <ion-item class="item-icon-left" nav-clear menu-close ui-sref="app.home">
+          <i class="icon fa fa-home"></i>
+          <h2 class="menu-text">Inicio</h2>
+        </ion-item>
+        <ion-item class="item-icon-left" nav-clear menu-close ui-sref="app.reuniones">
+          <i class="icon fa fa-group"></i>
+          <h2 class="menu-text">Reuniones</h2>
+        </ion-item>
+        <ion-item class="item-icon-left" nav-clear menu-close ui-sref="app.acuerdos">
+          <i class="icon fa fa-check"></i>
+          <h2 class="menu-text">Acuerdos</h2>
+        </ion-item>
+        <ion-item class="item-icon-left" nav-clear menu-close ui-sref="app.agenda">
+          <i class="icon fa fa-calendar"></i>
+          <h2 class="menu-text">Agenda</h2>
+        </ion-item>
+        <ion-item class="item-icon-left" nav-clear menu-close ui-sref="app.categorias">
+          <i class="icon fa fa-list"></i>
+          <h2 class="menu-text">Categorías</h2>
+        </ion-item>
+        <ion-item class="item-icon-left" nav-clear menu-close ui-sref="app.configuracion">
+          <i class="icon ion-gear-a"></i>
+          <h2 class="menu-text">Configuración</h2>
+        </ion-item>
+      </ion-list>
+    </ion-content>
+  </ion-side-menu>
+</ion-side-menus>

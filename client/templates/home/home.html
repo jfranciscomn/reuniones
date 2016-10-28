@@ -1,0 +1,52 @@
+<ion-view class="layouts-view">
+  <ion-nav-buttons side="left">
+    <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+  </ion-nav-buttons>
+  <ion-nav-title>
+    <span>Resumen</span>
+  </ion-nav-title>
+  <ion-content>
+    <ion-refresher pulling-text="Deslice para refrescar..." on-refresh="hc.doRefresh()">
+    </ion-refresher>
+
+    <div class="card">
+		  <div class="item item-divider">
+		    Acuerdos
+		  </div>
+		  
+	    <div class="list">
+			  <a href="#" class="item item-icon-left">
+			    <i class="icon fa fa-calendar-minus-o"></i>
+			    Vencidos
+			    <span class="badge badge-assertive">{{hc.acuerdosVencidos}}</span>
+			  </a>			
+			  <a href="#" class="item item-icon-left">
+			    <i class="icon fa fa-calendar-check-o"></i>
+			    Hoy
+			    <span class="badge badge-assertive">{{hc.acuerdosHoy}}</span>
+			  </a>			
+			  <a href="#" class="item item-icon-left">
+			    <i class="icon fa fa-calendar-o"></i>
+			    Semana
+			    <span class="badge badge-assertive">{{hc.acuerdosSemana}}</span>
+			  </a>			
+			  <a href="#" class="item item-icon-left">
+			    <i class="icon fa fa-calendar"></i>
+			    Mes
+			    <span class="badge badge-assertive">{{hc.acuerdosMes}}</span>
+			  </a>			  
+			  <a href="#" class="item item-icon-left">
+			    <i class="icon fa fa-calendar-plus-o"></i>
+			    Futuros
+			    <span class="badge badge-assertive">{{hc.acuerdosFuturos}}</span>
+			  </a>			
+			</div>
+		
+		  <a class="item item-icon-left assertive" href="#" ui-sref="app.nuevoAcuerdo">
+		    <i class="icon ion-plus"></i>
+		    Agregar Acuerdo
+		  </a>
+
+		</div>
+  </ion-content>
+</ion-view>

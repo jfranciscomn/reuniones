@@ -1,0 +1,20 @@
+<ion-view class="forms-view">
+  <ion-nav-buttons side="right">
+    <button menu-toggle="right" class="button button-clear button-positive" ng-click='ncc.save()'>Guardar</button>
+  </ion-nav-buttons>
+  <ion-nav-title>
+    <span>Nueva Categoría</span>
+  </ion-nav-title>
+  <ion-content>
+    <ul class="list list-inset">
+	    <label class="item item-input">
+        <span class="input-label">Nombre</span>
+        <input type="text" ng-model='ncc.categoria.nombre'>
+      </label>
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Color</span>
+        <input type="color" ng-model='ncc.categoria.color'>
+      </label>      
+    </ul>
+  </ion-content>
+</ion-view>

@@ -1,0 +1,32 @@
+<ion-view class="layouts-view">
+  <ion-nav-buttons side="left">
+    <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+  </ion-nav-buttons>
+  <ion-nav-buttons side="right">
+    <button menu-toggle="right" class="button button-icon icon ion-plus" ui-sref="app.nuevoAcuerdo"></button>
+  </ion-nav-buttons>
+  <ion-nav-title>
+    <span>Mis Acuerdos</span>
+  </ion-nav-title>
+  <ion-content>
+    <!-- Refresh to get the new posts -->
+
+    <ion-refresher pulling-text="Pull to refresh..." on-refresh="ac.doRefresh()">
+    </ion-refresher>
+
+		<ion-list show-delete="ac.shouldShowDelete" can-swipe="ac.listCanSwipe">
+		  <ion-item ng-repeat="acuerdo in ac.acuerdos | orderBy:'fecha'" class="item-chat item-remove-animate item-icon-right"
+                type="item-text-wrap" ui-sref="app.editarAcuerdo({acuerdoId: acuerdo._id})">
+		    <h2>{{acuerdo.titulo}}<span class="item-note">{{acuerdo.categoria.nombre}}</span></h2>
+		    <p>{{acuerdo.fecha|date:"dd/MM/yyyy"}} {{acuerdo.horaInicio|date:"shortTime"}}</p>
+		    <i class="icon ion-chevron-right icon-accessory"></i>
+		    <ion-option-button class="button-royal" ng-click="ac.eliminar(acuerdo)">
+		      Eliminar
+		    </ion-option-button>
+		    <ion-option-button class="button-assertive" ng-click="ac.editar(acuerdo._id)">
+		      Editar
+		    </ion-option-button>		
+		  </ion-item>
+		</ion-list>
+  </ion-content>
+</ion-view>
