@@ -63,13 +63,13 @@ angular.module('FLOKsports').config(['$injector', function ($injector) {
       templateUrl: "client/templates/auth/forgot-password.html",
       controller: 'ForgotPasswordCtrl as fpc'
     })
-    .state('anon.logout', {
+    .state('auth.logout', {
       url: '/logout',
       resolve: {
         'logout': ['$meteor', '$state', function ($meteor, $state) {
           return $meteor.logout().then(
             function () {
-              $state.go('anon.login');
+              $state.go('auth.login');
             },
             function (error) {
               console.log(error.reason);
