@@ -204,5 +204,5 @@ angular.module('FLOKsports').config(['$injector', function ($injector) {
         }
       });
  
-    this.$urlRouterProvider.otherwise('app/home');
+    $urlRouterProvider.otherwise('app/home');
 }]);
