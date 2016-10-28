@@ -10,14 +10,14 @@ angular
 			},
 			acuerdosVencidos() {
 				console.log(Acuerdos.find({fecha : {$lt : new Date() }}).count())
-				return Acuerdos.find({fecha : {$lt : new Date() }}).count();
+				return Acuerdos.find({users:{ $elemMatch: {user:Meteor.userId()}},fecha : {$lt : new Date() }}).count();
 			},
 			acuerdosHoy() {
 				var hoy = new Date;
 				var fechaInicio = (hoy.getMonth()+1) + "/" + hoy.getDate() + "/" +  hoy.getFullYear();
 				var fechaFin = (hoy.getMonth()+1) + "/" + hoy.getDate()  + "/" +  hoy.getFullYear() + " " + "23:59:59";
 				console.log(fechaInicio, fechaFin);
-				return Acuerdos.find({fecha : { $gte: new Date(fechaInicio), $lt : new Date(fechaFin) }}).count();
+				return Acuerdos.find({users:{ $elemMatch: {user:Meteor.userId()}},fecha : { $gte: new Date(fechaInicio), $lt : new Date(fechaFin) }}).count();
 			},
 			acuerdosSemana() {
 				var hoy = new Date;
@@ -30,7 +30,7 @@ angular
 				var fechaInicio = (primerDia.getMonth()+1) + "/" + primerDia.getDate() + "/" +  primerDia.getFullYear();
 				var fechaFin = (ultimoDia.getMonth()+1) + "/" + ultimoDia.getDate()  + "/" +  ultimoDia.getFullYear() + " " + "23:59:59";
 				
-				return Acuerdos.find({fecha : { $gte: new Date(fechaInicio), $lt : new Date(fechaFin) }}).count();
+				return Acuerdos.find({users:{ $elemMatch: {user:Meteor.userId()}},fecha : { $gte: new Date(fechaInicio), $lt : new Date(fechaFin) }}).count();
 			},
 			acuerdosMes() {
 				var hoy = new Date;
@@ -41,12 +41,12 @@ angular
 				var fechaInicio = (primerDia.getMonth()+1) + "/" + primerDia.getDate() + "/" +  primerDia.getFullYear();
 				var fechaFin = (ultimoDia.getMonth()+1) + "/" + ultimoDia.getDate()  + "/" +  ultimoDia.getFullYear() + " " + "23:59:59";
 				
-				return Acuerdos.find({fecha : { $gte: new Date(fechaInicio), $lt : new Date(fechaFin) }}).count();
+				return Acuerdos.find({users:{ $elemMatch: {user:Meteor.userId()}},fecha : { $gte: new Date(fechaInicio), $lt : new Date(fechaFin) }}).count();
 			},
 			acuerdosFuturos() {
 				var hoy = new Date;
 				var y = hoy.getFullYear(), m = hoy.getMonth();
-				return Acuerdos.find({fecha : { $gt: new Date(y,m + 1, 0)}}).count();
+				return Acuerdos.find({users:{ $elemMatch: {user:Meteor.userId()}},fecha : { $gt: new Date(y,m + 1, 0)}}).count();
 			}
 			
 		});

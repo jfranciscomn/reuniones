@@ -7,7 +7,7 @@ angular
 		
 		this.helpers({
 			acuerdos() {
-				var acuerdos = Acuerdos.find().fetch();
+				var acuerdos = Acuerdos.find({users:{ $elemMatch: {user:Meteor.userId()}}}).fetch();
 				if(acuerdos != undefined)
 					_.each(acuerdos, function(acuerdo){
 						acuerdo.categoria = Categorias.findOne(acuerdo.categoria_id);
