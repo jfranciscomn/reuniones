@@ -51,7 +51,7 @@ angular
 			
 		});
 	
-		doRefresh(){
+		this.doRefresh = function(){
 			alert("hola");
 		}
-}
+});

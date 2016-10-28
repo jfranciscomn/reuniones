@@ -19,7 +19,7 @@ angular
 			}
 		});
 	  
-	 	this.eliminar(acuerdo){
+	 	this.eliminar = function(acuerdo){
 
 			var confirmPopup = $ionicPopup.confirm({
 				title: categoria.nombre,
@@ -40,4 +40,3 @@ angular
 		}  
 
 });
-

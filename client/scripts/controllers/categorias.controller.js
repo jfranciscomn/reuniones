@@ -12,7 +12,7 @@ angular
 			}
 		});
 	  
-	 	eliminar(categoria){
+	 	this.eliminar = function(categoria){
 			var confirmPopup = $ionicPopup.confirm({
 				title: categoria.nombre,
 				template: 'Estás seguro que quiere eliminarla?'
@@ -26,7 +26,7 @@ angular
 			
 		}
 		
-		this.doRefresh(){
+		this.doRefresh = function(){
 			alert("refresh");
 		}  
 });
