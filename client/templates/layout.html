@@ -20,8 +20,8 @@
               <img class="user-image" ng-src="https://s3.amazonaws.com/uifaces/faces/twitter/brynn/128.jpg" spinner-on-load>
             </pre-img>
           </div>
-          <h2 class="greeting">Hi Roberto</h2>
-          <p class="message">Bienvenido</p>
+          <h2 class="greeting">Hola {{currentUser.emails}}</h2>
+          <p class="message">Bienvenida</p>
         </ion-item>
         <ion-item class="item-icon-left" nav-clear menu-close ui-sref="app.home">
           <i class="icon fa fa-home"></i>
@@ -43,9 +43,9 @@
           <i class="icon fa fa-list"></i>
           <h2 class="menu-text">Categorías</h2>
         </ion-item>
-        <ion-item class="item-icon-left" nav-clear menu-close ui-sref="app.configuracion">
+        <ion-item class="item-icon-left" nav-clear menu-close ui-sref="anon.logout">
           <i class="icon ion-gear-a"></i>
-          <h2 class="menu-text">Configuración</h2>
+          <h2 class="menu-text">Cerrar Sesión</h2>
         </ion-item>
       </ion-list>
     </ion-content>

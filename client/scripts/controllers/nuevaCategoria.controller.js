@@ -1,6 +1,6 @@
 angular
   .module('FLOKsports')
-  .controller('NuevaCategoriaCtrl', function AcuerdosCtrl($scope, $reactive, $state, $stateParams, $ionicPopup) {
+  .controller('NuevaCategoriaCtrl', function AcuerdosCtrl($scope, $reactive, $state, $stateParams, $ionicPopup, $ionicHistory) {
 		$reactive(this).attach($scope);
 		
 		console.log($stateParams,$ionicHistory);
@@ -16,8 +16,11 @@ angular
 				delete this.categoria._id
 				Categorias.update({_id:this.categoriaId},{$set:this.categoria});
 			}
-			else
+			else{
+				this.categoria.estatus = true;
 				Categorias.insert(this.categoria);
+			}
+				
 			this.$ionicHistory.goBack();
 			
 		}

@@ -1,7 +1,7 @@
 angular
   .module('FLOKsports')
   .controller('AcuerdosCtrl', function AcuerdosCtrl($scope, $reactive, $state, $stateParams, $ionicPopup) {
-	$reactive(this).attach($scope, $ionicPopup);
+	$reactive(this).attach($scope);
   	this.shouldShowDelete = false;
 		this.listCanSwipe = true;
 		
