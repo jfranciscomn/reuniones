@@ -57,12 +57,12 @@
 				<span class="input-label">Participantes</span>
 				
 				
-				<select ng-model='participante.user'>
-						<option value="{{usuario._id}}" ng-repeat='usuario in nrc.registrados'>{{usuario.profile.nombre}}</option>
+				<select ng-model='participante.user' ng-show='!$first'>
+						<option value="{{usuario._id}}" ng-repeat='usuario in nrc.registrados'>{{usuario.profile.name}}</option>
 						
 				</select>
-				
-				<button class="button button-small icon ion-plus" ng-click='nrc.agregarParticipante()'></button>
+				<button class="button button-small icon ion-minus" ng-click='nrc.quitarParticipante()' ng-show="!$first"></button>
+				<button class="button button-small icon ion-plus" ng-click='nrc.agregarParticipante()' ng-show="$last"></button>
 			</div>
 			<label class="item item-input item-select">
 				<div class="input-label">
