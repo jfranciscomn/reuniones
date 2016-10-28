@@ -19,23 +19,12 @@ angular
 		}
 	});
   
- 	this.eliminar(acuerdo){
-/*
-		var confirmPopup = $ionicPopup.confirm({
-			title: categoria.nombre,
-			template: 'Estás seguro que quiere eliminarla?'
-		});
-		
-		confirmPopup.then(function(res) {
-			if(res) {
-				
-			}
-		});
-*/
+ 	this.eliminar=function(acuerdo){
+
 		Categorias.update(acuerdo._id, { $set : {estatus : false}});		
 	}
 	
-	this.doRefresh(){
+	this.doRefresh=function(){
 		alert("refresh");
 	}
   

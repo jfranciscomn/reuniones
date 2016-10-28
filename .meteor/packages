@@ -14,6 +14,7 @@ tracker                 # Meteor's client-side reactive programming library
 standard-minifiers      # JS/CSS minifiers run for production mode
 
 insecure                # Allow all DB writes from clients (for prototyping)
+autopublish
 angular
 driftyco:ionic
 momentjs:moment
@@ -26,9 +27,9 @@ mdg:camera
 jparker:crypto-md5
 
 accounts-password
-tap:i18n-ui
+
 meteoric:ionic-sass
-19degrees:paypal-extended-secured
+#19degrees:paypal-extended-secured
 #accounts-facebook
 service-configuration
 meteorhacks:npm
@@ -36,6 +37,6 @@ meteorhacks:npm
 
 
 npm-container
-email
+#email
 frozeman:storage
-btafel:accounts-facebook-cordova
+#btafel:accounts-facebook-cordova
