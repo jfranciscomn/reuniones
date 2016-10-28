@@ -5,7 +5,7 @@ angular
 		this.contacts = [];
 		this.helpers({
 			reuniones() {
-				return Reuniones.find();
+				return Reuniones.find({users:{ $elemMatch: {user:Meteor.userId()} }});
 			}
 		});
 });
