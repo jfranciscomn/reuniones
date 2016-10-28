@@ -24,10 +24,10 @@
 				<span class="input-label">Hora fin</span>
 				<input type="time" ng-model='nrc.reunion.horaFin'>
 			</label>
-			<div class="item item-input-inset item-stacked-label" style="width: 100%">
+			<div class="item item-input-inset item-stacked-label">
 				<span class="input-label">Categoría</span>
 				<label class="item-input-wrapper">
-					<select ng-model='nrc.reunion.categoria'>
+					<select ng-model='nrc.reunion.categoria'  style="width: 100%">
 						<option value="{{categoria._id}}">{{categoria.nombre}}</option>
 						<option selected>Verde</option>
 						<option>Roja</option>
@@ -46,18 +46,19 @@
 		      <input type="text" placeholder="Temas" ng-model="nrc.reunion.temas">
 		    </label>
 		  </div>
-			<label class="item item-input">
+			<label class="item item-input-inset">
 				<span class="input-label">Convoca</span>
 				<input type="text" value="Roberto Zamarripa" ng-model='nrc.reunion.convoca'>
 			</label>
 			<div class="item item-input-inset" ng-repeat='participante in nrc.reunion.users'>
 				<span class="input-label">Participantes</span>
 				
-				
-				<select ng-model='participante.user' ng-show='!$first'>
-						<option value="{{usuario._id}}" ng-repeat='usuario in nrc.registrados'>{{usuario.profile.name}}</option>
-						
-				</select>
+				<label class="item-input-wrapper">
+					<select ng-model='participante.user' ng-show='!$first' style="width: 100%">
+							<option value="{{usuario._id}}" ng-repeat='usuario in nrc.registrados'>{{usuario.profile.name}}</option>
+							
+					</select>
+				</label>
 				<button class="button button-small icon ion-minus" ng-click='nrc.quitarParticipante()' ng-show="!$first"></button>
 				<button class="button button-small icon ion-plus" ng-click='nrc.agregarParticipante()' ng-show="$last"></button>
 			</div>

@@ -9,7 +9,9 @@
     <ul class="list list-inset">
 	    <label class="item item-input-inset item-stacked-label">
         <span class="input-label">Título</span>
-        <input type="text" ng-model="nac.acuerdo.titulo">
+        <label class="item-input-wrapper">
+	        <input type="text" ng-model="nac.acuerdo.titulo">
+        </label>
       </label>
       <label class="item item-input">
         <span class="input-label">Fecha</span>
@@ -31,9 +33,11 @@
 			    </select>
 		    </label>
 		  </div>
-      <label class="item item-input">
+      <label class="item item-input-inset">
         <span class="input-label">Ubicación</span>
-        <input type="text" ng-model="nac.acuerdo.ubicacion">
+        <label class="item-input-wrapper">
+	        <input type="text" ng-model="nac.acuerdo.ubicacion">
+        </label>
       </label>
       
       <div class="item item-input-inset item-stacked-label">
@@ -42,18 +46,20 @@
 		      <input type="text" placeholder="Temas" ng-model="nac.acuerdo.temas">
 		    </label>
 		  </div>
-			<label class="item item-input">
+			<label class="item item-input-inset">
         <span class="input-label">Convoca</span>
-        <input type="text" value="Roberto Zamarripa" ng-model="nac.acuerdo.convoca">
+        <label class="item-input-wrapper">
+	        <input type="text" value="Roberto Zamarripa" ng-model="nac.acuerdo.convoca">
+        </label>
       </label>
-      <div class="item item-input-inset" ng-repeat='participante in nac.acuerdo.users'>
+      <div class="item item-input-inset item-stacked-label" ng-repeat='participante in nac.acuerdo.users'>
 				<span class="input-label">Participantes</span>
 				
-				
-				<select ng-model='participante.user' ng-show='!$first'>
-						<option value="{{usuario._id}}" ng-repeat='usuario in nac.registrados'>{{usuario.profile.name}}</option>
-						
-				</select>
+				<label class="item-input-wrapper">
+					<select ng-model='participante.user' ng-show='!$first' style="width: 100%">
+							<option value="{{usuario._id}}" ng-repeat='usuario in nac.registrados'>{{usuario.profile.name}}</option>
+					</select>
+				</label>
 				<button class="button button-small icon ion-minus" ng-click='nac.quitarParticipante()' ng-show="!$first"></button>
 				<button class="button button-small icon ion-plus" ng-click='nac.agregarParticipante()' ng-show="$last"></button>
 			</div>
