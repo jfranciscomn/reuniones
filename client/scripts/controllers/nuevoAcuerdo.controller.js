@@ -1,11 +1,11 @@
 angular
   .module('FLOKsports')
-  .controller('NuevoAcuerdoCtrl', function AcuerdosCtrl($scope, $reactive, $state, $stateParams, $ionicPopup) {
+  .controller('NuevoAcuerdoCtrl', function AcuerdosCtrl($scope, $reactive, $state, $stateParams, $ionicPopup, $ionicHistory) {
 		$reactive(this).attach($scope);
 		
 		this.acuerdoId = $stateParams.acuerdoId;
 		this.acuerdo = Acuerdos.findOne(this.acuerdoId)
-		this.$ionicHistory = $ionicHistory;
+		
 		this.helpers({
 			categorias() {
 				return Categorias.find();
@@ -21,7 +21,7 @@ angular
 		}
 		else
 			Acuerdos.insert(this.acuerdo);
-		this.$ionicHistory.goBack();
+		$ionicHistory.goBack();
 		
 	}
 })

@@ -1,66 +1,73 @@
 <ion-view class="forms-view">
-  <ion-nav-buttons side="right">
-    <button menu-toggle="right" class="button button-clear button-positive" ng-click='nrc.save()'>Guardar</button>
-  </ion-nav-buttons>
-  <ion-nav-title>
-    <span ng-if="!nrc.reunionId">Nueva Reunión</span>
-    <span ng-if="nrc.reunionId">Editar Reunión</span>
-  </ion-nav-title>
-  <ion-content>
-    <ul class="list list-inset">
-	    <label class="item item-input">
-        <span class="input-label">Título</span>
-        <input type="text" ng-model='nrc.reunion.titulo'>
-      </label>
-      <label class="item item-input item-stacked-label">
-        <span class="input-label">Fecha</span>
-        <input type="date" ng-model='nrc.reunion.fecha'>
-      </label>
-      <label class="item item-input">
-        <span class="input-label">Hora inicio</span>
-        <input type="time" ng-model='nrc.reunion.horaInicio'>
-      </label>
-      <label class="item item-input">
-        <span class="input-label">Hora fin</span>
-        <input type="time" ng-model='nrc.reunion.horaFin'>
-      </label>
-      <div class="item item-input-inset">
-	      <span class="input-label">Categoría</span>
-		    <label class="item-input-wrapper">
-		      <select ng-model='nrc.reunion.categoria'>
-			      <option value="{{categoria._id}}">{{categoria.nombre}}</option>
-			      <option selected>Verde</option>
-			      <option>Roja</option>
-			    </select>
-		    </label>
-		    <button class="button button-small icon ion-plus" ui-sref="app.categorias"></button>
-		  </div>
-      <label class="item item-input">
-        <span class="input-label">Ubicación</span>
-        <input type="text" ng-model='nrc.reunion.ubicacion'>
-      </label>
-      <div class="item item-input-inset">
-	      <span class="input-label">Temas</span>
-		    <label class="item-input-wrapper">
-		      <input type="text" placeholder="Temas"  ng-model='nrc.reunion.temas'>
-		    </label>
-		    <button class="button button-small icon ion-plus"></button>
-		  </div>
+	<ion-nav-buttons side="right">
+		<button menu-toggle="right" class="button button-clear button-positive" ng-click='nrc.save()'>Guardar</button>
+	</ion-nav-buttons>
+	<ion-nav-title>
+		<span ng-if="!nrc.reunionId">Nueva Reunión</span>
+		<span ng-if="nrc.reunionId">Editar Reunión</span>
+	</ion-nav-title>
+	<ion-content>
+		<ul class="list list-inset">
 			<label class="item item-input">
-        <span class="input-label">Convoca</span>
-        <input type="text" value="Roberto Zamarripa" ng-model='nrc.reunion.convoca'>
-      </label>
-      <div class="item item-input-inset">
-	      <span class="input-label">Participantes</span>
-		    <label class="item-input-wrapper">
-		      <input type="text" placeholder="Participantes" ng-model='nrc.reunion.participantes'>
-		    </label>
-		    <button class="button button-small icon ion-plus"></button>
-		  </div>
-		  <label class="item item-input item-select">
-		    <div class="input-label">
-		      Repetir
-		    </div>
+				<span class="input-label">Título</span>
+				<input type="text" ng-model='nrc.reunion.titulo'>
+			</label>
+			<label class="item item-input item-stacked-label">
+				<span class="input-label">Fecha</span>
+				<input type="date" ng-model='nrc.reunion.fecha'>
+			</label>
+			<label class="item item-input">
+				<span class="input-label">Hora inicio</span>
+				<input type="time" ng-model='nrc.reunion.horaInicio'>
+			</label>
+			<label class="item item-input">
+				<span class="input-label">Hora fin</span>
+				<input type="time" ng-model='nrc.reunion.horaFin'>
+			</label>
+			<div class="item item-input-inset">
+				<span class="input-label">Categoría</span>
+				<label class="item-input-wrapper">
+					<select ng-model='nrc.reunion.categoria'>
+						<option value="{{categoria._id}}">{{categoria.nombre}}</option>
+						<option selected>Verde</option>
+						<option>Roja</option>
+					</select>
+				</label>
+				<button class="button button-small icon ion-plus" ui-sref="app.categorias"></button>
+			</div>
+			<label class="item item-input">
+				<span class="input-label">Ubicación</span>
+				<label class="item-input-wrapper">
+					<input type="text" ng-model='nrc.reunion.ubicacion'>
+				</label>
+			</label>
+			<div class="item item-input-inset">
+				<span class="input-label">Temas</span>
+				
+					<input type="text" placeholder="Temas"  ng-model='nrc.reunion.temas'>
+				<button class="button button-small icon ion-plus"></button>
+				
+				
+			</div>
+			<label class="item item-input">
+				<span class="input-label">Convoca</span>
+				<input type="text" value="Roberto Zamarripa" ng-model='nrc.reunion.convoca'>
+			</label>
+			<div class="item item-input-inset" ng-repeat='participante in nrc.reunion.users'>
+				<span class="input-label">Participantes</span>
+				
+				
+				<select ng-model='participante.user'>
+						<option value="{{usuario._id}}" ng-repeat='usuario in nrc.registrados'>{{usuario.profile.nombre}}</option>
+						
+				</select>
+				
+				<button class="button button-small icon ion-plus" ng-click='nrc.agregarParticipante()'></button>
+			</div>
+			<label class="item item-input item-select">
+				<div class="input-label">
+					Repetir
+				</div>
 		    <select ng-model='nrc.reunion.repetir'>
 		      <option>Nunca</option>
 		      <option>Todos los días</option>

@@ -3,14 +3,24 @@ angular
   .controller('NuevaReunionCtrl', function AcuerdosCtrl($scope, $reactive, $state, $stateParams, $ionicPopup, $ionicHistory) {
 		$reactive(this).attach($scope);
 		
-		this.reunionId = $stateParams.reunionId;
-		this.reunion = Reuniones.findOne(this.reunionId)
-		
-		this.helpers({
-			
+	this.reunionId = $stateParams.reunionId;
+	this.reunion = Reuniones.findOne(this.reunionId)
+
+	if(!this.reunion){
+		this.reunion={users:[{user:Meteor.userId()}]};
+	}
+	this.helpers({
+			registrados() {
+				console.log("registrados");
+				return Meteor.users.find({});
+			}
 		});
 
-
+	this.agregarParticipante = function(){
+		
+		this.reunion.users.push({user:null});
+		console.log(this.reunion.users)
+	}
 	this.save  = function(){
 		console.log(this.reunionId);
 
@@ -22,7 +32,7 @@ angular
 			
 			this.reunion.createdAt = new Date();
       		this.reunion.owner = Meteor.userId();
-      		this.reunion.users =[{user:Meteor.userId()}];
+      		//this.reunion.users =[{user:Meteor.userId()}];
       		this.reunion.username = Meteor.user().username;
       		Reuniones.insert(this.reunion);
       

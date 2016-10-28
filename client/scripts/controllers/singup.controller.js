@@ -13,6 +13,7 @@ function SignupCtrl($meteor,$scope, $reactive, $state, $ionicLoading, $ionicPopu
         password: this.signup.password,
         profile: {
 	        name: this.signup.name,
+          email: this.signup.email,
           picture: 'images/unknown.jpg'
         }
       }
