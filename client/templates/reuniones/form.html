@@ -48,9 +48,11 @@
 		  </div>
 			<label class="item item-input-inset">
 				<span class="input-label">Convoca</span>
+				<label class="item-input-wrapper">
 				<input type="text" value="Roberto Zamarripa" ng-model='nrc.reunion.convoca'>
+				</label>
 			</label>
-			<div class="item item-input-inset" ng-repeat='participante in nrc.reunion.users'>
+			<div class="item item-input-inset item-stacked-label" ng-repeat='participante in nrc.reunion.users'>
 				<span class="input-label">Participantes</span>
 				
 				<label class="item-input-wrapper">
@@ -75,7 +77,7 @@
 		      <option>Cada año</option>
 		    </select>
 		  </label>
-      <label class="item item-input item-stacked-label">
+      <label class="item item-input">
         <span class="input-label">Hasta</span>
         <input type="date" ng-model='nrc.reunion.hasta'>
       </label>
