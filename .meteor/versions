@@ -35,6 +35,7 @@ ecmascript-runtime@0.2.6
 ejson@1.0.7
 email@1.0.8
 fastclick@1.0.7
+fortawesome:fontawesome@4.6.3
 fourseven:scss@3.4.1
 frozeman:storage@0.1.9
 geojson-utils@1.0.4

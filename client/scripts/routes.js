@@ -36,42 +36,32 @@ angular.module('FLOKsports').config(['$injector', function ($injector) {
    * Anonymous Routes
    ***************************/
   $stateProvider
-    .state('anon', {
+    .state('auth', {
       url: '',
       abstract: true,
-      template: '<ui-view style="opacity:1"></ui-view>'
+      templateUrl: 'client/templates/auth/auth.html'
     })
-    .state('anon.login', {
+    .state('auth.walkthrough', {
+      url: '/walkthrough',
+      templateUrl: "client/templates/auth/walkthrough.html"
+    })
+
+    .state('auth.login', {
       url: '/login',
-      templateUrl: 'client/templates/login.html',
-      controller: 'LoginCtrl as lc',
-    })    
-    .state('paypalCallback', {
-      url: '/ppcb',
-      templateUrl: 'client/templates/paypalCallback.html',
-      controller: 'PaypalCallback',
-      controllerAs: 'paypal'
+      templateUrl: "client/templates/auth/login.html",
+      controller: 'LoginCtrl as lc'
     })
-    .state('anon.main', {
-      url: '/main',
-      templateUrl: 'client/templates/main.html',
-      controller: 'MainCtrl',
-      controllerAs: 'main'
-    })
-    .state('anon.signup', {
+
+    .state('auth.signup', {
       url: '/signup',
-      templateUrl: 'client/templates/signup.html',
-      controller: 'SignupCtrl as sg'
-    })     
-    .state('anon.tutorial', {
-      url: '/tutorial',
-      templateUrl: 'client/templates/tutorial.html',
-      controller: 'TutorialCtrl as tutorial'
-    }) 
-    .state('anon.forgot', {
-      url: '/forgot',
-      templateUrl: 'client/templates/forgot.html',
-      controller: 'ForgotPasswordCtrl as forgot'
+      templateUrl: "client/templates/auth/signup.html",
+      controller: 'SignupCtrl as sc'
+    })
+
+    .state('auth.forgot-password', {
+      url: "/forgot-password",
+      templateUrl: "client/templates/auth/forgot-password.html",
+      controller: 'ForgotPasswordCtrl as fpc'
     })
     .state('anon.logout', {
       url: '/logout',
@@ -204,5 +194,5 @@ angular.module('FLOKsports').config(['$injector', function ($injector) {
         }
       });
  
-    $urlRouterProvider.otherwise('app/home');
+    $urlRouterProvider.otherwise('/login');
 }]);
