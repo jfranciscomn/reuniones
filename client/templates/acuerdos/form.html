@@ -7,7 +7,11 @@
   </ion-nav-title>
   <ion-content>
     <ul class="list list-inset">
-      <label class="item item-input item-stacked-label">
+	    <label class="item item-input-inset item-stacked-label">
+        <span class="input-label">Título</span>
+        <input type="text" ng-model="nac.acuerdo.titulo">
+      </label>
+      <label class="item item-input">
         <span class="input-label">Fecha</span>
         <input type="date" ng-model="nac.acuerdo.fecha">
       </label>
@@ -19,41 +23,40 @@
         <span class="input-label">Hora fin</span>
         <input type="time" ng-model="nac.acuerdo.horaFin">
       </label>
-      <div class="item item-input-inset">
+      <div class="item item-input-inset item-stacked-label">
 	      <span class="input-label">Categoría</span>
 		    <label class="item-input-wrapper">
-		      <select ng-model="nac.acuerdo.categoria_id">
+		      <select ng-model="nac.acuerdo.categoria_id" style="width: 100%">
 			      <option ng-repeat="categoria in nac.categorias" value="{{categoria._id}}">{{categoria.nombre}}</option>			      
 			    </select>
 		    </label>
-		    <button class="button button-small icon ion-plus"></button>
 		  </div>
       <label class="item item-input">
         <span class="input-label">Ubicación</span>
         <input type="text" ng-model="nac.acuerdo.ubicacion">
       </label>
-      <label class="item item-input">
-        <span class="input-label">Título</span>
-        <input type="text" ng-model="nac.acuerdo.titulo">
-      </label>
-      <div class="item item-input-inset">
+      
+      <div class="item item-input-inset item-stacked-label">
 	      <span class="input-label">Temas</span>
 		    <label class="item-input-wrapper">
 		      <input type="text" placeholder="Temas" ng-model="nac.acuerdo.temas">
 		    </label>
-		    <button class="button button-small icon ion-plus"></button>
 		  </div>
 			<label class="item item-input">
         <span class="input-label">Convoca</span>
         <input type="text" value="Roberto Zamarripa" ng-model="nac.acuerdo.convoca">
       </label>
-      <div class="item item-input-inset">
-	      <span class="input-label">Particip.</span>
-		    <label class="item-input-wrapper">
-		      <input type="text" placeholder="Participantes" ng-model="nac.acuerdo.participantes">
-		    </label>
-		    <button class="button button-small icon ion-plus"></button>
-		  </div>
+      <div class="item item-input-inset" ng-repeat='participante in nac.acuerdo.users'>
+				<span class="input-label">Participantes</span>
+				
+				
+				<select ng-model='participante.user' ng-show='!$first'>
+						<option value="{{usuario._id}}" ng-repeat='usuario in nac.registrados'>{{usuario.profile.name}}</option>
+						
+				</select>
+				<button class="button button-small icon ion-minus" ng-click='nac.quitarParticipante()' ng-show="!$first"></button>
+				<button class="button button-small icon ion-plus" ng-click='nac.agregarParticipante()' ng-show="$last"></button>
+			</div>
 		  <label class="item item-input item-select">
 		    <div class="input-label">
 		      Repetir
