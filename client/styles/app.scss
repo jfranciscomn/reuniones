@@ -12619,3 +12619,45 @@ ion-side-menu {
     }
   }
 }
+
+
+//REUNIONES
+
+.header-alto {
+	height: 50%;
+}
+
+.menu-boton-centro {
+	width: 50%; 
+	height: 50%; 
+	float: left; 
+	position: absolute; 
+	left: 25%; 
+	top: 25%;
+}
+
+.left-top {
+	width: 30%; 
+	height: 30%; 
+	float: left; 
+	position: absolute; 
+	left: 10%; 
+	top: 10%;
+}
+
+.left-bottom {
+	width: 30%; height: 30%; float: left; 	position: absolute; left: 10%; 	bottom: 10%;
+}
+
+.right-top {
+	width: 30%; height: 30%; float: right; position: absolute; right: 10%; top: 10%;
+}
+
+.right-bottom {
+	width: 30%; 
+	height: 30%; 
+	float: right; 
+	position: absolute; 
+	right: 10%; 
+	bottom: 10% !important;
+}

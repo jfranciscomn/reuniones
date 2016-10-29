@@ -8,12 +8,31 @@
   <ion-nav-title>
     <span>Mis Reuniones</span>
   </ion-nav-title>
+  <div class="bar bar-subheader header-alto" style="background-color: #cecece;">	  
+	  <button class="button button-energized" 	style="width: 50%; height: 50%; float: left; position: absolute; left: 25%; top: 25%;"> 
+	  	<i class="fa fa-check" style="font-size: 50pt; color: white;"></i><br/>
+	  	De hoy 
+	  </button>
+	  <button class="button button-balanced" 	style="width: 30%; height: 30%; float: left; position: 	absolute; left: 10%; top: 10%;">
+		  <i class="fa fa-file-text-o" style="font-size: 30pt; color: white;"></i><br/>
+		   De la Semana 
+		</button>	  
+	  <button class="button button-calm" 			style="width: 25%; height: 25%; float: left; 	position: absolute; left: 10%; 	bottom: 10%;">
+	  	<i class="fa fa-calendar" style="font-size: 30pt; color: white;"></i><br/> 
+	  	Del mes 
+	  </button>
+	  <button class="button button-assertive" style="width: 25%; height: 25%; float: right; position: absolute; right: 20%; top: 5%;"> 
+	  	<i class="fa fa-clock-o" style="font-size: 30pt; color: white;"></i><br/>
+	  	Próx. Reunión 
+	  </button>
+	  <button class="button button-royal" 		style="width: 25%; height: 25%; float: right; position: absolute; right: 10%; top: 55%;"> 
+	  	<i class="fa fa-list" style="font-size: 30pt; color: white;"></i><br/>
+	  	A futuro 
+	  </button>
+	</div>
   <ion-content>
-    <!-- Refresh to get the new posts -->
-<!--
-    <ion-refresher pulling-text="Pull to refresh..." on-refresh="r.doRefresh()">
+    <ion-refresher pulling-text="Deslice para refrescar..." on-refresh="r.doRefresh()">
     </ion-refresher>
--->
 
     <div class="entries-list">
 			
