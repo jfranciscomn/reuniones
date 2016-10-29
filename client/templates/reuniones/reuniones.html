@@ -8,34 +8,33 @@
   <ion-nav-title>
     <span>Mis Reuniones</span>
   </ion-nav-title>
-  <div class="bar bar-subheader header-alto" style="background-color: #cecece;">	  
-	  <button class="button button-energized" 	style="width: 50%; height: 50%; float: left; position: absolute; left: 25%; top: 25%;"> 
+  <div class="bar bar-subheader" style="height: {{rc.deviceWidth / 1.5}}px; background: url('images/home/Reuniones-01.png'); background-size: 100%;">
+	  <button class="button button-energized hoy trans" > 
 	  	<i class="fa fa-check" style="font-size: 50pt; color: white;"></i><br/>
-	  	De hoy 
+	  	Hoy 
 	  </button>
-	  <button class="button button-balanced" 	style="width: 30%; height: 30%; float: left; position: 	absolute; left: 10%; top: 10%;">
-		  <i class="fa fa-file-text-o" style="font-size: 30pt; color: white;"></i><br/>
-		   De la Semana 
+	  <button class="button semana">
+		  <i class="fa fa-file-text-o" style="font-size: 15pt; color: white;"></i><br/>
+		  Semana 
 		</button>	  
-	  <button class="button button-calm" 			style="width: 25%; height: 25%; float: left; 	position: absolute; left: 10%; 	bottom: 10%;">
-	  	<i class="fa fa-calendar" style="font-size: 30pt; color: white;"></i><br/> 
-	  	Del mes 
+	  <button class="button mes">
+	  	<i class="fa fa-calendar" style="font-size: 15pt; color: white;"></i><br/> 
+	  	Mes 
 	  </button>
-	  <button class="button button-assertive" style="width: 25%; height: 25%; float: right; position: absolute; right: 20%; top: 5%;"> 
-	  	<i class="fa fa-clock-o" style="font-size: 30pt; color: white;"></i><br/>
-	  	Próx. Reunión 
+	  <button class="button proxima"> 
+	  	<i class="fa fa-clock-o" style="font-size: 15pt; color: white;"></i><br/>
+	  	Próxima 
 	  </button>
-	  <button class="button button-royal" 		style="width: 25%; height: 25%; float: right; position: absolute; right: 10%; top: 55%;"> 
-	  	<i class="fa fa-list" style="font-size: 30pt; color: white;"></i><br/>
-	  	A futuro 
+	  <button class="button" style="width: 24%; height: 35%; float: right; position: absolute; right: 10%; top: 55%; border-radius: 50% 50% 50% 50% !important; background: rgba(232, 86, 89, 0.9)"> 
+	  	<i class="fa fa-list" style="font-size: 15pt; color: white;"></i><br/>
+	  	Futuro 
 	  </button>
 	</div>
-  <ion-content>
+  <ion-content style="margin-top:63%;">
     <ion-refresher pulling-text="Deslice para refrescar..." on-refresh="r.doRefresh()">
     </ion-refresher>
 
     <div class="entries-list">
-			
       <div ng-repeat="reunion in rc.reuniones" class="list card entry-item"  ui-sref="app.editarReunion({reunionId: reunion._id})">
         <div class="entry-heading item item-text-wrap" >
           <h2 class="entry-title">{{reunion.titulo}} <span class="item-note">{{reunion.categoria}}</span></h2>

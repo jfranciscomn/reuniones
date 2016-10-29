@@ -12661,3 +12661,31 @@ ion-side-menu {
 	right: 10%; 
 	bottom: 10% !important;
 }
+
+.hoy {
+	width: 43.33%; height: 65%; float: left; position: absolute; left: 28.33%; top: 17.5%; border-radius: 50% 50% 50% 50% !important;
+}
+
+.semana {
+	width: 26.66%; height: 40%; float: left; position: 	absolute; left: 10%; top: 10%; border-radius: 50% 50% 50% 50% !important; background: rgba(131, 230, 158, 0.9);
+}
+
+.mes {
+	width: 24%; height: 35%; float: left; 	position: absolute; left: 10%; 	bottom: 10%; border-radius: 50% 50% 50% 50% !important; background: rgba(53, 198, 235, 0.9);
+}
+
+.proxima {
+	width: 24%; height: 35%; float: right; position: absolute; right: 20%; top: 5%; border-radius: 50% 50% 50% 50% !important; background: rgba(232, 86, 89, 0.9);
+}
+
+.futuro {
+	width: 24%; height: 35%; float: right; position: absolute; right: 10%; top: 55%; border-radius: 50% 50% 50% 50% !important; background: rgba(131, 230, 158, 0.9);
+}
+
+.trans {
+	background: rgba(255, 255, 255, 0.5);
+}
+
+
+
+
