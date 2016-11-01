@@ -2,12 +2,16 @@
   <ion-nav-title>
     <span>Perfil</span>
   </ion-nav-title>
+  <ion-nav-buttons side="right" >
+		<button menu-toggle="right" ng-show="pc.editar" class="button button-icon icon ion-android-checkmark-circle" ng-click='pc.actualizar()'></button>
+	</ion-nav-buttons>
   <ion-content>
     <div class="top-content row">
-      <div class="profile-container" ng-click="profile.updatePicture()">
+      <div class="profile-container">
         <div class="user-image-container">
-          <pre-img ratio="_1_1" helper-class="rounded-image" >
-            <img class="user-image" ng-src="https://s3.amazonaws.com/uifaces/faces/twitter/brynn/128.jpg" spinner-on-load>
+          <pre-img ratio="_1_1" helper-class="square-image" >
+            <img class="user-image" src="{{currentUser.profile.picture}}" spinner-on-load>
+            <button class="button button-clear button-assertive" ng-click="pc.takePicture()" style="margin-top: 60%; margin-left: -100px;">Editar foto</button>
           </pre-img>
         </div>
         <div class="user-name">{{currentUser.profile.name}}</div>
@@ -25,3 +29,14 @@
     </div>
   </ion-content>
 </ion-view>
+<style>
+	.bar.app-top-bar {
+	  background-color: #fedc34;
+	  .title, .button {
+	    color: #000000 !important;
+	    * {
+	      color: #000000 !important;
+	    }
+	  }
+	}
+</style>

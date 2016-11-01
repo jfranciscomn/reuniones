@@ -23,7 +23,6 @@ jasonaibrahim:angular-moment
 check
 jss:flag-icon
 http
-mdg:camera
 jparker:crypto-md5
 
 accounts-password
@@ -41,3 +40,4 @@ npm-container
 frozeman:storage
 #btafel:accounts-facebook-cordova
 fortawesome:fontawesome
+mdg:camera
