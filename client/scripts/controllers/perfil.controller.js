@@ -5,7 +5,7 @@ angular
 		this.user = {};
 		this.editar = false;
 		this.helpers({
-	    user: function(){	      
+	    user: function(){
 	      return Meteor.users.findOne(Meteor.userId());
 	    },
 	  });	  

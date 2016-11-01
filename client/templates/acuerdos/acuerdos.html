@@ -26,7 +26,7 @@
 	  </a>
 	  <a class="button proxima" ng-click="ac.cambiarFiltro('todas')"> 
 	  	<i class="fa fa-clock-o" style="font-size: 15pt; color: white; margin-top:10px;"></i><br/>
-	  	<div style="font-size: 15pt; color: white; margin: -12px 0px 0px 0px; ">{{ac.acuerdoes.length}}</div>
+	  	<div style="font-size: 15pt; color: white; margin: -12px 0px 0px 0px; ">{{ac.acuerdos.length}}</div>
 	  	<div style="font-size: 8pt; color: white; margin: -15px 0px 0px 0px">Todas </div>
 	  </a>
 	  <a class="button futuro" ng-click="ac.cambiarFiltro('futuro')"> 
@@ -37,6 +37,26 @@
 	  <button style="width: 0px; height: 0px;" ng-show="false"></button>
 	</div>
   <ion-content style="margin-top:66%;">
+  	<div class="divider-title">Vencidos</div>
+    <ul class="timeline" id="hoy" ng-show="ac.fvencidos">
+      <li ng-repeat="acuerdo in ac.vencidos | orderBy:'fecha'">
+      	<a ui-sref="app.editarAcuerdo({acuerdoId: acuerdo._id})" style="text-decoration: none; ">
+          <div class="timeline-thumb bg-color-yellow timeline-icon">
+            <i class="fa fa-check text-white" aria-hidden="true"></i>
+          </div>
+          <div class="timeline-item">
+            <h4 class="font-light">{{acuerdo.titulo}}</h4>
+            <i class="icon ion-chevron-right icon-accessory" style="top: 20; position: absolute; right: 5px; color: #ccc; font-size: 16px;"></i>
+            <p>{{acuerdo.ubicacion}}</p>	            
+            <div class="timeline-stats">
+              <i class="ion-person"></i> {{acuerdo.users.length}}
+              <span class="pos-absolute-right"><i class="ion-ios-clock"></i> {{acuerdo.horaInicio|date:"HH:mm"}} </span>
+            </div>
+            
+          </div>
+      	</a>
+      </li>
+    </ul>
 	  <div class="divider-title">Hoy</div>
     <ul class="timeline" id="hoy" ng-show="ac.fhoy">
       <li ng-repeat="acuerdo in ac.hoy | orderBy:'fecha'">

@@ -8,9 +8,15 @@ angular
 		this.fsemana = true;
 		this.fmes = true;
 		this.ffuturo = true;
+		this.fvencidas = true;
 		this.helpers({
 			reuniones() {
 				return Reuniones.find({users:{ $elemMatch: {user:Meteor.userId()} }});
+			},
+			vencidas() {
+				var hoy = new Date;
+				var fechaInicio = (hoy.getMonth()+1) + "/" + hoy.getDate() + "/" +  hoy.getFullYear();
+				return Reuniones.find({users:{ $elemMatch: {user:Meteor.userId()}},fecha : { $lt : new Date(fechaInicio) }});
 			},
 			hoy() {
 				var hoy = new Date;
@@ -27,8 +33,10 @@ angular
 				var ultimoDia = new Date(hoy.setDate(fin));
 				
 				var fechaInicio = (primerDia.getMonth()+1) + "/" + (primerDia.getDate()+1) + "/" +  primerDia.getFullYear();
-				var fechaFin = (ultimoDia.getMonth()+1) + "/" + ultimoDia.getDate()  + "/" +  ultimoDia.getFullYear() + " " + "23:59:59";
-				
+				var fechaFin = moment(fechaInicio).add(5,'d').toDate();
+
+				console.log(fechaInicio);
+				console.log(fechaFin);
 				return Reuniones.find({users:{ $elemMatch: {user:Meteor.userId()}},fecha : { $gte: new Date(fechaInicio), $lt : new Date(fechaFin) }});
 			},
 			mes() {
