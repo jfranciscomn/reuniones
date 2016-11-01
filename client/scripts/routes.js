@@ -28,9 +28,10 @@ angular.module("FLOKsports").run(function ($rootScope, $state) {
 angular.module('FLOKsports').config(['$injector', function ($injector) {
   var $stateProvider = $injector.get('$stateProvider');
   var $urlRouterProvider = $injector.get('$urlRouterProvider');
-  var $locationProvider = $injector.get('$locationProvider');
-	
-	
+  var $locationProvider = $injector.get('$locationProvider');	
+  var $ionicConfigProvider = $injector.get("$ionicConfigProvider");
+  
+  $ionicConfigProvider.backButton.text('').icon('ion-android-arrow-back');
 	
   /***************************
    * Anonymous Routes

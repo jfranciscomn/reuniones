@@ -1,9 +1,9 @@
 <ion-view class="forms-view">
   <ion-nav-buttons side="right">
-    <button menu-toggle="right" class="button button-clear button-positive" ng-click='nac.save()'>Guardar</button>
+    <button menu-toggle="right" class="button button-icon icon ion-android-checkmark-circle" ng-click='nac.save()'></button>
   </ion-nav-buttons>
   <ion-nav-title>
-    <span>Nuevo Acuerdo</span>
+    <span class="font-light">Nuevo Acuerdo</span>
   </ion-nav-title>
   <ion-content>
     <ul class="list list-inset">
@@ -94,3 +94,14 @@
     </ul>
   </ion-content>
 </ion-view>
+<style>
+	.bar.app-top-bar {
+	  background-color: #82e79d;
+	  .title, .button {
+	    color: #000000 !important;
+	    * {
+	      color: #000000 !important;
+	    }
+	  }
+	}
+</style>

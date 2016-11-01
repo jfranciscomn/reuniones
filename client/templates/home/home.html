@@ -12,33 +12,32 @@
     <div class="card">
 		  <div class="item item-divider">
 		    Acuerdos
-		  </div>
-		  <img src="images/home/Home-03.png" style="width: 50%"/>
+		  </div>		  
 	    <div class="list">
 			  <a href="#" class="item item-icon-left">
 			    <i class="icon fa fa-calendar-minus-o"></i>
 			    Vencidos
-			    <span class="badge badge-assertive">{{hc.acuerdosVencidos}}</span>
+			    <span class="badge bg-color-red text-white">{{hc.acuerdosVencidos}}</span>
 			  </a>			
 			  <a href="#" class="item item-icon-left">
 			    <i class="icon fa fa-calendar-check-o"></i>
 			    Hoy
-			    <span class="badge badge-assertive">{{hc.acuerdosHoy}}</span>
+			    <span class="badge bg-color-yellow text-white">{{hc.acuerdosHoy}}</span>
 			  </a>			
 			  <a href="#" class="item item-icon-left">
 			    <i class="icon fa fa-calendar-o"></i>
 			    Semana
-			    <span class="badge badge-assertive">{{hc.acuerdosSemana}}</span>
+			    <span class="badge bg-color-green text-white">{{hc.acuerdosSemana}}</span>
 			  </a>			
 			  <a href="#" class="item item-icon-left">
 			    <i class="icon fa fa-calendar"></i>
 			    Mes
-			    <span class="badge badge-assertive">{{hc.acuerdosMes}}</span>
+			    <span class="badge bg-color-blue text-white">{{hc.acuerdosMes}}</span>
 			  </a>			  
 			  <a href="#" class="item item-icon-left">
 			    <i class="icon fa fa-calendar-plus-o"></i>
 			    Futuros
-			    <span class="badge badge-assertive">{{hc.acuerdosFuturos}}</span>
+			    <span class="badge bg-color-red text-white">{{hc.acuerdosFuturos}}</span>
 			  </a>			
 			</div>
 		
@@ -50,3 +49,14 @@
 		</div>
   </ion-content>
 </ion-view>
+<style>
+	.bar.app-top-bar {
+	  background-color: #eb4e52;
+	  .title, .button {
+	    color: #000000 !important;
+	    * {
+	      color: #000000 !important;
+	    }
+	  }
+	}
+</style>

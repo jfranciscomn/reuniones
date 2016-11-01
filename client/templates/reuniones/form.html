@@ -1,16 +1,20 @@
 <ion-view class="forms-view">
+	<ion-nav-buttons side="left">
+	</ion-nav-buttons>
 	<ion-nav-buttons side="right">
-		<button menu-toggle="right" class="button button-clear button-positive" ng-click='nrc.save()'>Guardar</button>
+		<button menu-toggle="right" class="button button-icon icon ion-android-checkmark-circle" ng-click='nrc.save()'></button>
 	</ion-nav-buttons>
 	<ion-nav-title>
-		<span ng-if="!nrc.reunionId">Nueva Reunión</span>
-		<span ng-if="nrc.reunionId">Editar Reunión</span>
+		<span class="font-light" ng-if="!nrc.reunionId">Nueva Reunión</span>
+		<span class="font-light" ng-if="nrc.reunionId">Editar Reunión</span>
 	</ion-nav-title>
 	<ion-content>
-		<ul class="list list-inset">
+		<ul class="list">
 			<label class="item item-input-inset item-stacked-label">
 				<span class="input-label">Título</span>
-				<input type="text" ng-model='nrc.reunion.titulo'>
+				<label class="item-input-wrapper">
+					<input type="text" ng-model='nrc.reunion.titulo'>
+				</label>
 			</label>
 			<label class="item item-input">
 				<span class="input-label">Fecha</span>
@@ -34,7 +38,7 @@
 					</select>
 				</label>
 			</div>
-			<label class="item item-input">
+			<label class="item item-input-inset">
 				<span class="input-label">Ubicación</span>
 				<label class="item-input-wrapper">
 					<input type="text" ng-model='nrc.reunion.ubicacion'>
@@ -58,7 +62,6 @@
 				<label class="item-input-wrapper">
 					<select ng-model='participante.user' ng-show='!$first' style="width: 100%">
 							<option value="{{usuario._id}}" ng-repeat='usuario in nrc.registrados'>{{usuario.profile.name}}</option>
-							
 					</select>
 				</label>
 				<button class="button button-small icon ion-minus" ng-click='nrc.quitarParticipante()' ng-show="!$first"></button>
@@ -84,7 +87,7 @@
       <ul class="list">
 			  <li class="item item-toggle">
 			     Alertas
-			     <label class="toggle toggle-assertive">
+			     <label class="toggle toggle-yellow">
 			       <input type="checkbox" checked>
 			       <div class="track">
 			         <div class="handle"></div>
@@ -95,3 +98,14 @@
     </ul>
   </ion-content>
 </ion-view>
+<style>
+	.bar.app-top-bar {
+	  background-color: #fedc34;
+	  .title, .button {
+	    color: #000000 !important;
+	    * {
+	      color: #000000 !important;
+	    }
+	  }
+	}
+</style>

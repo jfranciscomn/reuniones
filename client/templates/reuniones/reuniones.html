@@ -1,48 +1,131 @@
 <ion-view class="layouts-view">
-  <ion-nav-buttons side="left">
-    <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
-  </ion-nav-buttons>
-  <ion-nav-buttons side="right">
-    <button menu-toggle="right" class="button button-icon icon ion-plus" ui-sref="app.nuevaReunion"></button>
-  </ion-nav-buttons>
-  <ion-nav-title>
-    <span>Mis Reuniones</span>
-  </ion-nav-title>
+	<ion-nav-bar class="amarillo">
+	  <ion-nav-buttons side="left">
+	    <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+	  </ion-nav-buttons>
+	  <ion-nav-buttons side="right">
+	    <button menu-toggle="right" class="button button-icon icon ion-plus" ui-sref="app.nuevaReunion"></button>
+	  </ion-nav-buttons>
+	  <ion-nav-title>
+	    <span class="font-light">Reuniones</span>
+	  </ion-nav-title>
+	</ion-nav-bar>
   <div class="bar bar-subheader" style="height: {{rc.deviceWidth / 1.5}}px; background: url('images/home/Reuniones-01.png'); background-size: 100%;">
-	  <button class="button button-energized hoy trans" > 
-	  	<i class="fa fa-check" style="font-size: 50pt; color: white;"></i><br/>
-	  	Hoy 
-	  </button>
-	  <button class="button semana">
-		  <i class="fa fa-file-text-o" style="font-size: 15pt; color: white;"></i><br/>
-		  Semana 
-		</button>	  
-	  <button class="button mes">
-	  	<i class="fa fa-calendar" style="font-size: 15pt; color: white;"></i><br/> 
-	  	Mes 
-	  </button>
-	  <button class="button proxima"> 
-	  	<i class="fa fa-clock-o" style="font-size: 15pt; color: white;"></i><br/>
-	  	Próxima 
-	  </button>
-	  <button class="button" style="width: 24%; height: 35%; float: right; position: absolute; right: 10%; top: 55%; border-radius: 50% 50% 50% 50% !important; background: rgba(232, 86, 89, 0.9)"> 
-	  	<i class="fa fa-list" style="font-size: 15pt; color: white;"></i><br/>
-	  	Futuro 
-	  </button>
+	  <a class="button hoy" ng-click="rc.cambiarFiltro('hoy')"> 
+	  	<i class="fa fa-check" style="font-size: 50pt; color: white; margin-top:10px;"></i><br/>
+	  	<div style="font-size: 20pt; color: white; margin: -10px 0px 0px 0px; ">{{rc.hoy.length}}</div>
+	  	<div style="font-size: 12pt; color: white; margin: -5px 0px 0px 0px; ">Hoy</div>
+	  </a>
+	  <a class="button semana" ng-click="rc.cambiarFiltro('semana')">
+		  <i class="fa fa-file-text-o" style="font-size: 15pt; color: white; margin-top:10px;"></i><br/>
+		  <div style="font-size: 15pt; color: white; margin: -12px 0px 0px 0px; ">{{rc.semana.length}}</div>
+		  <div style="font-size: 9pt; color: white; margin: -15px 0px 0px 0px;">Semana </div>
+		</a>
+	  <a class="button mes" ng-click="rc.cambiarFiltro('mes')">
+	  	<i class="fa fa-calendar" style="font-size: 15pt; color: white; margin-top:10px;"></i><br/> 
+	  	<div style="font-size: 15pt; color: white; margin: -12px 0px 0px 0px; ">{{rc.mes.length}}</div>
+	  	<div style="font-size: 8pt; color: white; margin: -15px 0px 0px 0px">Mes </div>
+	  </a>
+	  <a class="button proxima" ng-click="rc.cambiarFiltro('todas')"> 
+	  	<i class="fa fa-clock-o" style="font-size: 15pt; color: white; margin-top:10px;"></i><br/>
+	  	<div style="font-size: 15pt; color: white; margin: -12px 0px 0px 0px; ">{{rc.reuniones.length}}</div>
+	  	<div style="font-size: 8pt; color: white; margin: -15px 0px 0px 0px">Todas </div>
+	  </a>
+	  <a class="button futuro" ng-click="rc.cambiarFiltro('futuro')"> 
+	  	<i class="fa fa-list" style="font-size: 15pt; color: white; margin-top:10px;"></i><br/>
+	  	<div style="font-size: 15pt; color: white; margin: -12px 0px 0px 0px; ">{{rc.futuro.length}}</div>
+	  	<div style="font-size: 8pt; color: white; margin: -15px 0px 0px 0px">Futuro </div>
+	  </a>
+	  <button style="width: 0px; height: 0px;" ng-show="false"></button>
 	</div>
-  <ion-content style="margin-top:63%;">
-    <ion-refresher pulling-text="Deslice para refrescar..." on-refresh="r.doRefresh()">
-    </ion-refresher>
-
-    <div class="entries-list">
-      <div ng-repeat="reunion in rc.reuniones" class="list card entry-item"  ui-sref="app.editarReunion({reunionId: reunion._id})">
-        <div class="entry-heading item item-text-wrap" >
-          <h2 class="entry-title">{{reunion.titulo}} <span class="item-note">{{reunion.categoria}}</span></h2>
-          <p class="entry-author">
-            Fecha: <span>{{reunion.fecha|date:"dd/MM/yyyy"}} {{reunion.horaInicio|date:"shortTime"}}</span>
-          </p>
-        </div>
-      </div>
-    </div>
+  <ion-content style="margin-top:66%;">
+	  <div class="divider-title">Hoy</div>
+    <ul class="timeline" id="hoy" ng-show="rc.fhoy">
+      <li ng-repeat="reunion in rc.hoy | orderBy:'fecha'">
+      	<a ui-sref="app.editarReunion({reunionId: reunion._id})" style="text-decoration: none; ">
+          <div class="timeline-thumb bg-color-yellow timeline-icon">
+            <i class="fa fa-check text-white" aria-hidden="true"></i>
+          </div>
+          <div class="timeline-item">
+            <h4 class="font-light">{{reunion.titulo}}</h4>
+            <i class="icon ion-chevron-right icon-accessory" style="top: 20; position: absolute; right: 5px; color: #ccc; font-size: 16px;"></i>
+            <p>{{reunion.ubicacion}}</p>	            
+            <div class="timeline-stats">
+              <i class="ion-person"></i> {{reunion.users.length}}
+              <span class="pos-absolute-right"><i class="ion-ios-clock"></i> {{reunion.horaInicio|date:"HH:mm"}} </span>
+            </div>
+            
+          </div>
+      	</a>
+      </li>
+    </ul>
+    <div class="divider-title">Semana</div>
+    <ul class="timeline" id="semana" ng-show="rc.fsemana">
+      <li ng-repeat="reunion in rc.hoy | orderBy:'fecha'">
+        <a ui-sref="app.editarReunion({reunionId: reunion._id})" style="text-decoration: none; ">
+          <div class="timeline-thumb bg-color-green timeline-icon">
+            <i class="fa fa-file-text-o" aria-hidden="true"></i>
+          </div>
+          <div class="timeline-item">
+            <h4 class="font-light">{{reunion.titulo}}</h4>
+            <i class="icon ion-chevron-right icon-accessory" style="top: 20; position: absolute; right: 5px; color: #ccc; font-size: 16px;"></i>
+            <p>{{reunion.ubicacion}}</p>
+            <div class="timeline-stats">
+              <i class="ion-person"></i> {{reunion.users.length}}
+              <span class="pos-absolute-right"><i class="ion-ios-clock"></i> {{reunion.fecha|date:"dd/MMM"}} {{reunion.horaInicio|date:"HH:mm"}} </span>
+            </div>
+          </div>
+        </a>
+      </li>
+    </ul>
+    <div class="divider-title">Mes</div>
+    <ul class="timeline" id="mes" ng-show="rc.fmes">
+      <li ng-repeat="reunion in rc.mes | orderBy:'fecha'">
+        <a ui-sref="app.editarReunion({reunionId: reunion._id})" style="text-decoration: none; ">
+          <div class="timeline-thumb bg-color-blue timeline-icon">
+            <i class="fa fa-calendar"></i>
+          </div>
+          <div class="timeline-item">
+            <h4 class="font-light">{{reunion.titulo}}</h4>
+            <i class="icon ion-chevron-right icon-accessory" style="top: 20; position: absolute; right: 5px; color: #ccc; font-size: 16px;"></i>
+            <p>{{reunion.ubicacion}}</p>
+            <div class="timeline-stats">
+              <i class="ion-person"></i> {{reunion.users.length}}
+              <span class="pos-absolute-right"><i class="ion-ios-clock"></i> {{reunion.fecha|date:"dd/MMM"}} {{reunion.horaInicio|date:"HH:mm"}} </span>
+            </div>
+          </div>
+        </a>
+      </li>        
+    </ul>
+    <div class="divider-title">Futuros</div>
+    <ul class="timeline" id="futuro" ng-show="rc.ffuturo">
+      <li ng-repeat="reunion in rc.futuro | orderBy:'fecha'">
+        <a ui-sref="app.editarReunion({reunionId: reunion._id})" style="text-decoration: none; ">
+          <div class="timeline-thumb bg-color-red timeline-icon">
+            <i class="fa fa-list"></i>
+          </div>
+          <div class="timeline-item">
+            <h4 class="font-light">{{reunion.titulo}}</h4>
+            <i class="icon ion-chevron-right icon-accessory" style="top: 20; position: absolute; right: 5px; color: #ccc; font-size: 16px;"></i>
+            <p>{{reunion.ubicacion}}</p>
+            <div class="timeline-stats">
+              <i class="ion-person"></i> {{reunion.users.length}}
+              <span class="pos-absolute-right"><i class="ion-ios-clock"></i> {{reunion.fecha |date:"dd/MMM"}} {{reunion.horaInicio|date:"HH:mm"}} </span>
+            </div>
+          </div>
+        </a>
+      </li>        
+    </ul>
   </ion-content>
 </ion-view>
+<style>
+	.bar.app-top-bar {
+	  background-color: #fedc34;
+	  .title, .button {
+	    color: #000000 !important;
+	    * {
+	      color: #000000 !important;
+	    }
+	  }
+	}
+</style>

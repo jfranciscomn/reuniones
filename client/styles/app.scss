@@ -11620,11 +11620,11 @@ a.button {
 }
 
 .bar.app-top-bar {
-  background-color: #33779B;
+  background-color: #fedc34;
   .title, .button {
-    color: #FFFFFF !important;
+    color: #000000 !important;
     * {
-      color: #FFFFFF !important;
+      color: #000000 !important;
     }
   }
 }
@@ -12622,70 +12622,182 @@ ion-side-menu {
 
 
 //REUNIONES
-
-.header-alto {
-	height: 50%;
-}
-
-.menu-boton-centro {
-	width: 50%; 
-	height: 50%; 
-	float: left; 
-	position: absolute; 
-	left: 25%; 
-	top: 25%;
-}
-
-.left-top {
-	width: 30%; 
-	height: 30%; 
-	float: left; 
-	position: absolute; 
-	left: 10%; 
-	top: 10%;
-}
-
-.left-bottom {
-	width: 30%; height: 30%; float: left; 	position: absolute; left: 10%; 	bottom: 10%;
-}
-
-.right-top {
-	width: 30%; height: 30%; float: right; position: absolute; right: 10%; top: 10%;
-}
-
-.right-bottom {
-	width: 30%; 
-	height: 30%; 
-	float: right; 
-	position: absolute; 
-	right: 10%; 
-	bottom: 10% !important;
-}
-
 .hoy {
-	width: 43.33%; height: 65%; float: left; position: absolute; left: 28.33%; top: 17.5%; border-radius: 50% 50% 50% 50% !important;
+	width: 43.33%; height: 65%; float: left; position: absolute; left: 28.33%; top: 17.5%; border-radius: 50% 50% 50% 50% !important; background: rgba(254, 220, 53, 0.9); color: white;
 }
 
 .semana {
-	width: 26.66%; height: 40%; float: left; position: 	absolute; left: 10%; top: 10%; border-radius: 50% 50% 50% 50% !important; background: rgba(131, 230, 158, 0.9);
+	width: 26.66%; height: 40%; float: left; position: 	absolute; left: 10%; top: 10%; border-radius: 50% 50% 50% 50% !important; background: rgba(131, 230, 158, 0.9); color: white;
 }
 
 .mes {
-	width: 24%; height: 35%; float: left; 	position: absolute; left: 10%; 	bottom: 10%; border-radius: 50% 50% 50% 50% !important; background: rgba(53, 198, 235, 0.9);
+	width: 24%; height: 35%; float: left; 	position: absolute; left: 10%; 	bottom: 10%; border-radius: 50% 50% 50% 50% !important; background: rgba(53, 198, 235, 0.9); color: white;
 }
 
 .proxima {
-	width: 24%; height: 35%; float: right; position: absolute; right: 20%; top: 5%; border-radius: 50% 50% 50% 50% !important; background: rgba(232, 86, 89, 0.9);
+	width: 24%; height: 35%; float: right; position: absolute; right: 15%; top: 5%; border-radius: 50% 50% 50% 50% !important; background: rgba(232, 86, 89, 0.9); color: white;
 }
 
 .futuro {
-	width: 24%; height: 35%; float: right; position: absolute; right: 10%; top: 55%; border-radius: 50% 50% 50% 50% !important; background: rgba(131, 230, 158, 0.9);
+	width: 24%; height: 35%; float: right; position: absolute; right: 10%; top: 55%; border-radius: 50% 50% 50% 50% !important; background: rgba(232, 86, 89, 0.9); color: white;
 }
 
 .trans {
 	background: rgba(255, 255, 255, 0.5);
 }
 
+.amarillo {
+	background-color: #fedc34;
+}
+
+.font-light {
+	font-weight: 100; margin-bottom: 0px;
+}
+//TIMELINE
 
 
+.pos-absolute-right {
+    position: absolute;
+    right: 8px;
+}
 
+.timeline {
+    position: relative;
+    margin: 15px 0 0 0;
+}
+
+.timeline:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 5px;
+    background: #cecece;
+    left: 44px;
+    margin-left: -10px;
+    z-index: 1;
+}
+
+.timeline .timeline-thumb {
+    border-radius: 500px;
+    width: 50px;
+    z-index: 2;
+    position: absolute;
+    left: 10px
+}
+
+.timeline .timeline-thumb.timeline-icon {
+    height: 50px;
+    text-align: center;
+    color: white;
+    border: 5px solid #CBD0D3;
+}
+
+.timeline .timeline-thumb.timeline-icon i {
+    font-size: 19px;
+    margin: 10px 0;
+    display: block;
+    color: white;
+}
+
+.timeline .timeline-item {
+    margin-left: 72px;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 8px;
+}
+
+.timeline .timeline-stats {
+    position: relative;
+    font-size: 12px;
+    color: #7F8C8D;
+}
+
+.divider-title {
+    background: #e4e4e4;
+    padding: 5px 15px;
+}
+
+/* === Color Themes === */
+.text-muted {
+    color: #6d6d72 !important;
+}
+
+.color-gray {
+    color: #8e8e93 !important;
+}
+
+.color-red {
+    color: #eb4e52 !important;
+}
+
+.bg-color-red {
+    background-color: #eb4e52 !important;
+}
+
+.color-white {
+    color: #ffffff !important;
+}
+
+.color-yellow {
+    color: #fedc34 !important;
+}
+
+.bg-color-yellow {
+    background-color: #fedc34 !important;
+}
+
+.color-green {
+    color: #82e79d !important;
+}
+
+.color-orange {
+    color: #ff9500 !important;
+}
+
+.bg-color-orange {
+    background-color: #ff9500 !important;
+}
+
+.color-blue {
+    color: #6fcced !important;
+}
+
+.bg-color-blue {
+    background-color:#6fcced !important;
+}
+
+.color-lightblue {
+    color: #5ac8fa !important;
+}
+
+.bg-color-lightblue {
+    background-color: #5ac8fa !important;
+}
+
+.color-bluegray {
+    color: #607d8b !important;
+}
+
+.bg-color-bluegray {
+    background-color: #607d8b !important;
+}
+
+.color-night {
+    color: #2B1B17 !important;
+}
+
+.color-black {
+    color: black !important;
+}
+
+.bg-color-white {
+    background-color: #ffffff;
+}
+
+.bg-color-green {
+    background-color: #82e79d !important;
+}
+
+.text-white {
+	color: white;
+}

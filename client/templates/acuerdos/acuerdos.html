@@ -6,27 +6,124 @@
     <button menu-toggle="right" class="button button-icon icon ion-plus" ui-sref="app.nuevoAcuerdo"></button>
   </ion-nav-buttons>
   <ion-nav-title>
-    <span>Mis Acuerdos</span>
+    <span class="font-light">Mis Acuerdos</span>
   </ion-nav-title>
-  <ion-content>
-    <!-- Refresh to get the new posts -->
-
-    <ion-refresher pulling-text="Pull to refresh..." on-refresh="ac.doRefresh()">
-    </ion-refresher>
-
-		<ion-list show-delete="ac.shouldShowDelete" can-swipe="ac.listCanSwipe">
-		  <ion-item ng-repeat="acuerdo in ac.acuerdos | orderBy:'fecha'" class="item-chat item-remove-animate item-icon-right"
-                type="item-text-wrap" ui-sref="app.editarAcuerdo({acuerdoId: acuerdo._id})">
-		    <h2>{{acuerdo.titulo}}<span class="item-note">{{acuerdo.categoria.nombre}}</span></h2>
-		    <p>{{acuerdo.fecha|date:"dd/MM/yyyy"}} {{acuerdo.horaInicio|date:"shortTime"}}</p>
-		    <i class="icon ion-chevron-right icon-accessory"></i>
-		    <ion-option-button class="button-royal" ng-click="ac.eliminar(acuerdo)">
-		      Eliminar
-		    </ion-option-button>
-		    <ion-option-button class="button-assertive" ng-click="ac.editar(acuerdo._id)">
-		      Editar
-		    </ion-option-button>		
-		  </ion-item>
-		</ion-list>
+  <div class="bar bar-subheader" style="height: {{ac.deviceWidth / 1.5}}px; background: url('images/home/acuerdoes-01.png'); background-size: 100%;">
+	  <a class="button hoy" ng-click="ac.cambiarFiltro('hoy')"> 
+	  	<i class="fa fa-check" style="font-size: 50pt; color: white; margin-top:10px;"></i><br/>
+	  	<div style="font-size: 20pt; color: white; margin: -10px 0px 0px 0px; ">{{ac.hoy.length}}</div>
+	  	<div style="font-size: 12pt; color: white; margin: -5px 0px 0px 0px; ">Hoy</div>
+	  </a>
+	  <a class="button semana" ng-click="ac.cambiarFiltro('semana')">
+		  <i class="fa fa-file-text-o" style="font-size: 15pt; color: white; margin-top:10px;"></i><br/>
+		  <div style="font-size: 15pt; color: white; margin: -12px 0px 0px 0px; ">{{ac.semana.length}}</div>
+		  <div style="font-size: 9pt; color: white; margin: -15px 0px 0px 0px;">Semana </div>
+		</a>
+	  <a class="button mes" ng-click="ac.cambiarFiltro('mes')">
+	  	<i class="fa fa-calendar" style="font-size: 15pt; color: white; margin-top:10px;"></i><br/> 
+	  	<div style="font-size: 15pt; color: white; margin: -12px 0px 0px 0px; ">{{ac.mes.length}}</div>
+	  	<div style="font-size: 8pt; color: white; margin: -15px 0px 0px 0px">Mes </div>
+	  </a>
+	  <a class="button proxima" ng-click="ac.cambiarFiltro('todas')"> 
+	  	<i class="fa fa-clock-o" style="font-size: 15pt; color: white; margin-top:10px;"></i><br/>
+	  	<div style="font-size: 15pt; color: white; margin: -12px 0px 0px 0px; ">{{ac.acuerdoes.length}}</div>
+	  	<div style="font-size: 8pt; color: white; margin: -15px 0px 0px 0px">Todas </div>
+	  </a>
+	  <a class="button futuro" ng-click="ac.cambiarFiltro('futuro')"> 
+	  	<i class="fa fa-list" style="font-size: 15pt; color: white; margin-top:10px;"></i><br/>
+	  	<div style="font-size: 15pt; color: white; margin: -12px 0px 0px 0px; ">{{ac.futuro.length}}</div>
+	  	<div style="font-size: 8pt; color: white; margin: -15px 0px 0px 0px">Futuro </div>
+	  </a>
+	  <button style="width: 0px; height: 0px;" ng-show="false"></button>
+	</div>
+  <ion-content style="margin-top:66%;">
+	  <div class="divider-title">Hoy</div>
+    <ul class="timeline" id="hoy" ng-show="ac.fhoy">
+      <li ng-repeat="acuerdo in ac.hoy | orderBy:'fecha'">
+      	<a ui-sref="app.editarAcuerdo({acuerdoId: acuerdo._id})" style="text-decoration: none; ">
+          <div class="timeline-thumb bg-color-yellow timeline-icon">
+            <i class="fa fa-check text-white" aria-hidden="true"></i>
+          </div>
+          <div class="timeline-item">
+            <h4 class="font-light">{{acuerdo.titulo}}</h4>
+            <i class="icon ion-chevron-right icon-accessory" style="top: 20; position: absolute; right: 5px; color: #ccc; font-size: 16px;"></i>
+            <p>{{acuerdo.ubicacion}}</p>	            
+            <div class="timeline-stats">
+              <i class="ion-person"></i> {{acuerdo.users.length}}
+              <span class="pos-absolute-right"><i class="ion-ios-clock"></i> {{acuerdo.horaInicio|date:"HH:mm"}} </span>
+            </div>
+            
+          </div>
+      	</a>
+      </li>
+    </ul>
+    <div class="divider-title">Semana</div>
+    <ul class="timeline" id="semana" ng-show="ac.fsemana">
+      <li ng-repeat="acuerdo in ac.hoy | orderBy:'fecha'">
+        <a ui-sref="app.editarAcuerdo({acuerdoId: acuerdo._id})" style="text-decoration: none; ">
+          <div class="timeline-thumb bg-color-green timeline-icon">
+            <i class="fa fa-file-text-o" aria-hidden="true"></i>
+          </div>
+          <div class="timeline-item">
+            <h4 class="font-light">{{acuerdo.titulo}}</h4>
+            <i class="icon ion-chevron-right icon-accessory" style="top: 20; position: absolute; right: 5px; color: #ccc; font-size: 16px;"></i>
+            <p>{{acuerdo.ubicacion}}</p>
+            <div class="timeline-stats">
+              <i class="ion-person"></i> {{acuerdo.users.length}}
+              <span class="pos-absolute-right"><i class="ion-ios-clock"></i> {{acuerdo.fecha|date:"dd/MMM"}} {{acuerdo.horaInicio|date:"HH:mm"}} </span>
+            </div>
+          </div>
+        </a>
+      </li>
+    </ul>
+    <div class="divider-title">Mes</div>
+    <ul class="timeline" id="mes" ng-show="ac.fmes">
+      <li ng-repeat="acuerdo in ac.mes | orderBy:'fecha'">
+        <a ui-sref="app.editarAcuerdo({acuerdoId: acuerdo._id})" style="text-decoration: none; ">
+          <div class="timeline-thumb bg-color-blue timeline-icon">
+            <i class="fa fa-calendar"></i>
+          </div>
+          <div class="timeline-item">
+            <h4 class="font-light">{{acuerdo.titulo}}</h4>
+            <i class="icon ion-chevron-right icon-accessory" style="top: 20; position: absolute; right: 5px; color: #ccc; font-size: 16px;"></i>
+            <p>{{acuerdo.ubicacion}}</p>
+            <div class="timeline-stats">
+              <i class="ion-person"></i> {{acuerdo.users.length}}
+              <span class="pos-absolute-right"><i class="ion-ios-clock"></i> {{acuerdo.fecha|date:"dd/MMM"}} {{acuerdo.horaInicio|date:"HH:mm"}} </span>
+            </div>
+          </div>
+        </a>
+      </li>        
+    </ul>
+    <div class="divider-title">Futuros</div>
+    <ul class="timeline" id="futuro" ng-show="ac.ffuturo">
+      <li ng-repeat="acuerdo in ac.futuro | orderBy:'fecha'">
+        <a ui-sref="app.editarAcuerdo({acuerdoId: acuerdo._id})" style="text-decoration: none; ">
+          <div class="timeline-thumb bg-color-red timeline-icon">
+            <i class="fa fa-list"></i>
+          </div>
+          <div class="timeline-item">
+            <h4 class="font-light">{{acuerdo.titulo}}</h4>
+            <i class="icon ion-chevron-right icon-accessory" style="top: 20; position: absolute; right: 5px; color: #ccc; font-size: 16px;"></i>
+            <p>{{acuerdo.ubicacion}}</p>
+            <div class="timeline-stats">
+              <i class="ion-person"></i> {{acuerdo.users.length}}
+              <span class="pos-absolute-right"><i class="ion-ios-clock"></i> {{acuerdo.fecha |date:"dd/MMM"}} {{acuerdo.horaInicio|date:"HH:mm"}} </span>
+            </div>
+          </div>
+        </a>
+      </li>        
+    </ul>
   </ion-content>
 </ion-view>
+<style>
+	.bar.app-top-bar {
+	  background-color: #82e79d;
+	  .title, .button {
+	    color: #000000 !important;
+	    * {
+	      color: #000000 !important;
+	    }
+	  }
+	}
+</style>
