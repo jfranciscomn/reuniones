@@ -50,11 +50,7 @@
             <h4 class="font-light">{{reunion.titulo}}</h4>
             <i class="icon ion-chevron-right icon-accessory" style="top: 20; position: absolute; right: 5px; color: #ccc; font-size: 16px;"></i>
             <p>{{reunion.ubicacion}}</p>	            
-            <div class="timeline-stats" ng-if="!reunion.owner == currentUser._id">
-              <i class="ion-person" ></i> {{reunion.users.length}}
-              <span class="pos-absolute-right"><i class="ion-ios-clock"></i> {{reunion.horaInicio|date:"HH:mm"}} </span>
-            </div>
-            <div class="timeline-stats" ng-if="reunion.owner == currentUser._id">
+            <div class="timeline-stats">
               <i class="ion-person color-green"></i> {{rc.getConfirmados(reunion.users)}}
 		          <i class="ion-person color-yellow"></i> {{rc.getPendientes(reunion.users)}}
 		          <i class="ion-person color-red"></i> {{rc.getRechazados(reunion.users)}}
@@ -76,7 +72,9 @@
             <i class="icon ion-chevron-right icon-accessory" style="top: 20; position: absolute; right: 5px; color: #ccc; font-size: 16px;"></i>
             <p>{{reunion.ubicacion}}</p>	            
             <div class="timeline-stats">
-              <i class="ion-person"></i> {{reunion.users.length}}
+              <i class="ion-person color-green"></i> {{rc.getConfirmados(reunion.users)}}
+		          <i class="ion-person color-yellow"></i> {{rc.getPendientes(reunion.users)}}
+		          <i class="ion-person color-red"></i> {{rc.getRechazados(reunion.users)}}
               <span class="pos-absolute-right"><i class="ion-ios-clock"></i> {{reunion.horaInicio|date:"HH:mm"}} </span>
             </div>
           </div>
@@ -95,8 +93,10 @@
             <i class="icon ion-chevron-right icon-accessory" style="top: 20; position: absolute; right: 5px; color: #ccc; font-size: 16px;"></i>
             <p>{{reunion.ubicacion}}</p>
             <div class="timeline-stats">
-              <i class="ion-person"></i> {{reunion.users.length}}
-              <span class="pos-absolute-right"><i class="ion-ios-clock"></i> {{reunion.fecha|date:"dd/MMM"}} {{reunion.horaInicio|date:"HH:mm"}} </span>
+              <i class="ion-person color-green"></i> {{rc.getConfirmados(reunion.users)}}
+		          <i class="ion-person color-yellow"></i> {{rc.getPendientes(reunion.users)}}
+		          <i class="ion-person color-red"></i> {{rc.getRechazados(reunion.users)}}
+              <span class="pos-absolute-right"><i class="ion-ios-clock"></i> {{reunion.horaInicio|date:"HH:mm"}} </span>
             </div>
           </div>
         </a>
@@ -114,12 +114,14 @@
             <i class="icon ion-chevron-right icon-accessory" style="top: 20; position: absolute; right: 5px; color: #ccc; font-size: 16px;"></i>
             <p>{{reunion.ubicacion}}</p>
             <div class="timeline-stats">
-              <i class="ion-person"></i> {{reunion.users.length}}
-              <span class="pos-absolute-right"><i class="ion-ios-clock"></i> {{reunion.fecha|date:"dd/MMM"}} {{reunion.horaInicio|date:"HH:mm"}} </span>
+              <i class="ion-person color-green"></i> {{rc.getConfirmados(reunion.users)}}
+		          <i class="ion-person color-yellow"></i> {{rc.getPendientes(reunion.users)}}
+		          <i class="ion-person color-red"></i> {{rc.getRechazados(reunion.users)}}
+              <span class="pos-absolute-right"><i class="ion-ios-clock"></i> {{reunion.horaInicio|date:"HH:mm"}} </span>
             </div>
           </div>
         </a>
-      </li>        
+      </li>
     </ul>
     <div class="divider-title">Futuros</div>
     <ul class="timeline" id="futuro" ng-show="rc.ffuturo">
@@ -133,12 +135,14 @@
             <i class="icon ion-chevron-right icon-accessory" style="top: 20; position: absolute; right: 5px; color: #ccc; font-size: 16px;"></i>
             <p>{{reunion.ubicacion}}</p>
             <div class="timeline-stats">
-              <i class="ion-person"></i> {{reunion.users.length}}
-              <span class="pos-absolute-right"><i class="ion-ios-clock"></i> {{reunion.fecha |date:"dd/MMM"}} {{reunion.horaInicio|date:"HH:mm"}} </span>
+              <i class="ion-person color-green"></i> {{rc.getConfirmados(reunion.users)}}
+		          <i class="ion-person color-yellow"></i> {{rc.getPendientes(reunion.users)}}
+		          <i class="ion-person color-red"></i> {{rc.getRechazados(reunion.users)}}
+              <span class="pos-absolute-right"><i class="ion-ios-clock"></i> {{reunion.horaInicio|date:"HH:mm"}} </span>
             </div>
           </div>
         </a>
-      </li>        
+      </li>
     </ul>
   </ion-content>
 </ion-view>
