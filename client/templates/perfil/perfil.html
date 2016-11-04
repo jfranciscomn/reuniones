@@ -3,29 +3,59 @@
     <span>Perfil</span>
   </ion-nav-title>
   <ion-nav-buttons side="right" >
-		<button menu-toggle="right" ng-show="pc.editar" class="button button-icon icon ion-android-checkmark-circle" ng-click='pc.actualizar()'></button>
+		<button menu-toggle="right" class="button button-icon ion-camera" ng-click='pc.takePicture()'></button>
 	</ion-nav-buttons>
   <ion-content>
     <div class="top-content row">
       <div class="profile-container">
         <div class="user-image-container">
           <pre-img ratio="_1_1" helper-class="square-image" >
-            <img class="user-image" src="{{currentUser.profile.picture}}" spinner-on-load>
-            <button class="button button-clear button-assertive" ng-click="pc.takePicture()" style="margin-top: 60%; margin-left: -100px;">Editar foto</button>
+            <img class="user-image" src="{{currentUser.profile.picture}}" spinner-on-load style="padding-bottom: 0px;">
           </pre-img>
-        </div>
+        </div>        
         <div class="user-name">{{currentUser.profile.name}}</div>
         <div class="user-twitter">{{currentUser.emails[0].address}}</div>
       </div>
-      <div class="user-background-image-outer">
+      <div class="user-background-image-outer">	      
         <div multi-bg="[image]"></div>
         <!-- <div multi-bg="['https://s3.amazonaws.com/uifaces/faces/twitter/brynn/128.jpg']"></div> -->
       </div>
     </div>
     <div class="bottom-content">
+<!--
       <div class="user-bio">
         <p>Aquí un resumen de actividades, como una bitácora, Francissssscooooo!.</p>
       </div>
+-->
+      <div class="list">
+	      <div class="item item-divider">
+			    Configuración
+			  </div>
+	      <a class="item item-icon-right " href="#" ui-sref="app.editarPerfil">
+			    Mi Perfil
+			    <i class="icon ion-chevron-right item-accessory-small"></i>
+			  </a>		
+			  <a class="item item-icon-right" href="#" ui-sref="app.preferenciasReunion">
+			    Preferencias de reunión
+			    <i class="icon ion-chevron-right item-accessory-small"></i>
+			  </a>
+			  <a class="item item-icon-right" href="#" ui-sref="app.preferenciasAplicacion">
+			    Preferencias de la aplicación
+			    <i class="icon ion-chevron-right item-accessory-small"></i>
+			  </a>
+			  <a class="item item-icon-right" href="#" ui-sref="app.acercaDe">
+			    Acerca de Mis Reuniones
+			    <i class="icon ion-chevron-right item-accessory-small"></i>
+			  </a>
+			  <a class="item item-icon-right" href="#" ui-sref="app.pasaLaVoz">
+			    Pasa la voz
+			    <i class="icon ion-chevron-right item-accessory-small"></i>
+			  </a>
+			  <a class="item item-icon-right" href="#" ui-sref="app.ayuda">
+			    Ayuda
+			    <i class="icon ion-chevron-right item-accessory-small"></i>
+			  </a>
+			</div>
     </div>
   </ion-content>
 </ion-view>

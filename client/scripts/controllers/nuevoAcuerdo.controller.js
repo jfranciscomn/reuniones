@@ -38,7 +38,7 @@ angular
 		
 		this.agregarParticipante = function(){
 		
-			this.acuerdo.users.push({user:null});
+			this.acuerdo.users.push({user:null, estatus : false});
 			console.log(this.acuerdo.users)
 		}
 

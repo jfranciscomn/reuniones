@@ -1,0 +1,61 @@
+<ion-view class="forms-view">
+	<ion-nav-buttons side="left">
+	</ion-nav-buttons>
+	<ion-nav-buttons side="right">
+		<button menu-toggle="right" class="button button-icon icon ion-android-checkmark-circle" ng-click='epc.actualizar()'></button>
+	</ion-nav-buttons>
+	<ion-nav-title>
+		<span class="font-light">Mi Perfil</span>
+	</ion-nav-title>
+	<ion-content>
+		<ul class="list">
+			<label class="item item-input-inset item-stacked-label">
+				<span class="input-label">Nombre</span>
+				<label class="item-input-wrapper">
+					<input type="text" ng-model='epc.usuarioActual.profile.name'>
+				</label>
+			</label>
+      <label class="item item-input-inset item-stacked-label">
+				<span class="input-label">Puesto</span>
+				<label class="item-input-wrapper">
+					<input type="text" ng-model='epc.usuarioActual.profile.puesto'>
+				</label>
+			</label>
+			<label class="item item-input-inset item-stacked-label">
+				<span class="input-label">Teléfono</span>
+				<label class="item-input-wrapper">
+					<input type="text" ng-model='epc.usuarioActual.profile.telefono'>
+				</label>
+			</label>
+			<label class="item item-input-inset item-stacked-label">
+				<span class="input-label">Cuidad</span>
+				<label class="item-input-wrapper">
+					<input type="text" ng-model='epc.usuarioActual.profile.cuidad'>
+				</label>
+			</label>
+			<label class="item item-input-inset item-stacked-label">
+				<span class="input-label">Estado</span>
+				<label class="item-input-wrapper">
+					<input type="text" ng-model='epc.usuarioActual.profile.estado'>
+				</label>
+			</label>
+			<label class="item item-input-inset item-stacked-label">
+				<span class="input-label">País</span>
+				<label class="item-input-wrapper">
+					<input type="text" ng-model='epc.usuarioActual.profile.pais'>
+				</label>
+			</label>
+    </ul>
+  </ion-content>
+</ion-view>
+<style>
+	.bar.app-top-bar {
+	  background-color: #fedc34;
+	  .title, .button {
+	    color: #000000 !important;
+	    * {
+	      color: #000000 !important;
+	    }
+	  }
+	}
+</style>

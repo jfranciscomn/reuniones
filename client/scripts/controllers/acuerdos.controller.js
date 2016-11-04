@@ -2,13 +2,13 @@ angular
   .module('FLOKsports')
   .controller('AcuerdosCtrl', function AcuerdosCtrl($scope, $reactive, $state, $stateParams, $ionicPopup) {
 		let rc = $reactive(this).attach($scope);
+		this.deviceWidth = $(".menuSuperior").width();
 		this.listCanSwipe = true;
-		this.deviceWidth = window.screen.width;
 		this.fhoy = true;
 		this.fsemana = true;
 		this.fmes = true;
 		this.ffuturo = true;
-		this.fvencidos = true;
+		this.fvencidos = true;		
 		this.helpers({
 			acuerdos() {
 				var acuerdos = Acuerdos.find({users:{ $elemMatch: {user:Meteor.userId()}}}).fetch();
@@ -107,5 +107,4 @@ angular
 				rc.ffuturo = true;
 			}
 		}
-
 });
