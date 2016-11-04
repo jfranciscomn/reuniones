@@ -12,7 +12,7 @@ angular
 	
 		this.takePicture = function(){
 			this.editar = true;
-	    $meteor.getPicture({width:128, height: 128, quality: 100}).then(function(picture, ){
+	    $meteor.getPicture({ allowEdit:false, targetWidth:128, targetHeight: 128, quality: 100}).then(function(picture, ){
 	      rc.user.profile.picture = picture;
 	      Meteor.users.update({_id: rc.user._id}, {$set:{profile: rc.user.profile}});
 				console.log(rc.user);

@@ -21,6 +21,10 @@ App.configurePlugin('com.phonegap.plugins.facebookconnect', {
     APP_NAME: 'FLOKsports'
 });
 
+App.configurePlugin('phonegap-plugin-push', {
+  SENDER_ID: 12341234
+});
+
 App.icons({
   // iOS
   'iphone': 'resources/icons/icon-60x60.png',

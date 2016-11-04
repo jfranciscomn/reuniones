@@ -1,0 +1,9 @@
+
+{
+  "name": "template",
+  "private": true,
+  "scripts": {
+    "start": "meteor run"
+  },
+  "dependencies": {  }
+}

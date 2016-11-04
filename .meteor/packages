@@ -11,19 +11,16 @@ session                 # Client-side reactive dictionary for your app
 jquery                  # Helpful client-side library
 tracker                 # Meteor's client-side reactive programming library
 
-standard-minifiers      # JS/CSS minifiers run for production mode
 
 insecure                # Allow all DB writes from clients (for prototyping)
 autopublish
 angular
 driftyco:ionic
 momentjs:moment
-fourseven:scss
 jasonaibrahim:angular-moment
 check
 jss:flag-icon
 http
-jparker:crypto-md5
 
 accounts-password
 
@@ -31,13 +28,13 @@ meteoric:ionic-sass
 #19degrees:paypal-extended-secured
 #accounts-facebook
 service-configuration
-meteorhacks:npm
 
-
-
-npm-container
 #email
 frozeman:storage
 #btafel:accounts-facebook-cordova
 fortawesome:fontawesome
 mdg:camera
+standard-minifier-css
+standard-minifier-js
+fourseven:scss
+raix:push

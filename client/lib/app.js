@@ -12,7 +12,7 @@ angular
     $ionicConfigProvider.navBar.alignTitle('center');
 	})
 	.run(function(){
-		ionic.Platform.ready(function(){
+    ionic.Platform.ready(function(){
 			ionic.Platform.fullScreen();
 		})
 	});
@@ -26,4 +26,24 @@ else {
  
 function onReady() {
   angular.bootstrap(document, ['FLOKsports']);
+  console.log(Push)
+  Push.Configure({
+  android: {
+    senderID: 12341234,
+    alert: true,
+    badge: true,
+    sound: true,
+    vibrate: true,
+    clearNotifications: true
+    // icon: '',
+    // iconColor: ''
+  },
+  ios: {
+    alert: true,
+    badge: true,
+    sound: true
+  }
+});
 }
+
+
