@@ -27,7 +27,7 @@ angular
 				if(res) {
 					_.each(reunion.users, function(usuario){
 						if(usuario.user == Meteor.userId()){
-							Reuniones.update({_id : reunion._id, "users.user" : Meteor.userId() }, { $set : { "users.$.estatus" : estatus }});
+							Reuniones.update({ _id : reunion._id, 'users.user' : Meteor.userId() }, { $set : { "users.$.estatus" : estatus }});
 						}
 					})
 				}
