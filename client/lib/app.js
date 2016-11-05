@@ -11,11 +11,7 @@ angular
     $ionicConfigProvider.tabs.position('bottom');
     $ionicConfigProvider.navBar.alignTitle('center');
 	})
-	.run(function(){
-    ionic.Platform.ready(function(){
-			ionic.Platform.fullScreen();
-		})
-	});
+	;
 
 if (Meteor.isCordova) {
   angular.element(document).on('deviceready', onReady);
@@ -26,7 +22,7 @@ else {
  
 function onReady() {
   angular.bootstrap(document, ['FLOKsports']);
- 
+
 }
 
 
