@@ -42,7 +42,7 @@
   	<div class="divider-title">Vencidas</div>
     <ul class="timeline" id="hoy" ng-show="rc.fhoy">
       <li ng-repeat="reunion in rc.vencidas | orderBy:'fecha'">
-      	<a ui-sref="app.editarReunion({reunionId: reunion._id})" style="text-decoration: none; ">
+      	<a ng-click="rc.detalleReunion(reunion)" style="text-decoration: none; ">
           <div class="timeline-thumb bg-color-red timeline-icon">
             <i class="fa fa-check text-white" aria-hidden="true"></i>
           </div>
@@ -63,7 +63,7 @@
 	  <div class="divider-title">Hoy</div>
     <ul class="timeline" id="hoy" ng-show="rc.fhoy">
       <li ng-repeat="reunion in rc.hoy | orderBy:'fecha'">
-      	<a ui-sref="app.editarReunion({reunionId: reunion._id})" style="text-decoration: none; ">
+      	<a ng-click="rc.detalleReunion(reunion)" style="text-decoration: none; ">
           <div class="timeline-thumb bg-color-yellow timeline-icon">
             <i class="fa fa-check text-white" aria-hidden="true"></i>
           </div>
@@ -84,7 +84,7 @@
     <div class="divider-title">Semana</div>
     <ul class="timeline" id="semana" ng-show="rc.fsemana">
       <li ng-repeat="reunion in rc.semana | orderBy:'fecha'">
-        <a ui-sref="app.editarReunion({reunionId: reunion._id})" style="text-decoration: none; ">
+        <a ng-click="rc.detalleReunion(reunion)" style="text-decoration: none; ">
           <div class="timeline-thumb bg-color-green timeline-icon">
             <i class="fa fa-file-text-o" aria-hidden="true"></i>
           </div>
@@ -105,7 +105,7 @@
     <div class="divider-title">Mes</div>
     <ul class="timeline" id="mes" ng-show="rc.fmes">
       <li ng-repeat="reunion in rc.mes | orderBy:'fecha'">
-        <a ui-sref="app.editarReunion({reunionId: reunion._id})" style="text-decoration: none; ">
+        <a ng-click="rc.detalleReunion(reunion)" style="text-decoration: none; ">
           <div class="timeline-thumb bg-color-blue timeline-icon">
             <i class="fa fa-calendar"></i>
           </div>
@@ -126,7 +126,7 @@
     <div class="divider-title">Futuros</div>
     <ul class="timeline" id="futuro" ng-show="rc.ffuturo">
       <li ng-repeat="reunion in rc.futuro | orderBy:'fecha'">
-        <a ui-sref="app.editarReunion({reunionId: reunion._id})" style="text-decoration: none; ">
+        <a ng-click="rc.detalleReunion(reunion)" style="text-decoration: none; ">
           <div class="timeline-thumb bg-color-red timeline-icon">
             <i class="fa fa-list"></i>
           </div>

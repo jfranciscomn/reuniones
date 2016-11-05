@@ -1,15 +1,15 @@
 <ion-modal-view>
   <ion-header-bar>
     <h1 class="title">Participantes</h1>
-    <button class="button button-clear button-primary" ng-click="nrc.cerrarModalParticipantes()">Cancel</button>
+    <button class="button button-clear button-primary" ng-click="nrc.cerrarModalParticipantes()">Listo</button>
   </ion-header-bar>
   <ion-content>
     <ion-list>
     	<label class="item item-input">
 		    <i class="icon ion-search placeholder-icon"></i>
-		    <input type="text" placeholder="Search" ng-model="nrc.buscar">
+		    <input type="text" placeholder="Buscar" ng-model="nrc.buscar">
 		  </label>
-		  <ion-checkbox ng-repeat='participante in nrc.registrados | filter:nrc.buscar:strict' ng-model="nrc.opcion.participantes[participante._id]" ng-click='nrc.agregarParticipante(participante)'>
+		  <ion-checkbox ng-repeat='participante in nrc.registrados | filter:nrc.buscar:strict | orderBy : "profile.name"' ng-model="participante.estatus" ng-click='nrc.agregarParticipante(participante, $index)'>
 		  	{{participante.profile.name}}
 		  </ion-checkbox>
 		</ion-list>

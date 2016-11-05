@@ -131,6 +131,15 @@ angular.module('FLOKsports').config(['$injector', function ($injector) {
       }
     }
   })
+  .state('app.verReunion', {
+    url: '/verReunion/:reunionId',
+    views: {
+      'menuContent': {
+        templateUrl: 'client/templates/reuniones/reunion.html',
+        controller: 'ReunionCtrl as rc'
+      }
+    }
+  })
   .state('app.acuerdos', {
     url: '/acuerdos',
     views: {

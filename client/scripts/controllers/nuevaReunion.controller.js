@@ -1,12 +1,15 @@
 angular
   .module('FLOKsports')
-  .controller('NuevaReunionCtrl', function AcuerdosCtrl($scope, $reactive, $state, $stateParams, $ionicPopup, $ionicHistory, $ionicModal) {
+  .controller('NuevaReunionCtrl', function NuevaReunionCtrl($scope, $reactive, $state, $stateParams, $ionicPopup, $ionicHistory, $ionicModal) {
 		let rc = $reactive(this).attach($scope);
+		window.rc = rc;
 		this.reunionId = $stateParams.reunionId;
 		this.reunion = Reuniones.findOne(this.reunionId);
+		
 		this.buscar = "";
 		this.opcion = {};
 		this.opcion.participantes = [];
+		this.registrados = "";
 		this.quitarhk=function(obj){
 			if(Array.isArray(obj)){
 				for (var i = 0; i < obj.length; i++) {
@@ -21,6 +24,15 @@ angular
 			}
 			return obj;
 		}
+		
+		this.helpers({
+			registrados : function() {
+				return Meteor.users.find({},{},{ sort : { "profile.name" : 1 }}).fetch();
+			},
+			categorias : function() {
+				return Categorias.find();
+			}
+		});
 			
 		if(!this.reunion){
 			this.reunion={users:[{user:Meteor.userId(), estatus : 2}]};
@@ -28,19 +40,35 @@ angular
   		this.reunion.owner = (Meteor.userId() != undefined) ? Meteor.userId() : "";
   		this.reunion.username = (Meteor.userId() != undefined) ? Meteor.user().username : "";
   		this.reunion.estatus = 1;
+  		this.reunion.fecha = new Date();
+  		this.reunion.horaInicio = new Date();
+  		this.reunion.horaFin = new Date();
+		}else{
+			_.each(rc.registrados, function(registrado, index){
+				_.each(rc.reunion.users, function(invitado){
+					if(registrado._id == invitado.user){
+						registrado.estatus = true;
+					}
+					if(registrado._id == Meteor.owner){
+						rc.registrados.splice(index, 1);
+					}
+				})
+			});
 		}
-		this.helpers({
-			registrados() {
-				return Meteor.users.find({});
-			},
-			categorias() {
-				return Categorias.find();
+
+		this.agregarParticipante = function(participante, $index){
+			if(participante.estatus == true){
+				this.reunion.users.push({user:participante._id, estatus : 1});
 			}
-		});
-	
-		this.agregarParticipante = function(participante){
-			console.log(participante);
-			this.reunion.users.push({user:participante._id, estatus : 1});
+			else{
+				_.each(rc.reunion.users, function(invitado, index){
+					if(invitado.user == participante._id){
+						console.log("index", index);
+						rc.reunion.users.splice(index, 1);
+					}
+				})
+			}
+			console.log(rc.reunion.users);
 		}
 		
 		this.save  = function(){

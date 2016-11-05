@@ -113,4 +113,12 @@ angular
 			})
 			return rechazados;
 		}
+		
+		this.detalleReunion = function(reunion){
+			if(reunion.owner == Meteor.userId()){
+				$state.go("app.editarReunion", {reunionId : reunion._id});
+			}else{
+				$state.go("app.verReunion", {reunionId : reunion._id});
+			}
+		}
 });

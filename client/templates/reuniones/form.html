@@ -51,7 +51,7 @@
 			<label class="item item-input-inset">
 				<span class="input-label">Convoca</span>
 				<label class="item-input-wrapper">
-				<input type="text" value="{{}}" ng-model='nrc.reunion.convoca'>
+				<input type="text" value="{{currentUser.profile.name}}" ng-model='nrc.reunion.convoca'>
 				</label>
 			</label>
 	    <div class="item timeline-item" ng-click="nrc.selParticipantes()">
@@ -83,7 +83,7 @@
 			  <li class="item item-toggle">
 			     Alertas
 			     <label class="toggle toggle-yellow">
-			       <input type="checkbox" checked>
+			       <input type="checkbox" checked ng-model="nrc.reunion.alertas">
 			       <div class="track">
 			         <div class="handle"></div>
 			       </div>

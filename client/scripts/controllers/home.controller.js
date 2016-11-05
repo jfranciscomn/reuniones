@@ -94,8 +94,4 @@ angular
 			}
 			
 		});
-	
-		this.doRefresh = function(){
-			alert("hola");
-		}
 });
