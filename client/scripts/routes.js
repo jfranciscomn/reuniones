@@ -193,6 +193,24 @@ angular.module('FLOKsports').config(['$injector', function ($injector) {
             controller: 'NuevaCategoriaCtrl as ncc'
           }
         }
+      })
+      .state('app.editarPerfil', {
+        url: '/editarPerfil',
+        views: {
+          'menuContent': {
+            templateUrl: 'client/templates/perfil/form.html',
+            controller: 'EditarPerfilCtrl as epc'
+          }
+        }
+      })
+      .state('app.reunionesConfirmar', {
+        url: '/reunionesConfirmar',
+        views: {
+          'menuContent': {
+            templateUrl: 'client/templates/reuniones/reunionesConfirmar.html',
+            controller: 'ReunionesConfirmarCtrl as rcc'
+          }
+        }
       });
  
     $urlRouterProvider.otherwise('/login');

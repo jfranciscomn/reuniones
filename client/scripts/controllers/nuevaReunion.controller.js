@@ -22,17 +22,20 @@ angular
 		}
 			
 		if(!this.reunion){
-			this.reunion={users:[{user:Meteor.userId()}]};
+			this.reunion={users:[{user:Meteor.userId(), estatus : 2}]};
 		}
 		this.helpers({
 			registrados() {
 				return Meteor.users.find({});
+			},
+			categorias() {
+				return Categorias.find();
 			}
 		});
 	
 		this.agregarParticipante = function(){
 			
-			this.reunion.users.push({user:null});
+			this.reunion.users.push({user:null, estatus : 1});
 
 		}
 		this.save  = function(){

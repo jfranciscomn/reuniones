@@ -1,0 +1,43 @@
+<ion-view class="layouts-view">
+	<ion-nav-bar class="amarillo">
+	  <ion-nav-buttons side="left">
+	    <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+	  </ion-nav-buttons>
+	  <ion-nav-buttons side="right">
+	    <button menu-toggle="right" class="button button-icon icon ion-plus" ui-sref="app.nuevaReunion"></button>
+	  </ion-nav-buttons>
+	  <ion-nav-title>
+	    <span class="font-light">Reuniones por confirmar</span>
+	  </ion-nav-title>
+	</ion-nav-bar>
+  <ion-content>
+  	<div class="divider-title">Por Confirmar</div>
+  	<ion-list can-swipe="rcc.listCanSwipe">
+		  <ion-item ng-repeat="reunion in rcc.reunionesPorConfirmar" class="item">
+		    <h2>{{reunion.titulo}}</h2>
+		    <p>{{reunion.ubicacion}}</p>
+		    <div class="timeline-stats">
+          <i class="ion-person"></i> {{reunion.users.length}}
+          <span class="pos-absolute-right"><i class="ion-ios-clock"></i> {{reunion.horaInicio|date:"HH:mm"}} </span>
+        </div>
+		    <ion-option-button class="button bg-color-green" ng-click="rcc.cambiarEstatus(reunion, 2)">
+		      <i class="icon ion-android-done color-white"></i>
+		    </ion-option-button>
+		    <ion-option-button class="button bg-color-red" ng-click="rcc.cambiarEstatus(reunion, 6)">
+		      <i class="icon ion-android-close color-white"></i>
+		    </ion-option-button>
+		  </ion-item>
+		</ion-list>
+  </ion-content>
+</ion-view>
+<style>
+	.bar.app-top-bar {
+	  background-color: #fedc34;
+	  .title, .button {
+	    color: #000000 !important;
+	    * {
+	      color: #000000 !important;
+	    }
+	  }
+	}
+</style>

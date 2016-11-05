@@ -2,12 +2,13 @@ angular
   .module('FLOKsports')
   .controller('AcuerdosCtrl', function AcuerdosCtrl($scope, $reactive, $state, $stateParams, $ionicPopup) {
 		let rc = $reactive(this).attach($scope);
+		this.deviceWidth = $(".menuSuperior").width();
 		this.listCanSwipe = true;
-		this.deviceWidth = window.screen.width;
 		this.fhoy = true;
 		this.fsemana = true;
 		this.fmes = true;
 		this.ffuturo = true;
+		this.fvencidos = true;		
 		this.helpers({
 			acuerdos() {
 				var acuerdos = Acuerdos.find({users:{ $elemMatch: {user:Meteor.userId()}}}).fetch();
@@ -16,6 +17,11 @@ angular
 						acuerdo.categoria = Categorias.findOne(acuerdo.categoria_id);
 					})
 				return acuerdos;
+			},
+			vencidos() {
+				var hoy = new Date;
+				var fechaInicio = (hoy.getMonth()+1) + "/" + hoy.getDate() + "/" +  hoy.getFullYear();
+				return Acuerdos.find({users:{ $elemMatch: {user:Meteor.userId()}},fecha : { $lt : new Date(fechaInicio) }});
 			},
 			hoy() {
 				var hoy = new Date;
@@ -32,7 +38,7 @@ angular
 				var ultimoDia = new Date(hoy.setDate(fin));
 				
 				var fechaInicio = (primerDia.getMonth()+1) + "/" + (primerDia.getDate()+1) + "/" +  primerDia.getFullYear();
-				var fechaFin = (ultimoDia.getMonth()+1) + "/" + ultimoDia.getDate()  + "/" +  ultimoDia.getFullYear() + " " + "23:59:59";
+				var fechaFin = moment(fechaInicio).add(5,'d').toDate();
 				
 				return Acuerdos.find({users:{ $elemMatch: {user:Meteor.userId()}},fecha : { $gte: new Date(fechaInicio), $lt : new Date(fechaFin) }});
 			},
@@ -101,5 +107,4 @@ angular
 				rc.ffuturo = true;
 			}
 		}
-
 });

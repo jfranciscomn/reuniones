@@ -1,22 +1,28 @@
 angular
   .module('FLOKsports')
-  .controller('ReunionesCtrl', function AcuerdosCtrl($scope, $reactive, $state, $stateParams, $ionicPopup) {
+  .controller('ReunionesCtrl', function ReunionesCtrl($scope, $reactive, $state, $stateParams, $ionicPopup) {
 		let rc = $reactive(this).attach($scope);
+		this.deviceWidth = $(".menuSuperior").width();
 		this.listCanSwipe = true;
-		this.deviceWidth = window.screen.width;
 		this.fhoy = true;
 		this.fsemana = true;
 		this.fmes = true;
 		this.ffuturo = true;
+		this.fvencidas = true;
 		this.helpers({
 			reuniones() {
-				return Reuniones.find({users:{ $elemMatch: {user:Meteor.userId()} }});
+				return Reuniones.find({users:{ $elemMatch: {user:Meteor.userId(), estatus : 2} }});
+			},
+			vencidas() {
+				var hoy = new Date;
+				var fechaInicio = (hoy.getMonth()+1) + "/" + hoy.getDate() + "/" +  hoy.getFullYear();
+				return Reuniones.find({users:{ $elemMatch: {user:Meteor.userId(), estatus : 2}},fecha : { $lt : new Date(fechaInicio) }});
 			},
 			hoy() {
 				var hoy = new Date;
 				var fechaInicio = (hoy.getMonth()+1) + "/" + hoy.getDate() + "/" +  hoy.getFullYear();
 				var fechaFin = (hoy.getMonth()+1) + "/" + hoy.getDate()  + "/" +  hoy.getFullYear() + " " + "23:59:59";
-				return Reuniones.find({users:{ $elemMatch: {user:Meteor.userId()}},fecha : { $gte: new Date(fechaInicio), $lt : new Date(fechaFin) }});
+				return Reuniones.find({users:{ $elemMatch: {user:Meteor.userId(), estatus : 2}},fecha : { $gte: new Date(fechaInicio), $lt : new Date(fechaFin) }});
 			},
 			semana() {
 				var hoy = new Date;
@@ -27,9 +33,11 @@ angular
 				var ultimoDia = new Date(hoy.setDate(fin));
 				
 				var fechaInicio = (primerDia.getMonth()+1) + "/" + (primerDia.getDate()+1) + "/" +  primerDia.getFullYear();
-				var fechaFin = (ultimoDia.getMonth()+1) + "/" + ultimoDia.getDate()  + "/" +  ultimoDia.getFullYear() + " " + "23:59:59";
-				
-				return Reuniones.find({users:{ $elemMatch: {user:Meteor.userId()}},fecha : { $gte: new Date(fechaInicio), $lt : new Date(fechaFin) }});
+				var fechaFin = moment(fechaInicio).add(5,'d').toDate();
+
+				console.log(fechaInicio);
+				console.log(fechaFin);
+				return Reuniones.find({users:{ $elemMatch: {user:Meteor.userId(), estatus : 2}},fecha : { $gte: new Date(fechaInicio), $lt : new Date(fechaFin) }});
 			},
 			mes() {
 				var hoy = new Date;
@@ -40,13 +48,13 @@ angular
 				var fechaInicio = (primerDia.getMonth()+1) + "/" + primerDia.getDate() + "/" +  primerDia.getFullYear();
 				var fechaFin = (ultimoDia.getMonth()+1) + "/" + ultimoDia.getDate()  + "/" +  ultimoDia.getFullYear() + " " + "23:59:59";
 				
-				return Reuniones.find({users:{ $elemMatch: {user:Meteor.userId()}},fecha : { $gte: new Date(fechaInicio), $lt : new Date(fechaFin) }});
+				return Reuniones.find({users:{ $elemMatch: {user:Meteor.userId(), estatus : 2}},fecha : { $gte: new Date(fechaInicio), $lt : new Date(fechaFin) }});
 			},
 			futuro() {
 				var hoy = new Date;
 				var y = hoy.getFullYear(), m = hoy.getMonth();
-				return Reuniones.find({users:{ $elemMatch: {user:Meteor.userId()}},fecha : { $gt: new Date(y,m + 1, 0)}});
-			}			
+				return Reuniones.find({users:{ $elemMatch: {user:Meteor.userId(), estatus : 2}},fecha : { $gt: new Date(y,m + 1, 0)}});
+			}
 		});
 		
 		this.cambiarFiltro = function(tipo){
@@ -78,4 +86,33 @@ angular
 			}
 		}
 		
+		this.getConfirmados = function(usuarios){
+			var confirmados = 0;
+			_.each(usuarios, function(usuario){
+				if(usuario.estatus == 2){
+					confirmados++;
+				}
+			})
+			return confirmados;
+		}
+		
+		this.getPendientes = function(usuarios){
+			var pendientes = 0;
+			_.each(usuarios, function(usuario){
+				if(usuario.estatus == 1){
+					pendientes++;
+				}
+			})
+			return pendientes;
+		}
+		
+		this.getRechazados = function(usuarios){
+			var rechazados = 0;
+			_.each(usuarios, function(usuario){
+				if(usuario.estatus == 6){
+					rechazados++;
+				}
+			})
+			return rechazados;
+		}
 });

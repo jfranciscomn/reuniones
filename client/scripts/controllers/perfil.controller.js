@@ -5,14 +5,16 @@ angular
 		this.user = {};
 		this.editar = false;
 		this.helpers({
-	    user: function(){	      
+	    user: function(){
 	      return Meteor.users.findOne(Meteor.userId());
 	    },
 	  });	  
 	
 		this.takePicture = function(){
 			this.editar = true;
-	    $meteor.getPicture({ allowEdit:false, targetWidth:128, targetHeight: 128, quality: 100}).then(function(picture, ){
+
+	    $meteor.getPicture({width:200, height: 200, quality: 100}).then(function(picture, ){
+
 	      rc.user.profile.picture = picture;
 	      Meteor.users.update({_id: rc.user._id}, {$set:{profile: rc.user.profile}});
 				console.log(rc.user);

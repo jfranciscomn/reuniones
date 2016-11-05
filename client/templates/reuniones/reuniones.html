@@ -10,7 +10,7 @@
 	    <span class="font-light">Reuniones</span>
 	  </ion-nav-title>
 	</ion-nav-bar>
-  <div class="bar bar-subheader" style="height: {{rc.deviceWidth / 1.5}}px; background: url('images/home/Reuniones-01.png'); background-size: 100%;">
+  <div class="bar bar-subheader menuSuperior" style="height: {{rc.deviceWidth / 1.5}}px; background: url('images/home/Reuniones-01.png'); background-size: 100%;">
 	  <a class="button hoy" ng-click="rc.cambiarFiltro('hoy')"> 
 	  	<i class="fa fa-check" style="font-size: 50pt; color: white; margin-top:10px;"></i><br/>
 	  	<div style="font-size: 20pt; color: white; margin: -10px 0px 0px 0px; ">{{rc.hoy.length}}</div>
@@ -39,6 +39,31 @@
 	  <button style="width: 0px; height: 0px;" ng-show="false"></button>
 	</div>
   <ion-content style="margin-top:66%;">
+  	<div class="divider-title">Vencidas</div>
+    <ul class="timeline" id="hoy" ng-show="rc.fhoy">
+      <li ng-repeat="reunion in rc.vencidas | orderBy:'fecha'">
+      	<a ui-sref="app.editarReunion({reunionId: reunion._id})" style="text-decoration: none; ">
+          <div class="timeline-thumb bg-color-red timeline-icon">
+            <i class="fa fa-check text-white" aria-hidden="true"></i>
+          </div>
+          <div class="timeline-item">
+            <h4 class="font-light">{{reunion.titulo}}</h4>
+            <i class="icon ion-chevron-right icon-accessory" style="top: 20; position: absolute; right: 5px; color: #ccc; font-size: 16px;"></i>
+            <p>{{reunion.ubicacion}}</p>	            
+            <div class="timeline-stats" ng-if="!reunion.owner == currentUser._id">
+              <i class="ion-person" ></i> {{reunion.users.length}}
+              <span class="pos-absolute-right"><i class="ion-ios-clock"></i> {{reunion.horaInicio|date:"HH:mm"}} </span>
+            </div>
+            <div class="timeline-stats" ng-if="reunion.owner == currentUser._id">
+              <i class="ion-person color-green"></i> {{rc.getConfirmados(reunion.users)}}
+		          <i class="ion-person color-yellow"></i> {{rc.getPendientes(reunion.users)}}
+		          <i class="ion-person color-red"></i> {{rc.getRechazados(reunion.users)}}
+              <span class="pos-absolute-right"><i class="ion-ios-clock"></i> {{reunion.horaInicio|date:"HH:mm"}} </span>
+            </div>
+          </div>
+      	</a>
+      </li>
+    </ul>
 	  <div class="divider-title">Hoy</div>
     <ul class="timeline" id="hoy" ng-show="rc.fhoy">
       <li ng-repeat="reunion in rc.hoy | orderBy:'fecha'">
@@ -54,14 +79,13 @@
               <i class="ion-person"></i> {{reunion.users.length}}
               <span class="pos-absolute-right"><i class="ion-ios-clock"></i> {{reunion.horaInicio|date:"HH:mm"}} </span>
             </div>
-            
           </div>
       	</a>
       </li>
     </ul>
     <div class="divider-title">Semana</div>
     <ul class="timeline" id="semana" ng-show="rc.fsemana">
-      <li ng-repeat="reunion in rc.hoy | orderBy:'fecha'">
+      <li ng-repeat="reunion in rc.semana | orderBy:'fecha'">
         <a ui-sref="app.editarReunion({reunionId: reunion._id})" style="text-decoration: none; ">
           <div class="timeline-thumb bg-color-green timeline-icon">
             <i class="fa fa-file-text-o" aria-hidden="true"></i>
