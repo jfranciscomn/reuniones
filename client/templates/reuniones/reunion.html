@@ -1,0 +1,75 @@
+<ion-view class="forms-view">
+	<ion-nav-buttons side="left">
+	</ion-nav-buttons>
+	<ion-nav-title>
+		<span class="font-light">Reunión</span>
+	</ion-nav-title>
+	<ion-content>
+		<ul class="list">
+			<ion-list can-swipe="listCanSwipe">
+			  <ion-item>			
+			    <h2>Título</h2>
+			    <p>{{rc.reunion.titulo}}</p>
+			  </ion-item>
+			  <ion-item>			
+			    <h2>Fecha</h2>
+			    <p>{{rc.reunion.fecha | date : "dd-MM-yyyy"}}</p>
+			  </ion-item>
+			  <ion-item>			
+			    <h2>Hora Inicio</h2>
+			    <p>{{rc.reunion.horaInicio | date : "HH:mm Z"}}</p>
+			  </ion-item>
+			  <ion-item>			
+			    <h2>Hora Fin</h2>
+			    <p>{{rc.reunion.horaFin | date : "HH:mm Z"}}</p>
+			  </ion-item>
+			  <ion-item>			
+			    <h2>Ubicación</h2>
+			    <p>{{rc.reunion.ubicacion}}</p>
+			  </ion-item>
+			  <ion-item>			
+			    <h2>Temas</h2>
+			    <p>{{rc.reunion.temas}}</p>
+			  </ion-item>			  
+			  <ion-item>			
+			    <h2>Convoca</h2>
+			    <p>{{rc.reunion.convoca}}</p>
+			  </ion-item>
+			  <ion-item>			
+			    <h2>Participantes</h2>
+			  </ion-item>
+			  <ion-item ng-repeat="participante in rc.reunion.users" style="margin-left: 50px;">			
+			    <h2>{{participante.invitado.profile.name}}</h2>
+			    <p>{{participante.invitado.profile.email}}</p>
+			    <i ng-if="participante.estatus == 1" class="ion-ios-circle-filled icon-size-lg color-yellow" style="top: 30px; position: absolute; right: 15px;"></i>
+					<i ng-if="participante.estatus == 2" class="ion-ios-circle-filled icon-size-lg color-green" style="top: 30px; position: absolute; right: 15px;"></i>
+					<i ng-if="participante.estatus == 6" class="ion-ios-circle-filled icon-size-lg color-red" style="top: 30px; position: absolute; right: 15px;"></i>
+			  </ion-item>
+			  <ion-item>			
+			    <h2>Repetir</h2>
+			    <p>{{rc.reunion.repetir}}</p>
+			  </ion-item>
+			  <ion-item>			
+			    <h2>Hasta</h2>
+			    <p>{{rc.reunion.hasta | date:"dd-MM-yyyy"}}</p>
+			  </ion-item>
+			  <ion-item>			
+			    <h2>Alertas</h2>
+			    <p>{{rc.reunion.alertas}}</p>
+			  </ion-item>
+			  
+			</ion-list>
+    </ul>
+  </ion-content>
+</ion-view>
+<style>
+	.bar.app-top-bar {
+	  background-color: #fedc34;
+	  .title, .button {
+	    color: #000000 !important;
+	    * {
+	      color: #000000 !important;
+	    }
+	  }
+	}
+</style>

@@ -11,7 +11,7 @@ angular
 		this.fvencidas = true;
 		this.helpers({
 			reuniones() {
-				return Reuniones.find({users:{ $elemMatch: {user:Meteor.userId(), estatus : 2} }});
+				return Reuniones.find({users:{ $elemMatch: {user : Meteor.userId(), estatus : 2} }});
 			},
 			vencidas() {
 				var hoy = new Date;
@@ -35,8 +35,6 @@ angular
 				var fechaInicio = (primerDia.getMonth()+1) + "/" + (primerDia.getDate()+1) + "/" +  primerDia.getFullYear();
 				var fechaFin = moment(fechaInicio).add(5,'d').toDate();
 
-				console.log(fechaInicio);
-				console.log(fechaFin);
 				return Reuniones.find({users:{ $elemMatch: {user:Meteor.userId(), estatus : 2}},fecha : { $gte: new Date(fechaInicio), $lt : new Date(fechaFin) }});
 			},
 			mes() {
@@ -114,5 +112,13 @@ angular
 				}
 			})
 			return rechazados;
+		}
+		
+		this.detalleReunion = function(reunion){
+			if(reunion.owner == Meteor.userId()){
+				$state.go("app.editarReunion", {reunionId : reunion._id});
+			}else{
+				$state.go("app.verReunion", {reunionId : reunion._id});
+			}
 		}
 });

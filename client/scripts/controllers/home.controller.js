@@ -5,18 +5,15 @@ angular
 		
 		this.helpers({
 			acuerdos() {
-				console.log(Acuerdos.find().fetch())
 				return Acuerdos.find();
 			},
 			acuerdosVencidos() {
-				console.log(Acuerdos.find({fecha : {$lt : new Date() }}).count())
 				return Acuerdos.find({users:{ $elemMatch: {user:Meteor.userId()}},fecha : {$lt : new Date() }}).count();
 			},
 			acuerdosHoy() {
 				var hoy = new Date;
 				var fechaInicio = (hoy.getMonth()+1) + "/" + hoy.getDate() + "/" +  hoy.getFullYear();
 				var fechaFin = (hoy.getMonth()+1) + "/" + hoy.getDate()  + "/" +  hoy.getFullYear() + " " + "23:59:59";
-				console.log(fechaInicio, fechaFin);
 				return Acuerdos.find({users:{ $elemMatch: {user:Meteor.userId()}},fecha : { $gte: new Date(fechaInicio), $lt : new Date(fechaFin) }}).count();
 			},
 			acuerdosSemana() {
@@ -50,18 +47,15 @@ angular
 			},
 			
 			reuniones() {
-				console.log(Reuniones.find().fetch())
 				return Reuniones.find();
 			},
 			reunionesVencidos() {
-				console.log(Reuniones.find({fecha : {$lt : new Date() }}).count())
 				return Reuniones.find({users:{ $elemMatch: {user:Meteor.userId(), estatus : 2}},fecha : {$lt : new Date() }}).count();
 			},
 			reunionesHoy() {
 				var hoy = new Date;
 				var fechaInicio = (hoy.getMonth()+1) + "/" + hoy.getDate() + "/" +  hoy.getFullYear();
 				var fechaFin = (hoy.getMonth()+1) + "/" + hoy.getDate()  + "/" +  hoy.getFullYear() + " " + "23:59:59";
-				console.log(fechaInicio, fechaFin);
 				return Reuniones.find({users:{ $elemMatch: {user:Meteor.userId(), estatus : 2}},fecha : { $gte: new Date(fechaInicio), $lt : new Date(fechaFin) }}).count();
 			},
 			reunionesSemana() {
@@ -100,8 +94,4 @@ angular
 			}
 			
 		});
-	
-		this.doRefresh = function(){
-			alert("hola");
-		}
 });

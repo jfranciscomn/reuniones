@@ -82,136 +82,146 @@ angular.module('FLOKsports').config(['$injector', function ($injector) {
 	);
 
   $stateProvider.state('app', {
-        url: '/app',
-        abstract: true,
-        templateUrl: 'client/templates/layout.html'
-      })
-      .state('app.home', {
-        url: '/home',
-        views: {
-          'menuContent': {
-            templateUrl: 'client/templates/home/home.html',
-            controller: 'HomeCtrl as hc'
-          }
-        }
-      })
-      .state('app.perfil', {
-        url: '/perfil',
-        views: {
-          'menuContent': {
-            templateUrl: 'client/templates/perfil/perfil.html',
-            controller: 'PerfilCtrl as pc'
-          }
-        }
-      })
-      .state('app.reuniones', {
-        url: '/reuniones',
-        views: {
-          'menuContent': {
-            templateUrl: 'client/templates/reuniones/reuniones.html',
-            controller: 'ReunionesCtrl as rc'
-          }
-        }
-      })
-      .state('app.nuevaReunion', {
-        url: '/reunionNueva',
-        views: {
-          'menuContent': {
-            templateUrl: 'client/templates/reuniones/form.html',
-            controller: 'NuevaReunionCtrl as nrc'
-          }
-        }
-      })
-      .state('app.editarReunion', {
-        url: '/editarReunion/:reunionId',
-        views: {
-          'menuContent': {
-            templateUrl: 'client/templates/reuniones/form.html',
-            controller: 'NuevaReunionCtrl as nrc'
-          }
-        }
-      })
-      .state('app.acuerdos', {
-        url: '/acuerdos',
-        views: {
-          'menuContent': {
-            templateUrl: 'client/templates/acuerdos/acuerdos.html',
-            controller: 'AcuerdosCtrl as ac'
-          }
-        }
-      })
-      .state('app.nuevoAcuerdo', {
-        url: '/acuerdoNuevo',
-        views: {
-          'menuContent': {
-            templateUrl: 'client/templates/acuerdos/form.html',
-            controller: 'NuevoAcuerdoCtrl as nac'
-          }
-        }
-      })
-      .state('app.editarAcuerdo', {
-        url: '/editarAcuerdo/:acuerdoId',
-        views: {
-          'menuContent': {
-            templateUrl: 'client/templates/acuerdos/form.html',
-            controller: 'NuevoAcuerdoCtrl as nac'
-          }
-        }
-      })
-      .state('app.agenda', {
-        url: '/agenda',
-        views: {
-          'menuContent': {
-            templateUrl: 'client/templates/agenda/agenda.html',
-            controller: 'AgendaCtrl'
-          }
-        }
-      })
-      .state('app.categorias', {
-        url: '/categorias',
-        views: {
-          'menuContent': {
-            templateUrl: 'client/templates/categorias/categorias.html',
-            controller: 'CategoriasCtrl as cc'
-          }
-        }
-      })
-      .state('app.nuevaCategoria', {
-        url: '/categoriaNueva',
-        views: {
-          'menuContent': {
-            templateUrl: 'client/templates/categorias/form.html',
-            controller: 'NuevaCategoriaCtrl as ncc'
-          }
-        }
-      })
-      .state('app.editarCategoria', {
-        url: '/editarCategoria/:categoriaId',
-        views: {
-          'menuContent': {
-            templateUrl: 'client/templates/categorias/form.html',
-            controller: 'NuevaCategoriaCtrl as ncc'
-          }
-        }
-      })
-      .state('app.editarPerfil', {
-        url: '/editarPerfil',
-        views: {
-          'menuContent': {
-            templateUrl: 'client/templates/perfil/form.html',
-            controller: 'EditarPerfilCtrl as epc'
-          }
-        }
-      })
-      .state('app.reunionesConfirmar', {
-        url: '/reunionesConfirmar',
-        views: {
-          'menuContent': {
-            templateUrl: 'client/templates/reuniones/reunionesConfirmar.html',
-            controller: 'ReunionesConfirmarCtrl as rcc'
-          }
-        }
-      });
+    url: '/app',
+    abstract: true,
+    templateUrl: 'client/templates/layout.html'
+  })
+  .state('app.home', {
+    url: '/home',
+    views: {
+      'menuContent': {
+        templateUrl: 'client/templates/home/home.html',
+        controller: 'HomeCtrl as hc'
+      }
+    }
+  })
+  .state('app.perfil', {
+    url: '/perfil',
+    views: {
+      'menuContent': {
+        templateUrl: 'client/templates/perfil/perfil.html',
+        controller: 'PerfilCtrl as pc'
+      }
+    }
+  })
+  .state('app.reuniones', {
+    url: '/reuniones',
+    views: {
+      'menuContent': {
+        templateUrl: 'client/templates/reuniones/reuniones.html',
+        controller: 'ReunionesCtrl as rc'
+      }
+    }
+  })
+  .state('app.nuevaReunion', {
+    url: '/reunionNueva',
+    views: {
+      'menuContent': {
+        templateUrl: 'client/templates/reuniones/form.html',
+        controller: 'NuevaReunionCtrl as nrc'
+      }
+    }
+  })
+  .state('app.editarReunion', {
+    url: '/editarReunion/:reunionId',
+    views: {
+      'menuContent': {
+        templateUrl: 'client/templates/reuniones/form.html',
+        controller: 'NuevaReunionCtrl as nrc'
+      }
+    }
+  })
+  .state('app.verReunion', {
+    url: '/verReunion/:reunionId',
+    views: {
+      'menuContent': {
+        templateUrl: 'client/templates/reuniones/reunion.html',
+        controller: 'ReunionCtrl as rc'
+      }
+    }
+  })
+  .state('app.acuerdos', {
+    url: '/acuerdos',
+    views: {
+      'menuContent': {
+        templateUrl: 'client/templates/acuerdos/acuerdos.html',
+        controller: 'AcuerdosCtrl as ac'
+      }
+    }
+  })
+  .state('app.nuevoAcuerdo', {
+    url: '/acuerdoNuevo',
+    views: {
+      'menuContent': {
+        templateUrl: 'client/templates/acuerdos/form.html',
+        controller: 'NuevoAcuerdoCtrl as nac'
+      }
+    }
+  })
+  .state('app.editarAcuerdo', {
+    url: '/editarAcuerdo/:acuerdoId',
+    views: {
+      'menuContent': {
+        templateUrl: 'client/templates/acuerdos/form.html',
+        controller: 'NuevoAcuerdoCtrl as nac'
+      }
+    }
+  })
+  .state('app.agenda', {
+    url: '/agenda',
+    views: {
+      'menuContent': {
+        templateUrl: 'client/templates/agenda/agenda.html',
+        controller: 'AgendaCtrl'
+      }
+    }
+  })
+  .state('app.categorias', {
+    url: '/categorias',
+    views: {
+      'menuContent': {
+        templateUrl: 'client/templates/categorias/categorias.html',
+        controller: 'CategoriasCtrl as cc'
+      }
+    }
+  })
+  .state('app.nuevaCategoria', {
+    url: '/categoriaNueva',
+    views: {
+      'menuContent': {
+        templateUrl: 'client/templates/categorias/form.html',
+        controller: 'NuevaCategoriaCtrl as ncc'
+      }
+    }
+  })
+  .state('app.editarCategoria', {
+    url: '/editarCategoria/:categoriaId',
+    views: {
+      'menuContent': {
+        templateUrl: 'client/templates/categorias/form.html',
+        controller: 'NuevaCategoriaCtrl as ncc'
+      }
+    }
+  })
+  .state('app.editarPerfil', {
+    url: '/editarPerfil',
+    views: {
+      'menuContent': {
+        templateUrl: 'client/templates/perfil/form.html',
+        controller: 'EditarPerfilCtrl as epc'
+      }
+    }
+  })
+  .state('app.reunionesConfirmar', {
+    url: '/reunionesConfirmar',
+    views: {
+      'menuContent': {
+        templateUrl: 'client/templates/reuniones/reunionesConfirmar.html',
+        controller: 'ReunionesConfirmarCtrl as rcc'
+      }
+    }
+  })
+  ;
  
-    $urlRouterProvider.otherwise('/login');
+	$urlRouterProvider.otherwise('/login');
 }]);

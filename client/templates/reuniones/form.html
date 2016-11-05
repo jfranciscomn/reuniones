@@ -51,20 +51,17 @@
 			<label class="item item-input-inset">
 				<span class="input-label">Convoca</span>
 				<label class="item-input-wrapper">
-				<input type="text" value="Roberto Zamarripa" ng-model='nrc.reunion.convoca'>
+				<input type="text" value="{{currentUser.profile.name}}" ng-model='nrc.reunion.convoca'>
 				</label>
 			</label>
-			<div class="item item-input-inset item-stacked-label" ng-repeat='participante in nrc.reunion.users'>
-				<span class="input-label">Participantes</span>
-				
-				<label class="item-input-wrapper">
-					<select ng-model='participante.user' ng-show='!$first' style="width: 100%">
-							<option value="{{usuario._id}}" ng-repeat='usuario in nrc.registrados'>{{usuario.profile.name}}</option>
-					</select>
-				</label>
-				<button class="button button-small icon ion-minus" ng-click='nrc.quitarParticipante()' ng-show="!$first"></button>
-				<button class="button button-small icon ion-plus" ng-click='nrc.agregarParticipante()' ng-show="$last"></button>
-			</div>
+	    <div class="item timeline-item" ng-click="nrc.selParticipantes()">
+	      Participantes
+	      <div class="timeline-stats">
+          <i class="ion-person color-green"></i> {{nrc.getConfirmados(nrc.reunion.users)}}
+          <i class="ion-person color-yellow"></i> {{nrc.getPendientes(nrc.reunion.users)}}
+          <i class="ion-person color-red"></i> {{nrc.getRechazados(nrc.reunion.users)}}
+        </div>
+	    </div>
 			<label class="item item-input item-select">
 				<div class="input-label">
 					Repetir
@@ -86,7 +83,7 @@
 			  <li class="item item-toggle">
 			     Alertas
 			     <label class="toggle toggle-yellow">
-			       <input type="checkbox" checked>
+			       <input type="checkbox" checked ng-model="nrc.reunion.alertas">
 			       <div class="track">
 			         <div class="handle"></div>
 			       </div>
