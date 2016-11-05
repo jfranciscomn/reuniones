@@ -20,7 +20,19 @@ angular
 			}
 			return obj;
 		}
-	
+		
+		this.helpers({
+			categorias() {
+				return Categorias.find();
+			},
+			responsables : function() {
+				return Meteor.users.find({},{},{ sort : { "profile.name" : 1 }}).fetch();
+			},
+			seguidores : function() {
+				return Meteor.users.find({},{},{ sort : { "profile.name" : 1 }}).fetch();
+			}
+		});
+	   
 		if(!this.acuerdo){
 			this.acuerdo = {};
 			this.acuerdo.responsables = [{user:Meteor.userId()}];
@@ -34,39 +46,27 @@ angular
   		this.acuerdo.fechaLimite = new Date();
 		}else{
 			_.each(rc.responsables, function(registrado, index){
-				_.each(rc.reunion.responsables, function(invitado){
+				if(registrado._id == rc.acuerdo.owner){
+					rc.responsables.splice(index, 1);
+				}
+				_.each(rc.acuerdo.responsables, function(invitado){
 					if(registrado._id == invitado.user){
 						registrado.estatus = true;
-					}
-					if(registrado._id == Meteor.owner){
-						rc.responsables.splice(index, 1);
 					}
 				})
 			});
 			
 			_.each(rc.seguidores, function(registrado, index){
-				_.each(rc.reunion.seguidores, function(invitado){
+				if(registrado._id == rc.acuerdo.owner){
+					rc.seguidores.splice(index, 1);
+				}
+				_.each(rc.acuerdo.seguidores, function(invitado){
 					if(registrado._id == invitado.user){
 						registrado.estatus = true;
-					}
-					if(registrado._id == Meteor.owner){
-						rc.seguidores.splice(index, 1);
 					}
 				})
 			});
 		}
-		
-		this.helpers({
-			categorias() {
-				return Categorias.find();
-			},
-			responsables : function() {
-				return Meteor.users.find({},{},{ sort : { "profile.name" : 1 }}).fetch();
-			},
-			seguidores : function() {
-				return Meteor.users.find({},{},{ sort : { "profile.name" : 1 }}).fetch();
-			}
-		});
 		
 		this.agregarResponsable = function(participante, $index){
 			if(participante.estatus == true){
@@ -107,7 +107,6 @@ angular
 				
 				this.acuerdo.createdAt = new Date();
     		this.acuerdo.owner = Meteor.userId();
-    		//this.acuerdo.users =[{user:Meteor.userId()}];
     		this.acuerdo.username = Meteor.user().username;
     		Acuerdos.insert(this.acuerdo);
 	      
