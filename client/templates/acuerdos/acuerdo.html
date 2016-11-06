@@ -1,0 +1,98 @@
+<ion-view class="forms-view">
+	<ion-nav-buttons side="left">
+	</ion-nav-buttons>
+	<ion-nav-title>
+		<span class="font-light">Acuerdo</span>
+	</ion-nav-title>
+	<ion-content>
+		<ul class="list">
+			<ion-list can-swipe="listCanSwipe">
+			  <div class="item">			
+			   	Categoría
+			    <span class="item-note">{{ac.acuerdo.categoria.nombre}}</span>
+			  </div>
+			  <ion-item>			
+			    Acuerdo
+			    <p>{{ac.acuerdo.titulo}}</p>
+			  </ion-item>
+			  <div class="item">
+			    Fecha inicio
+			    <span class="item-note">{{ac.acuerdo.fechaInicio | date : "dd-MM-yyyy"}}</span>
+			  </div>
+			  <div class="item">
+			    Fecha límite
+			    <span class="item-note">{{ac.acuerdo.fechaLimite | date : "HH:mm Z"}}</span>
+			  </div>
+			  <div class="item item-button-right">
+			    Responsables
+			    <button class="button bg-color-green color-white" ng-click="ac.verResponsables = !ac.verResponsables;">
+			      <i class="icon ion-person-stalker"></i>
+			    </button>
+			  </div>
+			  <ion-item ng-repeat="participante in ac.acuerdo.responsables" style="margin-left: 50px;" ng-show="ac.verResponsables">			
+			    {{participante.invitado.profile.name}}
+			    <p>{{participante.invitado.profile.email}}</p>
+			  </ion-item>
+			  <div class="item">		
+			    Prioridad
+			    <span class="item-note" ng-show="ac.acuerdo.prioridad == 0">Baja</span>
+			    <span class="item-note" ng-show="ac.acuerdo.prioridad == 50">Media</span>
+			    <span class="item-note" ng-show="ac.acuerdo.prioridad == 100">Alta</span>
+			  </div>
+			  <div class="item">
+			    Estado
+			    <span class="item-note" ng-show="ac.acuerdo.estatus == 1">Activo</span>
+			    <span class="item-note" ng-show="ac.acuerdo.estatus == 2">Cerrado</span>
+			    <span class="item-note" ng-show="ac.acuerdo.estatus == 3">Vencido</span>
+			  </div>
+			  <div class="item">
+			    Fecha Cierre
+					<span class="item-note">{{ac.acuerdo.fechaCierre | date : "dd-MM-yyyy"}}</span>
+			  </div>
+			  <div class="item">
+			    Repetir
+			    <span class="item-note">{{ac.acuerdo.repetir}}</span>
+			  </div>
+			  <div class="item">
+			    Hasta
+			    <span class="item-note">{{ac.acuerdo.hasta | date:"dd-MM-yyyy"}}</span>
+			  </div>
+			  <div class="item item-button-right">
+			    Seguidores
+			    <button class="button bg-color-green color-white" ng-click="ac.verSeguidores = !ac.verSeguidores;">
+			      <i class="icon ion-android-people"></i>
+			    </button>
+			  </div>
+			  <ion-item ng-repeat="participante in ac.acuerdo.seguidores" style="margin-left: 50px;" ng-show="ac.verSeguidores">			
+			    {{participante.invitado.profile.name}}
+			    <p>{{participante.invitado.profile.email}}</p>
+			  </ion-item>
+			  <ion-item>			
+			    Temas
+			    <p>{{ac.acuerdo.temas}}</p>
+			  </ion-item>
+			  <div class="item">
+			    Agregar a calendario
+			    <span class="item-note" ng-show="ac.acuerdo.calendario == true">Sí</span>
+			    <span class="item-note" ng-show="ac.acuerdo.calendario == false">No</span>
+			  </div>
+			  <div class="item">
+			    Recordatorios
+			    <span class="item-note" ng-show="ac.acuerdo.recordatorios == true">Sí</span>
+			    <span class="item-note" ng-show="ac.acuerdo.recordatorios == false">No</span>
+			  </div>
+			</ion-list>
+    </ul>
+  </ion-content>
+</ion-view>
+<style>
+	.bar.app-top-bar {
+	  background-color: #82e79d;
+	  .title, .button {
+	    color: #000000 !important;
+	    * {
+	      color: #000000 !important;
+	    }
+	  }
+	}
+</style>
