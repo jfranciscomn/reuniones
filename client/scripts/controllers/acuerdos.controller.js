@@ -21,13 +21,27 @@ angular
 			vencidos() {
 				var hoy = new Date;
 				var fechaInicio = (hoy.getMonth()+1) + "/" + hoy.getDate() + "/" +  hoy.getFullYear();
-				return Acuerdos.find({responsables:{ $elemMatch: {user:Meteor.userId()}},fechaInicio : { $lt : new Date(fechaInicio) }});
+				return Acuerdos.find({ 
+					$and : [
+						{$or : [
+							{responsables	:{ $elemMatch: {user:Meteor.userId()}}},
+							{seguidores		:{ $elemMatch: {user:Meteor.userId()}}}
+						]}, 
+						{fechaInicio : { $lt : new Date(fechaInicio) }}
+					]});
 			},
 			hoy() {
 				var hoy = new Date;
 				var fechaInicio = (hoy.getMonth()+1) + "/" + hoy.getDate() + "/" +  hoy.getFullYear();
 				var fechaFin = (hoy.getMonth()+1) + "/" + hoy.getDate()  + "/" +  hoy.getFullYear() + " " + "23:59:59";
-				return Acuerdos.find({responsables:{ $elemMatch: {user:Meteor.userId()}},fechaInicio : { $gte: new Date(fechaInicio), $lt : new Date(fechaFin) }});
+				return Acuerdos.find({ 
+					$and : [
+						{$or : [
+							{responsables	:{ $elemMatch: {user:Meteor.userId()}}},
+							{seguidores		:{ $elemMatch: {user:Meteor.userId()}}}
+						]}, 
+						{fechaInicio : { $gte: new Date(fechaInicio), $lt : new Date(fechaFin) }}
+					]});
 			},
 			semana() {
 				var hoy = new Date;
@@ -40,7 +54,14 @@ angular
 				var fechaInicio = (primerDia.getMonth()+1) + "/" + (primerDia.getDate()+1) + "/" +  primerDia.getFullYear();
 				var fechaFin = moment(fechaInicio).add(5,'d').toDate();
 				
-				return Acuerdos.find({responsables:{ $elemMatch: {user:Meteor.userId()}},fechaInicio : { $gte: new Date(fechaInicio), $lt : new Date(fechaFin) }});
+				return Acuerdos.find({ 
+					$and : [
+						{$or : [
+							{responsables	:{ $elemMatch: {user:Meteor.userId()}}},
+							{seguidores		:{ $elemMatch: {user:Meteor.userId()}}}
+						]}, 
+						{fechaInicio : { $gte: new Date(fechaInicio), $lt : new Date(fechaFin)}}
+					]});
 			},
 			mes() {
 				var hoy = new Date;
@@ -51,12 +72,26 @@ angular
 				var fechaInicio = (primerDia.getMonth()+1) + "/" + primerDia.getDate() + "/" +  primerDia.getFullYear();
 				var fechaFin = (ultimoDia.getMonth()+1) + "/" + ultimoDia.getDate()  + "/" +  ultimoDia.getFullYear() + " " + "23:59:59";
 				
-				return Acuerdos.find({responsables:{ $elemMatch: {user:Meteor.userId()}},fechaInicio : { $gte: new Date(fechaInicio), $lt : new Date(fechaFin) }});
+				return Acuerdos.find({ 
+					$and : [
+						{$or : [
+							{responsables	:{ $elemMatch: {user:Meteor.userId()}}},
+							{seguidores		:{ $elemMatch: {user:Meteor.userId()}}}
+						]}, 
+						{fechaInicio : { $gte: new Date(fechaInicio), $lt : new Date(fechaFin)}}
+					]});
 			},
 			futuro() {
 				var hoy = new Date;
 				var y = hoy.getFullYear(), m = hoy.getMonth();
-				return Acuerdos.find({responsables:{ $elemMatch: {user:Meteor.userId()}},fechaInicio : { $gt: new Date(y,m + 1, 0)}});
+				return Acuerdos.find({ 
+					$and : [
+						{$or : [
+							{responsables	:{ $elemMatch: {user:Meteor.userId()}}},
+							{seguidores		:{ $elemMatch: {user:Meteor.userId()}}}
+						]}, 
+						{fechaInicio : { $gt: new Date(y,m + 1, 0)}}
+					]});
 			},
 			categorias() {
 				return Categorias.find({estatus : true});
@@ -105,6 +140,14 @@ angular
 				rc.fsemana = true;
 				rc.fmes = true;
 				rc.ffuturo = true;
+			}
+		}
+		
+		this.detalleAcuerdo = function(acuerdo){
+			if(acuerdo.owner == Meteor.userId()){
+				$state.go("app.editarAcuerdo", {acuerdoId : acuerdo._id});
+			}else{
+				$state.go("app.verAcuerdo", {acuerdoId : acuerdo._id});
 			}
 		}
 });

@@ -167,6 +167,15 @@ angular.module('FLOKsports').config(['$injector', function ($injector) {
       }
     }
   })
+  .state('app.verAcuerdo', {
+    url: '/verAcuerdo/:acuerdoId',
+    views: {
+      'menuContent': {
+        templateUrl: 'client/templates/acuerdos/acuerdo.html',
+        controller: 'AcuerdoCtrl as ac'
+      }
+    }
+  })
   .state('app.agenda', {
     url: '/agenda',
     views: {
