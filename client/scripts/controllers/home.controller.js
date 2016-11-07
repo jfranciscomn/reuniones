@@ -2,32 +2,55 @@ angular
   .module('FLOKsports')
   .controller('HomeCtrl', function AcuerdosCtrl($scope, $reactive, $state, $stateParams, $ionicPopup) {
 		$reactive(this).attach($scope);
-		
+		 
 		this.helpers({
 			acuerdos() {
 				return Acuerdos.find();
 			},
 			acuerdosVencidos() {
-				return Acuerdos.find({users:{ $elemMatch: {user:Meteor.userId()}},fecha : {$lt : new Date() }}).count();
+				var hoy = new Date;
+				var fechaInicio = (hoy.getMonth()+1) + "/" + hoy.getDate() + "/" +  hoy.getFullYear();
+				return Acuerdos.find({ 
+					$and : [
+						{$or : [
+							{responsables	:{ $elemMatch: {user:Meteor.userId()}}},
+							{seguidores		:{ $elemMatch: {user:Meteor.userId()}}}
+						]}, 
+						{fechaInicio : { $lt : new Date(fechaInicio) }}
+					]}).count();
 			},
 			acuerdosHoy() {
 				var hoy = new Date;
 				var fechaInicio = (hoy.getMonth()+1) + "/" + hoy.getDate() + "/" +  hoy.getFullYear();
 				var fechaFin = (hoy.getMonth()+1) + "/" + hoy.getDate()  + "/" +  hoy.getFullYear() + " " + "23:59:59";
-				return Acuerdos.find({users:{ $elemMatch: {user:Meteor.userId()}},fecha : { $gte: new Date(fechaInicio), $lt : new Date(fechaFin) }}).count();
+				return Acuerdos.find({ 
+					$and : [
+						{$or : [
+							{responsables	:{ $elemMatch: {user:Meteor.userId()}}},
+							{seguidores		:{ $elemMatch: {user:Meteor.userId()}}}
+						]}, 
+						{fechaInicio : { $gte: new Date(fechaInicio), $lt : new Date(fechaFin) }}
+					]}).count();
 			},
 			acuerdosSemana() {
 				var hoy = new Date;
 				var inicio = hoy.getDate() - hoy.getDay();
 				var fin = inicio + 6;
-				
+				//Tengo que validar el cambio de mes
 				var primerDia = new Date(hoy.setDate(inicio));
 				var ultimoDia = new Date(hoy.setDate(fin));
-				
+
 				var fechaInicio = (primerDia.getMonth()+1) + "/" + primerDia.getDate() + "/" +  primerDia.getFullYear();
 				var fechaFin = (ultimoDia.getMonth()+1) + "/" + ultimoDia.getDate()  + "/" +  ultimoDia.getFullYear() + " " + "23:59:59";
-				
-				return Acuerdos.find({users:{ $elemMatch: {user:Meteor.userId()}},fecha : { $gte: new Date(fechaInicio), $lt : new Date(fechaFin) }}).count();
+
+				return Acuerdos.find({ 
+					$and : [
+						{$or : [
+							{responsables	:{ $elemMatch: {user:Meteor.userId()}}},
+							{seguidores		:{ $elemMatch: {user:Meteor.userId()}}}
+						]}, 
+						{fechaInicio : { $gte: new Date(fechaInicio), $lt : new Date(fechaFin)}}
+					]}).count();
 			},
 			acuerdosMes() {
 				var hoy = new Date;
@@ -37,13 +60,28 @@ angular
 				
 				var fechaInicio = (primerDia.getMonth()+1) + "/" + primerDia.getDate() + "/" +  primerDia.getFullYear();
 				var fechaFin = (ultimoDia.getMonth()+1) + "/" + ultimoDia.getDate()  + "/" +  ultimoDia.getFullYear() + " " + "23:59:59";
-				
-				return Acuerdos.find({users:{ $elemMatch: {user:Meteor.userId()}},fecha : { $gte: new Date(fechaInicio), $lt : new Date(fechaFin) }}).count();
+				console.log("fi",fechaInicio);
+				console.log("ff",fechaFin);	
+				return Acuerdos.find({ 
+					$and : [
+						{$or : [
+							{responsables	:{ $elemMatch: {user:Meteor.userId()}}},
+							{seguidores		:{ $elemMatch: {user:Meteor.userId()}}}
+						]},
+						{fechaInicio : { $gte: new Date(fechaInicio), $lt : new Date(fechaFin)}}
+					]}).count();
 			},
 			acuerdosFuturos() {
 				var hoy = new Date;
 				var y = hoy.getFullYear(), m = hoy.getMonth();
-				return Acuerdos.find({users:{ $elemMatch: {user:Meteor.userId()}},fecha : { $gt: new Date(y,m + 1, 0)}}).count();
+				return Acuerdos.find({ 
+					$and : [
+						{$or : [
+							{responsables	:{ $elemMatch: {user:Meteor.userId()}}},
+							{seguidores		:{ $elemMatch: {user:Meteor.userId()}}}
+						]}, 
+						{fechaInicio : { $gt: new Date(y,m + 1, 0)}}
+					]}).count();
 			},
 			
 			reuniones() {

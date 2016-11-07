@@ -230,6 +230,33 @@ angular.module('FLOKsports').config(['$injector', function ($injector) {
       }
     }
   })
+  .state('app.acercaDe', {
+    url: '/acercaDe',
+    views: {
+      'menuContent': {
+        templateUrl: 'client/templates/acercaDe/acercaDe.html',
+        controller: 'AcercaDeCtrl as adc'
+      }
+    }
+  })
+  .state('app.preferenciasAplicacion', {
+    url: '/preferenciasAplicacion',
+    views: {
+      'menuContent': {
+        templateUrl: 'client/templates/preferenciasAplicacion/preferenciasAplicacion.html',
+        controller: 'PreferenciasAplicacionCtrl as pac'
+      }
+    }
+  })
+  .state('app.preferenciasReunion', {
+    url: '/preferenciasReunion',
+    views: {
+      'menuContent': {
+        templateUrl: 'client/templates/preferenciasReunion/preferenciasReunion.html',
+        controller: 'PreferenciasReunionCtrl as prc'
+      }
+    }
+  })
   ;
  
 	$urlRouterProvider.otherwise('/login');
