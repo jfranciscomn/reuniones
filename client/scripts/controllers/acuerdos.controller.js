@@ -52,7 +52,7 @@ angular
 				var ultimoDia = new Date(hoy.setDate(fin));
 				
 				var fechaInicio = (primerDia.getMonth()+1) + "/" + (primerDia.getDate()+1) + "/" +  primerDia.getFullYear();
-				var fechaFin = moment(fechaInicio).add(5,'d').toDate();
+				var fechaFin = moment(fechaInicio,'MM/DD/YYYY').add(5,'d').toDate();
 				
 				return Acuerdos.find({ 
 					$and : [

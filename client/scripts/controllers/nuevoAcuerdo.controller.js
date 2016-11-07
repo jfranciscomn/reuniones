@@ -1,6 +1,6 @@
 angular
   .module('FLOKsports')
-  .controller('NuevoAcuerdoCtrl', function AcuerdosCtrl($scope, $reactive, $state, $stateParams, $ionicPopup, $ionicHistory, $ionicModal) {
+  .controller('NuevoAcuerdoCtrl', function AcuerdosCtrl($scope, $reactive, $state, $stateParams, $ionicPopup, $ionicHistory, $ionicModal,$cordovaCalendar) {
 		let rc = $reactive(this).attach($scope);
 		window.rc = rc;
 		this.acuerdoId = $stateParams.acuerdoId;
@@ -95,6 +95,22 @@ angular
 				})
 			}
 		}
+		this.saveDate=function(){
+			
+			$cordovaCalendar.createEvent({
+			    title: 'Space Race',
+			    location: 'The Moon',
+			    notes: 'Bring sandwiches',
+			    startDate: new Date(2015, 0, 6, 18, 30, 0, 0, 0),
+			    endDate: new Date(2015, 1, 6, 12, 0, 0, 0, 0)
+			  }).then(function (result) {
+			    // success
+			  }, function (err) {
+			    // error
+			  });
+
+
+		}
 		
 		this.save  = function(){
 			this.quitarhk(this.acuerdo);
@@ -106,10 +122,11 @@ angular
 			else{
 				
 				this.acuerdo.createdAt = new Date();
-    		this.acuerdo.owner = Meteor.userId();
-    		this.acuerdo.username = Meteor.user().username;
-    		Acuerdos.insert(this.acuerdo);
-	      
+    			this.acuerdo.owner = Meteor.userId();
+    			this.acuerdo.username = Meteor.user().username;
+    			Acuerdos.insert(this.acuerdo);
+    			if(this.acuerdo.calendario)
+	      			this.saveDate()
 			}
 			console.log($ionicHistory)	
 			$ionicHistory.goBack();		

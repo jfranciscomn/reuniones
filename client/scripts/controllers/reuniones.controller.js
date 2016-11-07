@@ -33,7 +33,7 @@ angular
 				var ultimoDia = new Date(hoy.setDate(fin));
 				
 				var fechaInicio = (primerDia.getMonth()+1) + "/" + (primerDia.getDate()+1) + "/" +  primerDia.getFullYear();
-				var fechaFin = moment(fechaInicio).add(5,'d').toDate();
+				var fechaFin = moment(fechaInicio,'MM/DD/YYYY').add(5,'d').toDate();
 
 				return Reuniones.find({users:{ $elemMatch: {user:Meteor.userId(), estatus : 2}},fecha : { $gte: new Date(fechaInicio), $lt : new Date(fechaFin) }});
 			},

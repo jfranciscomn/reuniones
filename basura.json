@@ -1,0 +1,24 @@
+{
+  "apn": {
+    "passphrase": "pelicano",  
+    "key": "pushdevelopkey.pem",
+    "cert": "pushdevelopcert.pem"
+  },
+  "apn-dev": {
+    "passphrase": "pelicano",  
+    "key": "pushdevelopkey.pem",
+    "cert": "pushdevelopcert.pem",
+    "gateway": "gateway.sandbox.push.apple.com"
+  },  
+  "gcm": {
+    "apiKey": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+    "projectNumber": "xxxxxxxxxxxx"
+  },
+  "production": false
+  // "badge": true,
+  // "sound": true,
+  // "alert": true,
+  // "vibrate": true,
+  // "sendInterval": 15000,  Configurable interval between sending notifications
+  // "sendBatchSize": 1  Configurable number of notifications to send per batch
+}

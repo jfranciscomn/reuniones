@@ -4,7 +4,7 @@ App.accessRule('https://*');
 
 
 App.info({
-  id: 'com.mazoft.misReuniones',
+  id: 'com.masoft.misreuniones',
   name: 'Mis Reuniones',
   description: 'Reuniones por Adsum',
   author: 'Francisco Mendoza',
@@ -19,6 +19,10 @@ App.setPreference('BackgroundColor', '0xff0000ff');
 App.configurePlugin('com.phonegap.plugins.facebookconnect', {
     APP_ID: '192169937805189',
     APP_NAME: 'FLOKsports'
+});
+
+App.configurePlugin('phonegap-plugin-push', {
+  SENDER_ID: 12341234
 });
 
 App.icons({

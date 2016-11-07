@@ -81,7 +81,7 @@ angular
 				Reuniones.update({_id:this.reunionId},{$set:this.reunion});
 			}
 			else{
-    		Reuniones.insert(this.reunion);
+    			Reuniones.insert(this.reunion);
 			}
 			$ionicHistory.goBack();
 		}
