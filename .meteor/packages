@@ -16,7 +16,7 @@ insecure                # Allow all DB writes from clients (for prototyping)
 autopublish
 angular
 driftyco:ionic
-momentjs:moment
+#momentjs:moment
 jasonaibrahim:angular-moment
 check
 jss:flag-icon
@@ -38,3 +38,4 @@ standard-minifier-css
 standard-minifier-js
 fourseven:scss
 raix:push
+planettraining:angular-translate

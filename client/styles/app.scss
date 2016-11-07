@@ -4599,6 +4599,7 @@ a {
   top: 0;
   border-top-width: 0;
   border-bottom-width: 1px;
+  background-color: blue;
   &.has-tabs-top {
     border-bottom-width: 0px;
     background-image: none;
@@ -12815,7 +12816,7 @@ ion-side-menu {
 .full {
 	width: 100%;
 }
-
+	
 .descripcionLista {
 	margin-right: 20px;
 	text-align: justify;

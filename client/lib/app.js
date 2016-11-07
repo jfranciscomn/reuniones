@@ -5,7 +5,8 @@ angular
     'ngSanitize',
     'ionic',
     'angularMoment',
-    'ngCordova'
+    'ngCordova',
+    'pascalprecht.translate'
 
   ])
   .config(function($ionicConfigProvider) {
