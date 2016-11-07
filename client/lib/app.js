@@ -4,7 +4,8 @@ angular
     'angular-meteor',
     'ngSanitize',
     'ionic',
-    'angularMoment'
+    'angularMoment',
+    'ngCordova'
 
   ])
   .config(function($ionicConfigProvider) {

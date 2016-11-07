@@ -4,7 +4,7 @@ App.accessRule('https://*');
 
 
 App.info({
-  id: 'com.mazoft.misReuniones',
+  id: 'com.masoft.misreuniones',
   name: 'Mis Reuniones',
   description: 'Reuniones por Adsum',
   author: 'Francisco Mendoza',

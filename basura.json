@@ -1,10 +1,20 @@
 {
-   
+  "apn": {
+    "passphrase": "pelicano",  
+    "key": "pushdevelopkey.pem",
+    "cert": "pushdevelopcert.pem"
+  },
+  "apn-dev": {
+    "passphrase": "pelicano",  
+    "key": "pushdevelopkey.pem",
+    "cert": "pushdevelopcert.pem",
+    "gateway": "gateway.sandbox.push.apple.com"
+  },  
   "gcm": {
     "apiKey": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
     "projectNumber": "xxxxxxxxxxxx"
   },
-  "production": true
+  "production": false
   // "badge": true,
   // "sound": true,
   // "alert": true,
