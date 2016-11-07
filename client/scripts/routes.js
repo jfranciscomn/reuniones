@@ -25,19 +25,24 @@ angular.module("FLOKsports").run(function ($rootScope, $state) {
 });
 
 angular.module('FLOKsports').config(function ($translateProvider) {
+	
   $translateProvider.translations('en', {
     TITLE: 'Hello',
     FOO: 'This is a paragraph.',
     BUTTON_LANG_EN: 'english',
-    BUTTON_LANG_DE: 'german'
+    BUTTON_LANG_DE: 'german',
+    ABOUT: 'About',
+    MENUINICIO: 'Home'
   });
   $translateProvider.translations('es', {
     TITLE: 'Hola',
     FOO: 'Este es un párrafo',
     BUTTON_LANG_EN: 'englisch',
-    BUTTON_LANG_DE: 'deutsch'
+    BUTTON_LANG_DE: 'deutsch',
+    ABOUT: 'Acerca de',
+    MENUINICIO: 'Inicio'
   });
-  $translateProvider.preferredLanguage('es');
+  $translateProvider.preferredLanguage('en');  
 });
 
 
