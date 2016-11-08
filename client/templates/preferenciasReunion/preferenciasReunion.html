@@ -3,17 +3,56 @@
     <span class="font-light">Preferencias de la Reunión</span>
   </ion-nav-title>
   <ion-content>
-    Preferencias de la Reunión
+    <div class="list">
+	    <label class="item item-input">
+        <span class="input-label">Duración de la reunión</span>
+        <input type="time" ng-model="prc.preferencia.duracionReunion">
+      </label>
+      <label class="item item-input-inset item-stacked-label">
+        <span class="input-label">Primera alerta</span>
+        <label class="item-input-wrapper">
+	        <input type="number" ng-model="prc.preferencia.numeroPrimeraAlerta" style="width: 20%">	        
+        </label>
+        <select ng-model="prc.preferencia.tiempoPrimeraAlerta" style="width: 50%">
+		      <option value="1">Minutos</option>
+		      <option value="2">Horas</option>
+		      <option value="3">Días</option>
+		    </select>
+		    <div class="button-bar button-small">
+				  <button value="antes" class="button" ng-model="prc.preferencia.lapsoPrimeraAlerta">Antes</button>
+				  <button value="despues" class="button" ng-model="prc.preferencia.lapsoPrimeraAlerta">Después</button>
+				</div>
+      </label>
+      <label class="item item-input-inset item-stacked-label">
+        <span class="input-label">Segunda alerta</span>
+        <label class="item-input-wrapper">
+	        <input type="number" ng-model="prc.preferencia.numeroSegundaAlerta" style="width: 20%">
+	        <select ng-model="prc.preferencia.tiempoSegundaAlerta" style="width: 50%">
+			      <option value="1">Minutos</option>
+			      <option value="2">Horas</option>
+			      <option value="3">Días</option>
+			    </select>
+			    <div class="button-bar">
+					  <button value="antes" class="button" ng-model="prc.preferencia.lapsoSegundaAlerta">Antes</button>
+					  <button value="despues" class="button" ng-model="prc.preferencia.lapsoSegundaAlerta">Después</button>
+					</div>
+        </label>
+      </label>
+      <label class="item">
+		    <span class="input-label">Leyenda para correos de cambio:</span>
+		  </label>
+      <div class="item item-input item-floating-label">
+	      <span class="input-label">Reprogramación</span>
+	      <textarea type="text" placeholder="Reprogramación" ng-model="nac.acuerdo.plantillaCorreoReprogramar" rows="3" style="width: 100%; background-color: transparent;"></textarea>
+		  </div>
+		  <div class="item item-input item-floating-label">
+	      <span class="input-label">Cancelación</span>
+	      <textarea type="text" placeholder="Cancelación" ng-model="nac.acuerdo.plantillaCorreoCancelar" rows="3" style="width: 100%; background-color: transparent;"></textarea>
+		  </div>
+		  <div class="item item-input item-floating-label">
+	      <span class="input-label">Eliminar</span>
+	      <textarea type="text" placeholder="Eliminar" ng-model="nac.acuerdo.plantillaCorreoEliminar" rows="3" style="width: 100%; background-color: transparent;"></textarea>
+		  </div>
+    </div>
   </ion-content>
 </ion-view>
-<style>
-	.bar-header {
-	  background-color: #fedc34;
-	  .title, .button {
-	    color: #000000 !important;
-	    * {
-	      color: #000000 !important;
-	    }
-	  }
-	}
-</style>
