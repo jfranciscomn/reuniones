@@ -16,7 +16,7 @@ insecure                # Allow all DB writes from clients (for prototyping)
 autopublish
 angular
 driftyco:ionic
-#momentjs:moment
+# momentjs:moment
 jasonaibrahim:angular-moment
 check
 jss:flag-icon
@@ -34,8 +34,7 @@ frozeman:storage
 #btafel:accounts-facebook-cordova
 fortawesome:fontawesome
 mdg:camera
-standard-minifier-css
-standard-minifier-js
-fourseven:scss
+
 raix:push
 planettraining:angular-translate
+

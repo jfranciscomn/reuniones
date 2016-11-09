@@ -2,17 +2,32 @@ angular
   .module('FLOKsports')
   .controller('MainCtrl', function MainCtrl($scope, $reactive, $state, $window) {
   $reactive(this).attach($scope);
-  $scope.calculateDimensions=function(gesture){
-  		$scope.dev_width=$window.innerWidth;
-  		$scope.dev_height=$window.innerHeight;
-  }
-  angular.element($window).bind('resize',function () {
-  	$scope.apply(function () {
-  		$scope.calculateDimensions();
-  	})
-  })
+ 
+ 
   this.start = function() {
-
+    Push.Configure({
+      android: {
+        senderID: 12341234,
+        alert: true,
+        badge: true,
+        sound: true,
+        vibrate: true,
+        clearNotifications: true
+        // icon: '',
+        // iconColor: ''
+      },
+      ios: {
+        alert: true,
+        badge: true,
+        sound: true
+      }
+    });
+     Push.allow({
+        send: function(userId, notification) {
+          // Allow all users to send to everybody - For test only!
+          return true;
+        }
+      });
 		$state.go("anon.login")
   }
   

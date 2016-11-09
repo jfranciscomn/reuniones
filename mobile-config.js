@@ -2,7 +2,6 @@ App.accessRule("*");
 App.accessRule('http://*');
 App.accessRule('https://*');
 
-
 App.info({
   id: 'com.masoft.misreuniones',
   name: 'Mis Reuniones',
@@ -18,14 +17,18 @@ App.setPreference('BackgroundColor', '0xff0000ff');
 App.setPreference('Fullscreen', true);
 
 
+/*
 App.configurePlugin('com.phonegap.plugins.facebookconnect', {
     APP_ID: '192169937805189',
     APP_NAME: 'FLOKsports'
 });
+*/
 
+/*
 App.configurePlugin('phonegap-plugin-push', {
   SENDER_ID: 12341234
 });
+*/
 
 App.icons({
   // iOS

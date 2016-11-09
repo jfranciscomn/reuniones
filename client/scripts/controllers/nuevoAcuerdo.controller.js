@@ -1,6 +1,8 @@
 angular
   .module('FLOKsports')
-  .controller('NuevoAcuerdoCtrl', function AcuerdosCtrl($scope, $reactive, $state, $stateParams, $ionicPopup, $ionicHistory, $ionicModal,$cordovaCalendar) {
+
+  .controller('NuevoAcuerdoCtrl', function AcuerdosCtrl($scope, $reactive, $state, $stateParams, $ionicPopup, $ionicHistory, $ionicModal, $cordovaCalendar) {
+
 		let rc = $reactive(this).attach($scope);
 		window.rc = rc;
 		this.acuerdoId = $stateParams.acuerdoId;
@@ -95,20 +97,19 @@ angular
 				})
 			}
 		}
+
 		this.saveDate=function(){
-			
 			$cordovaCalendar.createEvent({
-			    title: 'Space Race',
+			    title: 'hola mundo',
 			    location: 'The Moon',
 			    notes: 'Bring sandwiches',
-			    startDate: new Date(2015, 0, 6, 18, 30, 0, 0, 0),
-			    endDate: new Date(2015, 1, 6, 12, 0, 0, 0, 0)
+			    startDate: new Date(2016, 10, 12, 18, 30, 0, 0, 0),
+			    endDate:  new Date(2016, 10, 12, 19, 30, 0, 0, 0)
 			  }).then(function (result) {
-			    // success
+			  	console.log(" // success",result);
 			  }, function (err) {
-			    // error
+			    console.log(" // Error",err);
 			  });
-
 
 		}
 		
@@ -124,6 +125,7 @@ angular
 				this.acuerdo.createdAt = new Date();
     			this.acuerdo.owner = Meteor.userId();
     			this.acuerdo.username = Meteor.user().username;
+
     			Acuerdos.insert(this.acuerdo);
     			if(this.acuerdo.calendario)
 	      			this.saveDate()
