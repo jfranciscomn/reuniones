@@ -10,7 +10,6 @@ angular
 			
 		});
 		
-
 		this.guardar = function(){
 			if(this.preferencia._id == undefined){
 				rc.preferencia.owner = Meteor.userId();
@@ -22,5 +21,5 @@ angular
 			}
 			$ionicHistory.goBack();
 		}
-		
+	
 });

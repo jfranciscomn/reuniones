@@ -538,11 +538,20 @@ angular.module('FLOKsports').config(['$injector', function ($injector) {
     }
   })
   .state('app.preferenciasReunion', {
-    url: '/preferenciasReunion',
+    url: '/preferenciasReunion/:preferencia_id',
     views: {
       'menuContent': {
         templateUrl: 'client/templates/preferenciasReunion/preferenciasReunion.html',
         controller: 'PreferenciasReunionCtrl as prc'
+      }
+    }
+  })
+  .state('app.pasaLaVoz', {
+    url: '/pasaLaVoz',
+    views: {
+      'menuContent': {
+        templateUrl: 'client/templates/pasaLaVoz/pasaLaVoz.html',
+        controller: 'PasaLaVozCtrl as pvc'
       }
     }
   })
