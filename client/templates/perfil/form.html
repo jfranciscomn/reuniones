@@ -5,42 +5,42 @@
 		<button menu-toggle="right" class="button button-icon icon ion-android-checkmark-circle" ng-click='epc.actualizar()'></button>
 	</ion-nav-buttons>
 	<ion-nav-title>
-		<span class="font-light">Mi Perfil</span>
+		<span class="font-light">{{ 'MIPERFIL' | translate }}</span>
 	</ion-nav-title>
 	<ion-content>
 		<ul class="list">
 			<label class="item item-input-inset item-stacked-label">
-				<span class="input-label">Nombre</span>
+				<span class="input-label">{{ 'NOMBRE' | translate }}</span>
 				<label class="item-input-wrapper">
 					<input type="text" ng-model='epc.usuarioActual.profile.name'>
 				</label>
 			</label>
       <label class="item item-input-inset item-stacked-label">
-				<span class="input-label">Puesto</span>
+				<span class="input-label">{{ 'PUESTO' | translate }}</span>
 				<label class="item-input-wrapper">
 					<input type="text" ng-model='epc.usuarioActual.profile.puesto'>
 				</label>
 			</label>
 			<label class="item item-input-inset item-stacked-label">
-				<span class="input-label">Teléfono</span>
+				<span class="input-label">{{ 'TELEFONO' | translate }}</span>
 				<label class="item-input-wrapper">
 					<input type="text" ng-model='epc.usuarioActual.profile.telefono'>
 				</label>
 			</label>
 			<label class="item item-input-inset item-stacked-label">
-				<span class="input-label">Cuidad</span>
+				<span class="input-label">{{ 'CIUDAD' | translate }}</span>
 				<label class="item-input-wrapper">
 					<input type="text" ng-model='epc.usuarioActual.profile.cuidad'>
 				</label>
 			</label>
 			<label class="item item-input-inset item-stacked-label">
-				<span class="input-label">Estado</span>
+				<span class="input-label">{{ 'ESTADO' | translate }}</span>
 				<label class="item-input-wrapper">
 					<input type="text" ng-model='epc.usuarioActual.profile.estado'>
 				</label>
 			</label>
 			<label class="item item-input-inset item-stacked-label">
-				<span class="input-label">País</span>
+				<span class="input-label">{{ 'PAIS' | translate }}</span>
 				<label class="item-input-wrapper">
 					<input type="text" ng-model='epc.usuarioActual.profile.pais'>
 				</label>
