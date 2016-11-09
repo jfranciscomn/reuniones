@@ -4,16 +4,21 @@ angular
     'angular-meteor',
     'ngSanitize',
     'ionic',
-    'angularMoment',
     'ngCordova',
     'pascalprecht.translate'
+    'angularMoment'
 
   ])
   .config(function($ionicConfigProvider) {
     $ionicConfigProvider.tabs.position('bottom');
     $ionicConfigProvider.navBar.alignTitle('center');
 	})
-	;
+	.run(function(){
+    ionic.Platform.ready(function(){
+
+      ionic.Platform.fullScreen(true,true);
+    })
+  });
 
 if (Meteor.isCordova) {
   angular.element(document).on('deviceready', onReady);
