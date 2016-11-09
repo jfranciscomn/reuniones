@@ -4,7 +4,7 @@ angular
     'angular-meteor',
     'ngSanitize',
     'ionic',
-
+    'ion-datetime-picker',
     'ngCordova',
     'pascalprecht.translate',
     'angularMoment'
