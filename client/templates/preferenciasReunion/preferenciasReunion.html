@@ -24,18 +24,18 @@
 				  <button value="despues" class="button button-small" ng-class="prc.preferencia.lapsoPrimeraAlerta == 'Despues' ? 'Activated' : ''" ng-model="prc.preferencia.lapsoPrimeraAlerta" ng-click="prc.preferencia.lapsoPrimeraAlerta = 'Despues'">Después</button>
 				</div>
       </label>
-      <label class="item item-input-inset item-stacked-label">
+      <label class="item item-input item-stacked-label">
         <span class="input-label">Segunda alerta</span>
         <label class="item-input-wrapper">
-	        <input style="float: left;" type="number" ng-model="prc.preferencia.numeroSegundaAlerta" style="width: 20%">
+	        <input type="number" ng-model="prc.preferencia.numeroSegundaAlerta" style="width: 20%; float: left;">
 	        <select ng-model="prc.preferencia.tiempoSegundaAlerta" style="width: 50%">
 			      <option value="1">Minutos</option>
 			      <option value="2">Horas</option>
 			      <option value="3">Días</option>
 			    </select>
 			    <div class="button">
-					  <button value="antes" class="button" ng-model="prc.preferencia.lapsoSegundaAlerta">Antes</button>
-					  <button value="despues" class="button" ng-model="prc.preferencia.lapsoSegundaAlerta">Después</button>
+					  <button value="antes" class="button button-small" ng-class="prc.preferencia.lapsoSegundaAlerta == 'Antes' ? 'Activated' : ''" ng-model="prc.preferencia.lapsoSegundaAlerta" ng-click="prc.preferencia.lapsoSegundaAlerta = 'Antes'">Antes</button>
+					  <button value="despues" class="button button-small" ng-class="prc.preferencia.lapsoSegundaAlerta == 'Despues' ? 'Activated' : ''" ng-model="prc.preferencia.lapsoSegundaAlerta" ng-click="prc.preferencia.lapsoSegundaAlerta = 'Despues'">Después</button>
 					</div>
         </label>
       </label>
