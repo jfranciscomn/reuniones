@@ -40,8 +40,8 @@
 	</div>
   <ion-content style="margin-top:66%;">
   	<div class="divider-title">Vencidas</div>
-    <ul class="timeline" id="hoy" ng-show="rc.fhoy">
-      <li ng-repeat="reunion in rc.vencidas | orderBy:'fecha'">
+  	<ion-list can-swipe="rc.listCanSwipe" class="timeline" id="hoy" ng-show="rc.fhoy" >
+		  <ion-item ng-repeat="reunion in rc.vencidas | orderBy:'fecha'">
       	<a ng-click="rc.detalleReunion(reunion)" style="text-decoration: none; ">
           <div class="timeline-thumb bg-color-red timeline-icon">
             <i class="ion-close-round text-white" aria-hidden="true"></i>
@@ -58,8 +58,14 @@
             </div>
           </div>
       	</a>
-      </li>
-    </ul>
+      	<ion-option-button class="button bg-color-green" ng-click="rcc.cambiarEstatus(reunion, 2)">
+		      <i class="icon ion-android-done color-white"></i>
+		    </ion-option-button>
+		    <ion-option-button class="button bg-color-red" ng-click="rcc.cambiarEstatus(reunion, 6)">
+		      <i class="icon ion-android-close color-white"></i>
+		    </ion-option-button>
+		  </ion-item>
+  	</ion-list>
 	  <div class="divider-title">Hoy</div>
     <ul class="timeline" id="hoy" ng-show="rc.fhoy">
       <li ng-repeat="reunion in rc.hoy | orderBy:'fecha'">
@@ -90,6 +96,7 @@
           </div>
           <div class="timeline-item">
             <h4 class="font-light">{{reunion.titulo}}</h4>
+            <button class="button button-mini" ng-show="reunion.owner == currentUser._id">Iniciar</button>
             <i class="icon ion-chevron-right icon-accessory" style="top: 20; position: absolute; right: 5px; color: #ccc; font-size: 16px;"></i>
             <p>{{reunion.ubicacion}}</p>
             <div class="timeline-stats">

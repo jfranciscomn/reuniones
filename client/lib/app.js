@@ -5,7 +5,7 @@ angular
     'ngSanitize',
     'ionic',
     'ngCordova',
-    'pascalprecht.translate'
+    'pascalprecht.translate',
     'angularMoment'
 
   ])
