@@ -34,8 +34,7 @@ frozeman:storage
 #btafel:accounts-facebook-cordova
 fortawesome:fontawesome
 mdg:camera
-standard-minifier-css
-standard-minifier-js
-fourseven:scss
+
 raix:push
 planettraining:angular-translate
+
