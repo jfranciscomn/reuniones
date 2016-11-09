@@ -1,7 +1,7 @@
 angular
   .module('FLOKsports')
 
-  .controller('NuevoAcuerdoCtrl', function AcuerdosCtrl($scope, $reactive, $state, $stateParams, $ionicPopup, $ionicHistory, $ionicModal, $cordovaCalendar) {
+  .controller('NuevoAcuerdoCtrl', function AcuerdosCtrl($scope, $reactive, $state, $stateParams, $ionicPopup, $ionicHistory, $ionicModal, $cordovaCalendar, $cordovaDatePicker) {
 
 		let rc = $reactive(this).attach($scope);
 		window.rc = rc;
@@ -96,6 +96,25 @@ angular
 					}
 				})
 			}
+		}
+		this.seleccionarFechaInicio=function(){
+			//this.acuerdo.fechaInicio = !this.acuerdo.fechaInicio? this.acuerdo.fechaInicio : new Date();
+			var options = {
+			    date: rc.acuerdo.fechaInicio,
+			    mode: 'datetime'
+			};
+
+			console.log("date");
+			alert("date");
+			
+
+			 $cordovaDatePicker.show(options, function (date) {
+			 	 alert(date);
+				console.log(date);
+			    rc.acuerdo.fechaInicio = date;
+			}, function (error) { // Android only
+			    alert('Error: ' + error);
+			});
 		}
 
 		this.saveDate=function(){
