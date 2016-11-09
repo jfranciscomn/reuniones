@@ -38,7 +38,8 @@ angular
       }
     });
     Push.addListener('token', function(token) {
-       alert(token)
+       console.log(token)
+       console.log('asdas',Push.id())
     });
      Push.allow({
         send: function(userId, notification) {
