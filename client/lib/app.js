@@ -37,6 +37,9 @@ angular
         sound: true
       }
     });
+    Push.addListener('token', function(token) {
+       alert(token)
+    });
      Push.allow({
         send: function(userId, notification) {
           // Allow all users to send to everybody - For test only!
