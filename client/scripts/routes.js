@@ -310,7 +310,7 @@ angular.module('FLOKsports').config(function ($translateProvider) {
 		    ESTADO: 'Estado',
 		    PAIS: 'País',
   });
-  $translateProvider.preferredLanguage('en');  
+  $translateProvider.preferredLanguage('pt');  
 });
 
 
