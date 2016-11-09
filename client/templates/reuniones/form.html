@@ -5,31 +5,31 @@
 		<button menu-toggle="right" class="button button-icon icon ion-android-checkmark-circle" ng-click='nrc.save()'></button>
 	</ion-nav-buttons>
 	<ion-nav-title>
-		<span class="font-light" ng-if="!nrc.reunionId">Nueva Reunión</span>
-		<span class="font-light" ng-if="nrc.reunionId">Editar Reunión</span>
+		<span class="font-light" ng-if="!nrc.reunionId">{{ 'NUEVAREUNION' | translate }}</span>
+		<span class="font-light" ng-if="nrc.reunionId">{{ 'EDITARREUNION' | translate }}</span>
 	</ion-nav-title>
 	<ion-content>
 		<ul class="list">
 			<label class="item item-input-inset item-stacked-label">
-				<span class="input-label">Título</span>
+				<span class="input-label">{{ 'TITULO' | translate }}</span>
 				<label class="item-input-wrapper">
 					<input type="text" ng-model='nrc.reunion.titulo' class="full">
 				</label>
 			</label>
 			<label class="item item-input">
-				<span class="input-label">Fecha</span>
+				<span class="input-label">{{ 'FECHA' | translate }}</span>
 				<input type="date" ng-model='nrc.reunion.fecha'>
 			</label>
 			<label class="item item-input">
-				<span class="input-label">Hora inicio</span>
+				<span class="input-label">{{ 'HORAINICIO' | translate }}</span>
 				<input type="time" ng-model='nrc.reunion.horaInicio'>
 			</label>
 			<label class="item item-input">
-				<span class="input-label">Hora fin</span>
+				<span class="input-label">{{ 'HORAFIN' | translate }}</span>
 				<input type="time" ng-model='nrc.reunion.horaFin'>
 			</label>
 			<div class="item item-input-inset item-stacked-label">
-				<span class="input-label">Categoría</span>
+				<span class="input-label">{{ 'CATEGORIA' | translate }}</span>
 				<label class="item-input-wrapper">
 					<select ng-model='nrc.reunion.categoria'  style="width: 100%">
 						<option value="{{categoria._id}}" ng-repeat="categoria in nrc.categorias">{{categoria.nombre}}</option>
@@ -37,25 +37,25 @@
 				</label>
 			</div>
 			<label class="item item-input-inset">
-				<span class="input-label">Ubicación</span>
+				<span class="input-label">{{ 'UBICACION' | translate }}</span>
 				<label class="item-input-wrapper">
 					<input type="text" ng-model='nrc.reunion.ubicacion' class="full">
 				</label>
 			</label>
 			<div class="item item-input-inset item-stacked-label">
-	      <span class="input-label">Temas</span>
+	      <span class="input-label">{{ 'TEMAS' | translate }}</span>
 		    <label class="item-input-wrapper">
 		      <input type="text" placeholder="Temas" ng-model="nrc.reunion.temas" class="full">
 		    </label>
 		  </div>
 			<label class="item item-input-inset">
-				<span class="input-label">Convoca</span>
+				<span class="input-label">{{ 'CONVOCA' | translate }}</span>
 				<label class="item-input-wrapper">
 				<input type="text" value="{{currentUser.profile.name}}" ng-model='nrc.reunion.convoca' class="full">
 				</label>
 			</label>
 	    <div class="item timeline-item" ng-click="nrc.selParticipantes()">
-	      Participantes
+	      {{ 'PARTICIPANTES' | translate }}
 	      <div class="timeline-stats">
           <i class="ion-person color-green"></i> {{nrc.getConfirmados(nrc.reunion.users)}}
           <i class="ion-person color-yellow"></i> {{nrc.getPendientes(nrc.reunion.users)}}
@@ -64,24 +64,24 @@
 	    </div>
 			<label class="item item-input item-select">
 				<div class="input-label">
-					Repetir
+					{{ 'REPETIR' | translate }}
 				</div>
 		    <select ng-model='nrc.reunion.repetir'>
-		      <option>Nunca</option>
-		      <option>Todos los días</option>
-		      <option>Cada semana</option>
-		      <option>Cada dos semanas</option>
-		      <option>Cada mes</option>
-		      <option>Cada año</option>
+		      <option>{{ 'NUNCA' | translate }}</option>
+		      <option>{{ 'TODOSLOSDIAS' | translate }}</option>
+		      <option>{{ 'CADASEMANA' | translate }}</option>
+		      <option>{{ 'CADADOS' | translate }}</option>
+		      <option>{{ 'CADAMES' | translate }}</option>
+		      <option>{{ 'CADAANO' | translate }}</option>
 		    </select>
 		  </label>
       <label class="item item-input">
-        <span class="input-label">Hasta</span>
+        <span class="input-label">{{ 'HASTA' | translate }}</span>
         <input type="date" ng-model='nrc.reunion.hasta'>
       </label>
       <ul class="list">
 			  <li class="item item-toggle">
-			     Alertas
+			     {{ 'ALERTAS' | translate }}
 			     <label class="toggle toggle-yellow">
 			       <input type="checkbox" checked ng-model="nrc.reunion.alertas">
 			       <div class="track">

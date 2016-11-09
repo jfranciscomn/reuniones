@@ -1,6 +1,6 @@
 <ion-view class="profile-view">
   <ion-nav-title>
-    <span class="font-light">Perfil</span>
+    <span class="font-light">{{ 'PERFIL' | translate }}</span>
   </ion-nav-title>
   <ion-nav-buttons side="right" >
 		<button menu-toggle="right" class="button button-icon ion-camera" ng-click='pc.takePicture()'></button>
@@ -29,30 +29,30 @@
 -->
       <div class="list">
 	      <div class="item item-divider">
-			    Configuración
+			    {{ 'CONFIGURACION' | translate }}
 			  </div>
 	      <a class="item item-icon-right " href="#" ui-sref="app.editarPerfil">
-			    Mi Perfil
+			    {{ 'MIPERFIL' | translate }}
 			    <i class="icon ion-chevron-right item-accessory-small"></i>
 			  </a>		
 			  <a class="item item-icon-right" href="#" ui-sref="app.preferenciasReunion">
-			    Preferencias de reunión
+			    {{ 'PREFERENCIASREUNION' | translate }}
 			    <i class="icon ion-chevron-right item-accessory-small"></i>
 			  </a>
 			  <a class="item item-icon-right" href="#" ui-sref="app.preferenciasAplicacion">
-			    Preferencias de la aplicación
+			    {{ 'PREFERENCIASAPLICACION' | translate }}
 			    <i class="icon ion-chevron-right item-accessory-small"></i>
 			  </a>
 			  <a class="item item-icon-right" href="#" ui-sref="app.acercaDe">
-			    Acerca de Mis Reuniones
+			    {{ 'ACERCA' | translate }}
 			    <i class="icon ion-chevron-right item-accessory-small"></i>
 			  </a>
 			  <a class="item item-icon-right" href="#" ui-sref="app.pasaLaVoz">
-			    Pasa la voz
+			    {{ 'PASAVOZ' | translate }}
 			    <i class="icon ion-chevron-right item-accessory-small"></i>
 			  </a>
 			  <a class="item item-icon-right" href="#" ui-sref="app.ayuda">
-			    Ayuda
+			    {{ 'AYUDA' | translate }}
 			    <i class="icon ion-chevron-right item-accessory-small"></i>
 			  </a>
 			</div>

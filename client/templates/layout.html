@@ -20,8 +20,8 @@
               <img class="user-image" src="{{currentUser.profile.picture}}" spinner-on-load>
             </pre-img>
           </div>
-          <h2 class="greeting">Hola {{currentUser.profile.name}}</h2>
-          <p class="message">Bienvenid@</p>
+          <h2 class="greeting">{{ 'HOLA' | translate }}{{currentUser.profile.name}}</h2>
+          <p class="message">{{ 'BIENVENIDO' | translate }}</p>
         </ion-item>
         <ion-item class="item-icon-left" nav-clear menu-close ui-sref="app.home">
           <i class="icon fa fa-home"></i>
@@ -29,19 +29,19 @@
         </ion-item>
         <ion-item class="item-icon-left" nav-clear menu-close ui-sref="app.reuniones">
           <i class="icon fa fa-group"></i>
-          <h2 class="menu-text">Reuniones</h2>
+          <h2 class="menu-text">{{ 'REUNIONES' | translate }}</h2>
         </ion-item>
         <ion-item class="item-icon-left" nav-clear menu-close ui-sref="app.acuerdos">
           <i class="icon fa fa-check"></i>
-          <h2 class="menu-text">Acuerdos</h2>
+          <h2 class="menu-text">{{ 'MISACUERDOS' | translate }}</h2>
         </ion-item>
         <ion-item class="item-icon-left" nav-clear menu-close ui-sref="app.reunionesConfirmar">
           <i class="icon fa fa-group"></i>
-          <h2 class="menu-text">Por confirmar</h2>
+          <h2 class="menu-text">{{ 'PORCONFIRMAR' | translate }}</h2>
         </ion-item>
         <ion-item class="item-icon-left" nav-clear menu-close ui-sref="auth.logout">
           <i class="icon ion-gear-a"></i>
-          <h2 class="menu-text">Cerrar Sesión</h2>
+          <h2 class="menu-text">{{ 'CERRARSESION' | translate }}</h2>
         </ion-item>
       </ion-list>
     </ion-content>

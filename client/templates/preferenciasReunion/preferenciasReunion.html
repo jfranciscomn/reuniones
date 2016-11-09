@@ -1,11 +1,12 @@
 <ion-view class="layouts-view">
   <ion-nav-title>
-    <span class="font-light">Preferencias de la Reunión</span>
+    <span class="font-light">{{ 'PREFERENCIASREUNION' | translate}}</span>
   </ion-nav-title>
   <ion-nav-buttons side="right">
 		<button menu-toggle="right" class="button button-icon icon ion-android-checkmark-circle" ng-click='prc.guardar()'></button>
 	</ion-nav-buttons>
   <ion-content>
+<<<<<<< HEAD
     <div class="list">
 	    <label class="item item-input">
         <span class="input-label">Duración de la reunión</span>
@@ -55,5 +56,6 @@
 	      <textarea type="text" placeholder="Eliminar" ng-model="prc.preferencia.plantillaCorreoEliminar" rows="3" style="width: 100%; background-color: transparent;"></textarea>
 		  </div>
     </div>
+    {{ 'PREFERENCIASREUNION' | translate}}
   </ion-content>
 </ion-view>

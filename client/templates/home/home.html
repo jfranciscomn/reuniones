@@ -3,89 +3,89 @@
     <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
   </ion-nav-buttons>
   <ion-nav-title>
-    <span class="font-light">Resumen</span>
+    <span class="font-light">{{ 'RESUMEN' | translate}}</span>
   </ion-nav-title>
   <ion-content>
 	  <!-- Reuniones Resumen -->
     <div class="card">
 		  <div class="item item-divider">
-		    Acuerdos
+		    {{ 'ACUERDOS' | translate }}
 		  </div>		  
 	    <div class="list">
 			  <a href="#" class="item item-icon-left">
 			    <i class="icon fa fa-calendar-minus-o"></i>
-			    Vencidos
+					{{ 'ACUERDOSVENCIDOS' | translate }}
 			    <span class="badge bg-color-red text-white">{{hc.acuerdosVencidos}}</span>
 			  </a>			
 			  <a href="#" class="item item-icon-left">
 			    <i class="icon fa fa-calendar-check-o"></i>
-			    Hoy
+		    {{ 'ACUERDOSHOY' | translate }}
 			    <span class="badge bg-color-yellow text-white">{{hc.acuerdosHoy}}</span>
 			  </a>			
 			  <a href="#" class="item item-icon-left">
 			    <i class="icon fa fa-calendar-o"></i>
-			    Semana
+		    {{ 'ACUERDOSSEMANA' | translate }}
 			    <span class="badge bg-color-green text-white">{{hc.acuerdosSemana}}</span>
 			  </a>			
 			  <a href="#" class="item item-icon-left">
 			    <i class="icon fa fa-calendar"></i>
-			    Mes
+		    {{ 'ACUERDOSMES' | translate }}
 			    <span class="badge bg-color-blue text-white">{{hc.acuerdosMes}}</span>
 			  </a>			  
 			  <a href="#" class="item item-icon-left">
 			    <i class="icon fa fa-calendar-plus-o"></i>
-			    Futuros
+		    {{ 'ACUERDOSFUTUROS' | translate }}
 			    <span class="badge badge-royal text-white">{{hc.acuerdosFuturos}}</span>
 			  </a>			
 			</div>
 		
 		  <a class="item item-icon-left assertive" href="#" ui-sref="app.nuevoAcuerdo">
 		    <i class="icon ion-plus"></i>
-		    Agregar Acuerdo
+		    {{ 'AGREGARACUERDO' | translate }}
 		  </a>
 
 		</div>
 		<!-- Reuniones Resumen -->
 		<div class="card">
 		  <div class="item item-divider">
-		    Reuniones
+		  {{ 'REUNIONES' | translate }}
 		  </div>		  
 	    <div class="list">
 			  <a href="#" class="item item-icon-left">
 			    <i class="icon fa fa-calendar-minus-o"></i>
-			    Vencidos
+					{{ 'REUNIONESVENCIDAS' | translate }}
 			    <span class="badge bg-color-red text-white">{{hc.reunionesVencidos}}</span>
 			  </a>			
 			  <a href="#" class="item item-icon-left">
 			    <i class="icon fa fa-calendar-check-o"></i>
-			    Hoy
+					{{ 'REUNIONESHOY' | translate }}
 			    <span class="badge bg-color-yellow text-white">{{hc.reunionesHoy}}</span>
 			  </a>			
 			  <a href="#" class="item item-icon-left">
 			    <i class="icon fa fa-calendar-o"></i>
-			    Semana
+					{{ 'REUNIONESSEMANA' | translate }}
 			    <span class="badge bg-color-green text-white">{{hc.reunionesSemana}}</span>
 			  </a>			
 			  <a href="#" class="item item-icon-left">
 			    <i class="icon fa fa-calendar"></i>
-			    Mes
+					{{ 'REUNIONESMES' | translate }}
 			    <span class="badge bg-color-blue text-white">{{hc.reunionesMes}}</span>
 			  </a>			  
 			  <a href="#" class="item item-icon-left">
 			    <i class="icon fa fa-calendar-plus-o"></i>
-			    Futuros
+					{{ 'REUNIONESFUTURO' | translate }}
 			    <span class="badge badge-royal text-white">{{hc.reunionesFuturos}}</span>
 			  </a>			
 			  <a href="#" class="item item-icon-left">
 			    <i class="icon fa fa-exclamation-triangle"></i>
-			    Por confirmar
+					{{ 'REUNIONESPORCONFIRMAR' | translate }}
 			    <span class="badge bg-color-bluegray text-white">{{hc.reunionesPorConfirmar}}</span>
 			  </a>	
 			</div>
 		
 		  <a class="item item-icon-left assertive" href="#" ui-sref="app.nuevaReunion">
 		    <i class="icon ion-plus"></i>
-		    Agregar Reunión
+					{{ 'AGREGARREUNION' | translate }}
 		  </a>
 
 		</div>

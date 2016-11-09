@@ -121,4 +121,16 @@ angular
 				$state.go("app.verReunion", {reunionId : reunion._id});
 			}
 		}
+		
+		this.cambiarEstatus = function(reunion, estatus){
+			var idTemp = reunion._id;
+			delete reunion._id;
+			if(estatus == 3){
+				
+			}else if(estatus == 5){
+				
+			}
+			Reuniones.update(idTemp, { $set : { estatus : estatus }});
+			
+		}
 });
