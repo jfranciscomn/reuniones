@@ -15,6 +15,8 @@ App.info({
 });
 
 App.setPreference('BackgroundColor', '0xff0000ff');
+App.setPreference('Fullscreen', true);
+
 
 App.configurePlugin('com.phonegap.plugins.facebookconnect', {
     APP_ID: '192169937805189',
