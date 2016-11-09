@@ -1,3 +1,4 @@
+/*
 {
   "apn": {
     "passphrase": "pelicano",  
@@ -22,3 +23,4 @@
   // "sendInterval": 15000,  Configurable interval between sending notifications
   // "sendBatchSize": 1  Configurable number of notifications to send per batch
 }
+*/

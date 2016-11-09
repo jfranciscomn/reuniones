@@ -2,6 +2,9 @@
   <ion-nav-title>
     <span class="font-light">Preferencias de la Reunión</span>
   </ion-nav-title>
+  <ion-nav-buttons side="right">
+		<button menu-toggle="right" class="button button-icon icon ion-android-checkmark-circle" ng-click='prc.guardar()'></button>
+	</ion-nav-buttons>
   <ion-content>
     <div class="list">
 	    <label class="item item-input">
@@ -10,29 +13,27 @@
       </label>
       <label class="item item-input-inset item-stacked-label">
         <span class="input-label">Primera alerta</span>
-        <label class="item-input-wrapper">
-	        <input type="number" ng-model="prc.preferencia.numeroPrimeraAlerta" style="width: 20%">	        
-        </label>
-        <select ng-model="prc.preferencia.tiempoPrimeraAlerta" style="width: 50%">
+        <input type="number" ng-model="prc.preferencia.numeroPrimeraAlerta" style="width: 50px;">
+        <select ng-model="prc.preferencia.tiempoPrimeraAlerta">
 		      <option value="1">Minutos</option>
 		      <option value="2">Horas</option>
 		      <option value="3">Días</option>
 		    </select>
-		    <div class="button-bar button-small">
-				  <button value="antes" class="button" ng-model="prc.preferencia.lapsoPrimeraAlerta">Antes</button>
-				  <button value="despues" class="button" ng-model="prc.preferencia.lapsoPrimeraAlerta">Después</button>
+		    <div class="button">
+				  <button value="antes" class="button button-small" ng-class="prc.preferencia.lapsoPrimeraAlerta == 'Antes' ? 'Activated' : ''" ng-model="prc.preferencia.lapsoPrimeraAlerta" ng-click="prc.preferencia.lapsoPrimeraAlerta = 'Antes'">Antes</button>
+				  <button value="despues" class="button button-small" ng-class="prc.preferencia.lapsoPrimeraAlerta == 'Despues' ? 'Activated' : ''" ng-model="prc.preferencia.lapsoPrimeraAlerta" ng-click="prc.preferencia.lapsoPrimeraAlerta = 'Despues'">Después</button>
 				</div>
       </label>
       <label class="item item-input-inset item-stacked-label">
         <span class="input-label">Segunda alerta</span>
         <label class="item-input-wrapper">
-	        <input type="number" ng-model="prc.preferencia.numeroSegundaAlerta" style="width: 20%">
+	        <input style="float: left;" type="number" ng-model="prc.preferencia.numeroSegundaAlerta" style="width: 20%">
 	        <select ng-model="prc.preferencia.tiempoSegundaAlerta" style="width: 50%">
 			      <option value="1">Minutos</option>
 			      <option value="2">Horas</option>
 			      <option value="3">Días</option>
 			    </select>
-			    <div class="button-bar">
+			    <div class="button">
 					  <button value="antes" class="button" ng-model="prc.preferencia.lapsoSegundaAlerta">Antes</button>
 					  <button value="despues" class="button" ng-model="prc.preferencia.lapsoSegundaAlerta">Después</button>
 					</div>
@@ -43,15 +44,15 @@
 		  </label>
       <div class="item item-input item-floating-label">
 	      <span class="input-label">Reprogramación</span>
-	      <textarea type="text" placeholder="Reprogramación" ng-model="nac.acuerdo.plantillaCorreoReprogramar" rows="3" style="width: 100%; background-color: transparent;"></textarea>
+	      <textarea type="text" placeholder="Reprogramación" ng-model="prc.preferencia.plantillaCorreoReprogramar" rows="3" style="width: 100%; background-color: transparent;"></textarea>
 		  </div>
 		  <div class="item item-input item-floating-label">
 	      <span class="input-label">Cancelación</span>
-	      <textarea type="text" placeholder="Cancelación" ng-model="nac.acuerdo.plantillaCorreoCancelar" rows="3" style="width: 100%; background-color: transparent;"></textarea>
+	      <textarea type="text" placeholder="Cancelación" ng-model="prc.preferencia.plantillaCorreoCancelar" rows="3" style="width: 100%; background-color: transparent;"></textarea>
 		  </div>
 		  <div class="item item-input item-floating-label">
 	      <span class="input-label">Eliminar</span>
-	      <textarea type="text" placeholder="Eliminar" ng-model="nac.acuerdo.plantillaCorreoEliminar" rows="3" style="width: 100%; background-color: transparent;"></textarea>
+	      <textarea type="text" placeholder="Eliminar" ng-model="prc.preferencia.plantillaCorreoEliminar" rows="3" style="width: 100%; background-color: transparent;"></textarea>
 		  </div>
     </div>
   </ion-content>

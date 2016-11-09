@@ -24,7 +24,6 @@ else {
  
 function onReady() {
   angular.bootstrap(document, ['FLOKsports']);
+  console.log(navigator.globalization);
 
 }
-
-
