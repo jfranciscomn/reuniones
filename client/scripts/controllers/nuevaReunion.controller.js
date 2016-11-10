@@ -1,6 +1,6 @@
 angular
 	.module('FLOKsports')
-	.controller('NuevaReunionCtrl', function NuevaReunionCtrl($scope, $reactive, $state, $stateParams, $ionicPopup, $ionicHistory, $ionicModal) {
+	.controller('NuevaReunionCtrl', function NuevaReunionCtrl($scope, $reactive, $state, $stateParams, $ionicPopup, $ionicHistory, $ionicModal,$cordovaCalendar) {
 		let rc = $reactive(this).attach($scope);
 		window.rc = rc;
 		this.reunion = {};
@@ -81,12 +81,19 @@ angular
 		}
 
 		this.saveDate=function(meeting){
+			var year = meeting.fecha.getFullYear()
+			var month = meeting.fecha.getMonth()
+			var date = meeting.fecha.getDate()
+			var ihour = meeting.horaInicio.getHours()
+			var iminute = meeting.horaInicio.getMinutes()
+			var fhour = meeting.horaFin.getHours()
+			var fminute = meeting.horaFin.getMinutes()
 			$cordovaCalendar.createEvent({
 			    title: meeting.titulo,
 			    location: meeting.ubicacion,
 			    notes: meeting.temas,
-			    startDate: new Date(2016, 10, 12, 18, 30, 0, 0, 0),
-			    endDate:  new Date(2016, 10, 12, 19, 30, 0, 0, 0)
+			    startDate: new Date(year,month,date,ihour,iminute,0,0),
+			    endDate:  new Date(year,month,date,fhour,fminute,0,0)
 			  }).then(function (result) {
 			  	console.log(" // success",result);
 			  }, function (err) {
@@ -127,6 +134,7 @@ angular
 			}
 			else{
 					Reuniones.insert(this.reunion);
+					this.saveDate(this.reunion);
 			}
 			this.sendNotification(this.reunion);
 			$ionicHistory.goBack();

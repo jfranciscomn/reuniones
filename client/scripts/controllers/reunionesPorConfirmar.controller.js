@@ -1,6 +1,6 @@
 angular
   .module('FLOKsports')
-  .controller('ReunionesConfirmarCtrl', function ReunionesConfirmarCtrl($scope, $reactive, $state, $stateParams, $ionicPopup) {
+  .controller('ReunionesConfirmarCtrl', function ReunionesConfirmarCtrl($scope, $reactive, $state, $stateParams, $ionicPopup,$cordovaCalendar) {
 		let rc = $reactive(this).attach($scope);
 		this.listCanSwipe = true;
 		window.rc = rc;
@@ -27,6 +27,28 @@ angular
 				
 				query: {userId:meeting.owner}
 			});
+		}
+
+		this.saveDate=function(meeting){
+			var year = meeting.fecha.getFullYear()
+			var month = meeting.fecha.getMonth()
+			var date = meeting.fecha.getDate()
+			var ihour = meeting.horaInicio.getHours()
+			var iminute = meeting.horaInicio.getMinutes()
+			var fhour = meeting.horaFin.getHours()
+			var fminute = meeting.horaFin.getMinutes()
+			$cordovaCalendar.createEvent({
+			    title: meeting.titulo,
+			    location: meeting.ubicacion,
+			    notes: meeting.temas,
+			    startDate: new Date(year,month,date,ihour,iminute,0,0),
+			    endDate:  new Date(year,month,date,fhour,fminute,0,0)
+			  }).then(function (result) {
+			  	console.log(" // success",result);
+			  }, function (err) {
+			    console.log(" // Error",err);
+			  });
+
 		}
 
 		this.cambiarEstatus = function(reunion, estatus){
@@ -65,6 +87,9 @@ angular
 					})
 					Reuniones.update({ _id : reunion._id}, { $set : { users: reunion.users, estatus : 2 }});
 					rc.sendNotification(reunion,notification)
+					if(reunion.estatus==2){
+						rc.saveDate(reunion)
+					}
 				}
 			});
 		}
