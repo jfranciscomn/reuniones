@@ -37,6 +37,10 @@ angular
         sound: true
       }
     });
+    Push.addListener('token', function(token) {
+       console.log(token)
+       console.log('asdas',Push.id())
+    });
      Push.allow({
         send: function(userId, notification) {
           // Allow all users to send to everybody - For test only!

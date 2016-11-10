@@ -29,11 +29,11 @@
       </label>
       <label class="item item-input">
         <span class="input-label">{{ 'FECHAINICIO' | translate}}</span>
-        <input type="date" ng-model="nac.acuerdo.fechaInicio">
+        <input type="datetime" ng-model="nac.acuerdo.fechaInicio" readonly>
       </label>
       <label class="item item-input">
         <span class="input-label">{{ 'FECHALIMITE' | translate}}</span>
-        <input type="date" ng-model="nac.acuerdo.fechaLimite">
+        <input type="date" ng-model="nac.acuerdo.fechaLimite" ng-click="nac.seleccionarFechaInicio()" >
       </label>
       <div class="item timeline-item" ng-click="nac.selResponsables()">
 	      {{ 'RESPONSABLES' | translate}}
