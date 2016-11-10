@@ -131,4 +131,77 @@ angular
 			return rechazados;
 		}
 	  
+	  this.cambiarEstatus = function(reunion, estatus){
+			var idTemp = reunion._id;
+			delete reunion._id;
+			if(estatus == 3){
+				
+			}else if(estatus == 5){
+				
+			}
+			console.log(idTemp, estatus, reunion);
+			Reuniones.update(idTemp, { $set : { estatus : estatus }});
+			
+		}
 });
+
+
+
+/*
+	
+	Siendo el creador (owner)
+	
+	Agendada = 1
+		Se puede reprogramar = 4 -> esto es sólo modificando la fecha y ubicación
+		Se puede cancelar = 5
+	Confirmada = 2
+		Se puede iniciar = 3
+		Se puede cancelar = 5
+		Se puede reprogramar = 4
+	Iniciada = 3
+		Se puede finalizar = 6 -> se genera la minuta
+	Reprogramada = 4
+		Se puede cancelar = 5
+		Se manda correo
+	Cancelada = 5
+		Se manda correo
+	
+	
+	
+	
+	
+	Siendo el participante o invitado
+	
+	Agendada = 1
+		Se puede confirmar = 2 -> esto es cuando un participante acepta la reunión
+		Se puede rechazar = 7
+		
+		
+		1 Agendada
+		2 Confirmada
+		3 Iniciada
+		4 Reprogramada
+		5 Cancelada
+		6 Finalizada cuando se registra la minuta de reunión (iPad)
+		7 Rechazada
+		
+		
+		
+		
+		
+		
+		*/
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		

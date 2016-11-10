@@ -1,28 +1,8 @@
 angular
   .module('FLOKsports')
 
-  .controller('PreferenciasReunionCtrl', function PreferenciasReunionCtrl($scope, $reactive, $state, $stateParams, $ionicPopup, $ionicHistory, $cordovaGlobalization) {
+  .controller('PreferenciasReunionCtrl', function PreferenciasReunionCtrl($scope, $reactive, $state, $stateParams, $ionicPopup, $ionicHistory) {
 		let rc = $reactive(this).attach($scope);
-		
-		 $cordovaGlobalization.getPreferredLanguage().then(
-	    function(result) {
-	      // result
-	      console.log(result);
-	    },
-	    function(error) {
-	      // error
-	      console.log(error);
-	  });
-	
-	  $cordovaGlobalization.getLocaleName().then(
-	    function(result) {
-	      // result
-	      console.log(result);
-	    },
-	    function(error) {
-	      // error
-	      console.log(error);
-	  });
 		
 		this.preferencia = PreferenciasReunion.findOne({owner : Meteor.userId()});
 

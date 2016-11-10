@@ -1,7 +1,7 @@
 angular
   .module('FLOKsports')
 
-  .controller('NuevoAcuerdoCtrl', function AcuerdosCtrl($scope, $reactive, $state, $stateParams, $ionicPopup, $ionicHistory, $ionicModal, $cordovaCalendar) {
+  .controller('NuevoAcuerdoCtrl', function AcuerdosCtrl($scope, $reactive, $state, $stateParams, $ionicPopup, $ionicHistory, $ionicModal, $cordovaCalendar, focus) {
 
 		let rc = $reactive(this).attach($scope);
 		window.rc = rc;
@@ -95,6 +95,13 @@ angular
 						rc.acuerdo.seguidores.splice(index, 1);
 					}
 				})
+			}
+		}
+		
+		this.cambiarEstatus = function(acuerdo, estatus){
+			console.log(estatus, acuerdo);
+			if(estatus == 2){
+				focus('fechaCierre');
 			}
 		}
 

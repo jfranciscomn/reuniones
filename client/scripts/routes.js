@@ -310,7 +310,12 @@ angular.module('FLOKsports').config(function ($translateProvider) {
 		    ESTADO: 'Estado',
 		    PAIS: 'País',
   });
-  $translateProvider.preferredLanguage('pt');  
+  $translateProvider
+  .preferredLanguage('en')
+  .registerAvailableLanguageKeys(['en', 'es', 'pt'], {
+    'en_US': 'en'
+  })
+  .determinePreferredLanguage()
 });
 
 

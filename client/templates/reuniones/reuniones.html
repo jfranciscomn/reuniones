@@ -7,41 +7,41 @@
 	    <button menu-toggle="right" class="button button-icon icon ion-plus" ui-sref="app.nuevaReunion"></button>
 	  </ion-nav-buttons>
 	  <ion-nav-title>
-	    <span class="font-light">{{ 'REUNIONES' | translate }}</span>
+	    <span class="font-light">Reuniones</span>
 	  </ion-nav-title>
 	</ion-nav-bar>
   <div class="bar bar-subheader menuSuperior" style="height: {{rc.deviceWidth / 1.5}}px;">
 	  <a class="button hoy" ng-click="rc.cambiarFiltro('hoy')"> 
 	  	<i class="fa fa-check" style="font-size: 50pt; color: white; margin-top:10px;"></i><br/>
 	  	<div style="font-size: 20pt; color: white; margin: -10px 0px 0px 0px; ">{{rc.hoy.length}}</div>
-	  	<div style="font-size: 12pt; color: white; margin: -5px 0px 0px 0px; ">{{ 'HOY' | translate }}</div>
+	  	<div style="font-size: 12pt; color: white; margin: -5px 0px 0px 0px; ">Hoy</div>
 	  </a>
 	  <a class="button semana" ng-click="rc.cambiarFiltro('semana')">
 		  <i class="fa fa-file-text-o" style="font-size: 15pt; color: white; margin-top:10px;"></i><br/>
 		  <div style="font-size: 15pt; color: white; margin: -12px 0px 0px 0px; ">{{rc.semana.length}}</div>
-		  <div style="font-size: 9pt; color: white; margin: -15px 0px 0px 0px;">{{ 'SEMANA' | translate }}</div>
+		  <div style="font-size: 9pt; color: white; margin: -15px 0px 0px 0px;">Semana </div>
 		</a>
 	  <a class="button mes" ng-click="rc.cambiarFiltro('mes')">
 	  	<i class="fa fa-calendar" style="font-size: 15pt; color: white; margin-top:10px;"></i><br/> 
 	  	<div style="font-size: 15pt; color: white; margin: -12px 0px 0px 0px; ">{{rc.mes.length}}</div>
-	  	<div style="font-size: 8pt; color: white; margin: -15px 0px 0px 0px">{{ 'MES' | translate }}</div>
+	  	<div style="font-size: 8pt; color: white; margin: -15px 0px 0px 0px">Mes </div>
 	  </a>
 	  <a class="button proxima" ng-click="rc.cambiarFiltro('todas')"> 
 	  	<i class="fa fa-clock-o" style="font-size: 15pt; color: white; margin-top:10px;"></i><br/>
 	  	<div style="font-size: 15pt; color: white; margin: -12px 0px 0px 0px; ">{{rc.reuniones.length}}</div>
-	  	<div style="font-size: 8pt; color: white; margin: -15px 0px 0px 0px">{{ 'TODAS' | translate }} </div>
+	  	<div style="font-size: 8pt; color: white; margin: -15px 0px 0px 0px">Todas </div>
 	  </a>
 	  <a class="button futuro" ng-click="rc.cambiarFiltro('futuro')"> 
 	  	<i class="fa fa-list" style="font-size: 15pt; color: white; margin-top:10px;"></i><br/>
 	  	<div style="font-size: 15pt; color: white; margin: -12px 0px 0px 0px; ">{{rc.futuro.length}}</div>
-	  	<div style="font-size: 8pt; color: white; margin: -15px 0px 0px 0px">{{ 'FUTURO' | translate }}</div>
+	  	<div style="font-size: 8pt; color: white; margin: -15px 0px 0px 0px">Futuro </div>
 	  </a>
 	  <button style="width: 0px; height: 0px;" ng-show="false"></button>
 	</div>
   <ion-content style="margin-top:66%;">
-  	<div class="divider-title">{{ 'VENCIDAS' | translate }}</div>
-  	<ion-list can-swipe="rc.listCanSwipe" class="timeline" id="hoy" ng-show="rc.fhoy" >
-		  <ion-item ng-repeat="reunion in rc.vencidas | orderBy:'fecha'">
+  	<div class="divider-title">Vencidas</div>
+    <ul class="timeline" id="hoy" ng-show="rc.fhoy">
+      <li ng-repeat="reunion in rc.vencidas | orderBy:'fecha'">
       	<a ng-click="rc.detalleReunion(reunion)" style="text-decoration: none; ">
           <div class="timeline-thumb bg-color-red timeline-icon">
             <i class="ion-close-round text-white" aria-hidden="true"></i>
@@ -58,15 +58,9 @@
             </div>
           </div>
       	</a>
-      	<ion-option-button class="button bg-color-green" ng-click="rcc.cambiarEstatus(reunion, 2)">
-		      <i class="icon ion-android-done color-white"></i>
-		    </ion-option-button>
-		    <ion-option-button class="button bg-color-red" ng-click="rcc.cambiarEstatus(reunion, 6)">
-		      <i class="icon ion-android-close color-white"></i>
-		    </ion-option-button>
-		  </ion-item>
-  	</ion-list>
-	  <div class="divider-title">{{ 'HOY' | translate }}</div>
+      </li>
+    </ul>
+	  <div class="divider-title">Hoy</div>
     <ul class="timeline" id="hoy" ng-show="rc.fhoy">
       <li ng-repeat="reunion in rc.hoy | orderBy:'fecha'">
       	<a ng-click="rc.detalleReunion(reunion)" style="text-decoration: none; ">
@@ -87,7 +81,7 @@
       	</a>
       </li>
     </ul>
-    <div class="divider-title">{{ 'SEMANA' | translate }}</div>
+    <div class="divider-title">Semana</div>
     <ul class="timeline" id="semana" ng-show="rc.fsemana">
       <li ng-repeat="reunion in rc.semana | orderBy:'fecha'">
         <a ng-click="rc.detalleReunion(reunion)" style="text-decoration: none; ">
@@ -96,7 +90,6 @@
           </div>
           <div class="timeline-item">
             <h4 class="font-light">{{reunion.titulo}}</h4>
-            <button class="button button-mini" ng-show="reunion.owner == currentUser._id">Iniciar</button>
             <i class="icon ion-chevron-right icon-accessory" style="top: 20; position: absolute; right: 5px; color: #ccc; font-size: 16px;"></i>
             <p>{{reunion.ubicacion}}</p>
             <div class="timeline-stats">
@@ -109,7 +102,7 @@
         </a>
       </li>
     </ul>
-    <div class="divider-title">{{ 'MES' | translate }}</div>
+    <div class="divider-title">Mes</div>
     <ul class="timeline" id="mes" ng-show="rc.fmes">
       <li ng-repeat="reunion in rc.mes | orderBy:'fecha'">
         <a ng-click="rc.detalleReunion(reunion)" style="text-decoration: none; ">
@@ -130,7 +123,7 @@
         </a>
       </li>
     </ul>
-    <div class="divider-title">{{ 'FUTURO' | translate }}</div>
+    <div class="divider-title">Futuros</div>
     <ul class="timeline" id="futuro" ng-show="rc.ffuturo">
       <li ng-repeat="reunion in rc.futuro | orderBy:'fecha'">
         <a ng-click="rc.detalleReunion(reunion)" style="text-decoration: none; ">
