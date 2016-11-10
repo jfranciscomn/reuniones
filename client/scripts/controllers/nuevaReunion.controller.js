@@ -81,6 +81,21 @@ angular
 			console.log(rc.reunion.users);
 		}
 
+		this.saveDate=function(meeting){
+			$cordovaCalendar.createEvent({
+			    title: meeting.titulo,
+			    location: meeting.ubicacion,
+			    notes: meeting.temas,
+			    startDate: new Date(2016, 10, 12, 18, 30, 0, 0, 0),
+			    endDate:  new Date(2016, 10, 12, 19, 30, 0, 0, 0)
+			  }).then(function (result) {
+			  	console.log(" // success",result);
+			  }, function (err) {
+			    console.log(" // Error",err);
+			  });
+
+		}
+
 		this.sendNotification =function (meeting) {
 			var participans =[]
 			_.each(meeting.users, function(participan){
@@ -91,7 +106,7 @@ angular
 			Push.send({
 				from: 'Mis Reuniones',
 				title: meeting.titulo,
-				text: 'Invitacion a participar a la Reunion\nTitulo: '+meeting.titulo+'\nFecha: '+meeting.temas+"\nTemas: "+meeting.temas,
+				text: 'Invitacion a participar a la Reunion\nTitulo: '+meeting.titulo+'\nFecha: '+meeting.fecha+"\nTemas: "+meeting.temas,
 				badge: 1,
 				sound: 'airhorn.caf',
 				
