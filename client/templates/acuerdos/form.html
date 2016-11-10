@@ -30,7 +30,7 @@
 <!--  
 			<label class="item item-input">
         <span class="input-label">{{ 'FECHAINICIO' | translate}}</span>
-        <input type="date" ng-model="nac.acuerdo.fechaInicio">
+        <input type="datetime" ng-model="nac.acuerdo.fechaInicio" readonly>
       </label>
       
         <span class="input-label">{{ 'FECHAINICIO' | translate}}</span>
@@ -47,7 +47,7 @@
 <!--
       <label class="item item-input">
         <span class="input-label">{{ 'FECHALIMITE' | translate}}</span>
-        <input type="date" ng-model="nac.acuerdo.fechaLimite">
+        <input type="date" ng-model="nac.acuerdo.fechaLimite" ng-click="nac.seleccionarFechaInicio()" >
       </label>
 -->
       <div class="item timeline-item" ng-click="nac.selResponsables()">
@@ -91,12 +91,12 @@
 		      {{ 'REPETIR' | translate}}
 		    </div>
 		    <select ng-model="nac.acuerdo.repetir">
-		      <option>Nunca</option>
-		      <option>Todos los días</option>
-		      <option>Cada semana</option>
-		      <option>Cada dos semanas</option>
-		      <option>Cada mes</option>
-		      <option>Cada año</option>
+		      <option>{{ 'NUNCA' | translate }}</option>
+		      <option>{{ 'TODOSLOSDIAS' | translate }}</option>
+		      <option>{{ 'CADASEMANA' | translate }}</option>
+		      <option>{{ 'CADADOS' | translate }}</option>
+		      <option>{{ 'CADAMES' | translate }}</option>
+		      <option>{{ 'CADAANO' | translate }}</option>
 		    </select>
 		  </label>
 		  <div class="item" date ion-datetime-picker ng-model="nac.acuerdo.hasta">
@@ -118,7 +118,7 @@
 	    <div class="item item-input-inset item-stacked-label">
 	      <span class="input-label">{{ 'TEMAS' | translate}}</span>
 		    <label class="item-input-wrapper">
-		      <input type="text" placeholder="Temas" ng-model="nac.acuerdo.temas" class="full">
+		      <input type="text" placeholder="" ng-model="nac.acuerdo.temas" class="full">
 		    </label>
 		  </div>
 		  

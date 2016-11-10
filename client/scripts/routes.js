@@ -118,6 +118,26 @@ angular.module('FLOKsports').config(function ($translateProvider) {
 		    CIUDAD: 'City',
 		    ESTADO: 'State',
 		    PAIS: 'Country',
+		//Login y Signup
+		EMAIL: 'Mail',
+		PASSWORD: 'Password',
+		INICIARSESION: 'Login',
+		OLVIDASTECONTRASENA: 'Forgot Password ?',
+		REGISTRO: 'Registry',
+		REGISTRAR: 'To Register',
+		//Preferencias de Reunion
+		DURACION: 'Duration of the Meeting',
+		PRIMERA: 'First Alert',
+		MINUTOS: 'Minutes',
+		HORAS: 'Hours',
+		DIAS: 'Days',
+		ANTES: 'Before',
+		DESPUES: 'After',
+		SEGUNDA: 'Segund Alert',
+		LEYENDA: 'Legends for post exchange:',
+		REPROGRAMACION: 'Reprogramming',
+		CANCELACION: 'Cancellation',
+		ELIMINAR: 'Remove',
   });
   $translateProvider.translations('es', {
 		//Layout
@@ -215,6 +235,26 @@ angular.module('FLOKsports').config(function ($translateProvider) {
 		    CIUDAD: 'Ciudad',
 		    ESTADO: 'Estado',
 		    PAIS: 'Pais',
+		//Login y Signup
+		EMAIL: 'Correo',
+		PASSWORD: 'Contraseña',
+		INICIARSESION: 'Iniciar Sesion',
+		OLVIDASTECONTRASENA: 'Olvidaste Contraseña ?',
+		REGISTRO: 'Registro',
+		REGISTRAR: 'Registrar',
+		//Preferencias de Reunion
+		DURACION: 'Duracion de la Reunión',
+		PRIMERA: 'Primer Alerta',
+		MINUTOS: 'Minutos',
+		HORAS: 'Horas',
+		DIAS: 'Dias',
+		ANTES: 'Antes',
+		DESPUES: 'Despues',
+		SEGUNDA: 'Segund Alerta',
+		LEYENDA: 'Leyendas para correos de cambio:',
+		REPROGRAMACION: 'Reprogramación',
+		CANCELACION: 'Cancelación',
+		ELIMINAR: 'Eliminar',
   });
   $translateProvider.translations('pt', {
 		//Layout
@@ -229,7 +269,7 @@ angular.module('FLOKsports').config(function ($translateProvider) {
 		//Home
 		RESUMEN: 'Resumo',
     ACUERDOS: 'Acordos',
-    ACUERDOSVENCIDOS: 'Acordos Derrotados',
+    ACUERDOSVENCIDOS: 'Acordos Expirados',
     ACUERDOSHOY: 'Acordos para Hoje',
     ACUERDOSSEMANA: 'Acordos para esta semana',
     ACUERDOSMES: 'Acordos para este mês',
@@ -256,7 +296,7 @@ angular.module('FLOKsports').config(function ($translateProvider) {
     		ALTA: 'Alto',
     		ACTIVO: 'Ativo',
     		CERRADO: 'Fechado',
-    		VENCIDO: 'Derrotado',
+    		VENCIDO: 'Expirado',
     		NUNCA: 'Nem',
     		TODOSLOSDIAS: 'Todos os Dias',
     		CADASEMANA: 'Cada Semana',
@@ -309,7 +349,28 @@ angular.module('FLOKsports').config(function ($translateProvider) {
 		    CIUDAD: 'Cidade',
 		    ESTADO: 'Estado',
 		    PAIS: 'País',
+		//Login y Signup
+		EMAIL: 'e-mail',
+		PASSWORD: 'Senha',
+		INICIARSESION: 'Iniciar Sessão',
+		OLVIDASTECONTRASENA: 'Olvidaste Contraseña ?',
+		REGISTRO: 'Inscrição',
+		REGISTRAR: 'Registro',
+		//Preferencias de Reunion
+		DURACION: 'Duração da Reunião',
+		PRIMERA: 'Alerta Primeiro',
+		MINUTOS: 'Atas',
+		HORAS: 'Hora',
+		DIAS: 'Dias',
+		ANTES: 'Antes',
+		DESPUES: 'Depois',
+		SEGUNDA: 'Alerta Segunda',
+		LEYENDA: 'Legends para troca de pós:',
+		REPROGRAMACION: 'Reprogramação',
+		CANCELACION: 'Cancelamento',
+		ELIMINAR: 'Remover',
   });
+  
   $translateProvider
   .preferredLanguage('en')
   .registerAvailableLanguageKeys(['en', 'es', 'pt'], {
@@ -378,7 +439,8 @@ angular.module('FLOKsports').config(['$injector', function ($injector) {
   $stateProvider.state('app', {
     url: '/app',
     abstract: true,
-    templateUrl: 'client/templates/layout.html'
+    templateUrl: 'client/templates/layout.html',
+    controller: 'MainCtrl as mainc'
   })
   .state('app.home', {
     url: '/home',

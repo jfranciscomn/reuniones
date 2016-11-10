@@ -25,7 +25,7 @@ $ionicons-font-path: "../fonts" !default;
   used under CC BY http://creativecommons.org/licenses/by/4.0/
   Modified icons to fit ionicon’s grid from original.
 */
-$ionicons-font-path: "../fonts" !default;
+$ionicons-font-path: "/fonts" !default;
 @font-face {
   font-family: "Ionicons";
   src: url("#{$ionicons-font-path}/ionicons.eot?v=2.0.1");

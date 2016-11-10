@@ -1,5 +1,6 @@
 angular.module('FLOKsports')
 
+
 .directive('myTabs', function() {
 	return {
 		restrict: 'E',

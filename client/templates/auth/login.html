@@ -8,10 +8,10 @@
               <my-tab title="Email">
                 <div class="list">
                   <label class="item item-input">
-                    <input type="email" placeholder="Correo" name="user_email" ng-model="lc.credentials.email" required>
+                    <input type="email" placeholder="{{ 'EMAIL' | translate }}" name="user_email" ng-model="lc.credentials.email" required>
                   </label>
                   <label class="item item-input" show-hide-container>
-                    <input type="password" placeholder="Contraseña" name="user_password" ng-model="lc.credentials.password" required show-hide-input>
+                    <input type="password" placeholder="{{ 'PASSWORD' | translate }}" name="user_password" ng-model="lc.credentials.password" required show-hide-input>
                   </label>
                 </div>
               </my-tab>
@@ -19,20 +19,22 @@
             </my-tabs>
             <div class="item item-body bottom-content">
               <button type="submit" class="button button-positive button-block" ng-click="lc.login()" >
-                Iniciar Sesión
+                {{ 'INICIARSESION' | translate }}
               </button>
             </div>
           </form>
         </div>
         <div class="alternative-actions">
           <a class="forgot-password button button-small button-clear button-light" ui-sref="auth.forgot-password">
-            Olvidaste contraseña?
+            {{ 'OLVIDASTECONTRASENA' | translate }}
           </a>
           <a class="sign-up button button-small button-clear button-light" ui-sref="auth.signup">
-            Registro
+            {{ 'REGISTRO' | translate }}
           </a>
         </div>
       </div>
     </div>
   </ion-content>
 </ion-view>
+<!-- {{ 'EMAIL' | translate }} -->
+<!-- {{ 'PASSWORD' | translate }} -->
