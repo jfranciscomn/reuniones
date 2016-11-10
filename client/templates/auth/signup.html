@@ -6,28 +6,31 @@
           <form name="signup_form" class="" novalidate>
             <div class="item item-body">
 	            <label class="item item-input">
-                <input type="text" placeholder="Nombre" name="user_nombre" ng-model="sc.signup.name" required>
+                <input type="text" placeholder="{{ 'NOMBRE' | translate }}" name="user_nombre" ng-model="sc.signup.name" required>
               </label>
               <label class="item item-input">
-                <input type="email" placeholder="Email" name="user_email" ng-model="sc.signup.email" required>
+                <input type="email" placeholder="{{ 'EMAIL' | translate }}" name="user_email" ng-model="sc.signup.email" required>
               </label>
               <label class="item item-input" show-hide-container>
-                <input type="password" placeholder="Password" name="user_password" ng-model="sc.signup.password" required show-hide-input>
+                <input type="password" placeholder="{{ 'PASSWORD' | translate }}" name="user_password" ng-model="sc.signup.password" required show-hide-input>
               </label>
             </div>
             <div class="item item-body bottom-content">
               <button type="submit" class="button button-assertive button-block" ng-click="sc.sign()" >
-                Registrar
+                {{ 'REGISTRAR' | translate }}
               </button>
             </div>
           </form>
         </div>
         <div class="alternative-actions">
           <a class="log-in button button-small button-clear button-light" ui-sref="auth.login">
-            Iniciar Sesión
+            {{ 'INICIARSESION' | translate }}
           </a>
         </div>
       </div>
     </div>
   </ion-content>
 </ion-view>
+<!-- {{ 'NOMBRE' | translate }} -->
+<!-- {{ 'EMAIL' | translate }} -->
+<!-- {{ 'PASSWORD' | translate }} -->
