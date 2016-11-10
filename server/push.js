@@ -16,3 +16,16 @@ Meteor.startup(function () {
     });  
     Push.debug=true;
   });
+
+Meteor.methods({
+    pushUserRegister: function (userId, appId) {
+        var pushUser=PushUsers.findOne({appId:appId});
+        if(pushUser){
+            PushUsers.update({appId:appId},{$set:{userId:userId}});
+        }
+        else{
+            PushUsers.insert({userId:userId,appId:appId});
+        }
+    }
+    
+});

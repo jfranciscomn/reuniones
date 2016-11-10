@@ -373,7 +373,8 @@ angular.module('FLOKsports').config(['$injector', function ($injector) {
   $stateProvider.state('app', {
     url: '/app',
     abstract: true,
-    templateUrl: 'client/templates/layout.html'
+    templateUrl: 'client/templates/layout.html',
+    controller: 'MainCtrl as mainc'
   })
   .state('app.home', {
     url: '/home',

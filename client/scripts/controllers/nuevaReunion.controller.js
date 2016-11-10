@@ -1,6 +1,6 @@
 angular
-  .module('FLOKsports')
-  .controller('NuevaReunionCtrl', function NuevaReunionCtrl($scope, $reactive, $state, $stateParams, $ionicPopup, $ionicHistory, $ionicModal) {
+	.module('FLOKsports')
+	.controller('NuevaReunionCtrl', function NuevaReunionCtrl($scope, $reactive, $state, $stateParams, $ionicPopup, $ionicHistory, $ionicModal) {
 		let rc = $reactive(this).attach($scope);
 		window.rc = rc;
 		this.reunionId = $stateParams.reunionId;
@@ -19,7 +19,7 @@ angular
 			else if(obj !== null && typeof obj === 'object'){
 				delete obj.$$hashKey;
 				for (var name in obj) {
-		  			obj[name] = this.quitarhk(obj[name]);
+						obj[name] = this.quitarhk(obj[name]);
 				}	
 			}
 			return obj;
@@ -37,12 +37,12 @@ angular
 		if(!this.reunion){
 			this.reunion={users:[{user:Meteor.userId(), estatus : 2}]};
 			this.reunion.createdAt = new Date();
-  		this.reunion.owner = (Meteor.userId() != undefined) ? Meteor.userId() : "";
-  		this.reunion.username = (Meteor.userId() != undefined) ? Meteor.user().username : "";
-  		this.reunion.estatus = 1;
-  		this.reunion.fecha = new Date();
-  		this.reunion.horaInicio = new Date();
-  		this.reunion.horaFin = new Date();
+			this.reunion.owner = (Meteor.userId() != undefined) ? Meteor.userId() : "";
+			this.reunion.username = (Meteor.userId() != undefined) ? Meteor.user().username : "";
+			this.reunion.estatus = 1;
+			this.reunion.fecha = new Date();
+			this.reunion.horaInicio = new Date();
+			this.reunion.horaFin = new Date();
 		}else{
 			_.each(rc.registrados, function(registrado, index){
 				_.each(rc.reunion.users, function(invitado){
@@ -71,7 +71,7 @@ angular
 			console.log(rc.reunion.users);
 		}
 		
-		this.save  = function(){
+		this.save	= function(){
 			console.log(this.reunionId);
 			this.quitarhk(this.reunion);
 			console.log(this.reunion)
@@ -81,27 +81,27 @@ angular
 				Reuniones.update({_id:this.reunionId},{$set:this.reunion});
 			}
 			else{
-    			Reuniones.insert(this.reunion);
+					Reuniones.insert(this.reunion);
 			}
 			$ionicHistory.goBack();
 		}
 		
 		$ionicModal.fromTemplateUrl('client/templates/participantes/modalSelParticipantes.html', {
-	    scope: $scope,
-	    animation: 'slide-in-up'
-	  }).then(function(modal) {
-	    $scope.modal = modal;
-	  });
-	  
-	  this.selParticipantes = function() {
-	    $scope.modal.show();
-	  };
-	  
-	  this.cerrarModalParticipantes = function() {
-	    $scope.modal.hide();
-	  };
-	  
-	  this.getConfirmados = function(usuarios){
+			scope: $scope,
+			animation: 'slide-in-up'
+		}).then(function(modal) {
+			$scope.modal = modal;
+		});
+		
+		this.selParticipantes = function() {
+			$scope.modal.show();
+		};
+		
+		this.cerrarModalParticipantes = function() {
+			$scope.modal.hide();
+		};
+		
+		this.getConfirmados = function(usuarios){
 			var confirmados = 0;
 			_.each(usuarios, function(usuario){
 				if(usuario.estatus == 2){
@@ -130,5 +130,5 @@ angular
 			})
 			return rechazados;
 		}
-	  
+		
 });
