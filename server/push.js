@@ -2,7 +2,8 @@ Meteor.startup(function () {
     
     Push.Configure({
         gcm: {
-            apiKey: 'xxxxxxxxxxxxx'
+            apiKey: 'AIzaSyAHBAZDKIzySO7r9hbJhPO4O9dMtjkjGQI',
+            projectNumber: 510365416868
         },
         apn: {
             // setting this on client throws security error
@@ -13,6 +14,10 @@ Meteor.startup(function () {
             gateway: "gateway.sandbox.push.apple.com"
         },
         production: false, // use production server or sandbox
+        badge: true,
+        sound: true,
+        alert: true,
+        vibrate: true
     });  
     Push.debug=true;
   });
