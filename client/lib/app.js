@@ -13,6 +13,8 @@ angular
   .config(function($ionicConfigProvider) {
     $ionicConfigProvider.tabs.position('bottom');
     $ionicConfigProvider.navBar.alignTitle('center');
+    
+   
   })
 
   .run(function(){
@@ -36,3 +38,4 @@ function onReady() {
   console.log(navigator.globalization);
 
 }
+

@@ -370,7 +370,13 @@ angular.module('FLOKsports').config(function ($translateProvider) {
 		CANCELACION: 'Cancelamento',
 		ELIMINAR: 'Remover',
   });
-  $translateProvider.preferredLanguage('pt');  
+  
+  $translateProvider
+  .preferredLanguage('en')
+  .registerAvailableLanguageKeys(['en', 'es', 'pt'], {
+    'en_US': 'en'
+  })
+  .determinePreferredLanguage()
 });
 
 

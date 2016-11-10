@@ -6,7 +6,7 @@
     <span class="font-light">{{ 'NUEVOACUERDO' | translate}}</span>
   </ion-nav-title>
   <ion-content>
-    <ul class="list list-inset">
+    <ion-list>
 	    <div class="item item-input-inset item-stacked-label">
 	      <span class="input-label">{{ 'CATEGORIA' | translate}}</span>
 		    <label class="item-input-wrapper">
@@ -27,18 +27,33 @@
 	        <textarea type="text" ng-model="nac.acuerdo.descripcion" rows="3" style="width: 100%; background-color: transparent;"></textarea>
         </label>
       </label>
-      <label class="item item-input">
+<!--  
+			<label class="item item-input">
         <span class="input-label">{{ 'FECHAINICIO' | translate}}</span>
         <input type="datetime" ng-model="nac.acuerdo.fechaInicio" readonly>
       </label>
+      
+        <span class="input-label">{{ 'FECHAINICIO' | translate}}</span>
+        <input type="date" ng-model="nac.acuerdo.fechaInicio">
+-->
+			<div class="item" date ion-datetime-picker ng-model="nac.acuerdo.fechaInicio">
+	      <span class="input-label">{{ 'FECHAINICIO' | translate}}</span>
+        {{nac.acuerdo.fechaInicio| date: "dd-MM-yyyy"}}
+	    </div>
+      <div class="item" datetime ion-datetime-picker ng-model="nac.acuerdo.fechaLimite">
+	      <span class="input-label">{{ 'FECHALIMITE' | translate}}</span>
+        {{nac.acuerdo.fechaLimite| date: "dd-MM-yyyy H:mm:ss"}}
+	    </div>
+<!--
       <label class="item item-input">
         <span class="input-label">{{ 'FECHALIMITE' | translate}}</span>
         <input type="date" ng-model="nac.acuerdo.fechaLimite" ng-click="nac.seleccionarFechaInicio()" >
       </label>
+-->
       <div class="item timeline-item" ng-click="nac.selResponsables()">
 	      {{ 'RESPONSABLES' | translate}}
 	      <div class="timeline-stats">
-          <i class="ion-person color-green"></i> {{nac.acuerdo.responsables.length}}
+          <i class="ion-person color-green"></i> {{nac.acuerdo.responsables.length}} 
         </div>
 	    </div>
 	    <label class="item item-input-insert item-stacked-label range">
@@ -54,17 +69,23 @@
       <div class="item item-input-inset item-stacked-label">
 	      <span class="input-label">{{ 'ESTADO' | translate}}</span>
 		    <label class="item-input-wrapper">
-		      <select ng-model="nac.acuerdo.estatus" style="width: 100%">
+		      <select id="fechaCierre" ng-model="nac.acuerdo.estatus" style="width: 100%" ng-change="nac.cambiarEstatus(nac.acuerdo, nac.acuerdo.estatus);" focus-on="fechaCierre">
 			      <option value="1">{{ 'ACTIVO' | translate}} </option>
 			      <option value="2">{{ 'CERRADO' | translate}}</option>
 			      <option value="3">{{ 'VENCIDO' | translate}}</option>
 			    </select>
 		    </label>
 		  </div>
+<!--
 		  <label class="item item-input">
         <span class="input-label">{{ 'FECHACIERRE' | translate}}</span>
-        <input type="date" ng-model="nac.acuerdo.fechaCierre">
+        <input type="date" ng-model="nac.acuerdo.fechaCierre" focus-me="fechaCierre">
       </label>
+-->
+      <div class="item" date ion-datetime-picker ng-model="nac.acuerdo.fechaCierre">
+	      <span class="input-label">{{ 'FECHACIERRE' | translate}}</span>
+        {{nac.acuerdo.fechaCierre| date: "dd-MM-yyyy"}}
+	    </div>
       <label class="item item-input item-select">
 		    <div class="input-label">
 		      {{ 'REPETIR' | translate}}
@@ -78,10 +99,16 @@
 		      <option>{{ 'CADAANO' | translate }}</option>
 		    </select>
 		  </label>
+		  <div class="item" date ion-datetime-picker ng-model="nac.acuerdo.hasta">
+	      <span class="input-label">{{ 'HASTA' | translate}}</span>
+        {{nac.acuerdo.hasta| date: "dd-MM-yyyy"}}
+	    </div>
+<!--
       <label class="item item-input item-stacked-label">
         <span class="input-label">{{ 'HASTA' | translate}}</span>
         <input type="date" ng-model="nac.acuerdo.hasta">
       </label>
+-->
       <div class="item timeline-item" ng-click="nac.selSeguidores()">
 	      {{ 'SEGUIDORES' | translate}}
 	      <div class="timeline-stats">
@@ -115,7 +142,7 @@
 			     </label>
 			  </li>
 			</ul>
-    </ul>
+    </ion-list>
   </ion-content>
 </ion-view>
 <style>

@@ -1,4 +1,5 @@
-/*angular
+/*
+	angular
   .module('FLOKsports')
   .directive('input', input);
  
@@ -50,4 +51,42 @@ function input ($timeout) {
       }
     });
   }
-}*/
+}
+*/
+angular
+  .module('FLOKsports').directive('focusMe', function($timeout) {
+  return {
+    link: function(scope, element, attrs) {
+      scope.$watch(attrs.focusMe, function(value) {
+        if(value === true) { 
+          console.log('value=',value);
+          //$timeout(function() {
+            element[0].focus();
+            scope[attrs.focusMe] = false;
+          //});
+        }
+      });
+    }
+  };
+});
+
+
+angular
+  .module('FLOKsports').directive('focusOn', function() {
+   return function(scope, elem, attr) {
+      scope.$on('focusOn', function(e, name) {
+        if(name === attr.focusOn) {
+          elem[0].focus();
+        }
+      });
+   };
+});
+
+angular
+  .module('FLOKsports').factory('focus', function ($rootScope, $timeout) {
+  return function(name) {
+    $timeout(function (){
+      $rootScope.$broadcast('focusOn', name);
+    });
+  }
+});
