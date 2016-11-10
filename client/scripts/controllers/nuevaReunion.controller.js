@@ -4,7 +4,6 @@ angular
 		let rc = $reactive(this).attach($scope);
 		window.rc = rc;
 		this.reunion = {};
-		
 		this.buscar = "";
 		this.opcion = {};
 		this.opcion.participantes = [];
@@ -32,7 +31,7 @@ angular
 				return Categorias.find();
 			},
 			reunion : function() {
-				if($stateParams.reunionId){
+				if($stateParams.reunionId != undefined){
 					var reunion = Reuniones.findOne($stateParams.reunionId);
 					
 					_.each(rc.registrados, function(registrado, index){
@@ -45,17 +44,17 @@ angular
 							}
 						})
 					});
-					return reunion;
 				}else{
-					this.reunion={users:[{user:Meteor.userId(), estatus : 2}]};
-					this.reunion.createdAt = new Date();
-					this.reunion.owner = (Meteor.userId() != undefined) ? Meteor.userId() : "";
-					this.reunion.username = (Meteor.userId() != undefined) ? Meteor.user().username : "";
-					this.reunion.estatus = 1;
-					this.reunion.fecha = new Date();
-					this.reunion.horaInicio = new Date();
-					this.reunion.horaFin = new Date();
+					reunion={users:[{user:Meteor.userId(), estatus : 2}]};
+					reunion.createdAt = new Date();
+					reunion.owner = (Meteor.userId() != undefined) ? Meteor.userId() : "";
+					reunion.username = (Meteor.userId() != undefined) ? Meteor.user().username : "";
+					reunion.estatus = 1;
+					reunion.fecha = new Date();
+					reunion.horaInicio = new Date();
+					reunion.horaFin = new Date();
 				}
+				return reunion;
 			}
 		});
 			
