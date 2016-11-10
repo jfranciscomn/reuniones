@@ -131,6 +131,24 @@ angular
 			  });
 
 		}
+		this.sendNotification =function (meeting) {
+			var participans =[]
+			_.each(meeting.seguidores, function(participan){
+				if(participan.user!=meeting.owner)
+					participans.push(participan.user)
+			});
+			console.log(participans);
+			Push.send({
+				from: 'Mis Reuniones',
+				title: meeting.titulo,
+				text: 'Acuerdo \nTitulo: '+meeting.titulo+'\nFecha Inicio: '+meeting.fechaInicio+"\nFecha Limite: "+meeting.fechaLimite,
+				badge: 1,
+				sound: 'default',
+				
+	           
+				query: {userId:{$in:participans}}
+			});
+		}
 		
 		this.save  = function(){
 			this.quitarhk(this.acuerdo);
@@ -149,6 +167,7 @@ angular
     			if(this.acuerdo.calendario)
 	      			this.saveDate()
 			}
+			this.sendNotification(this.acuerdo);
 			console.log($ionicHistory)	
 			$ionicHistory.goBack();		
 		}

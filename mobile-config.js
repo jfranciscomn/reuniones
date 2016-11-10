@@ -24,11 +24,11 @@ App.configurePlugin('com.phonegap.plugins.facebookconnect', {
 });
 */
 
-/*
+
 App.configurePlugin('phonegap-plugin-push', {
-  SENDER_ID: 12341234
+  SENDER_ID: 510365416868
 });
-*/
+
 
 App.icons({
   // iOS

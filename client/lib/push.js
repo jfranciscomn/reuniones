@@ -2,7 +2,7 @@ Meteor.startup(function () {
     // The correct way
     Push.Configure({
       android: {
-        senderID: 12341234,
+        senderID: 510365416868,
         alert: true,
         badge: true,
         sound: true,
@@ -12,10 +12,15 @@ Meteor.startup(function () {
         // iconColor: ''
       },
       ios: {
-        alert: true,
         badge: true,
-        sound: true
-      }
+        sound: true,
+        alert: true,
+        vibrate: true
+      },
+      badge: true,
+      sound: true,
+      alert: true,
+      vibrate: true
     });
     
     Push.allow({

@@ -70,6 +70,27 @@ angular
 			}
 			console.log(rc.reunion.users);
 		}
+
+		this.sendNotification =function (meeting) {
+			var participans =[]
+			_.each(meeting.users, function(participan){
+				if(participan.user!=meeting.owner)
+					participans.push(participan.user)
+			});
+			console.log(participans);
+			Push.send({
+				from: 'Mis Reuniones',
+				title: meeting.titulo,
+				text: 'Invitacion a participar a la Reunion\nTitulo: '+meeting.titulo+'\nFecha: '+meeting.temas+"\nTemas: "+meeting.temas,
+				badge: 1,
+				sound: 'default',
+				
+	            payload: {
+	                title: meeting.titulo,
+	            },
+				query: {userId:{$in:participans}}
+			});
+		}
 		
 		this.save	= function(){
 			console.log(this.reunionId);
@@ -83,6 +104,7 @@ angular
 			else{
 					Reuniones.insert(this.reunion);
 			}
+			this.sendNotification(this.reunion);
 			$ionicHistory.goBack();
 		}
 		
