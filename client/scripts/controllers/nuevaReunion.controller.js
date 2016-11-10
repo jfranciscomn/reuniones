@@ -83,7 +83,7 @@ angular
 				title: meeting.titulo,
 				text: 'Invitacion a participar a la Reunion\nTitulo: '+meeting.titulo+'\nFecha: '+meeting.temas+"\nTemas: "+meeting.temas,
 				badge: 1,
-				sound: 'default',
+				sound: 'airhorn.caf',
 				
 	            payload: {
 	                title: meeting.titulo,
