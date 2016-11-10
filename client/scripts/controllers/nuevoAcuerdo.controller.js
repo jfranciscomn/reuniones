@@ -96,7 +96,6 @@ angular
 				})
 			}
 		}
-
 		
 		this.cambiarEstatus = function(acuerdo, estatus){
 			console.log(estatus, acuerdo);
@@ -220,4 +219,5 @@ angular
 	  this.cerrarModalSeguidores = function() {
 	    $scope.modalSeguidores.hide();
 	  };
-})
+}
+	});
