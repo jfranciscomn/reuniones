@@ -11,7 +11,7 @@
   <ion-content>
   	<div class="divider-title">{{ 'PORCONFIRMAR' | translate}}</div>
   	<ion-list can-swipe="rcc.listCanSwipe">
-		  <ion-item ng-repeat="reunion in rcc.reunionesPorConfirmar" class="item">
+		  <ion-item ng-repeat="reunion in rcc.reunionesPorConfirmar" class="item" ng-click="rcc.detalleReunion(reunion)">
 		    <h2>{{reunion.titulo}}</h2>
 		    <p>{{reunion.ubicacion}}</p>
 		    <div class="timeline-stats">

@@ -1,6 +1,6 @@
 angular
   .module('FLOKsports')
-  .controller('HomeCtrl', function AcuerdosCtrl($scope, $reactive, $state, $stateParams, $ionicPopup) {
+  .controller('HomeCtrl', function HomeCtrl($scope, $reactive, $state, $stateParams, $ionicPopup) {
 		$reactive(this).attach($scope);
 		 
 		this.helpers({

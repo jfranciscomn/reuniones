@@ -1,6 +1,6 @@
 angular
   .module('FLOKsports')
-  .controller('CategoriasCtrl', function AcuerdosCtrl($scope, $reactive, $state, $stateParams, $ionicPopup) {
+  .controller('CategoriasCtrl', function CategoriasCtrl($scope, $reactive, $state, $stateParams, $ionicPopup) {
 	$reactive(this).attach($scope);
   	this.shouldShowDelete = false;
 		this.shouldShowReorder = false;

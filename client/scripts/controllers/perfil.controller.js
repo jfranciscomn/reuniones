@@ -1,6 +1,6 @@
 angular
   .module('FLOKsports')
-  .controller('PerfilCtrl', function AcuerdosCtrl($scope, $meteor, $reactive, $state, $stateParams, $ionicPopup) {
+  .controller('PerfilCtrl', function PerfilCtrl($scope, $meteor, $reactive, $state, $stateParams, $ionicPopup) {
 		let rc = $reactive(this).attach($scope);
 		this.user = {};
 		this.editar = false;
