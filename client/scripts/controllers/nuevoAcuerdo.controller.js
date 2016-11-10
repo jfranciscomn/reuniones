@@ -1,6 +1,6 @@
 angular
   .module('FLOKsports')
-  .controller('NuevoAcuerdoCtrl', function AcuerdosCtrl($scope, $reactive, $state, $stateParams, $ionicPopup, $ionicHistory, $ionicModal, $cordovaCalendar, $cordovaDatePicker) {
+  .controller('NuevoAcuerdoCtrl', function NuevoAcuerdoCtrl($scope, $reactive, $state, $stateParams, $ionicPopup, $ionicHistory, $ionicModal, $cordovaCalendar, $cordovaDatePicker) {
 
 		let rc = $reactive(this).attach($scope);
 		window.rc = rc;
@@ -102,6 +102,7 @@ angular
 			if(estatus == 2){
 				focus('fechaCierre');
 			}
+		}
 
 		this.seleccionarFechaInicio=function(){
 			//this.acuerdo.fechaInicio = !this.acuerdo.fechaInicio? this.acuerdo.fechaInicio : new Date();
@@ -217,6 +218,7 @@ angular
 	  });
 	  
 	  this.selResponsables = function() {
+		  console.log($scope, "responsables");
 	    $scope.modalResponsables.show();
 	  };
 	  
@@ -228,15 +230,14 @@ angular
 	    scope: $scope,
 	    animation: 'slide-in-up'
 	  }).then(function(modal) {
-	    $scope.modalSeguidores = modal;
+	    $scope.modal = modal;
 	  });
 	  
 	  this.selSeguidores = function() {
-	    $scope.modalSeguidores.show();
+	    $scope.modal.show();
 	  };
 	  
 	  this.cerrarModalSeguidores = function() {
-	    $scope.modalSeguidores.hide();
+	    $scope.modal.hide();
 	  };
-}
-	});
+});

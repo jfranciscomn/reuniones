@@ -3,8 +3,7 @@ angular
 	.controller('NuevaReunionCtrl', function NuevaReunionCtrl($scope, $reactive, $state, $stateParams, $ionicPopup, $ionicHistory, $ionicModal) {
 		let rc = $reactive(this).attach($scope);
 		window.rc = rc;
-		this.reunionId = $stateParams.reunionId;
-		this.reunion = Reuniones.findOne(this.reunionId);
+		this.reunion = {};
 		
 		this.buscar = "";
 		this.opcion = {};
@@ -31,29 +30,40 @@ angular
 			},
 			categorias : function() {
 				return Categorias.find();
+			},
+			reunion : function() {
+				if($stateParams.reunionId){
+					var reunion = Reuniones.findOne($stateParams.reunionId);
+					
+					_.each(rc.registrados, function(registrado, index){
+						_.each(rc.reunion.users, function(invitado){
+							if(registrado._id == invitado.user){
+								registrado.estatus = invitado.estatus;
+							}
+							if(registrado._id == Meteor.owner){
+								rc.registrados.splice(index, 1);
+							}
+						})
+					});
+					return reunion;
+				}else{
+					this.reunion={users:[{user:Meteor.userId(), estatus : 2}]};
+					this.reunion.createdAt = new Date();
+					this.reunion.owner = (Meteor.userId() != undefined) ? Meteor.userId() : "";
+					this.reunion.username = (Meteor.userId() != undefined) ? Meteor.user().username : "";
+					this.reunion.estatus = 1;
+					this.reunion.fecha = new Date();
+					this.reunion.horaInicio = new Date();
+					this.reunion.horaFin = new Date();
+				}
 			}
 		});
 			
 		if(!this.reunion){
-			this.reunion={users:[{user:Meteor.userId(), estatus : 2}]};
-			this.reunion.createdAt = new Date();
-			this.reunion.owner = (Meteor.userId() != undefined) ? Meteor.userId() : "";
-			this.reunion.username = (Meteor.userId() != undefined) ? Meteor.user().username : "";
-			this.reunion.estatus = 1;
-			this.reunion.fecha = new Date();
-			this.reunion.horaInicio = new Date();
-			this.reunion.horaFin = new Date();
+			
 		}else{
-			_.each(rc.registrados, function(registrado, index){
-				_.each(rc.reunion.users, function(invitado){
-					if(registrado._id == invitado.user){
-						registrado.estatus = true;
-					}
-					if(registrado._id == Meteor.owner){
-						rc.registrados.splice(index, 1);
-					}
-				})
-			});
+			
+			
 		}
 
 		this.agregarParticipante = function(participante, $index){

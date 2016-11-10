@@ -1,6 +1,6 @@
 angular
   .module('FLOKsports')
-  .controller('NuevaCategoriaCtrl', function AcuerdosCtrl($scope, $reactive, $state, $stateParams, $ionicPopup, $ionicHistory) {
+  .controller('NuevaCategoriaCtrl', function NuevaCategoriaCtrl($scope, $reactive, $state, $stateParams, $ionicPopup, $ionicHistory) {
 		$reactive(this).attach($scope);
 		
 		console.log($stateParams,$ionicHistory);

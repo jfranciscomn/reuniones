@@ -217,7 +217,7 @@ angular.module('FLOKsports').config(function ($translateProvider) {
     TODAS: 'Todas',
     FUTURO: 'Futuro',
     //Reuniones por Confirmar
-    RCONFIRMAR: 'Reuniones por Confirmar',
+    RCONFIRMAR: 'Confirmar Reuniones',
     PORCONFIRMAR: 'Por Confirmar',
     //Perfil
     PERFIL: 'Perfil',
@@ -238,7 +238,7 @@ angular.module('FLOKsports').config(function ($translateProvider) {
 		//Login y Signup
 		EMAIL: 'Correo',
 		PASSWORD: 'Contraseña',
-		INICIARSESION: 'Iniciar Sesion',
+		INICIARSESION: 'Iniciar Sesión',
 		OLVIDASTECONTRASENA: 'Olvidaste Contraseña ?',
 		REGISTRO: 'Registro',
 		REGISTRAR: 'Registrar',
@@ -331,7 +331,7 @@ angular.module('FLOKsports').config(function ($translateProvider) {
     TODAS: 'Tudo',
     FUTURO: 'Futuro',
     //Reuniones por Confirmar
-    RCONFIRMAR: 'Confirmar Meeting',
+    RCONFIRMAR: 'Confirmar Reunião',
     PORCONFIRMAR: 'Por Confirmar',
     //Perfil
     PERFIL: 'Perfil',
