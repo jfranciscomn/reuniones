@@ -20,7 +20,7 @@ angular
   .run(function(){
     ionic.Platform.ready(function(){
 
-      ionic.Platform.fullScreen();
+      ionic.Platform.fullScreen(true,true);
     })
     
   });
