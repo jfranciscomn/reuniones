@@ -16,6 +16,8 @@ angular
 				return reuniones;
 			}
 		});
+		
+		
 		this.sendNotification =function (meeting,message) {
 
 			Push.send({
@@ -24,7 +26,6 @@ angular
 				text: Meteor.user().profile.name+" "+message+' su asistencia a la reunión "'+meeting.titulo+'"',
 				badge: 1,
 				sound: 'airhorn.caf',
-				
 				query: {userId:meeting.owner}
 			});
 		}

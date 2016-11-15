@@ -1,0 +1,107 @@
+<ion-view class="forms-view">
+	<ion-nav-buttons side="left">
+	</ion-nav-buttons>
+	<ion-nav-buttons side="left">
+    <button class="button button-icon button-clear ion-navicon" menu-toggle="left" ng-click="irc.toggleLeft()">
+    </button>
+  </ion-nav-buttons>
+	<ion-nav-buttons side="right">
+		<button menu-toggle="right" class="button button-icon icon ion-android-checkmark-circle" ng-click='nrc.save()'></button>
+	</ion-nav-buttons>
+	<ion-nav-title>
+		<span class="font-light">Reunión</span>
+	</ion-nav-title>
+	<ion-content>
+		<div class="row">
+			<div class="col col-67">
+				<div class="row">
+					<div class="col">
+						<div class="button-bar">
+						  <button class="button button-small">Hecho</button>
+						  <button class="button button-small icon ion-gear-a"></button>
+						  <button class="button button-small icon ion-gear-a"></button>
+						  <button class="button button-small icon ion-gear-a"></button>
+						  <button class="button button-small icon ion-gear-a"></button>
+						  <button class="button button-small icon ion-gear-a"></button>
+						  <button class="button button-small icon ion-gear-a"></button>
+						  <button class="button button-small icon ion-gear-a"></button>
+						  <button class="button button-small icon ion-gear-a"></button>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-75">
+						datos de la reunión
+					</div>
+					<div class="col-25">
+						tiempo de la reunión
+					</div>
+				</div>
+				<div class="row">
+					<div class="col">
+						participantes
+					</div>
+				</div>
+				<div class="row">
+					<div class="col">
+						{{irc.reunion}}
+					</div>
+				</div>
+			</div>
+			<div class="col col-33">
+				<div class="card">
+				  <div class="item item-divider inicioReunionCard">
+				    Ubicación
+				  </div>
+				  <div class="item item-text-wrap">
+				    {{irc.reunion.ubicacion}}
+				  </div>
+				</div>
+				<div class="card" style="height: 100px;">
+				  <div class="item item-divider inicioReunionCard">
+				    Temas
+				  </div>
+				  <div class="item item-text-wrap" scroll="true">
+				    <ul class="list" >
+					    <li class="item" ng-repeat="tema in irc.reunion.todosTemas">
+					      {{tema}}
+					    </li>
+						</ul>
+				  </div>
+				</div>
+				<div class="card">
+				  <div class="item item-divider inicioReunionCard">
+				    Medios
+				  </div>
+				  <div class="item item-text-wrap">
+				    This is a 
+				  </div>
+				</div>
+				<div class="card">
+				  <div class="item item-divider inicioReunionCard">
+				    Acuerdos retrasados
+				  </div>
+				  <div class="item item-text-wrap">
+				    This is a 
+				  </div>
+				</div>
+				<div class="card">
+				  <div class="item item-divider inicioReunionCard">
+				    Acuerdos
+				  </div>
+				  <div class="item item-text-wrap">
+				    This is a 
+				  </div>
+				</div>
+				<div class="card">
+				  <div class="item item-divider inicioReunionCard">
+				    Siguiente reunión
+				  </div>
+				  <div class="item item-text-wrap">
+				    This is a 
+				  </div>
+				</div>
+			</div>
+		</div>
+  </ion-content>
+</ion-view>

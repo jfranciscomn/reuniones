@@ -496,6 +496,24 @@ angular.module('FLOKsports').config(['$injector', function ($injector) {
       }
     }
   })
+  .state('app.iniciarReunionIpad', {
+    url: '/iniciarReunionIpad/:reunionId',
+    views: {
+      'menuContent': {
+        templateUrl: 'client/templates/reuniones/iniciarReunionIpad.html',
+        controller: 'IniciarReunionCtrl as irc'
+      }
+    }
+  })
+  .state('app.iniciarReunionCel', {
+    url: '/iniciarReunionCel/:reunionId',
+    views: {
+      'menuContent': {
+        templateUrl: 'client/templates/reuniones/iniciarReunionCel.html',
+        controller: 'IniciarReunionCtrl as irc'
+      }
+    }
+  })
   .state('app.acuerdos', {
     url: '/acuerdos',
     views: {

@@ -105,7 +105,7 @@ angular
 			Push.send({
 				from: 'Mis Reuniones',
 				title: meeting.titulo,
-				text: 'Invitacion a participar a la Reunion\nTitulo: '+meeting.titulo+'\nFecha: '+meeting.fecha+"\nTemas: "+meeting.temas,
+				text: 'Invitacion a participar a la Reunion\nTítulo: '+meeting.titulo+'\nFecha: '+meeting.fecha+"\nTemas: "+meeting.temas,
 				badge: 1,
 				sound: 'airhorn.caf',
 				
@@ -181,12 +181,17 @@ angular
 			var idTemp = reunion._id;
 			delete reunion._id;
 			if(estatus == 3){
-				
+				var isIPad = ionic.Platform.isIPad();
+				if(isIPad){
+					$state.go("app.iniciarReunionIpad", {reunionId : idTemp});
+				}else{
+					$state.go("app.iniciarReunionCel", {reunionId : idTemp});
+				}
 			}else if(estatus == 5){
 				
 			}
 			console.log(idTemp, estatus, reunion);
-			Reuniones.update(idTemp, { $set : { estatus : estatus }});
+			//Reuniones.update(idTemp, { $set : { estatus : estatus }});
 			
 		}
 });
