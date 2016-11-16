@@ -9,6 +9,7 @@ angular
 		this.fmes = true;
 		this.ffuturo = true;
 		this.fvencidas = true;
+		this.isIPad = ionic.Platform.isIPad();
 		this.helpers({
 			reuniones() {
 				return Reuniones.find({users:{ $elemMatch: {user : Meteor.userId(), estatus : 2} }});

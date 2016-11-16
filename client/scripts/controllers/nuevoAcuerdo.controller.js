@@ -6,6 +6,7 @@ angular
 		window.rc = rc;
 		this.acuerdoId = $stateParams.acuerdoId;
 		this.acuerdo = Acuerdos.findOne(this.acuerdoId)
+		console.log($stateParams)
 		this.quitarhk=function(obj){
 			if(Array.isArray(obj)){
 				for (var i = 0; i < obj.length; i++) {
@@ -67,6 +68,10 @@ angular
 					}
 				})
 			});
+		}
+		
+		if($stateParams.reunionId){
+			this.acuerdo.reunion_id = $stateParams.reunionId;
 		}
 		
 		this.agregarResponsable = function(participante, $index){
@@ -167,15 +172,15 @@ angular
 			}
 			else{
 				
-				this.acuerdo.createdAt = new Date();
-    			this.acuerdo.owner = Meteor.userId();
-    			this.acuerdo.username = Meteor.user().username;
+				rc.acuerdo.createdAt = new Date();
+  			rc.acuerdo.owner = Meteor.userId();
+  			rc.acuerdo.username = Meteor.user().username;
 
-    			Acuerdos.insert(this.acuerdo);
-    			if(this.acuerdo.calendario)
-	      			this.saveDate()
+  			Acuerdos.insert(rc.acuerdo);
+  			if(rc.acuerdo.calendario)
+      			this.saveDate()
 			}
-			this.sendNotification(this.acuerdo);
+			this.sendNotification(rc.acuerdo);
 			console.log($ionicHistory)	
 			$ionicHistory.goBack();		
 		}

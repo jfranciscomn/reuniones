@@ -10,7 +10,7 @@
 	    <span class="font-light">Reuniones</span>
 	  </ion-nav-title>
 	
-  <div class="bar bar-subheader menuSuperior" style="height: {{rc.deviceWidth / 1.5}}px;">
+  <div class="bar bar-subheader menuSuperior" style="height: {{rc.deviceWidth / 2.5}}px;" ng-if="!rc.isIPad">
 	  <a class="button hoy" ng-click="rc.cambiarFiltro('hoy')"> 
 	  	<i class="fa fa-check" style="font-size: 50pt; color: white; margin-top:10px;"></i><br/>
 	  	<div style="font-size: 20pt; color: white; margin: -10px 0px 0px 0px; ">{{rc.hoy.length}}</div>
@@ -38,7 +38,7 @@
 	  </a>
 	  <button style="width: 0px; height: 0px;" ng-show="false"></button>
 	</div>
-  <ion-content style="margin-top:66%;">
+  <ion-content ng-class="!rc.isIpad ? listaInferior : ''">
   	<div class="divider-title">Vencidas</div>
     <ul class="timeline" id="hoy" ng-show="rc.fhoy">
       <li ng-repeat="reunion in rc.vencidas | orderBy:'fecha'">

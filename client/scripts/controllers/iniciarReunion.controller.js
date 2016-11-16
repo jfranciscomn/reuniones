@@ -1,6 +1,6 @@
 angular
 	.module('FLOKsports')
-	.controller('IniciarReunionCtrl', function NuevaReunionCtrl($scope, $reactive, $state, $stateParams, $ionicPopup, $ionicHistory, $ionicModal, $ionicSideMenuDelegate) {
+	.controller('IniciarReunionCtrl', function NuevaReunionCtrl($scope, $reactive, $state, $stateParams, $ionicPopup, $ionicHistory, $ionicModal, $ionicActionSheet, $timeout) {
 		let rc = $reactive(this).attach($scope);
 		window.rc = rc;
 		this.reunion = {};
@@ -8,10 +8,8 @@ angular
 		this.opcion = {};
 		this.opcion.participantes = [];
 		this.registrados = "";
+		this.miReuniones = {};
 		
-		this.toggleLeft = function() {
-	    $ionicSideMenuDelegate.toggleLeft();
-	  };
 		this.quitarhk=function(obj){
 			if(Array.isArray(obj)){
 				for (var i = 0; i < obj.length; i++) {
@@ -36,42 +34,164 @@ angular
 			},
 			reunion : function() {
 				console.log($stateParams)
+				var reunion = {};
 				if($stateParams.reunionId != undefined){
-					var reunion = Reuniones.findOne($stateParams.reunionId);
-					
-					_.each(rc.registrados, function(registrado, index){
-						_.each(rc.reunion.users, function(invitado){
-							if(registrado._id == invitado.user){
-								registrado.estatus = invitado.estatus;
-							}
-							if(registrado._id == Meteor.owner){
-								rc.registrados.splice(index, 1);
-							}
-						})
-					});
-					
-					reunion.todosTemas = reunion.temas.split('.');
-				}else{
-					reunion={users:[{user:Meteor.userId(), estatus : 2}]};
-					reunion.createdAt = new Date();
-					reunion.owner = (Meteor.userId() != undefined) ? Meteor.userId() : "";
-					reunion.username = (Meteor.userId() != undefined) ? Meteor.user().username : "";
-					reunion.estatus = 1;
-					reunion.fecha = new Date();
-					reunion.horaInicio = new Date();
-					reunion.horaFin = new Date();
-					
-				}
-				return reunion;
-			}
+					rc.miReunion = Reuniones.findOne($stateParams.reunionId);
+					if(this.getReactively("miReunion")){
+						_.each(rc.miReunion.users, function(invitado){
+							invitado.asistio = true;
+							invitado.invitado = Meteor.users.findOne(invitado.user);
+							_.each(rc.registrados, function(registrado, index){
+							
+								if(registrado._id == invitado.user){
+									registrado.estatus = invitado.estatus;
+								}
+								if(registrado._id == Meteor.owner){
+									rc.registrados.splice(index, 1);
+								}
+							})
+						});
+						
+						if(rc.miReunion.notas == undefined)
+							rc.miReunion.notas = "";
+						rc.miReunion.todosTemas = rc.miReunion.temas.split('.');
+
+					}	
+				}				
+				console.log(reunion);
+				return rc.miReunion;
+			},
+			acuerdos : function() {
+				return Acuerdos.find({reunion_id : $stateParams.reunionId});
+			},
+			registrados : function() {
+				return Meteor.users.find({},{},{ sort : { "profile.name" : 1 }}).fetch();
+			},
 		});
-		
-		this.onDrag = function(){
-			console.log("estoy arrastrando");
-		}
 			
+		//Action Sheet Participantes
+		this.mostrarOpcionesParticipantes = function(participante) {
+	   	var hideSheet = $ionicActionSheet.show({
+		    buttons: [
+						{ text: 'Agregar Acción' },
+						{ text: 'Agregar a Notas' }
+					],
+					destructiveText: (participante.asistio == 1 ) ? 'Asistió' : 'Faltó',
+					titleText: participante.invitado.profile.name,
+					cancelText: 'Cancelar',
+					cancel: function() {
+	        	console.log("canceló");
+		      },
+					buttonClicked: function(index) {
+						if(index == 0){
+							//Si Agrega acción
+							
+						}else if(index == 1){
+							//Si Agrega a notas
+							rc.reunion.notas += "\n " + participante.invitado.profile.name + " (" + participante.invitado.profile.email + ")";
+						}
+						console.log(index);
+						return true;
+					},
+					destructiveButtonClicked: function() {
+						if(participante.asistio == false)
+							participante.asistio = true;
+						else if(participante.asistio == true)
+							participante.asistio = false;
+						
+						return true;
+					}
+	   	});
+		};
 		
+		//Action Sheet Medios
+		this.mostrarMedios = function(participante) {
+	   	var hideSheet = $ionicActionSheet.show({
+		    buttons: [
+						{ text: 'Foto' },
+						{ text: 'Audio' },
+						{ text: 'Video' }
+					],
+					titleText: "Agregar Medio",
+					cancelText: 'Cancelar',
+					cancel: function() {
+		      },
+					buttonClicked: function(index) {
+						if(index == 0){
+							//Si Agrega Foto
+							
+						}else if(index == 1){
+							//Si Agrega Audio
+							
+						}else if(index == 2){
+							//Si Agrega Video
+							
+						}
+						console.log(index);
+						return true;
+					}
+	   	});
+		};
+		
+		//Tomar Asistencia
+		this.asistencia = function(participante){
+			console.log("asistio", participante);
+			if(participante.asistio == false)
+				participante.asistio = true;
+			else if(participante.asistio == true)
+				participante.asistio = false;
+		}
+	 
+	 	this.expandText = function(){
+			var element = document.getElementById("notas");
+			element.style.height =  element.scrollHeight + "px";
+		}
+		
+		this.tiempoTranscurrido = function(){
+				
+			return duration.humanize()
+		}
+		
+		this.agregarNotas = function(participante){
+			rc.reunion.notas += "\n " + participante.invitado.profile.name + " (" + participante.invitado.profile.email + ")";
+		}
+		
+		//Agregar participante
+		this.agregarParticipante = function(participante, $index){
+			console.log(participante);
+			if(participante.estatus == true){
+				participante.invitado = Meteor.users.findOne(participante._id);
+				this.reunion.users.push({user:participante._id, invitado:participante.invitado, asistio : false, estatus : 1});
+			}
+			else{
+				_.each(rc.reunion.users, function(invitado, index){
+					if(invitado.user == participante._id){
+						console.log("index", index);
+						rc.reunion.users.splice(index, 1);
+					}
+				})
+			}
+			console.log(rc.reunion.users);
+		}
+		
+		//Modal de participantes
+		$ionicModal.fromTemplateUrl('client/templates/participantes/modalAgregarParticipantes.html', {
+	    scope: $scope,
+	    animation: 'slide-in-up'
+	  }).then(function(modal) {
+	    $scope.modal = modal;
+	  });
+	  
+	  this.selParticipantes = function() {
+	    $scope.modal.show();
+	  };
+	  
+	  this.cerrarModalParticipantes = function() {
+	    $scope.modal.hide();
+	  };
 });
+
+//TODO me quedé haciendo el agregar participantes
 
 
 
