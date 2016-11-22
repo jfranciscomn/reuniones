@@ -66,7 +66,7 @@ angular
 		}
 
 		this.agregarParticipante = function(participante, $index){
-			if(participante.estatus == true){
+			if(participante.invitado == true){
 				this.reunion.users.push({user:participante._id, estatus : 1});
 			}
 			else{

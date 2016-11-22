@@ -34,7 +34,7 @@ angular
 				return Meteor.users.find({},{},{ sort : { "profile.name" : 1 }}).fetch();
 			}
 		});
-	   
+		
 		if(!this.acuerdo){
 			this.acuerdo = {};
 			this.acuerdo.responsables = [{user:Meteor.userId()}];
@@ -182,7 +182,7 @@ angular
 			}
 			this.sendNotification(rc.acuerdo);
 			console.log($ionicHistory)	
-			$ionicHistory.goBack();		
+			$ionicHistory.goBack();
 		}
 		
 		this.getConfirmados = function(usuarios){
