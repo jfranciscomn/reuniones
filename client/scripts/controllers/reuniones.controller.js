@@ -9,6 +9,7 @@ angular
 		this.fmes = true;
 		this.ffuturo = true;
 		this.fvencidas = true;
+		this.isIPad = ionic.Platform.isIPad();
 		this.helpers({
 			reuniones() {
 				return Reuniones.find({users:{ $elemMatch: {user : Meteor.userId(), estatus : 2} }});
@@ -120,17 +121,5 @@ angular
 			}else{
 				$state.go("app.verReunion", {reunionId : reunion._id});
 			}
-		}
-		
-		this.cambiarEstatus = function(reunion, estatus){
-			var idTemp = reunion._id;
-			delete reunion._id;
-			if(estatus == 3){
-				
-			}else if(estatus == 5){
-				
-			}
-			Reuniones.update(idTemp, { $set : { estatus : estatus }});
-			
 		}
 });

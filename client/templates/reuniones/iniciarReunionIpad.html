@@ -1,0 +1,169 @@
+<ion-view class="forms-view">
+	<ion-nav-buttons side="left">
+	</ion-nav-buttons>
+	<ion-nav-buttons side="left">
+    <button class="button button-icon button-clear ion-navicon" menu-toggle="left" ng-click="irc.toggleLeft()">
+    </button>
+  </ion-nav-buttons>
+	<ion-nav-buttons side="right">
+		<button menu-toggle="right" class="button button-icon icon ion-android-checkmark-circle" ng-click='irc.guardar()'></button>
+	</ion-nav-buttons>
+	<ion-nav-title>
+		<span class="font-light">Reunión</span>
+	</ion-nav-title>
+	<ion-content>
+		<div class="row">
+			<div class="col col-75">
+				<div class="row">
+					<div class="col">
+						<div class="button-bar">
+						  <button class="button button-small" ng-click="irc.guardar()">Hecho</button>
+						  <button class="button button-small icon ion-arrow-left-a"></button>
+						  <button class="button button-small icon ion-arrow-right-a"></button>
+						  <button class="button button-small icon ion-folder"></button>
+						  <button class="button button-small icon ion-email"></button>
+						  <button class="button button-small icon ion-trash-a"></button>
+						  <button class="button button-small icon ion-mic-a"></button>
+						  <button class="button button-small icon ion-ios-star"></button>
+						  <button class="button button-small icon ion-close"></button>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-75">
+						<div class="card" style="margin: 5px !important;">
+						  <div class="item">
+						    <p>{{irc.reunion.categoria.nombre}}</p>
+								<p>Revisión</p>
+								<p>Convoca : {{irc.reunion.convoca}}</p>
+								<p><strong>{{irc.reunion.fecha | date:"dd-MM-yyyy H:mm:ss"}}</strong></p>
+						  </div>
+						</div>
+					</div>
+					<div class="col-25">
+						<div class="card" style="margin: 5px 5px 0px 3px;">
+						  <div class="item">
+							  Duración <button class="button button-small"><i class="icon ion-stop"></i></button><br/>
+							  <button class="button icon ion-pricetag button-small"></button>
+						  </div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col">
+						<div class="card" style="margin: 0px !important;">
+						  <div class="item">
+								<div class="input input-inset">
+									<span class="input-label">Participantes</span>
+									<!-- Agregar nuevos participantes -->
+									<a class="button button-icon icon ion-plus pull-right" ng-click="irc.selParticipantes()"></a>
+									<!-- Agregar botón por cada participante -->
+									<button ng-class="participante.asistio == true ? 'button-calm' : 'button-dark'" class="button button-small button-calm" ng-repeat="participante in irc.reunion.users"  on-double-tap="irc.agregarParticipanteNotas(participante)" on-hold="irc.mostrarOpcionesParticipantes(participante)" on-tap="irc.asistencia(participante)">{{participante.invitado.profile.name}}</button>
+								</div>
+						  </div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col">
+						<label class="item item-input">
+					    <textarea placeholder="Escribe tus Notas"
+					    ng-model="irc.reunion.notas"
+							id="notas"
+							rows="27"
+							ng-keyup="irc.expandText()"
+							ng-keydown="irc.expandText()"></textarea>
+					  </label>
+					</div>
+				</div>
+			</div>
+			<div class="col col-25">
+				
+				<div class="card">
+				  <div class="item item-divider inicioReunionCard">
+				    Ubicación
+				  </div>
+				  <div class="item item-text-wrap">
+				    {{irc.reunion.ubicacion}}
+				  </div>
+				</div>
+				
+				<div class="card" style="height: 200px">
+				  <div class="item item-divider inicioReunionCard">
+				    Temas
+				  </div>
+				  <div class="item item-text-wrap">
+					  <ion-scroll direction="y" style="height: 200px">
+					    <ul class="list">
+						    <li class="item" ng-repeat="tema in irc.reunion.todosTemas" on-double-tap="irc.agregarTemaNotas(tema)">
+						      <i ng-show="tema.seleccionado == true" class="ion-ios-circle-filled icon-size-lg color-green"></i>
+						      {{tema.nombre}}
+						    </li>
+							</ul>
+					  </ion-scroll>
+				  </div>
+				</div>
+				
+				<div class="card">
+				  <div class="item item-divider inicioReunionCard">
+				    Medios
+				    <a ng-click="irc.mostrarMedios()" class="item-icon-right">
+					    <i class="icon ion-plus" style="font-size: 14pt;"></i>
+					  </a>
+				  </div>
+				  <div class="item item-text-wrap">
+				    <ion-scroll direction="y" style="height: 100px">
+					    <ul class="list">
+						    <li class="item" ng-repeat="madio in irc.reunion.medios">
+						    	{{medio.nombre}}
+						    </li>
+							</ul>
+							<div class="list">
+							  <a class="item item-icon-left" ng-click="irc.reproducir(medio)" ng-repeat="medio in irc.reunion.medios">
+							    <i ng-class="(medio.tipo == 'foto' ? 'icon ion-image' : (medio.tipo == 'audio') ? 'icon ion-mic-a' : 'icon ion-videocamera'" ></i>
+							    {{medio.nombre}}
+							  </a>
+							</div>
+					  </ion-scroll>
+				  </div>
+				</div>
+				
+				<div class="card">
+				  <div class="item item-divider inicioReunionCard">
+				    Acuerdos retrasados
+				  </div>
+				  <div class="item item-text-wrap">
+				    This is a 
+				  </div>
+				</div>
+				
+				<div class="card">
+				  <div class="item item-divider inicioReunionCard">
+				    Acuerdos
+				    <a ui-sref="app.agregarAcuerdo({reunionId : irc.reunion._id})" class="item-icon-right">
+					    <i class="icon ion-plus" style="font-size: 10pt;"></i>
+					  </a>
+				  </div>
+				  <div class="item item-text-wrap">
+				    <ion-scroll direction="y" style="height: 200px">
+					    <ul class="list">
+						    <li class="item" ng-repeat="acuerdo in irc.acuerdos">
+						      {{acuerdo.titulo}}
+						    </li>
+							</ul>
+					  </ion-scroll>
+				  </div>
+				</div>
+				
+				<div class="card">
+				  <div class="item item-divider inicioReunionCard">
+				    Siguiente reunión
+				  </div>
+				  <div class="item item-text-wrap">
+				    This is a 
+				  </div>
+				</div>
+			</div>
+		</div>
+  </ion-content>
+</ion-view>

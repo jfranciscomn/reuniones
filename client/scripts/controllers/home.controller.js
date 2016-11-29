@@ -1,6 +1,6 @@
 angular
   .module('FLOKsports')
-  .controller('HomeCtrl', function AcuerdosCtrl($scope, $reactive, $state, $stateParams, $ionicPopup) {
+  .controller('HomeCtrl', function HomeCtrl($scope, $reactive, $state, $stateParams, $ionicPopup) {
 		$reactive(this).attach($scope);
 		 
 		this.helpers({
@@ -60,8 +60,6 @@ angular
 				
 				var fechaInicio = (primerDia.getMonth()+1) + "/" + primerDia.getDate() + "/" +  primerDia.getFullYear();
 				var fechaFin = (ultimoDia.getMonth()+1) + "/" + ultimoDia.getDate()  + "/" +  ultimoDia.getFullYear() + " " + "23:59:59";
-				console.log("fi",fechaInicio);
-				console.log("ff",fechaFin);	
 				return Acuerdos.find({ 
 					$and : [
 						{$or : [

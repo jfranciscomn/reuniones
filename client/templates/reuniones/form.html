@@ -1,6 +1,7 @@
 <ion-view class="forms-view">
 	<ion-nav-buttons side="left">
-	</ion-nav-buttons>
+    <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+  </ion-nav-buttons>
 	<ion-nav-buttons side="right">
 		<button menu-toggle="right" class="button button-icon icon ion-android-checkmark-circle" ng-click='nrc.save()'></button>
 	</ion-nav-buttons>
@@ -91,6 +92,8 @@
 			  </li>
 			</ul>
     </ul>
+    <button class="button button-block bg-color-green" ng-click="nrc.cambiarEstatus(nrc.reunion, 3)" ng-show="nrc.reunion._id != undefined && nrc.reunion.estatus == 2">Iniciar Reunión</button>
+    <button class="button button-block bg-color-red" ng-click="nrc.cambiarEstatus(nrc.reunion, 6)" ng-show="nrc.reunion._id != undefined && nrc.reunion.estatus == 3">Finalizar Reunión</button>
   </ion-content>
 </ion-view>
 <style>
@@ -104,3 +107,7 @@
 	  }
 	}
 </style>
+
+
+
+

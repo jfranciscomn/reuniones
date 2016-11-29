@@ -221,7 +221,7 @@ angular.module('FLOKsports').config(function ($translateProvider) {
     TODAS: 'Todas',
     FUTURO: 'Futuro',
     //Reuniones por Confirmar
-    RCONFIRMAR: 'Reuniones por Confirmar',
+    RCONFIRMAR: 'Confirmar Reuniones',
     PORCONFIRMAR: 'Por Confirmar',
     //Perfil
     PERFIL: 'Perfil',
@@ -342,7 +342,7 @@ angular.module('FLOKsports').config(function ($translateProvider) {
     TODAS: 'Tudo',
     FUTURO: 'Futuro',
     //Reuniones por Confirmar
-    RCONFIRMAR: 'Confirmar Meeting',
+    RCONFIRMAR: 'Confirmar Reunião',
     PORCONFIRMAR: 'Por Confirmar',
     //Perfil
     PERFIL: 'Perfil',
@@ -388,7 +388,13 @@ angular.module('FLOKsports').config(function ($translateProvider) {
 		DERECHOSRESERVADOS: 'Todos os direitos reservados CUSTOMSOFT, S.C. 2012',
 		
   });
-  $translateProvider.preferredLanguage('pt');  
+  
+  $translateProvider
+  .preferredLanguage('en')
+  .registerAvailableLanguageKeys(['en', 'es', 'pt'], {
+    'en_US': 'en'
+  })
+  .determinePreferredLanguage()
 });
 
 
@@ -451,7 +457,8 @@ angular.module('FLOKsports').config(['$injector', function ($injector) {
   $stateProvider.state('app', {
     url: '/app',
     abstract: true,
-    templateUrl: 'client/templates/layout.html'
+    templateUrl: 'client/templates/layout.html',
+    controller: 'MainCtrl as mainc'
   })
   .state('app.home', {
     url: '/home',
@@ -507,6 +514,24 @@ angular.module('FLOKsports').config(['$injector', function ($injector) {
       }
     }
   })
+  .state('app.iniciarReunionIpad', {
+    url: '/iniciarReunionIpad/:reunionId',
+    views: {
+      'menuContent': {
+        templateUrl: 'client/templates/reuniones/iniciarReunionIpad.html',
+        controller: 'IniciarReunionCtrl as irc'
+      }
+    }
+  })
+  .state('app.iniciarReunionCel', {
+    url: '/iniciarReunionCel/:reunionId',
+    views: {
+      'menuContent': {
+        templateUrl: 'client/templates/reuniones/iniciarReunionCel.html',
+        controller: 'IniciarReunionCtrl as irc'
+      }
+    }
+  })
   .state('app.acuerdos', {
     url: '/acuerdos',
     views: {
@@ -527,6 +552,15 @@ angular.module('FLOKsports').config(['$injector', function ($injector) {
   })
   .state('app.editarAcuerdo', {
     url: '/editarAcuerdo/:acuerdoId',
+    views: {
+      'menuContent': {
+        templateUrl: 'client/templates/acuerdos/form.html',
+        controller: 'NuevoAcuerdoCtrl as nac'
+      }
+    }
+  })
+  .state('app.agregarAcuerdo', {
+    url: '/agregarAcuerdo/:reunionId',
     views: {
       'menuContent': {
         templateUrl: 'client/templates/acuerdos/form.html',

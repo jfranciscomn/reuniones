@@ -13,40 +13,16 @@ angular
   .config(function($ionicConfigProvider) {
     $ionicConfigProvider.tabs.position('bottom');
     $ionicConfigProvider.navBar.alignTitle('center');
+    
+   
   })
 
   .run(function(){
     ionic.Platform.ready(function(){
 
-      ionic.Platform.fullScreen();
+      ionic.Platform.fullScreen(true,true);
     })
-    Push.Configure({
-      android: {
-        senderID: 12341234,
-        alert: true,
-        badge: true,
-        sound: true,
-        vibrate: true,
-        clearNotifications: true
-        // icon: '',
-        // iconColor: ''
-      },
-      ios: {
-        alert: true,
-        badge: true,
-        sound: true
-      }
-    });
-    Push.addListener('token', function(token) {
-       console.log(token)
-       console.log('asdas',Push.id())
-    });
-     Push.allow({
-        send: function(userId, notification) {
-          // Allow all users to send to everybody - For test only!
-          return true;
-        }
-      });
+    
   });
 
 
@@ -62,3 +38,4 @@ function onReady() {
   console.log(navigator.globalization);
 
 }
+

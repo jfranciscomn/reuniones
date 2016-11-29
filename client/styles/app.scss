@@ -25,7 +25,7 @@ $ionicons-font-path: "../fonts" !default;
   used under CC BY http://creativecommons.org/licenses/by/4.0/
   Modified icons to fit ionicon’s grid from original.
 */
-$ionicons-font-path: "../fonts" !default;
+$ionicons-font-path: "/fonts" !default;
 @font-face {
   font-family: "Ionicons";
   src: url("#{$ionicons-font-path}/ionicons.eot?v=2.0.1");
@@ -4599,7 +4599,7 @@ a {
   top: 0;
   border-top-width: 0;
   border-bottom-width: 1px;
-  background-color: blue;
+//   background-color: blue;
   &.has-tabs-top {
     border-bottom-width: 0px;
     background-image: none;
@@ -12623,6 +12623,11 @@ ion-side-menu {
 
 
 //REUNIONES
+
+/*
+	Para poner redondos es el height / el modificar 2.5 de la vista
+*/
+
 .hoy {
 	width: 43.33%; height: 65%; float: left; position: absolute; left: 28.33%; top: 17.5%; border-radius: 50% 50% 50% 50% !important; background: rgba(254, 220, 53, 0.9); color: white;
 }
@@ -12822,4 +12827,21 @@ ion-side-menu {
 	text-align: justify;
 	font-size: 10pt;
 	line-height: 1.2em;
+}
+
+.inicioReunionCard {
+	padding-top: 1px !important;
+	padding-bottom: 1px !important;
+}
+
+div.hscroller {
+  position: relative;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%); 
+}
+
+.listaInferior {
+	margin-top:66%;
 }

@@ -1,12 +1,12 @@
 angular
   .module('FLOKsports')
-
-  .controller('NuevoAcuerdoCtrl', function AcuerdosCtrl($scope, $reactive, $state, $stateParams, $ionicPopup, $ionicHistory, $ionicModal, $cordovaCalendar, $cordovaDatePicker) {
+  .controller('NuevoAcuerdoCtrl', function NuevoAcuerdoCtrl($scope, $reactive, $state, $stateParams, $ionicPopup, $ionicHistory, $ionicModal, $cordovaCalendar, $cordovaDatePicker) {
 
 		let rc = $reactive(this).attach($scope);
 		window.rc = rc;
 		this.acuerdoId = $stateParams.acuerdoId;
 		this.acuerdo = Acuerdos.findOne(this.acuerdoId)
+		console.log($stateParams)
 		this.quitarhk=function(obj){
 			if(Array.isArray(obj)){
 				for (var i = 0; i < obj.length; i++) {
@@ -34,7 +34,7 @@ angular
 				return Meteor.users.find({},{},{ sort : { "profile.name" : 1 }}).fetch();
 			}
 		});
-	   
+		
 		if(!this.acuerdo){
 			this.acuerdo = {};
 			this.acuerdo.responsables = [{user:Meteor.userId()}];
@@ -70,6 +70,10 @@ angular
 			});
 		}
 		
+		if($stateParams.reunionId){
+			this.acuerdo.reunion_id = $stateParams.reunionId;
+		}
+		
 		this.agregarResponsable = function(participante, $index){
 			if(participante.estatus == true){
 				this.acuerdo.responsables.push({user:participante._id});
@@ -97,6 +101,14 @@ angular
 				})
 			}
 		}
+		
+		this.cambiarEstatus = function(acuerdo, estatus){
+			console.log(estatus, acuerdo);
+			if(estatus == 2){
+				focus('fechaCierre');
+			}
+		}
+
 		this.seleccionarFechaInicio=function(){
 			//this.acuerdo.fechaInicio = !this.acuerdo.fechaInicio? this.acuerdo.fechaInicio : new Date();
 			var options = {
@@ -115,6 +127,7 @@ angular
 			}, function (error) { // Android only
 			    alert('Error: ' + error);
 			});
+
 		}
 
 		this.saveDate=function(){
@@ -131,6 +144,24 @@ angular
 			  });
 
 		}
+		this.sendNotification =function (meeting) {
+			var participans =[]
+			_.each(meeting.seguidores, function(participan){
+				if(participan.user!=meeting.owner)
+					participans.push(participan.user)
+			});
+			console.log(participans);
+			Push.send({
+				from: 'Mis Reuniones',
+				title: meeting.titulo,
+				text: 'Acuerdo \nTitulo: '+meeting.titulo+'\nFecha Inicio: '+meeting.fechaInicio+"\nFecha Limite: "+meeting.fechaLimite,
+				badge: 1,
+				sound: 'default',
+				
+	           
+				query: {userId:{$in:participans}}
+			});
+		}
 		
 		this.save  = function(){
 			this.quitarhk(this.acuerdo);
@@ -141,16 +172,17 @@ angular
 			}
 			else{
 				
-				this.acuerdo.createdAt = new Date();
-    			this.acuerdo.owner = Meteor.userId();
-    			this.acuerdo.username = Meteor.user().username;
+				rc.acuerdo.createdAt = new Date();
+  			rc.acuerdo.owner = Meteor.userId();
+  			rc.acuerdo.username = Meteor.user().username;
 
-    			Acuerdos.insert(this.acuerdo);
-    			if(this.acuerdo.calendario)
-	      			this.saveDate()
+  			Acuerdos.insert(rc.acuerdo);
+  			if(rc.acuerdo.calendario)
+      			this.saveDate()
 			}
+			this.sendNotification(rc.acuerdo);
 			console.log($ionicHistory)	
-			$ionicHistory.goBack();		
+			$ionicHistory.goBack();
 		}
 		
 		this.getConfirmados = function(usuarios){
@@ -191,6 +223,7 @@ angular
 	  });
 	  
 	  this.selResponsables = function() {
+		  console.log($scope, "responsables");
 	    $scope.modalResponsables.show();
 	  };
 	  
@@ -202,14 +235,14 @@ angular
 	    scope: $scope,
 	    animation: 'slide-in-up'
 	  }).then(function(modal) {
-	    $scope.modalSeguidores = modal;
+	    $scope.modal = modal;
 	  });
 	  
 	  this.selSeguidores = function() {
-	    $scope.modalSeguidores.show();
+	    $scope.modal.show();
 	  };
 	  
 	  this.cerrarModalSeguidores = function() {
-	    $scope.modalSeguidores.hide();
+	    $scope.modal.hide();
 	  };
-})
+});

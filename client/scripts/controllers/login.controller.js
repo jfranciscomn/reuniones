@@ -7,6 +7,8 @@ angular
 	  	$state.go("app.home");
   	}
   	
+  	this.credenctials = {};
+  	
 
   	
   	this.login = function () {
@@ -16,12 +18,25 @@ angular
 
 		      },
 		      function (error) {
-		        console.log(error);
-		        $ionicPopup.alert({
-				      title: error.reason,
-				      template: error.message,
-				      okType: 'alex-button alex-button-positive button-full'
-				    });
+		        if(error.reason == "Match failed"){
+				      $ionicPopup.alert({
+					      title: "Credenciales",
+					      template: "Escriba su correo y contraseña para iniciar",
+					      okType: 'button button-positive button-full'
+					    });
+			      }else if(error.reason == "User not found"){
+				      $ionicPopup.alert({
+					      title: "Usuario",
+					      template: "Usuario no encontrado",
+					      okType: 'button button-positive button-full'
+					    });
+			      }else if(error.reason == "Incorrect password"){
+				      $ionicPopup.alert({
+					      title: "Contraseña",
+					      template: "Contraseña incorrecta",
+					      okType: 'button button-positive button-full'
+					    });
+			      } 
 		      }
 		    );
 	

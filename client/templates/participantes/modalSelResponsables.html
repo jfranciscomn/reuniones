@@ -1,7 +1,7 @@
 <ion-modal-view>
   <ion-header-bar>
     <h1 class="title">Responsables</h1>
-    <button class="button button-clear button-primary" ng-click="nac.cerrarModalResponsables()">Listo</button>
+    <button class="button button-clear color-black button-primary" ng-click="nac.cerrarModalResponsables()">Listo</button>
   </ion-header-bar>
   <ion-content>
     <ion-list>
@@ -15,3 +15,14 @@
 		</ion-list>
   </ion-content>
 </ion-modal-view>
+<style>
+	.bar.bar-header {
+	  background-color: #82e79d;
+	  .title, .button {
+	    color: #000000 !important;
+	    * {
+	      color: #000000 !important;
+	    }
+	  }
+	}
+</style>
