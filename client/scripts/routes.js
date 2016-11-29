@@ -138,6 +138,13 @@ angular.module('FLOKsports').config(function ($translateProvider) {
 		REPROGRAMACION: 'Reprogramming',
 		CANCELACION: 'Cancellation',
 		ELIMINAR: 'Remove',
+		//Acerca de
+		EMAILADSUM: 'misreuniones@adsum.com.mx',
+		SIGUENOS: 'Follow us',
+		SITIO: 'www.misreuniones.com',
+		POWER: 'Power by Adsum ©',
+		DERECHOSRESERVADOS: 'All rights reserved CUSTOMSOFT, S.C. 2012',
+		
   });
   $translateProvider.translations('es', {
 		//Layout
@@ -160,11 +167,11 @@ angular.module('FLOKsports').config(function ($translateProvider) {
     AGREGARACUERDO: 'Agregar acuerdo',
     		//Nuevo Acuerdo y Nueva Reunion
     		NUEVOACUERDO: 'Nuevo Acuerdo',
-    		CATEGORIA: 'Categoria',
+    		CATEGORIA: 'Categoría',
     		ACUERDO: 'Acuerdo',
     		DESCRIPCION: 'Descripción',
     		FECHAINICIO: 'Fecha Inicio',
-    		FECHALIMITE: 'Fecha Limite',
+    		FECHALIMITE: 'Fecha Límite',
     		RESPONSABLES: 'Responsables',
     		ESTADO: 'Estado',
     		FECHACIERRE: 'Fecha Cierre',
@@ -177,9 +184,6 @@ angular.module('FLOKsports').config(function ($translateProvider) {
     		BAJA: 'Baja',
     		MEDIA: 'Media',
     		ALTA: 'Alta',
-    		ACTIVO: 'Low',
-    		MEDIA: 'Medium',
-    		ALTA: 'High',
     		ACTIVO: 'Activo',
     		CERRADO: 'Cerrado',
     		VENCIDO: 'Vencido',
@@ -190,9 +194,9 @@ angular.module('FLOKsports').config(function ($translateProvider) {
     		CADAMES: 'Cada Mes',
     		CADAANO: 'Cada año',
     		//
-    		NUEVAREUNION: 'Nueva Reunion',
-    		EDITARREUNION: 'Editar Reunion',
-    		TITULO: 'Titulo',
+    		NUEVAREUNION: 'Nueva Reunión',
+    		EDITARREUNION: 'Editar Reunión',
+    		TITULO: 'Título',
     		FECHA: 'Fecha',
     		HORAINICIO: 'Hora Inicio',
     		HORAFIN: 'Hora Fin',
@@ -238,7 +242,7 @@ angular.module('FLOKsports').config(function ($translateProvider) {
 		//Login y Signup
 		EMAIL: 'Correo',
 		PASSWORD: 'Contraseña',
-		INICIARSESION: 'Iniciar Sesion',
+		INICIARSESION: 'Iniciar Sesión',
 		OLVIDASTECONTRASENA: 'Olvidaste Contraseña ?',
 		REGISTRO: 'Registro',
 		REGISTRAR: 'Registrar',
@@ -255,6 +259,13 @@ angular.module('FLOKsports').config(function ($translateProvider) {
 		REPROGRAMACION: 'Reprogramación',
 		CANCELACION: 'Cancelación',
 		ELIMINAR: 'Eliminar',
+		//Acerca de
+		EMAILADSUM: 'misreuniones@adsum.com.mx',
+		SIGUENOS: 'Síguenos',
+		SITIO: 'www.misreuniones.com',
+		POWER: 'Poder por Adsum ©',
+		DERECHOSRESERVADOS: 'Todos los derechos reservados CUSTOMSOFT, S.C. 2012',
+		
   });
   $translateProvider.translations('pt', {
 		//Layout
@@ -369,6 +380,13 @@ angular.module('FLOKsports').config(function ($translateProvider) {
 		REPROGRAMACION: 'Reprogramação',
 		CANCELACION: 'Cancelamento',
 		ELIMINAR: 'Remover',
+		//Acerca de
+		EMAILADSUM: 'misreuniones@adsum.com.mx',
+		SIGUENOS: 'siga-nos',
+		SITIO: 'www.misreuniones.com',
+		POWER: 'Power pela Adsum ©',
+		DERECHOSRESERVADOS: 'Todos os direitos reservados CUSTOMSOFT, S.C. 2012',
+		
   });
   $translateProvider.preferredLanguage('pt');  
 });

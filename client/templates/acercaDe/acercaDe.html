@@ -3,7 +3,43 @@
     <span class="font-light">{{ 'ABOUT' | translate }}</span>
   </ion-nav-title>
   <ion-content>
-    {{ 'ABOUT' | translate }}
+  	<p class="post-excerpt ng-binding" dynamic-anchor-fix="" ng-bind-html="post.content | rawHtml">
+<!-- 	  	<p>Hello image!</p> -->
+			<p>
+				<img class="alignnone" src="http://lorempixel.com/400/200/?v=1" alt="" width="400" height="200">
+			</p>
+			<p class="text-center">
+				<a ui-sref="" class="button bg-color-green" href="#"> <!-- button-big button-block-->
+	        {{ 'EMAILADSUM' | translate }}
+	      </a>
+			</p>
+			<div class="row">
+				<div class="col col-15 col-offset-5">
+					<button class="button ion-social-facebook">
+						<a ui-sref="" class="" href="www.facebook.com">
+						</a>
+					</button>
+				</div>
+				<div class="col col-25">
+					{{ 'SIGUENOS' | translate }}
+				</div>
+				<div class="col col-60">
+					{{ 'SITIO' | translate }}
+				</div>
+			</div>
+			<div class="row">
+<!-- 	  	<blockquote class="text-center"> -->
+				<div class="col col-80 col-offset-10">
+			  	<p class="text-center">
+				  	{{ 'POWER' | translate }}
+				  	<br/>
+				  	<br/>
+				  	{{ 'DERECHOSRESERVADOS' | translate }}
+			  	</p>
+				</div>
+<!-- 	  	</blockquote> -->
+			</div>
+		</p>
 <!--
     <h1>{{ 'TITLE' | translate }}</h1>
 		<p>{{ 'FOO' | translate }}</p>
