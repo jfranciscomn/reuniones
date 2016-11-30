@@ -44,7 +44,7 @@ angular.module('FLOKsports').config(function ($translateProvider) {
     ACUERDOSMES: "This month's action items",
     ACUERDOSFUTUROS: 'Future action items',
     AGREGARACUERDO: 'Add action item',
-    		//Nuevo Acuerdo y Nueva Reunion
+    		//Nuevo Acuerdo, Acuerdo, Nueva Reunion
     		NUEVOACUERDO: 'New Action Item',
     		CATEGORIA: 'Category',
     		ACUERDO: 'Action Item',
@@ -52,7 +52,7 @@ angular.module('FLOKsports').config(function ($translateProvider) {
     		FECHAINICIO: 'Start Date',
     		FECHALIMITE: 'Limit Date',
     		RESPONSABLES: 'Responsible',
-    		ESTADO: 'Status',
+    		ESTATUS: 'Status',
     		FECHACIERRE: 'Closing Date',
     		REPETIR: 'Repeat',
     		HASTA: 'Until',
@@ -165,7 +165,7 @@ angular.module('FLOKsports').config(function ($translateProvider) {
     ACUERDOSMES: 'Acuerdos del mes',
     ACUERDOSFUTUROS: 'Acuerdos futuros',
     AGREGARACUERDO: 'Agregar acuerdo',
-    		//Nuevo Acuerdo y Nueva Reunion
+    		//Nuevo Acuerdo, Acuerdo, Nueva Reunion
     		NUEVOACUERDO: 'Nuevo Acuerdo',
     		CATEGORIA: 'Categoría',
     		ACUERDO: 'Acuerdo',
@@ -286,7 +286,7 @@ angular.module('FLOKsports').config(function ($translateProvider) {
     ACUERDOSMES: 'Acordos para este mês',
     ACUERDOSFUTUROS: 'Future action items',
     AGREGARACUERDO: 'Adicionar Acordo',
-    		//Nuevo Acuerdo y Nueva Reunion
+    		//Nuevo Acuerdo, Acuerdo, Nueva Reunion
     		NUEVOACUERDO: 'Novo Acordo',
     		CATEGORIA: 'Categoria',
     		ACUERDO: 'Acordo',
