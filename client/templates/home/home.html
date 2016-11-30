@@ -51,32 +51,32 @@
 		  {{ 'REUNIONES' | translate }}
 		  </div>		  
 	    <div class="list">
-			  <a href="#" class="item item-icon-left">
+			  <a ui-sref="app.reunionesFiltradas({tipo : 'vencidas'})" class="item item-icon-left">
 			    <i class="icon fa fa-calendar-minus-o"></i>
 					{{ 'REUNIONESVENCIDAS' | translate }}
 			    <span class="badge bg-color-red text-white">{{hc.reunionesVencidos}}</span>
 			  </a>			
-			  <a href="#" class="item item-icon-left">
+			  <a ui-sref="app.reunionesFiltradas({tipo : 'hoy'})" class="item item-icon-left">
 			    <i class="icon fa fa-calendar-check-o"></i>
 					{{ 'REUNIONESHOY' | translate }}
 			    <span class="badge bg-color-yellow text-white">{{hc.reunionesHoy}}</span>
 			  </a>			
-			  <a href="#" class="item item-icon-left">
+			  <a ui-sref="app.reunionesFiltradas({tipo : 'semana'})" class="item item-icon-left">
 			    <i class="icon fa fa-calendar-o"></i>
 					{{ 'REUNIONESSEMANA' | translate }}
 			    <span class="badge bg-color-green text-white">{{hc.reunionesSemana}}</span>
 			  </a>			
-			  <a href="#" class="item item-icon-left">
+			  <a ui-sref="app.reunionesFiltradas({tipo : 'mes'})" class="item item-icon-left">
 			    <i class="icon fa fa-calendar"></i>
 					{{ 'REUNIONESMES' | translate }}
 			    <span class="badge bg-color-blue text-white">{{hc.reunionesMes}}</span>
 			  </a>			  
-			  <a href="#" class="item item-icon-left">
+			  <a ui-sref="app.reunionesFiltradas({tipo : 'futuro'})" class="item item-icon-left">
 			    <i class="icon fa fa-calendar-plus-o"></i>
 					{{ 'REUNIONESFUTURO' | translate }}
 			    <span class="badge badge-royal text-white">{{hc.reunionesFuturos}}</span>
 			  </a>			
-			  <a href="#" class="item item-icon-left">
+			  <a ui-sref="app.reunionesConfirmar" class="item item-icon-left">
 			    <i class="icon fa fa-exclamation-triangle"></i>
 					{{ 'REUNIONESPORCONFIRMAR' | translate }}
 			    <span class="badge bg-color-bluegray text-white">{{hc.reunionesPorConfirmar}}</span>

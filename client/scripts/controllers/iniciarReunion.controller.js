@@ -29,14 +29,14 @@ angular
 			registrados : function() {
 				return Meteor.users.find({},{},{ sort : { "profile.name" : 1 }}).fetch();
 			},
-			categorias : function() {
-				return Categorias.find();
+			categoria : function() {
+				return Categorias.findOne(this.getReactively("reunion.categoria_id"));
 			},
 			miReunion : function() {
 				return Reuniones.findOne($stateParams.reunionId);
 			},
 			reunion : function() {
-				if(this.getReactively("laReunion")){
+				if(this.getReactively("miReunion")){
 					_.each(rc.miReunion.users, function(invitado){
 						invitado.asistio = true;
 						invitado.invitado = Meteor.users.findOne(invitado.user);
@@ -161,10 +161,14 @@ angular
 		//Tomar Asistencia
 		this.asistencia = function(participante){
 			console.log("asistio", participante);
-			if(participante.asistio == false)
+			if(participante.asistio == false){
 				participante.asistio = true;
-			else if(participante.asistio == true)
+				participante.estatus = 2;
+			}				
+			else if(participante.asistio == true){
 				participante.asistio = false;
+				participante.estatus = 1;
+			}
 		}
 		
 		//Expandir TEXTAREA mientras escribe
@@ -240,8 +244,6 @@ angular
 });
 
 //TODO me quedé haciendo el agregar participantes
-
-
 
 /*
 	
