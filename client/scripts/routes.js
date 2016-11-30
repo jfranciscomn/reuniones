@@ -649,6 +649,15 @@ angular.module('FLOKsports').config(['$injector', function ($injector) {
       }
     }
   })
+  .state('app.reunionesFiltradas', {
+    url: '/reunionesFiltradas/:tipo',
+    views: {
+      'menuContent': {
+        templateUrl: 'client/templates/reuniones/reunionesFiltradas.html',
+        controller: 'ReunionesFiltradasCtrl as rfc'
+      }
+    }
+  })
   ;
  
 	$urlRouterProvider.otherwise('/login');

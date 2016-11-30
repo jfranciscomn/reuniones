@@ -1,6 +1,6 @@
 angular
 	.module('FLOKsports')
-	.controller('NuevaReunionCtrl', function NuevaReunionCtrl($scope, $reactive, $state, $stateParams, $ionicPopup, $ionicHistory, $ionicModal,$cordovaCalendar) {
+	.controller('NuevaReunionCtrl', function NuevaReunionCtrl($scope, $reactive, $state, $stateParams, $ionicPopup, $ionicHistory, $ionicModal, $cordovaCalendar) {
 		let rc = $reactive(this).attach($scope);
 		window.rc = rc;
 		this.reunion = {};
@@ -32,20 +32,9 @@ angular
 			},
 			reunion : function() {
 				if($stateParams.reunionId != undefined){
-					var reunion = Reuniones.findOne($stateParams.reunionId);
-					
-					_.each(rc.registrados, function(registrado, index){
-						_.each(rc.reunion.users, function(invitado){
-							if(registrado._id == invitado.user){
-								registrado.estatus = invitado.estatus;
-							}
-							if(registrado._id == Meteor.owner){
-								rc.registrados.splice(index, 1);
-							}
-						})
-					});
+					var reunion = Reuniones.findOne($stateParams.reunionId);					
 				}else{
-					reunion={users:[{user:Meteor.userId(), estatus : 2}]};
+					reunion={users:[{user:Meteor.userId(), estatus : 2, invitado : true}]};
 					reunion.createdAt = new Date();
 					reunion.owner = (Meteor.userId() != undefined) ? Meteor.userId() : "";
 					reunion.username = (Meteor.userId() != undefined) ? Meteor.user().username : "";
@@ -53,21 +42,15 @@ angular
 					reunion.fecha = new Date();
 					reunion.horaInicio = new Date();
 					reunion.horaFin = new Date();
+					reunion.convoca = Meteor.user().profile.name;
 				}
 				return reunion;
 			}
 		});
 			
-		if(!this.reunion){
-			
-		}else{
-			
-			
-		}
-
 		this.agregarParticipante = function(participante, $index){
 			if(participante.invitado == true){
-				this.reunion.users.push({user:participante._id, estatus : 1});
+				this.reunion.users.push({user:participante._id, estatus : 1, invitado : true});
 			}
 			else{
 				_.each(rc.reunion.users, function(invitado, index){
@@ -115,7 +98,6 @@ angular
 				text: 'Invitacion a participar a la Reunion\nTítulo: '+meeting.titulo+'\nFecha: '+meeting.fecha+"\nTemas: "+meeting.temas,
 				badge: 1,
 				sound: 'airhorn.caf',
-				
 	            payload: {
 	                title: meeting.titulo,
 	            },
@@ -124,13 +106,15 @@ angular
 		}
 		
 		this.save	= function(){
-			console.log(this.reunionId);
 			this.quitarhk(this.reunion);
-			console.log(this.reunion)
-	
-			if(this.reunionId){
+			
+			if($stateParams.reunionId){
 				delete this.reunion._id
-				Reuniones.update({_id:this.reunionId},{$set:this.reunion});
+				this.quitarhk(this.reunion);
+				_.each(this.reunion.users, function(invitado){
+					delete invitado.invitado;
+				})
+				Reuniones.update({_id:$stateParams.reunionId},{$set:this.reunion});
 			}
 			else{
 					Reuniones.insert(this.reunion);
@@ -148,6 +132,21 @@ angular
 		});
 		
 		this.selParticipantes = function() {
+			_.each(rc.registrados, function(registrado, index){
+				console.log(index, "registrado", registrado);
+				_.each(rc.reunion.users, function(invitado, indexInvitado){
+					console.log(indexInvitado, "invitado", invitado)
+					if(registrado._id == invitado.user){
+						registrado.invitado = invitado.invitado;
+						registrado.estatus = invitado.estatus;
+					}
+					
+				})
+				if(Meteor.userId() == registrado._id){
+					//rc.registrados.splice(index, 1);
+				}
+			});
+			console.log(rc.registrados);
 			$scope.modal.show();
 		};
 		
@@ -243,11 +242,6 @@ angular
 		5 Cancelada
 		6 Finalizada cuando se registra la minuta de reunión (iPad)
 		7 Rechazada
-		
-		
-		
-		
-		
 		
 */
 		

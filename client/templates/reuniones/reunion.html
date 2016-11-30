@@ -5,6 +5,10 @@
 		<span class="font-light">{{ 'REUNIONES' | translate}}</span>
 	</ion-nav-title>
 	<ion-content>
+		<div class="button-bar" ng-show="rc.reunion.estatus == 1">
+		  <a class="button bg-color-green" ng-click="rc.cambiarEstatus(rc.reunion, 2)">Confirmar</a>
+		  <a class="button bg-color-red" ng-click="rc.cambiarEstatus(rc.reunion, 6)">Rechazar</a>
+		</div>
 		<ul class="list">
 			<ion-list can-swipe="listCanSwipe">
 			  <ion-item>			
@@ -17,11 +21,11 @@
 			  </ion-item>
 			  <ion-item>			
 			    <h2>{{ 'HORAINICIO' | translate}}</h2>
-			    <p>{{rc.reunion.horaInicio | date : "HH:mm Z"}}</p>
+			    <p>{{rc.reunion.horaInicio | date : "HH:mm a"}}</p>
 			  </ion-item>
 			  <ion-item>			
 			    <h2>{{ 'HORAFIN' | translate}}</h2>
-			    <p>{{rc.reunion.horaFin | date : "HH:mm Z"}}</p>
+			    <p>{{rc.reunion.horaFin | date : "HH:mm a"}}</p>
 			  </ion-item>
 			  <ion-item>			
 			    <h2>{{ 'UBICACION' | translate}}</h2>
@@ -38,7 +42,8 @@
 			  <ion-item>			
 			    <h2>{{ 'PARTICIPANTES' | translate}}</h2>
 			  </ion-item>
-			  <ion-item ng-repeat="participante in rc.reunion.users" style="margin-left: 50px;">			
+			  <ion-item ng-repeat="participante in rc.reunion.users" class="item-avatar" style="margin-left: 20px;">
+				  <img src="{{participante.invitado.profile.picture}}">
 			    <h2>{{participante.invitado.profile.name}}</h2>
 			    <p>{{participante.invitado.profile.email}}</p>
 			    <i ng-if="participante.estatus == 1" class="ion-ios-circle-filled icon-size-lg color-yellow" style="top: 30px; position: absolute; right: 15px;"></i>
@@ -52,11 +57,13 @@
 			  <ion-item>			
 			    <h2>{{ 'HASTA' | translate}}</h2>
 			    <p>{{rc.reunion.hasta | date:"dd-MM-yyyy"}}</p>
-			  </ion-item>
+			  </ion-item><!--
+
 			  <ion-item>			
 			    <h2>{{ 'ALERTAS' | translate}}</h2>
 			    <p>{{rc.reunion.alertas}}</p>
 			  </ion-item>
+-->
 			  
 			</ion-list>
     </ul>

@@ -1,0 +1,89 @@
+<ion-view class="layouts-view">
+	
+  <ion-nav-buttons side="left">
+    <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+  </ion-nav-buttons>
+  <ion-nav-buttons side="right">
+    <button menu-toggle="right" class="button button-icon icon ion-plus" ui-sref="app.nuevaReunion"></button>
+  </ion-nav-buttons>
+  <ion-nav-title>
+    <span class="font-light">Reuniones</span>
+  </ion-nav-title>
+	
+  <ion-content>
+  	<div class="divider-title" ng-show="rc.tipo == 'vencidas'">Vencidas</div>
+    <ul class="timeline" id="vencidas" ng-show="rc.tipo == 'vencidas'">
+      <li ng-repeat="reunion in rc.vencidas | orderBy:'fecha'">
+      	<a ng-click="rc.detalleReunion(reunion)" style="text-decoration: none; ">
+          <div class="timeline-thumb bg-color-red timeline-icon">
+            <i class="ion-close-round text-white" aria-hidden="true"></i>
+          </div>
+          <div class="timeline-item">
+            <h4 class="font-light">{{reunion.titulo}}</h4>
+            <i class="icon ion-chevron-right icon-accessory" style="top: 20; position: absolute; right: 5px; color: #ccc; font-size: 16px;"></i>
+            <p>{{reunion.ubicacion}}</p>	            
+            <div class="timeline-stats">
+              <i class="ion-person color-green"></i> {{rc.getConfirmados(reunion.users)}}
+		          <i class="ion-person color-yellow"></i> {{rc.getPendientes(reunion.users)}}
+		          <i class="ion-person color-red"></i> {{rc.getRechazados(reunion.users)}}
+              <span class="pos-absolute-right"><i class="ion-ios-clock"></i> {{reunion.horaInicio|date:"HH:mm"}} </span>
+            </div>
+          </div>
+      	</a>
+      </li>
+    </ul>
+	  <div class="divider-title" ng-show="rc.tipo == 'hoy' || rc.tipo == 'semana' || rc.tipo == 'mes'">Reuniones</div>
+    <ul class="timeline" id="hoy" ng-show="rc.tipo == 'hoy' || rc.tipo == 'semana' || rc.tipo == 'mes'">
+      <li ng-repeat="reunion in rc.reuniones | orderBy:'fecha'">
+      	<a ng-click="rc.detalleReunion(reunion)" style="text-decoration: none; ">
+          <div class="timeline-thumb bg-color-yellow timeline-icon">
+            <i class="fa fa-check text-white" aria-hidden="true"></i>
+          </div>
+          <div class="timeline-item">
+            <h4 class="font-light">{{reunion.titulo}}</h4>
+            <i class="icon ion-chevron-right icon-accessory" style="top: 20; position: absolute; right: 5px; color: #ccc; font-size: 16px;"></i>
+            <p>{{reunion.ubicacion}}</p>	            
+            <div class="timeline-stats">
+              <i class="ion-person color-green"></i> {{rc.getConfirmados(reunion.users)}}
+		          <i class="ion-person color-yellow"></i> {{rc.getPendientes(reunion.users)}}
+		          <i class="ion-person color-red"></i> {{rc.getRechazados(reunion.users)}}
+              <span class="pos-absolute-right"><i class="ion-ios-clock"></i> {{reunion.horaInicio|date:"HH:mm"}} </span>
+            </div>
+          </div>
+      	</a>
+      </li>
+    </ul>
+    <div class="divider-title" ng-show="rc.tipo == 'futuro'">Futuros</div>
+    <ul class="timeline" id="futuras" ng-show="rc.tipo == 'futuro'">
+      <li ng-repeat="reunion in rc.futuras | orderBy:'fecha'">
+        <a ng-click="rc.detalleReunion(reunion)" style="text-decoration: none; ">
+          <div class="timeline-thumb bg-color-red timeline-icon">
+            <i class="fa fa-list"></i>
+          </div>
+          <div class="timeline-item">
+            <h4 class="font-light">{{reunion.titulo}}</h4>
+            <i class="icon ion-chevron-right icon-accessory" style="top: 20; position: absolute; right: 5px; color: #ccc; font-size: 16px;"></i>
+            <p>{{reunion.ubicacion}}</p>
+            <div class="timeline-stats">
+              <i class="ion-person color-green"></i> {{rc.getConfirmados(reunion.users)}}
+		          <i class="ion-person color-yellow"></i> {{rc.getPendientes(reunion.users)}}
+		          <i class="ion-person color-red"></i> {{rc.getRechazados(reunion.users)}}
+              <span class="pos-absolute-right"><i class="ion-ios-clock"></i> {{reunion.horaInicio|date:"HH:mm"}} </span>
+            </div>
+          </div>
+        </a>
+      </li>
+    </ul>
+  </ion-content>
+</ion-view>
+<style>
+	.bar-header {
+	  background-color: #fedc34;
+	  .title, .button {
+	    color: #000000 !important;
+	    * {
+	      color: #000000 !important;
+	    }
+	  }
+	}
+</style>

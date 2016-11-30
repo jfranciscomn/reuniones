@@ -11,7 +11,8 @@
   <ion-content>
   	<div class="divider-title">{{ 'PORCONFIRMAR' | translate}}</div>
   	<ion-list can-swipe="rcc.listCanSwipe">
-		  <ion-item ng-repeat="reunion in rcc.reunionesPorConfirmar" class="item" ng-click="rcc.detalleReunion(reunion)">
+		  <ion-item ng-repeat="reunion in rcc.reunionesPorConfirmar" class="item item-avatar" ng-click="rcc.detalleReunion(reunion)">
+		  	<img src="{{reunion.ownerObj.profile.picture}}">
 		    <h2>{{reunion.titulo}}</h2>
 		    <p>{{reunion.ubicacion}}</p>
 		    <div class="timeline-stats">
@@ -30,7 +31,7 @@
 </ion-view>
 <style>
 	.bar.app-top-bar {
-	  background-color: #607d8b;
+	  background-color: #fedc34;
 	  .title, .button {
 	    color: #000000 !important;
 	    * {

@@ -96,6 +96,7 @@
 					  <ion-scroll direction="y" style="height: 200px">
 					    <ul class="list">
 						    <li class="item" ng-repeat="tema in irc.reunion.todosTemas" on-double-tap="irc.agregarTemaNotas(tema)">
+						    	<i ng-show="tema.seleccionado == false" class="ion-ios-circle-filled icon-size-lg color-yellow"></i>
 						      <i ng-show="tema.seleccionado == true" class="ion-ios-circle-filled icon-size-lg color-green"></i>
 						      {{tema.nombre}}
 						    </li>
