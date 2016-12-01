@@ -38,7 +38,7 @@
         <ion-item class="item-icon-left" nav-clear menu-close ui-sref="app.reunionesConfirmar">
           <i class="icon fa fa-exclamation-triangle"></i>
           <h2 class="menu-text">{{ 'PORCONFIRMAR' | translate }}</h2>
-          <span class="badge badge-assertive">{{mainc.reunionesPorConfirmar}}</span>
+          <span class="badge badge-assertive" ng-show="mainc.reunionesPorConfirmar > 0">{{mainc.reunionesPorConfirmar}}</span>
         </ion-item>
         <ion-item class="item-icon-left" nav-clear menu-close ui-sref="auth.logout">
           <i class="icon fa fa-sign-out"></i>

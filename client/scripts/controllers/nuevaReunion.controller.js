@@ -85,24 +85,39 @@ angular
 
 		}
 
-		this.sendNotification =function (meeting) {
+		this.sendNotification =function (meeting, tipo) {
 			var participans =[]
 			_.each(meeting.users, function(participan){
 				if(participan.user!=meeting.owner)
 					participans.push(participan.user)
 			});
 			console.log(participans);
-			Push.send({
-				from: 'Mis Reuniones',
-				title: meeting.titulo,
-				text: 'Invitacion a participar a la Reunion\nTítulo: '+meeting.titulo+'\nFecha: '+meeting.fecha+"\nTemas: "+meeting.temas,
-				badge: 1,
-				sound: 'airhorn.caf',
-	            payload: {
-	                title: meeting.titulo,
-	            },
-				query: {userId:{$in:participans}}
-			});
+			if(tipo == "insert"){
+				Push.send({
+					from: 'Mis Reuniones',
+					title: meeting.titulo,
+					text: 'Invitacion a participar a la Reunión\nTítulo: '+meeting.titulo+'\nFecha: '+moment(meeting.fecha).format("DD-MMM-YYYY")+"\nTemas: "+meeting.temas,
+					badge: 1,
+					sound: 'airhorn.caf',
+		            payload: {
+		                title: meeting.titulo,
+		            },
+					query: {userId:{$in:participans}}
+				});
+			}else if(tipo == "update"){
+				Push.send({
+					from: 'Mis Reuniones',
+					title: meeting.titulo,
+					text: 'Se modificó la Reunión\nTítulo: '+meeting.titulo+'\nFecha: '+ moment(meeting.fecha).format("DD-MM-YYYY") +"\nTemas: "+meeting.temas,
+					badge: 1,
+					sound: 'airhorn.caf',
+		            payload: {
+		                title: meeting.titulo,
+		            },
+					query: {userId:{$in:participans}}
+				});
+			}
+			
 		}
 		
 		this.save	= function(){
@@ -112,15 +127,21 @@ angular
 				delete this.reunion._id
 				this.quitarhk(this.reunion);
 				_.each(this.reunion.users, function(invitado){
-					delete invitado.invitado;
+					delete invitado.objeto;
+					if(invitado.user != Meteor.userId()){
+						invitado.estatus = 1;
+					}
 				})
+				this.reunion.estatus = 1;
 				Reuniones.update({_id:$stateParams.reunionId},{$set:this.reunion});
+				this.sendNotification(this.reunion, "update");
 			}
 			else{
-					Reuniones.insert(this.reunion);
-					this.saveDate(this.reunion);
+				Reuniones.insert(this.reunion);
+				this.saveDate(this.reunion);
+				this.sendNotification(this.reunion, "insert");
 			}
-			this.sendNotification(this.reunion);
+			
 			$ionicHistory.goBack();
 		}
 		

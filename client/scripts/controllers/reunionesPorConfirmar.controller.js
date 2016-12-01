@@ -68,7 +68,7 @@ angular
 					title: "Confirmar",
 					template: "Está seguro de Confirmar"
 				});
-				notification = "Confirmó"
+				notification = "confirmó"
 				reunion.estatus = 2;
 			}				
 			else if(estatus == 6){
@@ -76,7 +76,7 @@ angular
 					title: "Rechazar",
 					template: "Está seguro de Rechazar"
 				});
-				notification = "Rechazó"
+				notification = "rechazó"
 			}			
 	
 			confirmPopup.then(function(res) {

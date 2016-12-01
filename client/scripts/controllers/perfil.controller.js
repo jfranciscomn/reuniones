@@ -12,8 +12,19 @@ angular
 	
 		this.takePicture = function(){
 			this.editar = true;
-
-	    $meteor.getPicture({width:200, height: 200, quality: 100}).then(function(picture, ){
+			var options = {
+			      quality: 100,
+			      destinationType: Camera.DestinationType.DATA_URL,
+			      sourceType: Camera.PictureSourceType.CAMERA,
+			      allowEdit: true,
+			      encodingType: Camera.EncodingType.JPEG,
+			      targetWidth: 300,
+			      targetHeight: 300,
+			      popoverOptions: CameraPopoverOptions,
+			      saveToPhotoAlbum: false,
+			      correctOrientation:true
+			};
+	    $meteor.getPicture(options).then(function(picture, ){
 
 	      rc.user.profile.picture = picture;
 	      Meteor.users.update({_id: rc.user._id}, {$set:{profile: rc.user.profile}});
