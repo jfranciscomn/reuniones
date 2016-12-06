@@ -6,8 +6,8 @@
 	</ion-nav-title>
 	<ion-content>
 		<div class="button-bar" ng-show="rc.reunion.estatus == 1">
-		  <a class="button bg-color-green" ng-click="rc.cambiarEstatus(rc.reunion, 2)">Confirmar</a>
-		  <a class="button bg-color-red" ng-click="rc.cambiarEstatus(rc.reunion, 6)">Rechazar</a>
+		  <a class="button bg-color-green" ng-click="rc.cambiarEstatus(rc.reunion, 2)">{{ 'CONFIRMAR' | translate }}</a>
+		  <a class="button bg-color-red" ng-click="rc.cambiarEstatus(rc.reunion, 6)">{{ 'RECHAZAR' | translate }}</a>
 		</div>
 		<ul class="list">
 			<ion-list can-swipe="listCanSwipe">
