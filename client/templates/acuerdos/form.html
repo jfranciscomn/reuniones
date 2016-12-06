@@ -73,7 +73,7 @@
 	      <span class="input-label">{{ 'ESTATUS' | translate}}</span>
 		    <label class="item-input-wrapper">
 		      <select id="fechaCierre" ng-model="nac.acuerdo.estatus" style="width: 100%" ng-change="nac.cambiarEstatus(nac.acuerdo, nac.acuerdo.estatus);" focus-on="fechaCierre">
-			      <option value="1">{{ 'ACTIVO' | translate}} </option>
+			      <option value="1" selected="">{{ 'ACTIVO' | translate}} </option>
 			      <option value="2">{{ 'CERRADO' | translate}}</option>
 			      <option value="3">{{ 'VENCIDO' | translate}}</option>
 			    </select>

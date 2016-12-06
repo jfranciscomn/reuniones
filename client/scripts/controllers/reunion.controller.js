@@ -4,16 +4,22 @@ angular
 		let rc = $reactive(this).attach($scope);
 		window.rc = rc;
 		this.verReunion = "";
+		this.aceptada = true;
 		this.helpers({
 			reunion : function() {
 				var reunion = Reuniones.findOne($stateParams.reunionId);
 				
 				if(reunion.users.length > 0){
 					_.each(reunion.users, function(invitado){
-						invitado.invitado = Meteor.users.findOne(invitado.user);
+						invitado.participante = Meteor.users.findOne(invitado.user);
+						if(invitado.user == Meteor.userId() && invitado.estatus == 1){
+							rc.aceptada = false;
+							console.log("entre"); 
+						}
 					})
 					reunion.createdBy = Meteor.users.findOne(reunion.owner);
 				}
+				console.log(rc.aceptada);
 				console.log(reunion);
 				return reunion;
 			}

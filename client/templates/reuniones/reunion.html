@@ -43,9 +43,9 @@
 			    <h2>{{ 'PARTICIPANTES' | translate}}</h2>
 			  </ion-item>
 			  <ion-item ng-repeat="participante in rc.reunion.users" class="item-avatar" style="margin-left: 20px;">
-				  <img src="{{participante.invitado.profile.picture}}">
-			    <h2>{{participante.invitado.profile.name}}</h2>
-			    <p>{{participante.invitado.profile.email}}</p>
+				  <img src="{{participante.participante.profile.picture}}">
+			    <h2>{{participante.participante.profile.name}}</h2>
+			    <p>{{participante.participante.profile.email}}</p>
 			    <i ng-if="participante.estatus == 1" class="ion-ios-circle-filled icon-size-lg color-yellow" style="top: 30px; position: absolute; right: 15px;"></i>
 					<i ng-if="participante.estatus == 2" class="ion-ios-circle-filled icon-size-lg color-green" style="top: 30px; position: absolute; right: 15px;"></i>
 					<i ng-if="participante.estatus == 6" class="ion-ios-circle-filled icon-size-lg color-red" style="top: 30px; position: absolute; right: 15px;"></i>

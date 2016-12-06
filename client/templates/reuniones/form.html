@@ -17,18 +17,36 @@
 					<input type="text" ng-model='nrc.reunion.titulo' class="full">
 				</label>
 			</label>
+<!--
 			<label class="item item-input">
 				<span class="input-label">{{ 'FECHA' | translate }}</span>
 				<input type="date" ng-model='nrc.reunion.fecha'>
 			</label>
+-->
+			<div class="item" date ion-datetime-picker ng-model="nrc.reunion.fecha" button-ok="Aceptar" button-cancel="Cancelar" monday-first title="Hola">
+	      <span class="input-label">{{ 'FECHA' | translate}}</span>
+        {{nrc.reunion.fecha | date: "dd-MM-yyyy"}}
+	    </div>
+<!--
 			<label class="item item-input">
 				<span class="input-label">{{ 'HORAINICIO' | translate }}</span>
 				<input type="time" ng-model='nrc.reunion.horaInicio'>
 			</label>
+-->
+			<div class="item" time ion-datetime-picker ng-model="nrc.reunion.horaInicio">
+	      <span class="input-label">{{ 'HORAINICIO' | translate}}</span>
+        {{nrc.reunion.horaInicio | date : "HH:mm a"}}
+	    </div>
+<!--
 			<label class="item item-input">
 				<span class="input-label">{{ 'HORAFIN' | translate }}</span>
 				<input type="time" ng-model='nrc.reunion.horaFin'>
 			</label>
+-->
+			<div class="item" time ion-datetime-picker ng-model="nrc.reunion.horaFin">
+	      <span class="input-label">{{ 'HORAFIN' | translate}}</span>
+        {{nrc.reunion.horaFin | date : "HH:mm a"}}
+	    </div>
 			<div class="item item-input-inset item-stacked-label">
 				<span class="input-label">{{ 'CATEGORIA' | translate }}</span>
 				<label class="item-input-wrapper">
@@ -76,10 +94,16 @@
 		      <option>{{ 'CADAANO' | translate }}</option>
 		    </select>
 		  </label>
+<!--
       <label class="item item-input">
         <span class="input-label">{{ 'HASTA' | translate }}</span>
         <input type="date" ng-model='nrc.reunion.hasta'>
       </label>
+-->
+      <div class="item" date ion-datetime-picker ng-model="nrc.reunion.hasta">
+	      <span class="input-label">{{ 'HASTA' | translate}}</span>
+        {{nrc.reunion.hasta | date: "dd-MM-yyyy"}}
+	    </div>
       <ul class="list">
 			  <li class="item item-toggle">
 			     {{ 'ALERTAS' | translate }}
