@@ -64,7 +64,7 @@
 			<div class="item item-input-inset item-stacked-label">
 	      <span class="input-label">{{ 'TEMAS' | translate }}</span>
 		    <label class="item-input-wrapper">
-		      <input type="text" placeholder="Temas" ng-model="nrc.reunion.temas" class="full">
+		      <input type="text" placeholder="{{ 'TEMAS' | translate }}" ng-model="nrc.reunion.temas" class="full">
 		    </label>
 		  </div>
 			<label class="item item-input-inset">
@@ -116,8 +116,8 @@
 			  </li>
 			</ul>
     </ul>
-    <button class="button button-block bg-color-green" ng-click="nrc.cambiarEstatus(nrc.reunion, 3)" ng-show="nrc.reunion._id != undefined && nrc.reunion.estatus == 2">Iniciar Reunión</button>
-    <button class="button button-block bg-color-red" ng-click="nrc.cambiarEstatus(nrc.reunion, 6)" ng-show="nrc.reunion._id != undefined && nrc.reunion.estatus == 3">Finalizar Reunión</button>
+    <button class="button button-block bg-color-green" ng-click="nrc.cambiarEstatus(nrc.reunion, 3)" ng-show="nrc.reunion._id != undefined && nrc.reunion.estatus == 2">{{ 'INICIARREUNION' | translate }}</button>
+    <button class="button button-block bg-color-red" ng-click="nrc.cambiarEstatus(nrc.reunion, 6)" ng-show="nrc.reunion._id != undefined && nrc.reunion.estatus == 3">{{ 'FINALIZARREUNION' | translate }}</button>
   </ion-content>
 </ion-view>
 <style>

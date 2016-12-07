@@ -7,11 +7,11 @@
     <button menu-toggle="right" class="button button-icon icon ion-plus" ui-sref="app.nuevaReunion"></button>
   </ion-nav-buttons>
   <ion-nav-title>
-    <span class="font-light">Reuniones</span>
+    <span class="font-light">{{ 'REUNIONES' | translate }}</span>
   </ion-nav-title>
 	
   <ion-content>
-  	<div class="divider-title" ng-show="rc.tipo == 'vencidas'">Vencidas</div>
+  	<div class="divider-title" ng-show="rc.tipo == 'vencidas'">{{ 'VENCIDAS' | translate }}</div>
     <ul class="timeline" id="vencidas" ng-show="rc.tipo == 'vencidas'">
       <li ng-repeat="reunion in rc.vencidas | orderBy:'fecha'">
       	<a ng-click="rc.detalleReunion(reunion)" style="text-decoration: none; ">
@@ -32,7 +32,7 @@
       	</a>
       </li>
     </ul>
-	  <div class="divider-title" ng-show="rc.tipo == 'hoy' || rc.tipo == 'semana' || rc.tipo == 'mes'">Reuniones</div>
+	  <div class="divider-title" ng-show="rc.tipo == 'hoy' || rc.tipo == 'semana' || rc.tipo == 'mes'">{{ 'REUNIONES' | translate }}</div>
     <ul class="timeline" id="hoy" ng-show="rc.tipo == 'hoy' || rc.tipo == 'semana' || rc.tipo == 'mes'">
       <li ng-repeat="reunion in rc.reuniones | orderBy:'fecha'">
       	<a ng-click="rc.detalleReunion(reunion)" style="text-decoration: none; ">
@@ -53,7 +53,7 @@
       	</a>
       </li>
     </ul>
-    <div class="divider-title" ng-show="rc.tipo == 'futuro'">Futuros</div>
+    <div class="divider-title" ng-show="rc.tipo == 'futuro'">{{ 'FUTUROS' | translate }}</div>
     <ul class="timeline" id="futuras" ng-show="rc.tipo == 'futuro'">
       <li ng-repeat="reunion in rc.futuras | orderBy:'fecha'">
         <a ng-click="rc.detalleReunion(reunion)" style="text-decoration: none; ">
