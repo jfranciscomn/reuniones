@@ -105,6 +105,9 @@ angular.module('FLOKsports').config(function ($translateProvider) {
     MES: 'month',
     TODAS: 'All',
     FUTURO: 'Future',
+    //Reunión invitado
+    ENTRAR: 'Enter',
+    NOTAS: 'Notes',
     //Reuniones por Confirmar
     RCONFIRMAR: 'Confirm Meetings',
     PORCONFIRMAR: 'To Confirm',
@@ -160,8 +163,8 @@ angular.module('FLOKsports').config(function ($translateProvider) {
     MENUINICIO: 'Inicio',
     REUNIONES: 'Reuniones',
     MISACUERDOS: 'Mis acuerdos',
-    PORCONFIRMAR: 'Por Confirmar',
-    CERRARSESION: 'Cerrar Sesión',
+    PORCONFIRMAR: 'Por confirmar',
+    CERRARSESION: 'Cerrar sesión',
 		//Home
 		RESUMEN: 'Resumen',
     ACUERDOS: 'Acuerdos',
@@ -172,21 +175,21 @@ angular.module('FLOKsports').config(function ($translateProvider) {
     ACUERDOSFUTUROS: 'Acuerdos futuros',
     AGREGARACUERDO: 'Agregar acuerdo',
     		//Nuevo Acuerdo, Acuerdo, Nueva Reunion
-    		NUEVOACUERDO: 'Nuevo Acuerdo',
+    		NUEVOACUERDO: 'Nuevo acuerdo',
     		CATEGORIA: 'Categoría',
     		ACUERDO: 'Acuerdo',
     		DESCRIPCION: 'Descripción',
-    		FECHAINICIO: 'Fecha Inicio',
-    		FECHALIMITE: 'Fecha Límite',
+    		FECHAINICIO: 'Fecha inicio',
+    		FECHALIMITE: 'Fecha límite',
     		RESPONSABLES: 'Responsables',
     		PRIORIDAD: 'Prioridad',
     		ESTATUS: 'Estatus',
-    		FECHACIERRE: 'Fecha Cierre',
+    		FECHACIERRE: 'Fecha cierre',
     		REPETIR: 'Repetir',
     		HASTA: 'Hasta',
     		SEGUIDORES: 'Seguidores',
     		TEMAS: 'Temas',
-    		AGREGARACALENDARIO: 'Agregar a Calendario',
+    		AGREGARACALENDARIO: 'Agregar a calendario',
     		RECORDATORIOS: 'Recordatorio',
     		BAJA: 'Baja',
     		MEDIA: 'Media',
@@ -195,18 +198,18 @@ angular.module('FLOKsports').config(function ($translateProvider) {
     		CERRADO: 'Cerrado',
     		VENCIDO: 'Vencido',
     		NUNCA: 'Nunca',
-    		TODOSLOSDIAS: 'Todos los Dias',
-    		CADASEMANA: 'Cada Semana',
-    		CADADOS: 'Cada dos Semanas',
+    		TODOSLOSDIAS: 'Todos los días',
+    		CADASEMANA: 'Cada semana',
+    		CADADOS: 'Cada dos semanas',
     		CADAMES: 'Cada Mes',
     		CADAANO: 'Cada año',
     		//
-    		NUEVAREUNION: 'Nueva Reunión',
-    		EDITARREUNION: 'Editar Reunión',
+    		NUEVAREUNION: 'Nueva reunión',
+    		EDITARREUNION: 'Editar reunión',
     		TITULO: 'Título',
     		FECHA: 'Fecha',
-    		HORAINICIO: 'Hora Inicio',
-    		HORAFIN: 'Hora Fin',
+    		HORAINICIO: 'Hora inicio',
+    		HORAFIN: 'Hora fin',
     		UBICACION: 'Ubicación',
     		CONVOCA: 'Convoca',
     		PARTICIPANTES: 'Participantes',
@@ -215,16 +218,16 @@ angular.module('FLOKsports').config(function ($translateProvider) {
     REUNIONES: 'Reuniones',
 		CONFIRMAR: 'Confirmar',
     RECHAZAR: 'Rechazar',
-    REUNIONESVENCIDAS: 'Reuniones Vencidas',
+    REUNIONESVENCIDAS: 'Reuniones vencidas',
     REUNIONESHOY: 'Reuniones para hoy',
     REUNIONESSEMANA: 'Reuniones de la semana',
     REUNIONESMES: 'Reuniones del mes',
     REUNIONESFUTURO: 'Reuniones futuras',
-    REUNIONESPORCONFIRMAR: 'Por Confirmar',
-    AGREGARREUNION: 'Agregar Reunion',
+    REUNIONESPORCONFIRMAR: 'Por confirmar',
+    AGREGARREUNION: 'Agregar reunión',
     FUTUROS: 'Futuros',
-    INICIARREUNION: 'Iniciar Reunioin',
-    FINALIZARREUNION: 'Finalizar Reunion',
+    INICIARREUNION: 'Iniciar reunión',
+    FINALIZARREUNION: 'Finalizar reunión',
     //Reuniones y Acuerdos
     VENCIDAS: 'Vencidas',
     HOY: 'Hoy',
@@ -232,15 +235,18 @@ angular.module('FLOKsports').config(function ($translateProvider) {
     MES: 'Mes',
     TODAS: 'Todas',
     FUTURO: 'Futuro',
+    //Reunión invitado
+    ENTRAR: 'Entrar',
+    NOTAS: 'Notas',
     //Reuniones por Confirmar
-    RCONFIRMAR: 'Confirmar Reuniones',
-    PORCONFIRMAR: 'Por Confirmar',
+    RCONFIRMAR: 'Confirmar reuniones',
+    PORCONFIRMAR: 'Por confirmar',
     //Perfil
     PERFIL: 'Perfil',
     CONFIGURACION: 'Configuración',
     MIPERFIL: 'Mi Perfil',
-    PREFERENCIASREUNION: 'Preferencias de Reunión',
-    PREFERENCIASAPLICACION: 'Preferencias de Aplicación',
+    PREFERENCIASREUNION: 'Preferencias de reunión',
+    PREFERENCIASAPLICACION: 'Preferencias de aplicación',
     ACERCA: 'Acerca de Mi Reuniones',
     PASAVOZ: 'Pasar la Voz',
     AYUDA: 'Ayuda',
@@ -254,19 +260,19 @@ angular.module('FLOKsports').config(function ($translateProvider) {
 		//Login y Signup
 		EMAIL: 'Correo',
 		PASSWORD: 'Contraseña',
-		INICIARSESION: 'Iniciar Sesión',
-		OLVIDASTECONTRASENA: 'Olvidaste Contraseña ?',
+		INICIARSESION: 'Iniciar sesión',
+		OLVIDASTECONTRASENA: 'Olvidaste contraseña ?',
 		REGISTRO: 'Registro',
 		REGISTRAR: 'Registrar',
 		//Preferencias de Reunion
-		DURACION: 'Duracion de la Reunión',
-		PRIMERA: 'Primer Alerta',
+		DURACION: 'Duración de la reunión',
+		PRIMERA: 'Primer alerta',
 		MINUTOS: 'Minutos',
 		HORAS: 'Horas',
 		DIAS: 'Dias',
 		ANTES: 'Antes',
 		DESPUES: 'Despues',
-		SEGUNDA: 'Segund Alerta',
+		SEGUNDA: 'Segund alerta',
 		LEYENDA: 'Leyendas para correos de cambio:',
 		REPROGRAMACION: 'Reprogramación',
 		CANCELACION: 'Cancelación',
@@ -408,11 +414,11 @@ angular.module('FLOKsports').config(function ($translateProvider) {
   });
   
   $translateProvider
-  .preferredLanguage('pt')
+  .preferredLanguage('es')
   .registerAvailableLanguageKeys(['en', 'es', 'pt'], {
     'en_US': 'en'
   })
-//  .determinePreferredLanguage()
+  .determinePreferredLanguage()
 });
 
 

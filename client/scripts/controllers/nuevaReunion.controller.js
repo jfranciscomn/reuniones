@@ -218,8 +218,17 @@ angular
 				
 			}
 			console.log(idTemp, estatus, reunion);
-			//Reuniones.update(idTemp, { $set : { estatus : estatus }});
+			Reuniones.update(idTemp, { $set : { estatus : estatus }});
 			
+		}
+		
+		this.continuar = function(reunion){
+			var isIPad = ionic.Platform.isIPad();
+			if(isIPad){
+				$state.go("app.iniciarReunionIpad", {reunionId : reunion._id});
+			}else{
+				$state.go("app.iniciarReunionCel", {reunionId : reunion._id});
+			}
 		}
 });
 

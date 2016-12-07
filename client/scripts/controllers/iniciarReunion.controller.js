@@ -39,38 +39,40 @@ angular
 				return Reuniones.findOne($stateParams.reunionId);
 			},
 			reunion : function() {
-				if(this.getReactively("miReunion")){
-					_.each(rc.miReunion.users, function(invitado){
-						invitado.asistio = true;
-						invitado.invitado = Meteor.users.findOne(invitado.user);
-						_.each(rc.registrados, function(registrado, index){
+				if(rc.miReunion.todosTemas == undefined){
+					if(this.getReactively("miReunion")){
+						_.each(rc.miReunion.users, function(invitado){
+							invitado.asistio = true;
+							invitado.invitado = Meteor.users.findOne(invitado.user);
+							_.each(rc.registrados, function(registrado, index){
+							
+								if(registrado._id == invitado.user){
+									registrado.estatus = invitado.estatus;
+								}
+								if(registrado._id == Meteor.owner){
+									rc.registrados.splice(index, 1);
+								}
+							})
+						});
 						
-							if(registrado._id == invitado.user){
-								registrado.estatus = invitado.estatus;
-							}
-							if(registrado._id == Meteor.owner){
-								rc.registrados.splice(index, 1);
-							}
-						})
-					});
-					
-					//Poder agregar notas a la reunión						
-					if(rc.miReunion.notas == undefined)
-						rc.miReunion.notas = "";
-					
-					//Podeer hacerla favorita
-					if(rc.esFavorita == undefined)
-						rc.esFavorita = false;
+						//Poder agregar notas a la reunión						
+						if(rc.miReunion.notas == undefined)
+							rc.miReunion.notas = "";
 						
-					//Ver los temas como un listado con posibilidad de ser seleccionado.
-					var todosTemas = rc.miReunion.temas.split('. ');
-					rc.miReunion.todosTemas = [];
-					_.each(todosTemas, function(tema){
-						rc.miReunion.todosTemas.push({
-							nombre : tema,
-							seleccionado : false
+						//Podeer hacerla favorita
+						if(rc.esFavorita == undefined)
+							rc.esFavorita = false;
+							
+						//Ver los temas como un listado con posibilidad de ser seleccionado.
+						var todosTemas = rc.miReunion.temas.split('. ');
+						rc.miReunion.todosTemas = [];
+						_.each(todosTemas, function(tema){
+							rc.miReunion.todosTemas.push({
+								nombre : tema,
+								seleccionado : false
+							})
 						})
-					})
+					}
 				}
 				
 				return rc.miReunion;
@@ -166,11 +168,9 @@ angular
 			console.log("asistio", participante);
 			if(participante.asistio == false){
 				participante.asistio = true;
-				participante.estatus = 2;
 			}				
 			else if(participante.asistio == true){
 				participante.asistio = false;
-				participante.estatus = 1;
 			}
 		}
 		
@@ -240,8 +240,10 @@ angular
 	  
 	  this.guardar = function() {
 		  var tempId = rc.reunion._id;
-		  delete rc.reunion._id;
+			delete rc.reunion._id;
+		  this.quitarhk(rc.reunion)
 		  Reuniones.update({_id : tempId},{ $set : rc.reunion });
+		  rc.reunion._id = tempId;
 			//$ionicHistory.goBack();
 	  }
 });

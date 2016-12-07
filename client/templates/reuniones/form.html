@@ -117,6 +117,7 @@
 			</ul>
     </ul>
     <button class="button button-block bg-color-green" ng-click="nrc.cambiarEstatus(nrc.reunion, 3)" ng-show="nrc.reunion._id != undefined && nrc.reunion.estatus == 2">{{ 'INICIARREUNION' | translate }}</button>
+    <button class="button button-block bg-color-green" ng-click="nrc.continuar(nrc.reunion)" ng-show="nrc.reunion._id != undefined && nrc.reunion.estatus == 3">Continuar reunión</button>
     <button class="button button-block bg-color-red" ng-click="nrc.cambiarEstatus(nrc.reunion, 6)" ng-show="nrc.reunion._id != undefined && nrc.reunion.estatus == 3">{{ 'FINALIZARREUNION' | translate }}</button>
   </ion-content>
 </ion-view>

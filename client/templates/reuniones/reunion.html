@@ -49,6 +49,7 @@
 			    <i ng-if="participante.estatus == 1" class="ion-ios-circle-filled icon-size-lg color-yellow" style="top: 30px; position: absolute; right: 15px;"></i>
 					<i ng-if="participante.estatus == 2" class="ion-ios-circle-filled icon-size-lg color-green" style="top: 30px; position: absolute; right: 15px;"></i>
 					<i ng-if="participante.estatus == 7" class="ion-ios-circle-filled icon-size-lg color-red" style="top: 30px; position: absolute; right: 15px;"></i>
+					
 			  </ion-item>
 			  <ion-item>			
 			    <h2>{{ 'REPETIR' | translate}}</h2>
@@ -64,9 +65,21 @@
 			    <p>{{rc.reunion.alertas}}</p>
 			  </ion-item>
 -->
-			  
+				
 			</ion-list>
     </ul>
+    <div class="row" ng-show="rc.reunion.estatus == 3">
+			<div class="col">
+				Notas
+				<label class="item item-input">
+			    <textarea placeholder="Escribe tus Notas"
+			    ng-model="rc.reunion.notas"
+					id="notas"
+					rows="15"
+					readonly="true"></textarea>
+			  </label>
+			</div>
+		</div>
   </ion-content>
 </ion-view>
 <style>

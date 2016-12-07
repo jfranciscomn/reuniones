@@ -4,6 +4,22 @@ angular
 		let rc = $reactive(this).attach($scope);
 		this.listCanSwipe = true;
 		window.rc = rc;
+		
+		this.quitarhk=function(obj){
+			if(Array.isArray(obj)){
+				for (var i = 0; i < obj.length; i++) {
+					obj[i] =this.quitarhk(obj[i]);
+				}
+			}
+			else if(obj !== null && typeof obj === 'object')
+			{
+				delete obj.$$hashKey;
+				for (var name in obj) {
+		  			obj[name] = this.quitarhk(obj[name]);
+				}
+			}
+			return obj;
+		}
 		this.helpers({
 			reunionesPorConfirmar() {
 				var reuniones = Reuniones.find({users:{ $elemMatch: {user: Meteor.userId(), estatus : 1} }}).fetch();
@@ -80,16 +96,18 @@ angular
 			}			
 	
 			confirmPopup.then(function(res) {
-				if(res) { 
+				if(res == true) { 
 					_.each(reunion.users, function(usuario){
 						if(usuario.user == Meteor.userId()){
 							usuario.estatus = estatus;
 						}
 					})
+					rc.quitarhk(reunion.users);
+					console.log(reunion);
 					Reuniones.update({ _id : reunion._id}, { $set : { users: reunion.users, estatus : 2 }});
 					rc.sendNotification(reunion,notification)
 					if(reunion.estatus==2){
-						rc.saveDate(reunion)
+						//rc.saveDate(reunion)
 					}
 				}
 			});

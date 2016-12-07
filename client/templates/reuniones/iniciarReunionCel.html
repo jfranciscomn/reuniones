@@ -1,6 +1,9 @@
 <ion-view class="forms-view">
 	<ion-nav-buttons side="left">
 	</ion-nav-buttons>
+	<ion-nav-buttons side="right">
+		<button menu-toggle="right" class="button button-clear" ng-click='irc.save()'></button>
+	</ion-nav-buttons>
 	<ion-nav-title>
 		<span class="font-light">{{ 'REUNIONES' | translate}}</span>
 	</ion-nav-title>
@@ -44,7 +47,7 @@
 				    {{ 'REPETIR' | translate}}
 				    <span class="item-note">{{irc.reunion.repetir}}</span>
 				  </ion-item>
-				  <ion-item>			
+				  <ion-item ng-show="">			
 				    {{ 'HASTA' | translate}}
 				    <span class="item-note">{{irc.reunion.hasta | date:"dd-MM-yyyy"}}</span>
 				  </ion-item>
@@ -93,7 +96,7 @@
 			</div>
 		</div>
     <div class="button-bar">
-		  <a class="button bg-color-green" ng-click="irc.cambiarEstatus(irc.reunion, 6)">Finalizar</a>
+		  <a class="button bg-color-green" ng-click="irc.guardar()">Guardar</a>
 		</div>
 		
   </ion-content>
