@@ -117,7 +117,6 @@ angular
 					query: {userId:{$in:participans}}
 				});
 			}
-			
 		}
 		
 		this.save	= function(){
@@ -198,7 +197,7 @@ angular
 		this.getRechazados = function(usuarios){
 			var rechazados = 0;
 			_.each(usuarios, function(usuario){
-				if(usuario.estatus == 6){
+				if(usuario.estatus == 7){
 					rechazados++;
 				}
 			})

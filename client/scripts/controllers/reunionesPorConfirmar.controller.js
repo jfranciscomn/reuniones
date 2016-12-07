@@ -71,7 +71,7 @@ angular
 				notification = "confirmó"
 				reunion.estatus = 2;
 			}				
-			else if(estatus == 6){
+			else if(estatus == 7){
 				var confirmPopup = $ionicPopup.confirm({
 					title: "Rechazar",
 					template: "Está seguro de Rechazar"

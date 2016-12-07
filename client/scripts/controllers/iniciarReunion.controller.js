@@ -9,6 +9,9 @@ angular
 		this.opcion.participantes = [];
 		this.registrados = "";
 		this.miReunion = {};
+		this.verResponsables = false;
+		this.verGenerales = false;
+		this.verTemas = false;
 		
 		this.quitarhk=function(obj){
 			if(Array.isArray(obj)){

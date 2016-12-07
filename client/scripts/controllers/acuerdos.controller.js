@@ -147,7 +147,21 @@ angular
 			if(acuerdo.owner == Meteor.userId()){
 				$state.go("app.editarAcuerdo", {acuerdoId : acuerdo._id});
 			}else{
-				$state.go("app.verAcuerdo", {acuerdoId : acuerdo._id});
+				var esResponsable = false;
+				_.each(acuerdo.responsables, function(responsable){
+					console.log(responsable.user);
+					console.log(Meteor.userId());
+					console.log(responsable.user == Meteor.userId());
+					if(responsable.user == Meteor.userId()){
+						console.log("entré aquí");
+						esResponsable = true;
+					}
+				})
+				if(esResponsable){
+					$state.go("app.editarAcuerdo", {acuerdoId : acuerdo._id});
+				}else{
+					$state.go("app.verAcuerdo", {acuerdoId : acuerdo._id});
+				}				
 			}
 		}
 });

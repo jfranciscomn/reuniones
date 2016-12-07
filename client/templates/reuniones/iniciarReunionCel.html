@@ -1,13 +1,111 @@
 <ion-view class="forms-view">
 	<ion-nav-buttons side="left">
 	</ion-nav-buttons>
-	<ion-nav-buttons side="right">
-		<button menu-toggle="right" class="button button-icon icon ion-android-checkmark-circle" ng-click='nrc.save()'></button>
-	</ion-nav-buttons>
 	<ion-nav-title>
-		<span class="font-light">Reunión</span>
+		<span class="font-light">{{ 'REUNIONES' | translate}}</span>
 	</ion-nav-title>
 	<ion-content>
-		Soy cel
+		<ul class="list">
+			<ion-list can-swipe="listCanSwipe">
+				
+				<!-- Datos Generales -->
+				<div class="item item-button-right">
+			    Generales
+			    <button class="button bg-color-blue" ng-click="irc.verGenerales = !irc.verGenerales;">
+			      <i class="icon ion-information-circled color-white"></i>
+			    </button>
+			  </div>
+			  <div ng-show="irc.verGenerales" style="margin-left: 15px;">
+					<ion-item>			
+				    {{ 'TITULO' | translate}}
+				    <p>{{irc.reunion.titulo}}</p>
+				  </ion-item>
+				  <ion-item>			
+				    {{ 'FECHA' | translate}}
+				    <span class="item-note">{{irc.reunion.fecha | date : "dd-MM-yyyy"}}</span>
+				  </ion-item>
+				  <ion-item>			
+				    {{ 'HORAINICIO' | translate}}
+				    <span class="item-note">{{irc.reunion.horaInicio | date : "HH:mm a"}}</span>
+				  </ion-item>
+				  <ion-item>			
+				    {{ 'HORAFIN' | translate}}
+				    <span class="item-note">{{irc.reunion.horaFin | date : "HH:mm a"}}</span>
+				  </ion-item>
+				  <ion-item>			
+				    {{ 'UBICACION' | translate}}
+				    <span class="item-note">{{irc.reunion.ubicacion}}</span>
+				  </ion-item>		  
+				  <ion-item>			
+				    {{ 'CONVOCA' | translate}}
+				    <span class="item-note">{{irc.reunion.convoca}}</span>
+				  </ion-item>			
+				  <ion-item>			
+				    {{ 'REPETIR' | translate}}
+				    <span class="item-note">{{irc.reunion.repetir}}</span>
+				  </ion-item>
+				  <ion-item>			
+				    {{ 'HASTA' | translate}}
+				    <span class="item-note">{{irc.reunion.hasta | date:"dd-MM-yyyy"}}</span>
+				  </ion-item>
+			  </div>
+			  
+			  <!-- Participantes -->
+				<div class="item item-button-right">
+			    {{ 'PARTICIPANTES' | translate}}
+			    <button class="button bg-color-blue" ng-click="irc.verResponsables = !irc.verResponsables;">
+			      <i class="icon ion-person-stalker color-white"></i>
+			    </button>
+			  </div>
+			  <ion-item ng-repeat="participante in irc.reunion.users" class="item-avatar" style="margin-left: 15px;" ng-show="irc.verResponsables" on-double-tap="irc.agregarParticipanteNotas(participante)" on-hold="irc.mostrarOpcionesParticipantes(participante)" on-tap="irc.asistencia(participante)">
+				  <img src="{{participante.invitado.profile.picture}}">
+			    {{participante.invitado.profile.name}}
+			    <p>{{participante.invitado.profile.email}}</p>
+			    <i ng-if="participante.asistio == false" class="ion-ios-circle-filled icon-size-lg color-yellow" style="top: 30px; position: absolute; right: 15px;"></i>
+					<i ng-if="participante.asistio == true" class="ion-ios-circle-filled icon-size-lg color-green" style="top: 30px; position: absolute; right: 15px;"></i>
+			  </ion-item>
+				
+				<!-- Temas -->
+			  <div class="item item-button-right">
+			    {{ 'TEMAS' | translate}}
+			    <button class="button bg-color-blue" ng-click="irc.verTemas = !irc.verTemas;">
+			      <i class="icon ion-clipboard color-white"></i>
+			    </button>
+			  </div>
+			  <li style="margin-left: 15px;" class="item" ng-repeat="tema in irc.reunion.todosTemas" on-double-tap="irc.agregarTemaNotas(tema)" ng-show="irc.verTemas">
+		      {{tema.nombre}}
+		      <i ng-show="tema.seleccionado == false" class="ion-ios-circle-filled icon-size-lg color-yellow" style="position: absolute; right: 15px;"></i>
+		      <i ng-show="tema.seleccionado == true" class="ion-ios-circle-filled icon-size-lg color-green" style="position: absolute; right: 15px;"></i>
+		    </li>
+			</ion-list>
+    </ul>
+    <div class="row">
+			<div class="col">
+				Notas
+				<label class="item item-input">
+			    <textarea placeholder="Escribe tus Notas"
+			    ng-model="irc.reunion.notas"
+					id="notas"
+					rows="15"
+					ng-keyup="irc.expandText()"
+					ng-keydown="irc.expandText()"></textarea>
+			  </label>
+			</div>
+		</div>
+    <div class="button-bar">
+		  <a class="button bg-color-green" ng-click="irc.cambiarEstatus(irc.reunion, 6)">Finalizar</a>
+		</div>
+		
   </ion-content>
 </ion-view>
+<style>
+	.bar.app-top-bar {
+	  background-color: #fedc34;
+	  .title, .button {
+	    color: #000000 !important;
+	    * {
+	      color: #000000 !important;
+	    }
+	  }
+	}
+</style>

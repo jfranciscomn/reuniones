@@ -38,7 +38,7 @@ angular
 		if(!this.acuerdo){
 			this.acuerdo = {};
 			this.acuerdo.responsables = [{user:Meteor.userId()}];
-			this.acuerdo.seguidores = [{user:Meteor.userId()}];
+			this.acuerdo.seguidores = [];
 			this.acuerdo.prioridad = 0;
 			this.acuerdo.createdAt = new Date();
   		this.acuerdo.owner = (Meteor.userId() != undefined) ? Meteor.userId() : "";
@@ -157,8 +157,6 @@ angular
 				text: 'Acuerdo \nTitulo: '+meeting.titulo+'\nFecha Inicio: '+meeting.fechaInicio+"\nFecha Limite: "+meeting.fechaLimite,
 				badge: 1,
 				sound: 'default',
-				
-	           
 				query: {userId:{$in:participans}}
 			});
 		}
@@ -181,7 +179,6 @@ angular
       			this.saveDate()
 			}
 			this.sendNotification(rc.acuerdo);
-			console.log($ionicHistory)	
 			$ionicHistory.goBack();
 		}
 		
@@ -208,7 +205,7 @@ angular
 		this.getRechazados = function(usuarios){
 			var rechazados = 0;
 			_.each(usuarios, function(usuario){
-				if(usuario.estatus == 6){
+				if(usuario.estatus == 7){
 					rechazados++;
 				}
 			})
