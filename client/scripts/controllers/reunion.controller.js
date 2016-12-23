@@ -6,6 +6,7 @@ angular
 		this.verReunion = "";
 		this.aceptada = true;
 		this.verNotas = false;
+		this.verGenerales = false;
 		this.helpers({
 			reunion : function() {
 				var reunion = Reuniones.findOne($stateParams.reunionId);

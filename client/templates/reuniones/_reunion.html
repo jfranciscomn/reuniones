@@ -1,0 +1,47 @@
+<ion-item>			
+  <h2>{{ 'TITULO' | translate}}</h2>
+  <p>{{rc.reunion.titulo}}</p>
+</ion-item>
+<ion-item>			
+  <h2>{{ 'FECHA' | translate}}</h2>
+  <p>{{rc.reunion.fecha | date : "dd-MM-yyyy"}}</p>
+</ion-item>
+<ion-item>			
+  <h2>{{ 'HORAINICIO' | translate}}</h2>
+  <p>{{rc.reunion.horaInicio | date : "HH:mm a"}}</p>
+</ion-item>
+<ion-item>			
+  <h2>{{ 'HORAFIN' | translate}}</h2>
+  <p>{{rc.reunion.horaFin | date : "HH:mm a"}}</p>
+</ion-item>
+<ion-item>			
+  <h2>{{ 'UBICACION' | translate}}</h2>
+  <p>{{rc.reunion.ubicacion}}</p>
+</ion-item>
+<ion-item>			
+  <h2>{{ 'TEMAS' | translate}}</h2>
+  <p>{{rc.reunion.temas}}</p>
+</ion-item>			  
+<ion-item>			
+  <h2>{{ 'CONVOCA' | translate}}</h2>
+  <p>{{rc.reunion.convoca}}</p>
+</ion-item>
+<ion-item>
+  <h2>{{ 'PARTICIPANTES' | translate}}</h2>
+</ion-item>
+<ion-item ng-repeat="participante in rc.reunion.users" class="item-avatar" style="margin-left: 20px;">
+  <img src="{{participante.participante.profile.picture}}">
+  <h2>{{participante.participante.profile.name}}</h2>
+  <p>{{participante.participante.profile.email}}</p>
+  <i ng-if="participante.estatus == 1" class="ion-ios-circle-filled icon-size-lg color-yellow" style="top: 30px; position: absolute; right: 15px;"></i>
+	<i ng-if="participante.estatus == 2" class="ion-ios-circle-filled icon-size-lg color-green" style="top: 30px; position: absolute; right: 15px;"></i>
+	<i ng-if="participante.estatus == 7" class="ion-ios-circle-filled icon-size-lg color-red" style="top: 30px; position: absolute; right: 15px;"></i>
+</ion-item>
+<ion-item>			
+  <h2>{{ 'REPETIR' | translate}}</h2>
+  <p>{{rc.reunion.repetir}}</p>
+</ion-item>
+<ion-item>			
+  <h2>{{ 'HASTA' | translate}}</h2>
+  <p>{{rc.reunion.hasta | date:"dd-MM-yyyy"}}</p>
+</ion-item>

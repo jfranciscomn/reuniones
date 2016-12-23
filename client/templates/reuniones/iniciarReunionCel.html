@@ -2,15 +2,15 @@
 	<ion-nav-buttons side="left">
 	</ion-nav-buttons>
 	<ion-nav-buttons side="right">
-		<button menu-toggle="right" class="button button-clear" ng-click='irc.save()'></button>
+		<button menu-toggle="right" class="button button-clear icon ion-android-checkmark-circle" ng-click='irc.finalizar()'></button>
 	</ion-nav-buttons>
 	<ion-nav-title>
-		<span class="font-light">{{ 'REUNIONES' | translate}}</span>
+		<span class="font-light">{{ 'REUNIONES' | translate}} - {{irc.countDown}}</span>
 	</ion-nav-title>
-	<ion-content>
+	<ion-content> 
 		<ul class="list">
 			<ion-list can-swipe="listCanSwipe">
-				
+			
 				<!-- Datos Generales -->
 				<div class="item item-button-right">
 			    Generales
@@ -64,7 +64,7 @@
 				  <img src="{{participante.invitado.profile.picture}}">
 			    {{participante.invitado.profile.name}}
 			    <p>{{participante.invitado.profile.email}}</p>
-			    <i ng-if="participante.asistio == false" class="ion-ios-circle-filled icon-size-lg color-yellow" style="top: 30px; position: absolute; right: 15px;"></i>
+			    <i ng-if="participante.asistio == false" class="ion-ios-circle-filled icon-size-lg color-gray" style="top: 30px; position: absolute; right: 15px;"></i>
 					<i ng-if="participante.asistio == true" class="ion-ios-circle-filled icon-size-lg color-green" style="top: 30px; position: absolute; right: 15px;"></i>
 			  </ion-item>
 				

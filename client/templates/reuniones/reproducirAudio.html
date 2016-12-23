@@ -1,0 +1,28 @@
+<ion-modal-view>
+  <ion-header-bar>
+    <h1 class="title">Seguidores</h1>
+    <button class="button button-clear color-black button-primary" ng-click="nac.cerrarModalSeguidores()">Listo</button>
+  </ion-header-bar>
+  <ion-content>
+    <ion-list>
+    	<label class="item item-input">
+		    <i class="icon ion-search placeholder-icon"></i>
+		    <input type="text" placeholder="Buscar" ng-model="nac.buscar">
+		  </label>
+		  <ion-checkbox ng-repeat='participante in nac.seguidores | filter:nac.buscar:strict | orderBy : "profile.name"' ng-model="participante.estatus" ng-click='nac.agregarSeguidor(participante, $index)'>
+		  	{{participante.profile.name}}
+		  </ion-checkbox>
+		</ion-list>
+  </ion-content>
+</ion-modal-view>
+<style>
+	.bar.bar-header {
+	  background-color: #82e79d;
+	  .title, .button {
+	    color: #000000 !important;
+	    * {
+	      color: #000000 !important;
+	    }
+	  }
+	}
+</style>

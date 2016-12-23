@@ -1,0 +1,25 @@
+<ion-modal-view>
+  <ion-header-bar>
+    <h1 class="title">Imagen</h1>
+    <button class="button button-clear color-black button-primary" ng-click="irc.cerrarModalFoto()">Listo</button>
+  </ion-header-bar>
+  <ion-content>
+		<ion-slide-box >
+		  <ion-slide ng-repeat="foto in irc.fotos">
+		  	{{foto.data[0].fullPath}}
+		    <img ng-src="foto.data" width="80%" />
+		  </ion-slide>
+		</ion-slide-box>
+  </ion-content>
+</ion-modal-view>
+<style>
+	.bar.bar-header {
+	  background-color: #82e79d;
+	  .title, .button {
+	    color: #000000 !important;
+	    * {
+	      color: #000000 !important;
+	    }
+	  }
+	}
+</style>

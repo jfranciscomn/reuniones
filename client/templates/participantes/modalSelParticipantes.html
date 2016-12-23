@@ -1,7 +1,7 @@
 <ion-modal-view>
   <ion-header-bar>
     <h1 class="title">Participantes</h1>
-    <button class="button button-clear button-positive" ng-click="nrc.cerrarModalParticipantes()">Listo</button>
+    <button class="button button-clear color-black" ng-click="nrc.cerrarModalParticipantes()">Listo</button>
   </ion-header-bar>
   <ion-content>
     <ion-list>
@@ -13,7 +13,7 @@
 		  	{{participante.profile.name}}
 		  	<i ng-if="participante.estatus == 1" class="ion-ios-circle-filled icon-size-lg color-yellow" style="top: 20px; position: absolute; right: 15px;"></i>
 				<i ng-if="participante.estatus == 2" class="ion-ios-circle-filled icon-size-lg color-green" style="top: 20px; position: absolute; right: 15px;"></i>
-				<i ng-if="participante.estatus == 6" class="ion-ios-circle-filled icon-size-lg color-red" style="top: 20px; position: absolute; right: 15px;"></i>
+				<i ng-if="participante.estatus == 7" class="ion-ios-circle-filled icon-size-lg color-red" style="top: 20px; position: absolute; right: 15px;"></i>
 		  </ion-checkbox>
 		</ion-list>
   </ion-content>

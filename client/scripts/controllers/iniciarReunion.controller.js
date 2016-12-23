@@ -1,6 +1,7 @@
 angular
 	.module('FLOKsports')
-	.controller('IniciarReunionCtrl', function NuevaReunionCtrl($scope, $reactive, $state, $stateParams, $ionicPopup, $ionicHistory, $ionicModal, $ionicActionSheet, $timeout) {
+	.controller('IniciarReunionCtrl', function NuevaReunionCtrl($scope, $reactive, $state, $stateParams, $ionicPopup, 
+			$ionicHistory, $ionicModal, $ionicActionSheet, $timeout, $cordovaEmailComposer, $cordovaCapture) {
 		let rc = $reactive(this).attach($scope);
 		window.rc = rc;
 		this.reunion = {};
@@ -13,6 +14,10 @@ angular
 		this.verGenerales = false;
 		this.verTemas = false;
 		
+		this.fotos = [];
+		this.audios = [];
+		this.videos = [];
+			
 		this.quitarhk=function(obj){
 			if(Array.isArray(obj)){
 				for (var i = 0; i < obj.length; i++) {
@@ -54,7 +59,7 @@ angular
 								}
 							})
 						});
-						
+						 
 						//Poder agregar notas a la reunión						
 						if(rc.miReunion.notas == undefined)
 							rc.miReunion.notas = "";
@@ -64,7 +69,7 @@ angular
 							rc.esFavorita = false;
 							
 						//Ver los temas como un listado con posibilidad de ser seleccionado.
-						var todosTemas = rc.miReunion.temas.split('. ');
+						var todosTemas = rc.miReunion.temas.split(', ');
 						rc.miReunion.todosTemas = [];
 						_.each(todosTemas, function(tema){
 							rc.miReunion.todosTemas.push({
@@ -74,7 +79,9 @@ angular
 						})
 					}
 				}
-				
+				if(rc.miReunion.medios == undefined)
+					rc.miReunion.medios = [];
+					
 				return rc.miReunion;
 			},
 			acuerdos : function() {
@@ -96,8 +103,7 @@ angular
 					}
 				})
 			});
-		}
-			
+		}			
 			
 		//Action Sheet Participantes
 		this.mostrarOpcionesParticipantes = function(participante) {
@@ -149,13 +155,52 @@ angular
 					buttonClicked: function(index) {
 						if(index == 0){
 							//Si Agrega Foto
+						    var options = { limit: 3 }; 
+						
+						    $cordovaCapture.captureImage(options).then(function(imageData) {
+							    var i, path, len;
+							    for (i = 0, len = imageData.length; i < len; i += 1) {
+							        path = imageData[i].fullPath;
+							        rc.reunion.medios.push({tipo: "foto", data : path})
+							    }
+							    
+						      // Success! Image data is here
+						    }, function(err) {
+						      // An error occurred. Show a message to the user
+						      console.log("error image", err); 
+						    });
 							
 						}else if(index == 1){
+							console.log("audio");
 							//Si Agrega Audio
+						    var options = { limit: 3, duration: 10 };
+						
+						    $cordovaCapture.captureAudio(options).then(function(audioData) {
+						      var i, path, len;
+							    for (i = 0, len = audioData.length; i < len; i += 1) {
+							        path = audioData[i].fullPath;
+							        rc.reunion.medios.push({tipo: "audio", data : path})
+							    }
+						      
+						    }, function(err) {
+						      // An error occurred. Show a message to the user
+						      console.log("error audio", err);
+						    });
 							
 						}else if(index == 2){
-							//Si Agrega Video
-							
+							//Si Agrega Video 
+						    var options = { limit: 3, duration: 15 };
+						
+						    $cordovaCapture.captureVideo(options).then(function(videoData) {
+							    var i, path, len;
+							    for (i = 0, len = videoData.length; i < len; i += 1) {
+							        path = videoData[i].fullPath;
+							        rc.reunion.medios.push({tipo: "video", data : path})
+							    }
+						    }, function(err) {
+						      // An error occurred. Show a message to the user
+						      console.log("error video", err);
+						    });
 						}
 						console.log(index);
 						return true;
@@ -246,6 +291,113 @@ angular
 		  rc.reunion._id = tempId;
 			//$ionicHistory.goBack();
 	  }
+	  
+	  this.reproducir = function(medio){
+		  if(medio.tipo == "foto"){
+			  _.each(rc.reunion.medios, function(medio){
+				  if(medio.tipo == "foto"){
+					  rc.fotos.push(medio);
+				  }
+			  });
+			  $scope.modalFoto.show();
+		  }else if(medio.tipo == "audio"){
+			  _.each(rc.reunion.medios, function(medio){
+				  if(medio.tipo == "audio"){
+					  rc.audios.push(medio);
+				  }
+			  });
+			  $scope.modalAudio.show();
+		  }else if(medio.tipo == "video"){
+			  _.each(rc.reunion.medios, function(medio){
+				  if(medio.tipo == "video"){
+					  rc.videos.push(medio);
+				  }
+			  });
+			  $scope.modalVideo.show();
+		  }
+	  }
+	  
+	  this.finalizar = function() {
+		  var tempId = rc.reunion._id;
+			delete rc.reunion._id;
+			rc.reunion.estatus = 6;
+		  this.quitarhk(rc.reunion)
+		  Reuniones.update({_id : tempId},{ $set : rc.reunion });
+		  rc.reunion._id = tempId;
+/*
+		  Email.send({
+			  to: "roberto@masoft.mx",
+			  from: Meteor.user().username,
+			  subject: "Minuta de la reunión - " + rc.reunion.titulo,
+			  html: "<h1>Hello World</h1>",
+			  text: "Hello World"
+			});
+*/
+			
+			$cordovaEmailComposer.isAvailable().then(function() {
+			   // is available
+			 }, function () {
+			   // not available
+			 });
+			
+			  var email = {
+			    to: 'max@mustermann.de',
+			    cc: 'erika@mustermann.de',
+			    bcc: ['john@doe.com', 'jane@doe.com'],
+			    attachments: [
+			      'file://img/logo.png',
+			      'res://icon.png',
+			      'base64:icon.png//iVBORw0KGgoAAAANSUhEUg...',
+			      'file://README.pdf'
+			    ],
+			    subject: 'Cordova Icons',
+			    body: 'How are you? Nice greetings from Leipzig',
+			    isHtml: true
+			  };
+			
+			 $cordovaEmailComposer.open(email).then(null, function () {
+			   // user cancelled email
+			 });
+			$ionicHistory.goBack();
+	  }
+	  
+	  //Modales para reproducir
+	  $ionicModal.fromTemplateUrl('client/templates/reuniones/reproducirFoto.html', {
+			scope: $scope,
+			animation: 'slide-in-up'
+		}).then(function(modal) {
+			$scope.modalFoto = modal;
+		});
+		
+		$ionicModal.fromTemplateUrl('client/templates/reuniones/reproducirAudio.html', {
+			scope: $scope,
+			animation: 'slide-in-up'
+		}).then(function(modal) {
+			$scope.modalAudio= modal;
+		});
+		
+		$ionicModal.fromTemplateUrl('client/templates/reuniones/reproducirVideo.html', {
+			scope: $scope,
+			animation: 'slide-in-up'
+		}).then(function(modal) {
+			$scope.modalVideo = modal;
+		});
+		
+		this.cerrarModalFoto = function() {
+	    $scope.modalFoto.hide();
+	  };
+	  
+	  this.cerrarModalAudio = function() {
+	    $scope.modalAudio.hide();
+	  };
+	  
+	  this.cerrarModalVideo= function() {
+	    $scope.modalVideo.hide();
+	  };
+		
+		
+		
+		
 });
 
 //TODO me quedé haciendo el agregar participantes

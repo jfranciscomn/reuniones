@@ -38,7 +38,7 @@
 	  </a>
 	  <button style="width: 0px; height: 0px;" ng-show="false"></button>
 	</div>
-  <ion-content ng-class="!rc.isIpad ? 'listaInferior' : ''">
+  <ion-content ng-class="!rc.isIPad ? 'listaInferior':''">
   	<div class="divider-title">{{ 'VENCIDAS' | translate }}</div>
     <ul class="timeline" id="hoy" ng-show="rc.fhoy">
       <li ng-repeat="reunion in rc.vencidas | orderBy:'fecha'">
@@ -96,7 +96,7 @@
               <i class="ion-person color-green"></i> {{rc.getConfirmados(reunion.users)}}
 		          <i class="ion-person color-yellow"></i> {{rc.getPendientes(reunion.users)}}
 		          <i class="ion-person color-red"></i> {{rc.getRechazados(reunion.users)}}
-              <span class="pos-absolute-right"><i class="ion-ios-clock"></i> {{reunion.horaInicio|date:"HH:mm"}} </span>
+              <span class="pos-absolute-right"><i class="ion-ios-clock"></i> {{reunion.horaInicio|date:"dd-MM-yyyy HH:mm"}} </span>
             </div>
           </div>
         </a>
@@ -117,7 +117,7 @@
               <i class="ion-person color-green"></i> {{rc.getConfirmados(reunion.users)}}
 		          <i class="ion-person color-yellow"></i> {{rc.getPendientes(reunion.users)}}
 		          <i class="ion-person color-red"></i> {{rc.getRechazados(reunion.users)}}
-              <span class="pos-absolute-right"><i class="ion-ios-clock"></i> {{reunion.horaInicio|date:"HH:mm"}} </span>
+              <span class="pos-absolute-right"><i class="ion-ios-clock"></i> {{reunion.horaInicio|date:"dd-MM-yyyy HH:mm"}} </span>
             </div>
           </div>
         </a>

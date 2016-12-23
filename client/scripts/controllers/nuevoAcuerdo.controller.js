@@ -220,7 +220,6 @@ angular
 	  });
 	  
 	  this.selResponsables = function() {
-		  console.log($scope, "responsables");
 	    $scope.modalResponsables.show();
 	  };
 	  

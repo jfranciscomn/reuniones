@@ -6,7 +6,7 @@
     </button>
   </ion-nav-buttons>
 	<ion-nav-buttons side="right">
-		<button menu-toggle="right" class="button button-icon icon ion-android-checkmark-circle" ng-click='irc.guardar()'></button>
+		<button menu-toggle="right" class="button button-clear" ng-click='irc.finalizar()'>Finalizar</button>
 	</ion-nav-buttons>
 	<ion-nav-title>
 		<span class="font-light">Reunión</span>
@@ -17,7 +17,7 @@
 				<div class="row">
 					<div class="col">
 						<div class="button-bar">
-						  <button class="button button-small" ng-click="irc.guardar()">Hecho</button>
+							<a class="button bg-color-green" ng-click="irc.guardar()">Guardar</a>
 						  <button class="button button-small icon ion-arrow-left-a"></button>
 						  <button class="button button-small icon ion-arrow-right-a"></button>
 						  <button class="button button-small icon ion-folder"></button>
@@ -114,15 +114,9 @@
 				  </div>
 				  <div class="item item-text-wrap">
 				    <ion-scroll direction="y" style="height: 100px">
-					    <ul class="list">
-						    <li class="item" ng-repeat="madio in irc.reunion.medios">
-						    	{{medio.nombre}}
-						    </li>
-							</ul>
 							<div class="list">
 							  <a class="item item-icon-left" ng-click="irc.reproducir(medio)" ng-repeat="medio in irc.reunion.medios">
-							    <i ng-class="(medio.tipo == 'foto' ? 'icon ion-image' : (medio.tipo == 'audio') ? 'icon ion-mic-a' : 'icon ion-videocamera'" ></i>
-							    {{medio.nombre}}
+							    <i ng-class="(medio.tipo == 'foto') ? 'icon ion-image' : (medio.tipo == 'audio') ? 'icon ion-mic-a' : 'icon ion-videocamera'" ></i>
 							  </a>
 							</div>
 					  </ion-scroll>

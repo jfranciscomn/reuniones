@@ -2,14 +2,15 @@ angular
   .module('FLOKsports')
   .controller('ReunionesCtrl', function ReunionesCtrl($scope, $reactive, $state, $stateParams, $ionicPopup) {
 		let rc = $reactive(this).attach($scope);
+		window.rc = rc;
 		this.deviceWidth = $(".menuSuperior").width();
 		this.listCanSwipe = true;
 		this.fhoy = true;
 		this.fsemana = true;
 		this.fmes = true;
 		this.ffuturo = true;
-		this.fvencidas = true;
-		this.isIPad = ionic.Platform.isIPad();
+		this.fvencidas = true; 
+		this.isIPad = ionic.Platform.isIPad(); 
 		this.helpers({
 			reuniones() {
 				return Reuniones.find({users:{ $elemMatch: {user : Meteor.userId(), estatus : 2} }});

@@ -50,7 +50,7 @@ angular
 			
 		this.agregarParticipante = function(participante, $index){
 			if(participante.invitado == true){
-				this.reunion.users.push({user:participante._id, estatus : 1, invitado : true});
+				this.reunion.users.push({user : participante._id, estatus : 1, invitado : true});
 			}
 			else{
 				_.each(rc.reunion.users, function(invitado, index){
@@ -96,7 +96,7 @@ angular
 				Push.send({
 					from: 'Mis Reuniones',
 					title: meeting.titulo,
-					text: 'Invitacion a participar a la Reunión\nTítulo: '+meeting.titulo+'\nFecha: '+moment(meeting.fecha).format("DD-MMM-YYYY")+"\nTemas: "+meeting.temas,
+					text: 'Invitación a participar a la Reunión\nTítulo: '+meeting.titulo+'\nFecha: '+moment(meeting.fecha).format("DD-MMM-YYYY")+"\nTemas: "+meeting.temas,
 					badge: 1,
 					sound: 'airhorn.caf',
 		            payload: {
@@ -111,10 +111,10 @@ angular
 					text: 'Se modificó la Reunión\nTítulo: '+meeting.titulo+'\nFecha: '+ moment(meeting.fecha).format("DD-MM-YYYY") +"\nTemas: "+meeting.temas,
 					badge: 1,
 					sound: 'airhorn.caf',
-		            payload: {
-		                title: meeting.titulo,
-		            },
-					query: {userId:{$in:participans}}
+          payload: {
+              title: meeting.titulo,
+          },
+					query: { userId : { $in : participans} }
 				});
 			}
 		}
@@ -132,7 +132,7 @@ angular
 					}
 				})
 				this.reunion.estatus = 1;
-				Reuniones.update({_id:$stateParams.reunionId},{$set:this.reunion});
+				Reuniones.update({ _id : $stateParams.reunionId },{ $set : this.reunion });
 				this.sendNotification(this.reunion, "update");
 			}
 			else{
@@ -160,7 +160,6 @@ angular
 						registrado.invitado = invitado.invitado;
 						registrado.estatus = invitado.estatus;
 					}
-					
 				})
 				if(Meteor.userId() == registrado._id){
 					//rc.registrados.splice(index, 1);
@@ -262,7 +261,6 @@ angular
 	Agendada = 1
 		Se puede confirmar = 2 -> esto es cuando un participante acepta la reunión
 		Se puede rechazar = 7
-		
 		
 		1 Agendada
 		2 Confirmada

@@ -8,7 +8,7 @@ angular
 		this.fsemana = true;
 		this.fmes = true;
 		this.ffuturo = true;
-		this.fvencidos = true;		
+		this.fvencidos = true;
 		this.helpers({
 			acuerdos() {
 				var acuerdos = Acuerdos.find({responsables:{ $elemMatch: {user:Meteor.userId()}}}).fetch();
