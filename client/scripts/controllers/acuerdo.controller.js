@@ -21,6 +21,10 @@ angular
 					})
 				}
 				
+				if(acuerdo.temas){
+					acuerdo.temasSeparados = acuerdo.temas.split(', ');
+				}
+				
 				if(acuerdo){
 					acuerdo.createdBy = Meteor.users.findOne(acuerdo.owner);
 					acuerdo.categoria = Categorias.findOne(acuerdo.categoria_id)

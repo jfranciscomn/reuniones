@@ -1,7 +1,7 @@
 angular
 	.module('FLOKsports')
 	.controller('IniciarReunionCtrl', function NuevaReunionCtrl($scope, $reactive, $state, $stateParams, $ionicPopup, 
-			$ionicHistory, $ionicModal, $ionicActionSheet, $timeout, $cordovaEmailComposer, $cordovaCapture) {
+			$ionicHistory, $ionicModal, $ionicActionSheet, $timeout, $cordovaCapture, $cordovaEmailComposer) {
 		let rc = $reactive(this).attach($scope);
 		window.rc = rc;
 		this.reunion = {};
@@ -13,6 +13,7 @@ angular
 		this.verResponsables = false;
 		this.verGenerales = false;
 		this.verTemas = false;
+		this.verBarra = true;
 		
 		this.fotos = [];
 		this.audios = [];
@@ -28,7 +29,7 @@ angular
 				delete obj.$$hashKey;
 				for (var name in obj) {
 						obj[name] = this.quitarhk(obj[name]);
-				}	
+				}	 
 			}
 			return obj;
 		}
@@ -81,6 +82,8 @@ angular
 				}
 				if(rc.miReunion.medios == undefined)
 					rc.miReunion.medios = [];
+				
+				rc.miReunion.categoria = Categorias.findOne(rc.miReunion.categoria_id);
 					
 				return rc.miReunion;
 			},
@@ -106,11 +109,12 @@ angular
 		}			
 			
 		//Action Sheet Participantes
-		this.mostrarOpcionesParticipantes = function(participante) {
+		this.mostrarOpcionesParticipantes = function(participante, index) {
 	   	var hideSheet = $ionicActionSheet.show({
 		    buttons: [
 						{ text: 'Agregar Acción' },
-						{ text: 'Agregar a Notas' }
+						{ text: 'Agregar a Notas' },
+						{ text: 'Excluir de la reunión' }
 					],
 					destructiveText: (participante.asistio == false ) ? 'Asistió' : 'Faltó',
 					titleText: participante.invitado.profile.name,
@@ -125,6 +129,16 @@ angular
 						}else if(index == 1){
 							//Si Agrega a notas
 							rc.reunion.notas += "\n " + participante.invitado.profile.name + " (" + participante.invitado.profile.email + ")";
+						}else if(index == 2){
+							//Si excluyes de la reunión
+							console.log("index", index);
+							console.log("participante", participante);
+							_.each(rc.reunion.users, function(parti, index){
+								if(participante.user == parti.user){
+									rc.reunion.users.splice(index, 1);
+								}								
+							});
+							rc.reunion.users.splice(index, 1);
 						}
 						console.log(index);
 						return true;
@@ -257,6 +271,9 @@ angular
 						rc.reunion.users.splice(index, 1);
 					}
 				})
+				if(Meteor.userId() == registrado._id){
+					rc.registrados.splice(index, 1);
+				}
 			}
 		}
 		
@@ -320,43 +337,27 @@ angular
 	  this.finalizar = function() {
 		  var tempId = rc.reunion._id;
 			delete rc.reunion._id;
-			rc.reunion.estatus = 6;
+			//rc.reunion.estatus = 6;
 		  this.quitarhk(rc.reunion)
-		  Reuniones.update({_id : tempId},{ $set : rc.reunion });
+		  //Reuniones.update({_id : tempId},{ $set : rc.reunion });
 		  rc.reunion._id = tempId;
-/*
-		  Email.send({
-			  to: "roberto@masoft.mx",
-			  from: Meteor.user().username,
-			  subject: "Minuta de la reunión - " + rc.reunion.titulo,
-			  html: "<h1>Hello World</h1>",
-			  text: "Hello World"
-			});
-*/
-			
 			$cordovaEmailComposer.isAvailable().then(function() {
-			   // is available
+			   console.log("esta disponible");
 			 }, function () {
-			   // not available
+			   console.log("no está disponible");
 			 });
 			
 			  var email = {
 			    to: 'max@mustermann.de',
 			    cc: 'erika@mustermann.de',
 			    bcc: ['john@doe.com', 'jane@doe.com'],
-			    attachments: [
-			      'file://img/logo.png',
-			      'res://icon.png',
-			      'base64:icon.png//iVBORw0KGgoAAAANSUhEUg...',
-			      'file://README.pdf'
-			    ],
 			    subject: 'Cordova Icons',
 			    body: 'How are you? Nice greetings from Leipzig',
 			    isHtml: true
 			  };
 			
 			 $cordovaEmailComposer.open(email).then(null, function () {
-			   // user cancelled email
+			   console.log("cancelado")
 			 });
 			$ionicHistory.goBack();
 	  }

@@ -45,8 +45,10 @@ angular
   		this.acuerdo.username = (Meteor.userId() != undefined) ? Meteor.user().username : "";
   		this.acuerdo.estatus = 1;
   		this.acuerdo.fechaInicio = new Date();
-  		this.acuerdo.fechaLimite = new Date();
+  		this.acuerdo.bitacora = [];
+  		
 		}else{
+			this.fechaLimite = this.acuerdo.fechaLimite; 
 			_.each(rc.responsables, function(registrado, index){
 				if(registrado._id == rc.acuerdo.owner){
 					rc.responsables.splice(index, 1);
@@ -105,7 +107,9 @@ angular
 		this.cambiarEstatus = function(acuerdo, estatus){
 			console.log(estatus, acuerdo);
 			if(estatus == 2){
-				focus('fechaCierre');
+				rc.fechaCierre = true;
+			}else{
+				rc.fechaCierre = false;
 			}
 		}
 
@@ -166,6 +170,17 @@ angular
 	
 			if(this.acuerdoId){
 				delete this.acuerdo._id
+				if(this.acuerdo.fechaLimite != this.fechaLimite){
+					if(this.acuerdo.bitacora.length < 2){
+						rc.acuerdo.bitacora.push({nombre : "modificación", fecha : new Date(), fechaAnterior : rc.fechaLimite});					
+					}else{
+						var alertPopup = $ionicPopup.alert({
+					     title: 'Aviso!',
+					     template: 'No puede '
+					   });
+					}
+					
+				}
 				Acuerdos.update({_id:this.acuerdoId},{$set:this.acuerdo});
 			}
 			else{

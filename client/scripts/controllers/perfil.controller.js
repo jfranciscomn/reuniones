@@ -24,11 +24,9 @@ angular
 			      saveToPhotoAlbum: false,
 			      correctOrientation:true
 			};
-	    $meteor.getPicture(options).then(function(picture, ){
-
+	    $meteor.getPicture(options).then(function(picture){
 	      rc.user.profile.picture = picture;
 	      Meteor.users.update({_id: rc.user._id}, {$set:{profile: rc.user.profile}});
-				console.log(rc.user);
 	    });
 
 	  };

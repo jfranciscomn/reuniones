@@ -6,18 +6,18 @@
     </button>
   </ion-nav-buttons>
 	<ion-nav-buttons side="right">
-		<button menu-toggle="right" class="button button-clear" ng-click='irc.finalizar()'>Finalizar</button>
+		<button menu-toggle="right" class="button button-icon icon ion-android-checkmark-circle" ng-click='irc.finalizar()'></button>
 	</ion-nav-buttons>
 	<ion-nav-title>
 		<span class="font-light">Reunión</span>
 	</ion-nav-title>
 	<ion-content>
 		<div class="row">
-			<div class="col col-75">
+			<div class="col col-75" ng-class="(irc.verBarra) ? 'col col-75' : 'col' ">
 				<div class="row">
 					<div class="col">
 						<div class="button-bar">
-							<a class="button bg-color-green" ng-click="irc.guardar()">Guardar</a>
+							<button class="button bg-color-green icon ion-arrow-swap" ng-click="irc.guardar()"></button>
 						  <button class="button button-small icon ion-arrow-left-a"></button>
 						  <button class="button button-small icon ion-arrow-right-a"></button>
 						  <button class="button button-small icon ion-folder"></button>
@@ -26,6 +26,7 @@
 						  <button class="button button-small icon ion-mic-a"></button>
 						  <button class="button button-small icon ion-ios-star"></button>
 						  <button class="button button-small icon ion-close"></button>
+						  <button ng-class="(irc.verBarra) ? 'button button-small icon ion-chevron-right': 'button button-small icon ion-chevron-left' " ng-click="irc.verBarra = !irc.verBarra"></button>
 						</div>
 					</div>
 				</div>
@@ -33,9 +34,9 @@
 					<div class="col-75">
 						<div class="card" style="margin: 5px !important;">
 						  <div class="item">
-						    <p>{{irc.reunion.categoria.nombre}}</p>
-								<p>Revisión</p>
-								<p>Convoca : {{irc.reunion.convoca}}</p>
+						    <p>Categoria :{{irc.reunion.categoria.nombre}}</p>
+								<p>Revisión     :</p>
+								<p>Convoca  : {{irc.reunion.convoca}}</p>
 								<p><strong>{{irc.reunion.fecha | date:"dd-MM-yyyy H:mm:ss"}}</strong></p>
 						  </div>
 						</div>
@@ -58,7 +59,7 @@
 									<!-- Agregar nuevos participantes -->
 									<a class="button button-icon icon ion-plus pull-right" ng-click="irc.selParticipantes()"></a>
 									<!-- Agregar botón por cada participante -->
-									<button ng-class="participante.asistio == true ? 'button-calm' : 'button-dark'" class="button button-small button-calm" ng-repeat="participante in irc.reunion.users"  on-double-tap="irc.agregarParticipanteNotas(participante)" on-hold="irc.mostrarOpcionesParticipantes(participante)" on-tap="irc.asistencia(participante)">{{participante.invitado.profile.name}}</button>
+									<button ng-class="participante.asistio == true ? 'bg-color-green' : 'button-dark'" class="button button-small" ng-repeat="participante in irc.reunion.users"  on-double-tap="irc.agregarParticipanteNotas(participante)" on-hold="irc.mostrarOpcionesParticipantes(participante, $index)" on-tap="irc.asistencia(participante)">{{participante.invitado.profile.name}}</button>
 								</div>
 						  </div>
 						</div>
@@ -77,7 +78,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="col col-25">
+			<div class="col col-25" ng-show="irc.verBarra">
 				
 				<div class="card">
 				  <div class="item item-divider inicioReunionCard">
@@ -95,10 +96,9 @@
 				  <div class="item item-text-wrap">
 					  <ion-scroll direction="y" style="height: 200px">
 					    <ul class="list">
-						    <li class="item" ng-repeat="tema in irc.reunion.todosTemas" on-double-tap="irc.agregarTemaNotas(tema)">
-						    	<i ng-show="tema.seleccionado == false" class="ion-ios-circle-filled icon-size-lg color-yellow"></i>
-						      <i ng-show="tema.seleccionado == true" class="ion-ios-circle-filled icon-size-lg color-green"></i>
-						      {{tema.nombre}}
+						    <li class="item" ng-repeat="tema in irc.reunion.todosTemas" on-double-tap="irc.agregarTemaNotas(tema)" ng-class="(tema.seleccionado == false) ? '' : 'bg-color-green'  " style="padding-top: 5px; padding-bottom: 5px;">
+						    	<span ng-show="tema.seleccionado == false">{{tema.nombre}}</span>
+						      <span ng-show="tema.seleccionado == true"><strong>{{tema.nombre}}</strong></span>
 						    </li>
 							</ul>
 					  </ion-scroll>

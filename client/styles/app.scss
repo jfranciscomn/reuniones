@@ -12628,6 +12628,26 @@ ion-side-menu {
 	Para poner redondos es el height / el modificar 2.5 de la vista
 */
 
+.botonHoy {
+	background: rgba(254, 220, 53, 0.9); color: white;
+}
+
+.botonSemana {
+	background: rgba(131, 230, 158, 0.9); color: white;
+}
+
+.botonMes {
+	background: rgba(53, 198, 235, 0.9); color: white;
+}
+
+.botonFuturo {
+	background-color: #886aea; color: white;
+}
+
+.botonProxima {
+	background: rgba(232, 86, 89, 0.9); color: white;
+}
+
 .hoy {
 	width: 43.33%; height: 65%; float: left; position: absolute; left: 28.33%; top: 17.5%; border-radius: 50% 50% 50% 50% !important; background: rgba(254, 220, 53, 0.9); color: white;
 }
@@ -12645,7 +12665,7 @@ ion-side-menu {
 }
 
 .futuro {
-	width: 24%; height: 35%; float: right; position: absolute; right: 10%; top: 55%; border-radius: 50% 50% 50% 50% !important; background: rgba(232, 86, 89, 0.9); color: white;
+	width: 24%; height: 35%; float: right; position: absolute; right: 10%; top: 55%; border-radius: 50% 50% 50% 50% !important; background-color: #886aea; color: white;
 }
 
 .trans {
@@ -12752,6 +12772,10 @@ ion-side-menu {
     background-color: #fedc34 !important;
 }
 
+.bg-color-gray {
+    background-color: #e4e4e4 !important;
+}
+
 .color-green {
     color: #82e79d !important;
 }
@@ -12844,4 +12868,8 @@ div.hscroller {
 
 .listaInferior {
 	margin-top:66%;
+}
+
+.listaInferiorIPad {
+	margin-top:45px;
 }
