@@ -7,6 +7,15 @@ angular
 		this.acuerdoId = $stateParams.acuerdoId;
 		this.acuerdo = Acuerdos.findOne(this.acuerdoId)
 		console.log($stateParams)
+		this.subscribe('usuarios',()=>{
+			return [{}]
+		});
+		this.subscribe('AllCategorias',()=>{
+			return [{}]
+		});
+		this.subscribe('AllAcuerdos',()=>{
+			return [{}]
+		});
 		this.quitarhk=function(obj){
 			if(Array.isArray(obj)){
 				for (var i = 0; i < obj.length; i++) {

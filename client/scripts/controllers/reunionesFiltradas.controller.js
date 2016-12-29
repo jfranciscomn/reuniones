@@ -6,6 +6,15 @@ angular
 		this.listCanSwipe = true;
 		this.filtro = $stateParams.tipo;
 		this.isIPad = ionic.Platform.isIPad();
+		this.subscribe('usuarios',()=>{
+			return [{}]
+		});
+		this.subscribe('AllCategorias',()=>{
+			return [{}]
+		});
+		this.subscribe('AllReuniones',()=>{
+			return [{}]
+		});
 		if($stateParams.tipo == "vencidas"){
 			this.hoy = new Date;
 			this.fechaInicio = (this.hoy.getMonth()+1) + "/" +this.hoy.getDate() + "/" + this.hoy.getFullYear();

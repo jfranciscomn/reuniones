@@ -7,6 +7,9 @@ angular
 		this.categoriaId = $stateParams.categoriaId
 		this.categoria = Categorias.findOne(this.categoriaId)
 		this.$ionicHistory = $ionicHistory;
+		this.subscribe('AllCategorias',()=>{
+			return [{}]
+		});
 		this.helpers({
 			
 		});

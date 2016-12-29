@@ -6,6 +6,9 @@ angular
 		this.usuarioActual = {};
 		this.usuarioId = Meteor.userId();
 		window.rc = this;			
+		this.subscribe('usuarios',()=>{
+			return [{}]
+		});
 		this.helpers({
 			usuarioActual () {
 				return Meteor.users.findOne(Meteor.userId());

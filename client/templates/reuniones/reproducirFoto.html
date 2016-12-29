@@ -5,9 +5,13 @@
   </ion-header-bar>
   <ion-content>
 		<ion-slide-box >
-		  <ion-slide ng-repeat="foto in irc.fotos">
-		  	{{foto.data[0].fullPath}}
-		    <img ng-src="foto.data" width="80%" />
+		  <ion-slide class="box" ng-repeat="foto in irc.fotos">
+		  	
+		  
+		  
+            <img class="img-responsive" src="{{foto.data}}" style="padding-bottom: 0px;width: 100%;
+height: auto;">
+  
 		  </ion-slide>
 		</ion-slide-box>
   </ion-content>

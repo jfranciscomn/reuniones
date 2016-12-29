@@ -8,7 +8,11 @@ angular
 	    user: function(){
 	      return Meteor.users.findOne(Meteor.userId());
 	    },
-	  });	  
+	  });	
+	  this.subscribe('usuarios',()=>{
+			return [{}]
+		});
+		
 	
 		this.takePicture = function(){
 			this.editar = true;

@@ -4,7 +4,13 @@ angular
 		let rc = $reactive(this).attach($scope);
 		this.listCanSwipe = true;
 		window.rc = rc;
+		this.subscribe('usuarios',()=>{
+			return [{}]
+		});
 		
+		this.subscribe('AllReuniones',()=>{
+			return [{}]
+		});
 		this.quitarhk=function(obj){
 			if(Array.isArray(obj)){
 				for (var i = 0; i < obj.length; i++) {

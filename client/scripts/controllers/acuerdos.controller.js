@@ -9,6 +9,16 @@ angular
 		this.fmes = true;
 		this.ffuturo = true;
 		this.fvencidos = true;
+		this.subscribe('AllAcuerdos',()=>{
+			return [{}]
+		});
+		this.subscribe('AllCategorias',()=>{
+			return [{}]
+		});
+		this.subscribe('usuarios',()=>{
+			return [{}]
+		});
+
 		this.helpers({
 			acuerdos() {
 				var acuerdos = Acuerdos.find({responsables:{ $elemMatch: {user:Meteor.userId()}}}).fetch();

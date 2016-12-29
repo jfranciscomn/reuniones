@@ -5,6 +5,12 @@ angular
 		window.rc = rc;
 		this.verResponsables = false;
 		this.verSeguidores = false;
+		this.subscribe('acuerdo',()=>{
+			return [{acuerdoId:$stateParams.acuerdoId}]
+		});
+		this.subscribe('usuarios',()=>{
+			return [{}]
+		});
 		this.helpers({
 			acuerdo : function() {
 				var acuerdo = Acuerdos.findOne($stateParams.acuerdoId);

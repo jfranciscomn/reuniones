@@ -8,6 +8,15 @@ angular
 		this.opcion = {};
 		this.opcion.participantes = [];
 		this.registrados = "";
+		this.subscribe('usuarios',()=>{
+			return [{}]
+		});
+		this.subscribe('AllCategorias',()=>{
+			return [{}]
+		});
+		this.subscribe('AllReuniones',()=>{
+			return [{}]
+		});
 		this.quitarhk=function(obj){
 			if(Array.isArray(obj)){
 				for (var i = 0; i < obj.length; i++) {
@@ -208,11 +217,11 @@ angular
 			delete reunion._id;
 			if(estatus == 3){
 				var isIPad = ionic.Platform.isIPad();
-				if(isIPad){
+				//if(isIPad){
 					$state.go("app.iniciarReunionIpad", {reunionId : idTemp});
-				}else{
+				/*}else{
 					$state.go("app.iniciarReunionCel", {reunionId : idTemp});
-				}
+				}*/
 			}else if(estatus == 5){
 				
 			}
@@ -223,11 +232,11 @@ angular
 		
 		this.continuar = function(reunion){
 			var isIPad = ionic.Platform.isIPad();
-			if(isIPad){
+			//if(isIPad){
 				$state.go("app.iniciarReunionIpad", {reunionId : reunion._id});
-			}else{
+			/*}else{
 				$state.go("app.iniciarReunionCel", {reunionId : reunion._id});
-			}
+			}*/
 		}
 });
 

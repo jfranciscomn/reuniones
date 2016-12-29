@@ -7,6 +7,15 @@ angular
 		this.aceptada = true;
 		this.verNotas = false;
 		this.verGenerales = false;
+		this.subscribe('usuarios',()=>{
+			return [{}]
+		});
+		this.subscribe('AllCategorias',()=>{
+			return [{}]
+		});
+		this.subscribe('AllReuniones',()=>{
+			return [{}]
+		});
 		this.helpers({
 			reunion : function() {
 				var reunion = Reuniones.findOne($stateParams.reunionId);

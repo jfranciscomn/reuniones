@@ -11,6 +11,15 @@ angular
 		this.ffuturo = true;
 		this.fvencidas = true; 
 		this.isIPad = ionic.Platform.isIPad(); 
+		this.subscribe('usuarios',()=>{
+			return [{}]
+		});
+		this.subscribe('AllCategorias',()=>{
+			return [{}]
+		});
+		this.subscribe('AllReuniones',()=>{
+			return [{}]
+		});
 		this.helpers({
 			reuniones() {
 				return Reuniones.find({users:{ $elemMatch: {user : Meteor.userId(), estatus : 2} }});
