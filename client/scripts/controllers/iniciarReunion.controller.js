@@ -97,14 +97,17 @@ angular
 							rc.esFavorita = false;
 							
 						//Ver los temas como un listado con posibilidad de ser seleccionado.
-						var todosTemas = rc.miReunion.temas.split(', ');
-						rc.miReunion.todosTemas = [];
-						_.each(todosTemas, function(tema){
-							rc.miReunion.todosTemas.push({
-								nombre : tema,
-								seleccionado : false
+						console.log(rc.miReunion.temas);
+						if(rc.miReunion.temas != undefined){
+							var todosTemas = rc.miReunion.temas.split(', ');
+							rc.miReunion.todosTemas = [];
+							_.each(todosTemas, function(tema){
+								rc.miReunion.todosTemas.push({
+									nombre : tema,
+									seleccionado : false
+								})
 							})
-						})
+						}						
 					}
 				}
 				/*if(rc.miReunion.medios == undefined)
@@ -272,15 +275,7 @@ angular
 		    ]
 			});
 		}
-		
-		this.siguiente = function(reunion){
-			
-		}
-		
-		this.atras = function(reunion){
-			
-		}
-			
+				
 		//Action Sheet Participantes
 		this.mostrarOpcionesParticipantes = function(participante, index) {
 	   	var hideSheet = $ionicActionSheet.show({

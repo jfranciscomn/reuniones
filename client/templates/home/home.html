@@ -12,27 +12,27 @@
 		    {{ 'ACUERDOS' | translate }}
 		  </div>		  
 	    <div class="list">
-			  <a href="#" class="item item-icon-left">
+			  <a ui-sref="app.acuerdosFiltrados({tipo : 'vencidas'})" class="item item-icon-left">
 			    <i class="icon fa fa-calendar-minus-o"></i>
 					{{ 'ACUERDOSVENCIDOS' | translate }}
 			    <span class="badge bg-color-red text-white">{{hc.acuerdosVencidos}}</span>
 			  </a>			
-			  <a href="#" class="item item-icon-left">
+			  <a ui-sref="app.acuerdosFiltrados({tipo : 'hoy'})" class="item item-icon-left">
 			    <i class="icon fa fa-calendar-check-o"></i>
 		    {{ 'ACUERDOSHOY' | translate }}
 			    <span class="badge bg-color-yellow text-white">{{hc.acuerdosHoy}}</span>
 			  </a>			
-			  <a href="#" class="item item-icon-left">
+			  <a ui-sref="app.acuerdosFiltrados({tipo : 'semana'})" class="item item-icon-left">
 			    <i class="icon fa fa-calendar-o"></i>
 		    {{ 'ACUERDOSSEMANA' | translate }}
 			    <span class="badge bg-color-green text-white">{{hc.acuerdosSemana}}</span>
 			  </a>			
-			  <a href="#" class="item item-icon-left">
+			  <a ui-sref="app.acuerdosFiltrados({tipo : 'mes'})" class="item item-icon-left">
 			    <i class="icon fa fa-calendar"></i>
 		    {{ 'ACUERDOSMES' | translate }}
 			    <span class="badge bg-color-blue text-white">{{hc.acuerdosMes}}</span>
 			  </a>			  
-			  <a href="#" class="item item-icon-left">
+			  <a ui-sref="app.acuerdosFiltrados({tipo : 'futuro'})" class="item item-icon-left">
 			    <i class="icon fa fa-calendar-plus-o"></i>
 		    {{ 'ACUERDOSFUTUROS' | translate }}
 			    <span class="badge badge-royal text-white">{{hc.acuerdosFuturos}}</span>

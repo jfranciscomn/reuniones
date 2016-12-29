@@ -1,6 +1,6 @@
 angular
   .module('FLOKsports')
-  .controller('ReunionesFiltradasCtrl', function ReunionesFiltradasCtrl($scope, $reactive, $state, $stateParams, $ionicPopup) {
+  .controller('AcuerdosFiltradosCtrl', function AcuerdosFiltradosCtrl($scope, $reactive, $state, $stateParams, $ionicPopup) {
 		let rc = $reactive(this).attach($scope);
 		this.deviceWidth = $(".menuSuperior").width();
 		this.listCanSwipe = true;
@@ -14,7 +14,7 @@ angular
 		this.subscribe('AllCategorias',()=>{
 			return [{}]
 		});
-		this.subscribe('AllReuniones',()=>{
+		this.subscribe('AllAcuerdos',()=>{
 			return [{}]
 		});
 		if($stateParams.tipo == "vencidas"){
@@ -22,12 +22,18 @@ angular
 			rc.hoy = new Date;
 			rc.fechaInicio = (rc.hoy.getMonth()+1) + "/" +rc.hoy.getDate() + "/" + rc.hoy.getFullYear();
 			rc.helpers({
-				reuniones() {
+				acuerdos() {
 					console.log(rc.fechaInicio);
-					console.log(rc.fechaFin);
-					var reuniones =  Reuniones.find({users:{ $elemMatch: {user:Meteor.userId(), estatus : 2}},fecha : { $lt : new Date(rc.fechaInicio) }}).fetch();
-					console.log(reuniones);
-					return reuniones;
+					var acuerdos = Acuerdos.find({ 
+						$and : [
+							{$or : [
+								{responsables	:{ $elemMatch: {user:Meteor.userId()}}},
+								{seguidores		:{ $elemMatch: {user:Meteor.userId()}}}
+							]}, 
+							{fechaInicio : { $lt : new Date(rc.fechaInicio) }}
+						]}).fetch();
+					console.log(acuerdos);
+					return acuerdos;
 				}
 		});
 		}else if($stateParams.tipo == "hoy"){
@@ -36,12 +42,19 @@ angular
 			rc.fechaInicio = (rc.hoy.getMonth()+1) + "/" +rc.hoy.getDate() + "/" + rc.hoy.getFullYear();
 			rc.fechaFin = (rc.hoy.getMonth()+1) + "/" +rc.hoy.getDate()  + "/" + rc.hoy.getFullYear() + " " + "23:59:59";
 			rc.helpers({
-				reuniones () {
+				acuerdos () {
 					console.log(rc.fechaInicio);
 					console.log(rc.fechaFin);
-					var reuniones = Reuniones.find({users:{ $elemMatch: {user:Meteor.userId(), estatus : 2}},fecha : { $gte: new Date(rc.fechaInicio), $lt : new Date(rc.fechaFin) }}).fetch();
-					console.log(reuniones);
-					return reuniones;
+					var acuerdos = Acuerdos.find({ 
+					$and : [
+						{$or : [
+							{responsables	:{ $elemMatch: {user:Meteor.userId()}}},
+							{seguidores		:{ $elemMatch: {user:Meteor.userId()}}}
+						]}, 
+						{fechaInicio : { $gte: new Date(rc.fechaInicio), $lt : new Date(rc.fechaFin) }}
+					]}).fetch();
+					console.log(acuerdos);
+					return acuerdos;
 				}
 			});
 		}else if($stateParams.tipo == "semana"){
@@ -57,12 +70,19 @@ angular
 			rc.fechaFin = moment(rc.fechaInicio,'MM/DD/YYYY').add(5,'d').toDate();
 			rc.helpers({
 			
-				reuniones() {
+				acuerdos() {
 					console.log(rc.fechaInicio);
 					console.log(rc.fechaFin);
-					var reuniones = Reuniones.find({users:{ $elemMatch: {user:Meteor.userId(), estatus : 2}},fecha : { $gte: new Date(rc.fechaInicio), $lt : new Date(rc.fechaFin) }}).fetch();
-					console.log(reuniones);
-					return reuniones;
+					var acuerdos = Acuerdos.find({ 
+						$and : [
+							{$or : [
+								{responsables	:{ $elemMatch: {user:Meteor.userId()}}},
+								{seguidores		:{ $elemMatch: {user:Meteor.userId()}}}
+							]}, 
+							{fechaInicio : { $gte: new Date(rc.fechaInicio), $lt : new Date(rc.fechaFin)}}
+						]}).fetch();
+					console.log(acuerdos);
+					return acuerdos;
 				}
 			});
 		}else if($stateParams.tipo == "mes"){
@@ -76,12 +96,19 @@ angular
 			rc.fechaFin = (rc.ultimoDia.getMonth()+1) + "/" + rc.ultimoDia.getDate()  + "/" +  rc.ultimoDia.getFullYear() + " " + "23:59:59";
 			rc.helpers({
 			
-			reuniones() {
+			acuerdos() {
 				console.log(rc.fechaInicio);
 				console.log(rc.fechaFin);
-				var reuniones = Reuniones.find({users:{ $elemMatch: {user:Meteor.userId(), estatus : 2}},fecha : { $gte: new Date(rc.fechaInicio), $lt : new Date(rc.fechaFin) }}).fetch();
-				console.log(reuniones);
-				return reuniones;
+				var acuerdos =Acuerdos.find({ 
+					$and : [
+						{$or : [
+							{responsables	:{ $elemMatch: {user:Meteor.userId()}}},
+							{seguidores		:{ $elemMatch: {user:Meteor.userId()}}}
+						]},
+						{fechaInicio : { $gte: new Date(rc.fechaInicio), $lt : new Date(rc.fechaFin)}}
+					]}).fetch();
+				console.log(acuerdos);
+				return acuerdos;
 			},
 		});
 		}else if($stateParams.tipo == "futuras"){
@@ -89,24 +116,30 @@ angular
 			rc.hoy = new Date;
 			rc.y =rc.hoy.getFullYear(), rc.m =rc.hoy.getMonth();
 			rc.helpers({
-				reuniones() {
+				acuerdos() {
 					console.log(rc.fechaInicio);
 					console.log(rc.fechaFin);
-					var reuniones =  Reuniones.find({users:{ $elemMatch: {user:Meteor.userId(), estatus : 2}},
-									fecha : { $gt: new Date(rc.y, rc.m + 1, 0)}}).fetch();
-					console.log(reuniones);
-					return reuniones;
+					var acuerdos =  Acuerdos.find({ 
+					$and : [
+						{$or : [
+							{responsables	:{ $elemMatch: {user:Meteor.userId()}}},
+							{seguidores		:{ $elemMatch: {user:Meteor.userId()}}}
+						]}, 
+						{fechaInicio : { $gt: new Date(rc.y, rc.m + 1, 0)}}
+					]}).fetch();
+					console.log(acuerdos);
+					return acuerdos;
 				}
 			});
 		}
 		
 		
 				
-		this.detalleReunion = function(reunion){
-			if(reunion.owner == Meteor.userId()){
-				$state.go("app.editarReunion", {reunionId : reunion._id});
+		this.detalleAcuerdo = function(acuerdo){
+			if(acuerdo.owner == Meteor.userId()){
+				$state.go("app.editarAcuerdo", {acuerdoId : acuerdo._id});
 			}else{
-				$state.go("app.verReunion", {reunionId : reunion._id});
+				$state.go("app.verAcuerdo", {acuerdoId : acuerdo._id});
 			}
 		}
 });

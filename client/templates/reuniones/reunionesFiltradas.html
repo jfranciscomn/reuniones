@@ -11,10 +11,10 @@
   </ion-nav-title>
 	
   <ion-content>
-  	<div class="divider-title" ng-show="rc.tipo == 'vencidas'">{{ 'VENCIDAS' | translate }}</div>
-    <ul class="timeline" id="vencidas" ng-show="rc.tipo == 'vencidas'">
-      <li ng-repeat="reunion in rc.vencidas | orderBy:'fecha'">
-      	<a ng-click="rc.detalleReunion(reunion)" style="text-decoration: none; ">
+  	<div class="divider-title" ng-show="rfc.tipo == 'vencidas'">{{ 'VENCIDAS' | translate }}</div>
+    <ul class="timeline" id="vencidas" ng-show="rfc.tipo == 'vencidas'">
+      <li ng-repeat="reunion in rfc.reuniones | orderBy:'fecha'">
+      	<a ng-click="rfc.detalleReunion(reunion)" style="text-decoration: none; ">
           <div class="timeline-thumb bg-color-red timeline-icon">
             <i class="ion-close-round text-white" aria-hidden="true"></i>
           </div>
@@ -23,19 +23,19 @@
             <i class="icon ion-chevron-right icon-accessory" style="top: 20; position: absolute; right: 5px; color: #ccc; font-size: 16px;"></i>
             <p>{{reunion.ubicacion}}</p>	            
             <div class="timeline-stats">
-              <i class="ion-person color-green"></i> {{rc.getConfirmados(reunion.users)}}
-		          <i class="ion-person color-yellow"></i> {{rc.getPendientes(reunion.users)}}
-		          <i class="ion-person color-red"></i> {{rc.getRechazados(reunion.users)}}
+              <i class="ion-person color-green"></i> {{rfc.getConfirmados(reunion.users)}}
+		          <i class="ion-person color-yellow"></i> {{rfc.getPendientes(reunion.users)}}
+		          <i class="ion-person color-red"></i> {{rfc.getRechazados(reunion.users)}}
               <span class="pos-absolute-right"><i class="ion-ios-clock"></i> {{reunion.horaInicio|date:"HH:mm"}} </span>
             </div>
           </div>
       	</a>
       </li>
     </ul>
-	  <div class="divider-title" ng-show="rc.tipo == 'hoy' || rc.tipo == 'semana' || rc.tipo == 'mes'">{{ 'REUNIONES' | translate }}</div>
-    <ul class="timeline" id="hoy" ng-show="rc.tipo == 'hoy' || rc.tipo == 'semana' || rc.tipo == 'mes'">
-      <li ng-repeat="reunion in rc.reuniones | orderBy:'fecha'">
-      	<a ng-click="rc.detalleReunion(reunion)" style="text-decoration: none; ">
+	  <div class="divider-title" ng-show="rfc.tipo == 'hoy' || rfc.tipo == 'semana' || rfc.tipo == 'mes'">{{ 'REUNIONES' | translate }}</div>
+    <ul class="timeline" id="hoy" ng-show="rfc.tipo == 'hoy' || rfc.tipo == 'semana' || rfc.tipo == 'mes'">
+      <li ng-repeat="reunion in rfc.reuniones | orderBy:'fecha'">
+      	<a ng-click="rfc.detalleReunion(reunion)" style="text-decoration: none; ">
           <div class="timeline-thumb bg-color-yellow timeline-icon">
             <i class="fa fa-check text-white" aria-hidden="true"></i>
           </div>
@@ -44,19 +44,19 @@
             <i class="icon ion-chevron-right icon-accessory" style="top: 20; position: absolute; right: 5px; color: #ccc; font-size: 16px;"></i>
             <p>{{reunion.ubicacion}}</p>	            
             <div class="timeline-stats">
-              <i class="ion-person color-green"></i> {{rc.getConfirmados(reunion.users)}}
-		          <i class="ion-person color-yellow"></i> {{rc.getPendientes(reunion.users)}}
-		          <i class="ion-person color-red"></i> {{rc.getRechazados(reunion.users)}}
+              <i class="ion-person color-green"></i> {{rfc.getConfirmados(reunion.users)}}
+		          <i class="ion-person color-yellow"></i> {{rfc.getPendientes(reunion.users)}}
+		          <i class="ion-person color-red"></i> {{rfc.getRechazados(reunion.users)}}
               <span class="pos-absolute-right"><i class="ion-ios-clock"></i> {{reunion.horaInicio|date:"HH:mm"}} </span>
             </div>
           </div>
       	</a>
       </li>
     </ul>
-    <div class="divider-title" ng-show="rc.tipo == 'futuro'">{{ 'FUTUROS' | translate }}</div>
-    <ul class="timeline" id="futuras" ng-show="rc.tipo == 'futuro'">
-      <li ng-repeat="reunion in rc.futuras | orderBy:'fecha'">
-        <a ng-click="rc.detalleReunion(reunion)" style="text-decoration: none; ">
+    <div class="divider-title" ng-show="rfc.tipo == 'futuro'">{{ 'FUTUROS' | translate }}</div>
+    <ul class="timeline" id="futuras" ng-show="rfc.tipo == 'futuro'">
+      <li ng-repeat="reunion in rfc.reuniones | orderBy:'fecha'">
+        <a ng-click="rfc.detalleReunion(reunion)" style="text-decoration: none; ">
           <div class="timeline-thumb bg-color-red timeline-icon">
             <i class="fa fa-list"></i>
           </div>
@@ -65,9 +65,9 @@
             <i class="icon ion-chevron-right icon-accessory" style="top: 20; position: absolute; right: 5px; color: #ccc; font-size: 16px;"></i>
             <p>{{reunion.ubicacion}}</p>
             <div class="timeline-stats">
-              <i class="ion-person color-green"></i> {{rc.getConfirmados(reunion.users)}}
-		          <i class="ion-person color-yellow"></i> {{rc.getPendientes(reunion.users)}}
-		          <i class="ion-person color-red"></i> {{rc.getRechazados(reunion.users)}}
+              <i class="ion-person color-green"></i> {{rfc.getConfirmados(reunion.users)}}
+		          <i class="ion-person color-yellow"></i> {{rfc.getPendientes(reunion.users)}}
+		          <i class="ion-person color-red"></i> {{rfc.getRechazados(reunion.users)}}
               <span class="pos-absolute-right"><i class="ion-ios-clock"></i> {{reunion.horaInicio|date:"HH:mm"}} </span>
             </div>
           </div>

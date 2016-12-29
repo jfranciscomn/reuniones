@@ -1,0 +1,89 @@
+<ion-view class="layouts-view">
+	
+  <ion-nav-buttons side="left">
+    <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+  </ion-nav-buttons>
+  <ion-nav-buttons side="right">
+    <button menu-toggle="right" class="button button-icon icon ion-plus" ui-sref="app.nuevoAcuerdo"></button>
+  </ion-nav-buttons>
+  <ion-nav-title>
+    <span class="font-light">{{ 'ACUERDOS' | translate }}</span>
+  </ion-nav-title>
+	
+  <ion-content>
+  	<div class="divider-title" ng-show="afc.tipo == 'vencidas'">{{ 'VENCIDAS' | translate }}</div>
+    <ul class="timeline" id="vencidas" ng-show="afc.tipo == 'vencidas'">
+      <li ng-repeat="acuerdo in afc.acuerdos | orderBy:'fecha'">
+      	<a ng-click="afc.detalleAcuerdo(acuerdo)" style="text-decoration: none; ">
+          <div class="timeline-thumb bg-color-red timeline-icon">
+            <i class="ion-close-round text-white" aria-hidden="true"></i>
+          </div>
+          <div class="timeline-item">
+            <h4 class="font-light">{{acuerdo.titulo}}</h4>
+            <i class="icon ion-chevron-right icon-accessory" style="top: 20; position: absolute; right: 5px; color: #ccc; font-size: 16px;"></i>
+            <p>{{acuerdo.descripcion}}</p>	            
+            <div class="timeline-stats">
+              <i class="ion-person color-green"></i> {{afc.getConfirmados(acuerdo.responsables)}}
+		          <i class="ion-person color-yellow"></i> {{afc.getPendientes(acuerdo.responsables)}}
+		          <i class="ion-person color-red"></i> {{afc.getRechazados(acuerdo.responsables)}}
+              <span class="pos-absolute-right"><i class="ion-ios-clock"></i> {{acuerdo.fechaInicio|date:"HH:mm"}} </span>
+            </div>
+          </div>
+      	</a>
+      </li>
+    </ul>
+	  <div class="divider-title" ng-show="afc.tipo == 'hoy' || afc.tipo == 'semana' || afc.tipo == 'mes'">{{ 'ACUERDOS' | translate }}</div>
+    <ul class="timeline" id="hoy" ng-show="afc.tipo == 'hoy' || afc.tipo == 'semana' || afc.tipo == 'mes'">
+      <li ng-repeat="acuerdo in afc.acuerdos | orderBy:'fecha'">
+      	<a ng-click="afc.detalleAcuerdo(acuerdo)" style="text-decoration: none; ">
+          <div class="timeline-thumb bg-color-yellow timeline-icon">
+            <i class="fa fa-check text-white" aria-hidden="true"></i>
+          </div>
+          <div class="timeline-item">
+            <h4 class="font-light">{{acuerdo.titulo}}</h4>
+            <i class="icon ion-chevron-right icon-accessory" style="top: 20; position: absolute; right: 5px; color: #ccc; font-size: 16px;"></i>
+            <p>{{acuerdo.descripcion}}</p>	            
+            <div class="timeline-stats">
+              <i class="ion-person color-green"></i> {{afc.getConfirmados(acuerdo.responsables)}}
+		          <i class="ion-person color-yellow"></i> {{afc.getPendientes(acuerdo.responsables)}}
+		          <i class="ion-person color-red"></i> {{afc.getRechazados(acuerdo.responsables)}}
+              <span class="pos-absolute-right"><i class="ion-ios-clock"></i> {{acuerdo.fechaInicio|date:"HH:mm"}} </span>
+            </div>
+          </div>
+      	</a>
+      </li>
+    </ul>
+    <div class="divider-title" ng-show="afc.tipo == 'futuro'">{{ 'FUTUROS' | translate }}</div>
+    <ul class="timeline" id="futuras" ng-show="afc.tipo == 'futuro'">
+      <li ng-repeat="acuerdo in afc.acuerdos | orderBy:'fecha'">
+        <a ng-click="afc.detalleAcuerdo(acuerdo)" style="text-decoration: none; ">
+          <div class="timeline-thumb bg-color-red timeline-icon">
+            <i class="fa fa-list"></i>
+          </div>
+          <div class="timeline-item">
+            <h4 class="font-light">{{acuerdo.titulo}}</h4>
+            <i class="icon ion-chevron-right icon-accessory" style="top: 20; position: absolute; right: 5px; color: #ccc; font-size: 16px;"></i>
+            <p>{{acuerdo.descripcion}}</p>
+            <div class="timeline-stats">
+              <i class="ion-person color-green"></i> {{afc.getConfirmados(acuerdo.responsables)}}
+		          <i class="ion-person color-yellow"></i> {{afc.getPendientes(acuerdo.responsables)}}
+		          <i class="ion-person color-red"></i> {{afc.getRechazados(acuerdo.responsables)}}
+              <span class="pos-absolute-right"><i class="ion-ios-clock"></i> {{acuerdo.fechaInicio|date:"HH:mm"}} </span>
+            </div>
+          </div>
+        </a>
+      </li>
+    </ul>
+  </ion-content>
+</ion-view>
+<style>
+	.bar-header {
+	  background-color: #fedc34;
+	  .title, .button {
+	    color: #000000 !important;
+	    * {
+	      color: #000000 !important;
+	    }
+	  }
+	}
+</style>

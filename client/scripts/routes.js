@@ -700,6 +700,15 @@ angular.module('FLOKsports').config(['$injector', function ($injector) {
       }
     }
   })
+  .state('app.acuerdosFiltrados', {
+    url: '/acuerdosFiltrados/:tipo',
+    views: {
+      'menuContent': {
+        templateUrl: 'client/templates/acuerdos/acuerdosFiltrados.html',
+        controller: 'AcuerdosFiltradosCtrl as afc'
+      }
+    }
+  })
   ;
  
 	$urlRouterProvider.otherwise('/login');
