@@ -118,7 +118,7 @@ angular
 			},
 			registrados : function() {
 				return Meteor.users.find({},{},{ sort : { "profile.name" : 1 }}).fetch();
-			},
+			}
 		});
 		
 		if(this.getReactively("reunion")){
@@ -134,27 +134,22 @@ angular
 			});
 		}
 		
-		this.selHoraInicioReal = function(){
-			var myPopup = $ionicPopup.show({
-		    template: '<div class="item" date ion-datetime-picker ng-model="irc.reunion.fechaIniciada" button-ok="Aceptar" button-cancel="Cancelar" monday-first title="Fecha"></div>',
-		    title: 'Hora de Inicio Real',
-		    subTitle: 'Por favor indique la hora de inicio de la reunión',
-		    scope: $scope,
-		    buttons: [
+		this.eliminar = function(reunion){
+			var confirmPopup = $ionicPopup.confirm({
+				title: 'Eliminar reunión',
+				template: 'Está seguro que quiere eliminar de la reunión?',
+				buttons: [
 		      { text: 'Cancelar' },
 		      {
-		        text: '<b>Guardar</b>',
+		        text: '<b>Eliminar</b>',
 		        type: 'button-positive',
 		        onTap: function(e) {
-		          console.log("fecha Iniciada", rc.reunion.fechaIniciada);
+			        Reuniones.update(reunion._id, {$set : {estatus : 5}})
+		          $ionicHistory.goBack(-2);
 		        }
 		      }
 		    ]
-		  });
-		
-		  myPopup.then(function(res) {
-		    console.log('Tapped!', res);
-		  });
+			});
 		}
 		
 		this.cerrar = function(){
