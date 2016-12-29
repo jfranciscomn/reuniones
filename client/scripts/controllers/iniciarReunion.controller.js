@@ -37,8 +37,6 @@ angular
 		this.subscribe('usuarios',()=>{
 			return [{}]
 		});
-
-
 		
 		this.quitarhk=function(obj){
 			if(Array.isArray(obj)){
@@ -87,6 +85,8 @@ angular
 								}
 							})
 						});
+						
+						rc.miReunion.fechaIniciada = (rc.miReunion.fechaIniciada == undefined) ? new Date() : rc.miReunion.fechaIniciada;
 						 
 						//Poder agregar notas a la reunión						
 						if(rc.miReunion.notas == undefined)
@@ -236,7 +236,55 @@ angular
 					}
 				})
 			});
-		}			
+		}
+		
+		this.selHoraInicioReal = function(){
+			var myPopup = $ionicPopup.show({
+		    template: '<div class="item" date ion-datetime-picker ng-model="irc.reunion.fechaIniciada" button-ok="Aceptar" button-cancel="Cancelar" monday-first title="Fecha"></div>',
+		    title: 'Hora de Inicio Real',
+		    subTitle: 'Por favor indique la hora de inicio de la reunión',
+		    scope: $scope,
+		    buttons: [
+		      { text: 'Cancelar' },
+		      {
+		        text: '<b>Guardar</b>',
+		        type: 'button-positive',
+		        onTap: function(e) {
+		          console.log("fecha Iniciada", rc.reunion.fechaIniciada);
+		        }
+		      }
+		    ]
+		  });
+		
+		  myPopup.then(function(res) {
+		    console.log('Tapped!', res);
+		  });
+		}
+		
+		this.cerrar = function(){
+			var confirmPopup = $ionicPopup.confirm({
+				title: 'Salir de la reunión',
+				template: 'Está seguro que quiere salir de la reunión?',
+				buttons: [
+		      { text: 'Cancelar' },
+		      {
+		        text: '<b>Ok</b>',
+		        type: 'button-positive',
+		        onTap: function(e) {
+		          $ionicHistory.goBack();
+		        }
+		      }
+		    ]
+			});
+		}
+		
+		this.siguiente = function(reunion){
+			
+		}
+		
+		this.atras = function(reunion){
+			
+		}
 			
 		//Action Sheet Participantes
 		this.mostrarOpcionesParticipantes = function(participante, index) {
@@ -461,8 +509,21 @@ angular
 	  
 	  //Mostrar modal para seleccionar participantes
 	  this.selParticipantes = function() {
-	    $scope.modal.show();
-	  };
+		  _.each(rc.registrados, function(registrado, index){
+				console.log(index, "registrado", registrado);
+				_.each(rc.reunion.users, function(invitado, indexInvitado){
+					console.log(indexInvitado, "invitado", invitado)
+					if(registrado._id == invitado.user){
+						registrado.invitado = true;
+						registrado.estatus = invitado.estatus;
+					}
+				})
+				if(Meteor.userId() == registrado._id){
+					rc.registrados.splice(index, 1);
+				}
+				$scope.modal.show();
+	  	});
+	  }
 	  
 	  //Cerrar modal para participantes
 	  this.cerrarModalParticipantes = function() {

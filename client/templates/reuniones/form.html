@@ -21,7 +21,7 @@
 	      <span class="input-label">{{ 'FECHA' | translate}}</span>
         {{nrc.reunion.fecha | date: "dd-MM-yyyy"}}
 	    </div>
-			<div class="item" time ion-datetime-picker ng-model="nrc.reunion.horaInicio">
+			<div class="item" time ion-datetime-picker ng-model="nrc.reunion.horaInicio" ng-change="nrc.aumentarHoraFin(nrc.reunion.horaInicio)">
 	      <span class="input-label">{{ 'HORAINICIO' | translate}}</span>
         {{nrc.reunion.horaInicio | date : "HH:mm a"}}
 	    </div>
