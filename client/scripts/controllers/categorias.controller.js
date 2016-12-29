@@ -22,11 +22,12 @@ angular
 			
 			confirmPopup.then(function(res) {
 				if(res) {
-					Categorias.update(categoria_id, { $set : {estatus : false}});		
+					Categorias.update(categoria._id, { $set : {estatus : false}});		
 				}
 			});
 			
 		}
+		
 		
 		this.doRefresh = function(){
 			alert("refresh");

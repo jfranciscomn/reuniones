@@ -47,6 +47,7 @@ angular.module('FLOKsports').config(function ($translateProvider) {
     		//Nuevo Acuerdo, Acuerdo, Nueva Reunion
     		NUEVOACUERDO: 'New action item',
     		CATEGORIA: 'Category',
+        CATEGORIAS: 'Categories',
     		ACUERDO: 'Action item',
     		DESCRIPCION: 'Description',
     		FECHAINICIO: 'Start date',
@@ -177,6 +178,7 @@ angular.module('FLOKsports').config(function ($translateProvider) {
     		//Nuevo Acuerdo, Acuerdo, Nueva Reunion
     		NUEVOACUERDO: 'Nuevo acuerdo',
     		CATEGORIA: 'Categoría',
+        CATEGORIAS: 'Categorias',
     		ACUERDO: 'Acuerdo',
     		DESCRIPCION: 'Descripción',
     		FECHAINICIO: 'Fecha inicio',
@@ -307,6 +309,7 @@ angular.module('FLOKsports').config(function ($translateProvider) {
     		//Nuevo Acuerdo, Acuerdo, Nueva Reunion
     		NUEVOACUERDO: 'Novo acordo',
     		CATEGORIA: 'Categoria',
+        CATEGORIAS: 'Categorias',
     		ACUERDO: 'Acordo',
     		DESCRIPCION: 'Descrição',
     		FECHAINICIO: 'Data de início',

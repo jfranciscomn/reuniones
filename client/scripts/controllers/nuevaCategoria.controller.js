@@ -15,6 +15,7 @@ angular
 		});
 
 		this.save = function(){
+			this.categoria.owner=Meteor.userId();
 			if(this.categoriaId){
 				delete this.categoria._id
 				Categorias.update({_id:this.categoriaId},{$set:this.categoria});
