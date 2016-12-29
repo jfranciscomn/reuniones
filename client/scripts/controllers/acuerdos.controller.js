@@ -3,12 +3,9 @@ angular
   .controller('AcuerdosCtrl', function AcuerdosCtrl($scope, $reactive, $state, $stateParams, $ionicPopup) {
 		let rc = $reactive(this).attach($scope);
 		window.rc = rc;
-		console.log("1")
 		$scope.$on("$ionicView.afterEnter", function(){
-			console.log("2")
 		   rc.deviceWidthA = $(".menuSuperior").width();
 		});
-		console.log("3")
 		this.listCanSwipe = true;
 		this.fhoy = true;
 		this.fsemana = true;

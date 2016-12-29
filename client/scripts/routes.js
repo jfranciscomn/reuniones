@@ -541,6 +541,15 @@ angular.module('FLOKsports').config(['$injector', function ($injector) {
       }
     }
   })
+  .state('app.siguienteReunion', {
+    url: '/siguienteReunion/:reunionId/:siguiente',
+    views: {
+      'menuContent': {
+        templateUrl: 'client/templates/reuniones/form.html',
+        controller: 'NuevaReunionCtrl as nrc'
+      }
+    }
+  })
   .state('app.iniciarReunionIpad', {
     url: '/iniciarReunionIpad/:reunionId',
     views: {

@@ -45,8 +45,23 @@ angular
 				return Categorias.find();
 			},
 			reunion : function() {
-				if($stateParams.reunionId != undefined){
+				console.log("state", $stateParams)
+				if($stateParams.reunionId != undefined && $stateParams.siguiente == undefined){
 					var reunion = Reuniones.findOne($stateParams.reunionId);	
+				}else if($stateParams.reunionId != undefined && $stateParams.siguiente != undefined){
+					var reunion = Reuniones.findOne($stateParams.reunionId);	
+					delete reunion._id;
+					reunion.estatus = 1;
+					reunion.notas = "";
+					reunion.fecha = new Date();
+					delete reunion.fechaIniciada;
+					_.each(reunion.users, function(participante){
+						if(participante.user != reunion.owner){
+							participante.asistio = false;
+							participante.estatus = 1;
+						}						
+					});
+					console.log("reunionSiguiente", reunion);
 				}else{
 					reunion={users:[{user:Meteor.userId(), estatus : 2, invitado : true}]};
 					reunion.createdAt = new Date();
@@ -142,7 +157,7 @@ angular
 		this.save	= function(){
 			this.quitarhk(this.reunion);
 			
-			if($stateParams.reunionId){
+			if($stateParams.reunionId != undefined && $stateParams.siguiente != undefined){
 				delete this.reunion._id
 				this.quitarhk(this.reunion);
 				_.each(this.reunion.users, function(invitado){

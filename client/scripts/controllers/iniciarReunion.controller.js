@@ -205,16 +205,15 @@ angular
 				}
 			});	
 		}
+		
 		this.reunionAnterior= function () {
 			var confirmPopup = $ionicPopup.confirm({
-    			title: 'Reunion Anterior',
-    			template: '¿Usted esta seguro que desea ir a la reunion anterior?',
-    			cancelText: 'No',
-    			okText: 'Si'
-   			});
-
+  			title: 'Reunion Anterior',
+  			template: '¿Usted esta seguro que desea ir a la reunion anterior?',
+  			cancelText: 'No',
+  			okText: 'Si'
+ 			});
    			
-
 			confirmPopup.then(function(res) {
 				if(res) {
 					var anterior = rc.getAnterior();
@@ -238,6 +237,10 @@ angular
 				//console.log('You are not sure');
 				}
 			});	
+		}
+		
+		this.planearSiguienteReunion = function(reunion) {
+			$state.go("app.siguienteReunion", {reunionId : reunion._id, siguiente : true});
 		}
 
 

@@ -51,7 +51,7 @@
 							  <p>Duración <button class="button button-small" ng-click="irc.stopTimer()"><i class="icon ion-stop"></i></button></p>
 							   <div chrono-timer timer-name="myTimer" start-time="irc.time">
 							        {{ hours }}:{{ minutes|zeropad }}:{{ seconds|zeropad }}
-							    </div>
+							    </div><br/>
 							  <button class="button icon ion-pricetag button-small"></button>
 						  </div>
 						</div>
@@ -137,7 +137,7 @@
 				  <div class="item item-text-wrap">
 				    <ion-scroll direction="y" style="height: 200px">
 					    <ul class="list">
-						    <li class="item" ng-repeat="acuerdo in irc.acuerdosRetrasados">
+						    <li class="item" ng-repeat="acuerdo in irc.acuerdosRetrasados" >
 						      {{acuerdo.titulo}}
 						    </li>
 							</ul>
@@ -166,6 +166,9 @@
 				<div class="card">
 				  <div class="item item-divider inicioReunionCard">
 				    Siguiente reunión
+				    <a ng-click="irc.planearSiguienteReunion(irc.reunion)" class="item-icon-right">
+					    <i class="icon ion-plus" style="font-size: 10pt;"></i>
+					  </a>
 				  </div>
 				  <div class="item item-text-wrap">
 				    This is a 
