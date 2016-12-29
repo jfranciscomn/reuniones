@@ -1,16 +1,17 @@
 <ion-modal-view>
   <ion-header-bar>
-    <h1 class="title">Imagen</h1>
-    <button class="button button-clear color-black button-primary" ng-click="irc.cerrarModalFoto()">Listo</button>
+    <h1 class="title">Video</h1>
+    <button class="button button-clear color-black button-primary" ng-click="irc.cerrarModalVideo()">Listo</button>
   </ion-header-bar>
   <ion-content>
 		<ion-slide-box >
 		  <ion-slide class="box" ng-repeat="video in irc.videos">
 		  	
 
-  			<video width="320" height="240" controls>
-			  <source src="{{audio.data}}">
-			  
+  			<video 	style="padding-bottom: 0px;width: 100%;
+height: auto;" controls>
+	
+			   <source src="{{irc.trustSrc(video.data)}}" >
 			</video>
 		  </ion-slide>
 		</ion-slide-box>
