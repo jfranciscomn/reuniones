@@ -287,8 +287,21 @@ angular
 	  
 	  //Mostrar modal para seleccionar participantes
 	  this.selParticipantes = function() {
-	    $scope.modal.show();
-	  };
+		  _.each(rc.registrados, function(registrado, index){
+				console.log(index, "registrado", registrado);
+				_.each(rc.reunion.users, function(invitado, indexInvitado){
+					console.log(indexInvitado, "invitado", invitado)
+					if(registrado._id == invitado.user){
+						registrado.invitado = true;
+						registrado.estatus = invitado.estatus;
+					}
+				})
+				if(Meteor.userId() == registrado._id){
+					rc.registrados.splice(index, 1);
+				}
+				$scope.modal.show();
+	  	});
+	  }
 	  
 	  //Cerrar modal para participantes
 	  this.cerrarModalParticipantes = function() {

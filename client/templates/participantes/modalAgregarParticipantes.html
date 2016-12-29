@@ -9,11 +9,11 @@
 		    <i class="icon ion-search placeholder-icon"></i>
 		    <input type="text" placeholder="Buscar" ng-model="rc.buscar">
 		  </label>
-		  <ion-checkbox ng-repeat='participante in irc.registrados | filter:rc.buscar | orderBy : "profile.name"' ng-model="participante.estatus" ng-click='irc.agregarParticipante(participante, $index)'>
+		  <ion-checkbox ng-repeat='participante in irc.registrados | filter:rc.buscar | orderBy : "profile.name"'  ng-model="participante.invitado" ng-click='irc.agregarParticipante(participante, $index)'>
 		  	{{participante.profile.name}}
 		  	<i ng-if="participante.estatus == 1" class="ion-ios-circle-filled icon-size-lg color-yellow" style="top: 20px; position: absolute; right: 15px;"></i>
 				<i ng-if="participante.estatus == 2" class="ion-ios-circle-filled icon-size-lg color-green" style="top: 20px; position: absolute; right: 15px;"></i>
-				<i ng-if="participante.estatus == 6" class="ion-ios-circle-filled icon-size-lg color-red" style="top: 20px; position: absolute; right: 15px;"></i>
+				<i ng-if="participante.estatus == 7" class="ion-ios-circle-filled icon-size-lg color-red" style="top: 20px; position: absolute; right: 15px;"></i>
 		  </ion-checkbox>
 		</ion-list>
   </ion-content>
