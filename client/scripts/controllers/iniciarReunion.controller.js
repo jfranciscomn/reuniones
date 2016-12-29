@@ -56,13 +56,27 @@ angular
 			return obj;
 		}
 		this.stopTimer=function(){
-			if(this.timerStop)
+			if(this.timerStop){
 				chronoService.stop();
-			else
+				this.timestop  = Date.now();
+				 chronoService.removeTimer('myTimer', { interval: 500 });
+			}
+			else{
+				
+				var x = Date.now()-this.timestop;
+				//console.log(this.timestop)
+				//console.log(x)
+				//console.log(this.time)
+				this.time =this.time+x;
+				chronoService.addTimer('myTimer', { interval: 500 });
+				//chronoService.timers.myTimer.started=this.time
+				//console.log(this.time)
+				//console.log(chronoService.timers.myTimer)
 				chronoService.start();
+			}
 			this.timerStop=!this.timerStop
 			//console.log('stop');
-			//console.log(adc.timers.myTimer.current)
+			
 		}
 		this.helpers({
 			registrados : function() {
@@ -72,6 +86,7 @@ angular
 				return Categorias.findOne(this.getReactively("reunion.categoria_id"));
 			},
 			miReunion : function() {
+				console.log(Reuniones.findOne($stateParams.reunionId))
 				return Reuniones.findOne($stateParams.reunionId);
 			},
 			reuniones : function () {
@@ -576,6 +591,46 @@ angular
 		  }
 	  }
 	  
+	  this.enviarEmail = function(){
+	  		var correos = [];
+	  		console.log("enviar Email")
+	  		for (userid in  this.reunion.users){
+	  			var participante = this.reunion.users[userid];
+	  			correos.push(participante.invitado.profile.email);
+	  		}
+	  		var temas="<h1>Temas</h1><ul>"
+	  		for(var temaid in this.reunion.todosTemas){
+	  			var tema = this.reunion.todosTemas[temaid];
+	  			temas+= "<li>"+tema.nombre+"</li>"
+	  		}
+	  		temas+="</ul>"
+
+	  		var participantes="<h1>Temas</h1><ul>"
+	  		for(var userid in this.reunion.users){
+	  			var participante = this.reunion.users[userid];
+	  			participantes+= "<li>"+participante.invitado.profile.name+"("+participante.invitado.profile.email+")</li>"
+	  		}
+	  		participantes+="</ul>"
+
+	  		var categoria = "";//"<h1>"+this.reunion.categoria.nombre+"</h1>"
+
+	  		$cordovaEmailComposer.isAvailable().then(function() {
+			   console.log("esta disponible");
+			 }, function () {
+			   console.log("no está disponible");
+			 });
+			
+			  var email = {
+			    to: correos,
+			    subject: 'Reunion: '+this.reunion.titulo,
+			    body: categoria+participantes+temas,
+			    isHtml: true
+			  };
+			
+			 $cordovaEmailComposer.open(email).then(null, function () {
+			   console.log("cancelado")
+			 });
+	  }
 	  this.finalizar = function() {
 		  var tempId = rc.reunion._id;
 			delete rc.reunion._id;
@@ -583,24 +638,7 @@ angular
 		  this.quitarhk(rc.reunion)
 		  //Reuniones.update({_id : tempId},{ $set : rc.reunion });
 		  rc.reunion._id = tempId;
-			$cordovaEmailComposer.isAvailable().then(function() {
-			   console.log("esta disponible");
-			 }, function () {
-			   console.log("no está disponible");
-			 });
-			
-			  var email = {
-			    to: 'max@mustermann.de',
-			    cc: 'erika@mustermann.de',
-			    bcc: ['john@doe.com', 'jane@doe.com'],
-			    subject: 'Cordova Icons',
-			    body: 'How are you? Nice greetings from Leipzig',
-			    isHtml: true
-			  };
-			
-			 $cordovaEmailComposer.open(email).then(null, function () {
-			   console.log("cancelado")
-			 });
+			this.enviarEmail()
 			$ionicHistory.goBack();
 	  }
 	  
