@@ -1,6 +1,6 @@
 angular
 	.module('FLOKsports')
-	.controller('IniciarReunionCtrl', function NuevaReunionCtrl($scope, $reactive, $state, $stateParams, $ionicPopup, 
+	.controller('IniciarReunionCtrl', function NuevaReunionCtrl($scope, $sce, $reactive, $state, $stateParams, $ionicPopup, 
 			$ionicHistory, $ionicModal, $ionicActionSheet, $timeout, $cordovaEmailComposer, $cordovaCapture, $cordovaFile) {
 
 
@@ -240,6 +240,10 @@ angular
 				})
 			});
 		}
+		this.trustSrc = function(src) {
+		    return $sce.trustAsResourceUrl(src);
+		  }
+
 		
 		this.eliminar = function(reunion){
 			var confirmPopup = $ionicPopup.confirm({
