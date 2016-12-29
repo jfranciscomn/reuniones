@@ -2,14 +2,21 @@ angular
   .module('FLOKsports')
   .controller('AcuerdosCtrl', function AcuerdosCtrl($scope, $reactive, $state, $stateParams, $ionicPopup) {
 		let rc = $reactive(this).attach($scope);
-		this.deviceWidth = $(".menuSuperior").width();
+		window.rc = rc;
+		console.log("1")
+		$scope.$on("$ionicView.afterEnter", function(){
+			console.log("2")
+		   rc.deviceWidthA = $(".menuSuperior").width();
+		});
+		console.log("3")
 		this.listCanSwipe = true;
 		this.fhoy = true;
 		this.fsemana = true;
 		this.fmes = true;
 		this.ffuturo = true;
 		this.fvencidos = true;
-
+		this.isIPad = ionic.Platform.isIPad();
+		
 		this.subscribe('AllAcuerdos',()=>{
 			return [{}]
 		});
@@ -19,10 +26,7 @@ angular
 		this.subscribe('usuarios',()=>{
 			return [{}]
 		});
-
-		this.isIPad = ionic.Platform.isIPad(); 
-		console.log("isIpad", this.isIPad);
-
+		
 		this.helpers({
 			acuerdos() {
 				var acuerdos = Acuerdos.find({responsables:{ $elemMatch: {user:Meteor.userId()}}}).fetch();

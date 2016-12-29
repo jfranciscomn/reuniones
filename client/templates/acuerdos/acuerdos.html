@@ -19,7 +19,8 @@
 		</div>
   </div>
 	<!-- Botones cuando no es iPad -->
-  <div class="bar bar-subheader menuSuperior" style="height: {{ac.deviceWidth / 1.5}}px;" ng-if="!ac.isIPad">
+  <div class="bar bar-subheader menuSuperior" style="height: {{ac.deviceWidthA / 1.5}}px;" ng-if="!ac.isIPad">
+	  {{ac.deviceWidthA}}
 	  <a class="button hoy" ng-click="ac.cambiarFiltro('hoy')"> 
 	  	<i class="fa fa-check" style="font-size: 50pt; color: white; margin-top:10px;"></i><br/>
 	  	<div style="font-size: 20pxpt; color: white; margin: -10px 0px 0px 0px; ">{{ac.hoy.length}}</div>

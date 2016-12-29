@@ -3,14 +3,20 @@ angular
   .controller('ReunionesCtrl', function ReunionesCtrl($scope, $reactive, $state, $stateParams, $ionicPopup) {
 		let rc = $reactive(this).attach($scope);
 		window.rc = rc;
-		this.deviceWidth = $(".menuSuperior").width();
+		console.log("1")
+		$scope.$on("$ionicView.afterEnter", function(){
+			console.log("2")
+		   rc.deviceWidthR = $(".menuSuperior").width();
+		});
+		console.log("3")
 		this.listCanSwipe = true;
 		this.fhoy = true;
 		this.fsemana = true;
 		this.fmes = true;
 		this.ffuturo = true;
 		this.fvencidas = true; 
-		this.isIPad = ionic.Platform.isIPad(); 
+		this.isIPad = ionic.Platform.isIPad();
+		 
 		this.subscribe('usuarios',()=>{
 			return [{}]
 		});
@@ -20,6 +26,7 @@ angular
 		this.subscribe('AllReuniones',()=>{
 			return [{}]
 		});
+		
 		this.helpers({
 			reuniones() {
 				return Reuniones.find({users:{ $elemMatch: {user : Meteor.userId(), estatus : 2} }});
