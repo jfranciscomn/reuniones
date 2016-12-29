@@ -8,7 +8,18 @@
   <ion-nav-title>
     <span class="font-light">{{ 'ACUERDOS' | translate}}</span>
   </ion-nav-title>
-  <div class="bar bar-subheader menuSuperior" style="height: {{ac.deviceWidth / 1.5}}px;">
+  <!-- Botones cuando es iPad -->
+  <div class="bar bar-subheader" ng-if="ac.isIPad">
+	  <div class="button-bar">
+		  <a class="button botonHoy" ng-click="ac.cambiarFiltro('hoy')">Hoy</a>
+		  <a class="button botonSemana" ng-click="ac.cambiarFiltro('semana')">Semana</a>
+		  <a class="button botonMes" ng-click="ac.cambiarFiltro('mes')">Mes</a>
+		  <a class="button botonFuturo" ng-click="ac.cambiarFiltro('futuro')">Futuro</a>
+		  <a class="button botonProxima" ng-click="ac.cambiarFiltro('todas')">Todas</a>
+		</div>
+  </div>
+	<!-- Botones cuando no es iPad -->
+  <div class="bar bar-subheader menuSuperior" style="height: {{ac.deviceWidth / 1.5}}px;" ng-if="!ac.isIPad">
 	  <a class="button hoy" ng-click="ac.cambiarFiltro('hoy')"> 
 	  	<i class="fa fa-check" style="font-size: 50pt; color: white; margin-top:10px;"></i><br/>
 	  	<div style="font-size: 20pxpt; color: white; margin: -10px 0px 0px 0px; ">{{ac.hoy.length}}</div>
@@ -36,7 +47,7 @@
 	  </a>
 	  <button style="width: 0px; height: 0px;" ng-show="false"></button>
 	</div>
-  <ion-content style="margin-top:65%;">
+  <ion-content ng-class="!ac.isIPad ? 'listaInferior':''">
   	<div class="divider-title">{{ 'VENCIDAS' | translate }}</div>
     <ul class="timeline" id="vencidos" ng-show="ac.fvencidos">
       <li ng-repeat="acuerdo in ac.vencidos | orderBy:'fecha'">

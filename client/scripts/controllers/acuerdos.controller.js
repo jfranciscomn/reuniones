@@ -9,6 +9,7 @@ angular
 		this.fmes = true;
 		this.ffuturo = true;
 		this.fvencidos = true;
+
 		this.subscribe('AllAcuerdos',()=>{
 			return [{}]
 		});
@@ -18,6 +19,9 @@ angular
 		this.subscribe('usuarios',()=>{
 			return [{}]
 		});
+
+		this.isIPad = ionic.Platform.isIPad(); 
+		console.log("isIpad", this.isIPad);
 
 		this.helpers({
 			acuerdos() {

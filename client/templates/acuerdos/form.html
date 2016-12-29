@@ -72,7 +72,7 @@
       <div class="item item-input-inset item-stacked-label">
 	      <span class="input-label">{{ 'ESTATUS' | translate}}</span>
 		    <label class="item-input-wrapper">
-		      <select id="fechaCierre" ng-model="nac.acuerdo.estatus" style="width: 100%" ng-change="nac.cambiarEstatus(nac.acuerdo, nac.acuerdo.estatus);" focus-on="fechaCierre">
+		      <select id="fechaCierre" ng-model="nac.acuerdo.estatus" style="width: 100%" ng-change="nac.cambiarEstatus(nac.acuerdo, nac.acuerdo.estatus);">
 			      <option value="1" selected="">{{ 'ACTIVO' | translate}} </option>
 			      <option value="2">{{ 'CERRADO' | translate}}</option>
 			      <option value="3">{{ 'VENCIDO' | translate}}</option>
@@ -85,7 +85,7 @@
         <input type="date" ng-model="nac.acuerdo.fechaCierre" focus-me="fechaCierre">
       </label>
 -->
-      <div class="item" date ion-datetime-picker ng-model="nac.acuerdo.fechaCierre">
+      <div class="item" date ion-datetime-picker ng-model="nac.acuerdo.fechaCierre" ng-if="nac.fechaCierre">
 	      <span class="input-label">{{ 'FECHACIERRE' | translate}}</span>
         {{nac.acuerdo.fechaCierre| date: "dd-MM-yyyy"}}
 	    </div>
@@ -146,6 +146,20 @@
 			  </li>
 			</ul>
     </ion-list>
+    <div class="list list-inset">
+	    <div class="item">
+		    Fecha Cambio
+		    <span class="item-note">
+		    	Fecha Límite Anterior
+		    </span>
+	    </div>
+		    <div class="item" ng-repeat="bitacora in nac.acuerdo.bitacora">
+		      {{bitacora.fecha | date:"dd-MM-yyyy hh:mm"}}
+		      <span class="item-note">
+			      {{bitacora.fechaAnterior | date:"dd-MM-yyyy hh:mm"}}
+			    </span>
+		    </div>
+		</div>
   </ion-content>
 </ion-view>
 <style>

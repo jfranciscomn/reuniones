@@ -41,7 +41,7 @@ angular
 			},
 			reunion : function() {
 				if($stateParams.reunionId != undefined){
-					var reunion = Reuniones.findOne($stateParams.reunionId);					
+					var reunion = Reuniones.findOne($stateParams.reunionId);	
 				}else{
 					reunion={users:[{user:Meteor.userId(), estatus : 2, invitado : true}]};
 					reunion.createdAt = new Date();
@@ -56,7 +56,7 @@ angular
 				return reunion;
 			}
 		});
-			
+
 		this.agregarParticipante = function(participante, $index){
 			if(participante.invitado == true){
 				this.reunion.users.push({user : participante._id, estatus : 1, invitado : true});
@@ -146,8 +146,8 @@ angular
 			}
 			else{
 				Reuniones.insert(this.reunion);
-				this.saveDate(this.reunion);
 				this.sendNotification(this.reunion, "insert");
+				this.saveDate(this.reunion);
 			}
 			
 			$ionicHistory.goBack();
@@ -171,7 +171,7 @@ angular
 					}
 				})
 				if(Meteor.userId() == registrado._id){
-					//rc.registrados.splice(index, 1);
+					rc.registrados.splice(index, 1);
 				}
 			});
 			console.log(rc.registrados);

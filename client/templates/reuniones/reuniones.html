@@ -1,16 +1,26 @@
 <ion-view class="layouts-view">
 	
-	  <ion-nav-buttons side="left">
-	    <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
-	  </ion-nav-buttons>
-	  <ion-nav-buttons side="right">
-	    <button menu-toggle="right" class="button button-icon icon ion-plus" ui-sref="app.nuevaReunion"></button>
-	  </ion-nav-buttons>
-	  <ion-nav-title>
-	    <span class="font-light">{{ 'REUNIONES' | translate }}</span>
-	  </ion-nav-title>
-	
-  <div class="bar bar-subheader menuSuperior" style="height: {{rc.deviceWidth / 1.5}}px;" ng-show="!rc.isIPad">
+  <ion-nav-buttons side="left">
+    <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+  </ion-nav-buttons>
+  <ion-nav-buttons side="right">
+    <button menu-toggle="right" class="button button-icon icon ion-plus" ui-sref="app.nuevaReunion"></button>
+  </ion-nav-buttons>
+  <ion-nav-title>
+    <span class="font-light">{{ 'REUNIONES' | translate }}</span>
+  </ion-nav-title>
+  <!-- Botones cuando es iPad -->
+  <div class="bar bar-subheader" ng-if="rc.isIPad">
+	  <div class="button-bar">
+		  <a class="button botonHoy" ng-click="rc.cambiarFiltro('hoy')">Hoy</a>
+		  <a class="button botonSemana" ng-click="rc.cambiarFiltro('semana')">Semana</a>
+		  <a class="button botonMes" ng-click="rc.cambiarFiltro('mes')">Mes</a>
+		  <a class="button botonFuturo" ng-click="rc.cambiarFiltro('futuro')">Futuro</a>
+		  <a class="button botonProxima" ng-click="rc.cambiarFiltro('todas')">Todas</a>
+		</div>
+  </div>
+	<!-- Botones cuando no es iPad -->
+  <div class="bar bar-subheader menuSuperior" style="height: {{rc.deviceWidth / 1.5}}px;" ng-if="!rc.isIPad">
 	  <a class="button hoy" ng-click="rc.cambiarFiltro('hoy')"> 
 	  	<i class="fa fa-check" style="font-size: 50pt; color: white; margin-top:10px;"></i><br/>
 	  	<div style="font-size: 20pt; color: white; margin: -10px 0px 0px 0px; ">{{rc.hoy.length}}</div>
@@ -38,7 +48,7 @@
 	  </a>
 	  <button style="width: 0px; height: 0px;" ng-show="false"></button>
 	</div>
-  <ion-content ng-class="!rc.isIPad ? 'listaInferior':''">
+  <ion-content ng-class="!rc.isIPad ? 'listaInferior':'listaInferiorIPad'">
   	<div class="divider-title">{{ 'VENCIDAS' | translate }}</div>
     <ul class="timeline" id="hoy" ng-show="rc.fhoy">
       <li ng-repeat="reunion in rc.vencidas | orderBy:'fecha'">
@@ -54,7 +64,7 @@
               <i class="ion-person color-green"></i> {{rc.getConfirmados(reunion.users)}}
 		          <i class="ion-person color-yellow"></i> {{rc.getPendientes(reunion.users)}}
 		          <i class="ion-person color-red"></i> {{rc.getRechazados(reunion.users)}}
-              <span class="pos-absolute-right"><i class="ion-ios-clock"></i> {{reunion.horaInicio|date:"HH:mm"}} </span>
+              <span class="pos-absolute-right"><i class="ion-ios-clock"></i> {{reunion.horaInicio|date:"dd-MM-yyyy HH:mm"}} </span>
             </div>
           </div>
       	</a>

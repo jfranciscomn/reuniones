@@ -29,7 +29,8 @@
 			      <i class="icon ion-person-stalker"></i>
 			    </button>
 			  </div>
-			  <ion-item ng-repeat="participante in ac.acuerdo.responsables" style="margin-left: 50px;" ng-show="ac.verResponsables">			
+			  <ion-item ng-repeat="participante in ac.acuerdo.responsables" class="item-avatar" style="margin-left: 15px;" ng-show="ac.verResponsables">
+			  	<img src="{{participante.invitado.profile.picture}}">
 			    {{participante.invitado.profile.name}}
 			    <p>{{participante.invitado.profile.email}}</p>
 			  </ion-item>
@@ -63,14 +64,21 @@
 			      <i class="icon ion-android-people"></i>
 			    </button>
 			  </div>
-			  <ion-item ng-repeat="participante in ac.acuerdo.seguidores" style="margin-left: 50px;" ng-show="ac.verSeguidores">			
+			  <ion-item ng-repeat="participante in ac.acuerdo.seguidores" style="margin-left: 15px;" class="item-avatar" ng-show="ac.verSeguidores">			
+				  <img src="{{participante.invitado.profile.picture}}">
 			    {{participante.invitado.profile.name}}
 			    <p>{{participante.invitado.profile.email}}</p>
 			  </ion-item>
-			  <ion-item>			
+			   <div class="item item-button-right">
 			    {{ 'TEMAS' | translate }}
-			    <p>{{ac.acuerdo.temas}}</p>
+			    <button class="button bg-color-green color-white" ng-click="ac.verTemas = !ac.verTemas;">
+			      <i class="icon ion-clipboard"></i>
+			    </button>
+			  </div>
+			  <ion-item ng-repeat="tema in ac.acuerdo.temasSeparados" style="margin-left: 15px;" ng-show="ac.verTemas">			
+			    {{tema}}
 			  </ion-item>
+<!--
 			  <div class="item">
 			    {{ 'AGREGARACALENDARIO' | translate }}
 			    <span class="item-note" ng-show="ac.acuerdo.calendario == true">Sí</span>
@@ -81,6 +89,7 @@
 			    <span class="item-note" ng-show="ac.acuerdo.recordatorios == true">Sí</span>
 			    <span class="item-note" ng-show="ac.acuerdo.recordatorios == false">No</span>
 			  </div>
+-->
 			</ion-list>
     </ul>
   </ion-content>
