@@ -6,6 +6,10 @@ Meteor.publish("AllAcuerdos", function(){
 						]});
 });
 
+Meteor.publish("acuerdos", function(options){
+	return Acuerdos.find(options);
+});
+
 
 Meteor.publish("acuerdo", function(options){
 	console.log(this.userId);

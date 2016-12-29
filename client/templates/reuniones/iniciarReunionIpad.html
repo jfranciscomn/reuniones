@@ -132,7 +132,13 @@
 				    Acuerdos retrasados
 				  </div>
 				  <div class="item item-text-wrap">
-				    This is a 
+				    <ion-scroll direction="y" style="height: 200px">
+					    <ul class="list">
+						    <li class="item" ng-repeat="acuerdo in irc.acuerdosRetrasados">
+						      {{acuerdo.titulo}}
+						    </li>
+							</ul>
+					  </ion-scroll>
 				  </div>
 				</div>
 				

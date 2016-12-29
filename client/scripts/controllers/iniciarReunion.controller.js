@@ -3,7 +3,6 @@ angular
 	.controller('IniciarReunionCtrl', function NuevaReunionCtrl($scope, $sce, $reactive, $state, $stateParams, $ionicPopup, 
 			$ionicHistory, $ionicModal, $ionicActionSheet, $timeout, $cordovaEmailComposer, $cordovaCapture, $cordovaFile) {
 
-
 		let rc = $reactive(this).attach($scope);
 		window.rc = rc;
 		this.reunion = {};
@@ -21,8 +20,8 @@ angular
 		this.audios = [];
 		this.videos = [];
 
-		this.subscribe('AllAcuerdos',()=>{
-			return [{}]
+		this.subscribe('acuerdos',()=>{
+			return [{categoria_id : this.getReactively("reunion.categoria_id"), estatus : 1}]
 		});
 
 		this.subscribe('AllReuniones',()=>{
@@ -110,17 +109,19 @@ angular
 						}						
 					}
 				}
-				/*if(rc.miReunion.medios == undefined)
-					rc.miReunion.medios = [];
-				*/	
-
 				rc.miReunion.categoria = Categorias.findOne(rc.miReunion.categoria_id);
 					
-
 				return rc.miReunion;
 			},
+			acuerdosRetrasados : function() {
+				var hoy = new Date;
+				var fechaInicio = (hoy.getMonth()+1) + "/" + hoy.getDate() + "/" +  hoy.getFullYear();
+				return Acuerdos.find({fechaInicio : { $lt : new Date(fechaInicio) }});
+			},
 			acuerdos : function() {
-				return Acuerdos.find({reunion_id : $stateParams.reunionId});
+				var hoy = new Date;
+				var fechaInicio = (hoy.getMonth()+1) + "/" + hoy.getDate() + "/" +  hoy.getFullYear();
+				return Acuerdos.find({fechaInicio : { $gte : new Date(fechaInicio)}});
 			},
 			registrados : function() {
 				return Meteor.users.find({},{},{ sort : { "profile.name" : 1 }}).fetch();
