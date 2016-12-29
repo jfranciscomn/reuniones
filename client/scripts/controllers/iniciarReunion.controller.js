@@ -25,8 +25,8 @@ angular
 			return [{}]
 		});
 
-		this.subscribe('reuniones',()=>{
-			return [{reunionId:$stateParams.reunionId}]
+		this.subscribe('AllReuniones',()=>{
+			return [{}]
 		});
 		this.subscribe('medios',()=>{
 			return [{reunionId:$stateParams.reunionId}]
@@ -62,6 +62,9 @@ angular
 			},
 			miReunion : function() {
 				return Reuniones.findOne($stateParams.reunionId);
+			},
+			reuniones : function () {
+				return Reuniones.find({owner:Meteor.userId()},{sort: {horaInicio: 1}})
 			},
 			medios:function(){
 				return Medios.find({reunion_id:$stateParams.reunionId}); 
@@ -121,6 +124,107 @@ angular
 			}
 		});
 		
+		this.getAnterior= function(){
+			var anterior = null;
+			var x=null;
+
+
+			_.each(rc.reuniones, function(reun, index){
+				console.log(reun._id,rc.reunion._id)
+				if(reun._id===rc.reunion._id){
+					x = anterior;
+					console.log("uno",x)
+				}
+				anterior=reun;
+			});
+			return x;
+		}
+
+		this.getSiguiente= function(){
+			var anterior = {};
+			var x=null;
+
+
+			_.each(rc.reuniones, function(reun, index){
+				console.log(reun._id,rc.reunion._id)
+				if(anterior._id===rc.reunion._id){
+					x = reun;
+					console.log("uno",x)
+				}
+				anterior=reun;
+			});
+			return x;
+		}
+		this.reunionSiguiente= function () {
+			var confirmPopup = $ionicPopup.confirm({
+    			title: 'Reunion Siguiente',
+    			template: '¿Usted esta seguro que desea ir a la reunion siguiente?',
+    			cancelText: 'No',
+    			okText: 'Si'
+   			});
+
+   			
+
+			confirmPopup.then(function(res) {
+				if(res) {
+					var siguiente = rc.getSiguiente();
+
+					var confirmSavePopup = $ionicPopup.confirm({
+		    			title: 'Guardar',
+		    			template: '¿Desea guardar los cambios realizados?',
+		    			cancelText: 'No',
+		    			okText: 'Si'
+		   			});
+
+					confirmSavePopup.then(function(resSave) {
+						if(resSave){
+							rc.guardar();
+						}
+						$state.go("app.editarReunion", {reunionId : siguiente._id});
+					});
+
+					
+				} else {
+				console.log('You are not sure');
+				}
+			});	
+		}
+		this.reunionAnterior= function () {
+			var confirmPopup = $ionicPopup.confirm({
+    			title: 'Reunion Anterior',
+    			template: '¿Usted esta seguro que desea ir a la reunion anterior?',
+    			cancelText: 'No',
+    			okText: 'Si'
+   			});
+
+   			
+
+			confirmPopup.then(function(res) {
+				if(res) {
+					var anterior = rc.getAnterior();
+
+					var confirmSavePopup = $ionicPopup.confirm({
+		    			title: 'Guardar',
+		    			template: '¿Desea guardar los cambios realizados?',
+		    			cancelText: 'No',
+		    			okText: 'Si'
+		   			});
+
+					confirmSavePopup.then(function(resSave) {
+						if(resSave){
+							rc.guardar();
+						}
+						$state.go("app.editarReunion", {reunionId : anterior._id});
+					});
+
+					
+				} else {
+				console.log('You are not sure');
+				}
+			});	
+		}
+
+
 		if(this.getReactively("reunion")){
 			_.each(rc.registrados, function(registrado, index){
 				if(registrado._id == rc.reunion.owner){
@@ -302,7 +406,7 @@ angular
 							
 						}else if(index == 2){
 							//Si Agrega Video 
-						    var options = { limit: 3, duration: 15 };
+						    var options = { limit: 3, type:'video/3gpp'};
 						
 						    $cordovaCapture.captureVideo(options).then(function(videoData) {
 							    var i, path, len;

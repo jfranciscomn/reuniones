@@ -17,9 +17,11 @@
 				<div class="row">
 					<div class="col">
 						<div class="button-bar">
-							<button class="button bg-color-green icon ion-arrow-swap" ng-click="irc.guardar()"></button>
-						  <button class="button button-small icon ion-arrow-left-a" ng-click="irc.atras(irc.reunion)"></button>
-						  <button class="button button-small icon ion-arrow-right-a" ng-click="rc.siguiente(irc.reunion)"></button>
+
+							<button class="button bg-color-green icon ion-arrow-swap" ng-click="irc.guardar()"  ></button>
+						  <button class="button button-small icon ion-arrow-left-a" ng-click="irc.reunionAnterior()" ng-disabled="!irc.getAnterior()"></button>
+						  <button class="button button-small icon ion-arrow-right-a" ng-click="irc.reunionSiguiente()" ng-disabled="!irc.getSiguiente()"></button>
+
 						  <button class="button button-small icon ion-folder"></button>
 						  <button class="button button-small icon ion-email" ng-click="rc.enviarCorreo(irc.reunion)"></button>
 						  <button class="button button-small icon ion-trash-a" ng-click="irc.eliminar(irc.reunion)"></button>
