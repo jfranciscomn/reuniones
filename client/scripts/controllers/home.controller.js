@@ -2,6 +2,15 @@ angular
   .module('FLOKsports')
   .controller('HomeCtrl', function HomeCtrl($scope, $reactive, $state, $stateParams, $ionicPopup) {
 		$reactive(this).attach($scope);
+		this.subscribe('AllAcuerdos',()=>{
+			return [{}]
+		});
+		this.subscribe('AllCategorias',()=>{
+			return [{}]
+		});
+		this.subscribe('AllReuniones',()=>{
+			return [{}]
+		});
 		 
 		this.helpers({
 			acuerdos() {

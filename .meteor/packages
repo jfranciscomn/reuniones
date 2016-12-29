@@ -13,7 +13,6 @@ tracker                 # Meteor's client-side reactive programming library
 
 
 insecure                # Allow all DB writes from clients (for prototyping)
-autopublish
 angular
 driftyco:ionic
 # momentjs:moment

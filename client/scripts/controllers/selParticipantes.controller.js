@@ -5,6 +5,9 @@ angular
 		this.reunion = $stateParams.reunion;
 		console.log($stateParams)
 		this.participantesSel = {};
+		this.subscribe('usuarios',()=>{
+			return [{}]
+		});
 		this.helpers({
 			participantes() {
 				return Meteor.users.find({});

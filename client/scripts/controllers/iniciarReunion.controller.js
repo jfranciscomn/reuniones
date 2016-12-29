@@ -1,7 +1,9 @@
 angular
 	.module('FLOKsports')
 	.controller('IniciarReunionCtrl', function NuevaReunionCtrl($scope, $reactive, $state, $stateParams, $ionicPopup, 
-			$ionicHistory, $ionicModal, $ionicActionSheet, $timeout, $cordovaCapture, $cordovaEmailComposer) {
+			$ionicHistory, $ionicModal, $ionicActionSheet, $timeout, $cordovaEmailComposer, $cordovaCapture, $cordovaFile) {
+
+
 		let rc = $reactive(this).attach($scope);
 		window.rc = rc;
 		this.reunion = {};
@@ -18,7 +20,26 @@ angular
 		this.fotos = [];
 		this.audios = [];
 		this.videos = [];
-			
+
+		this.subscribe('AllAcuerdos',()=>{
+			return [{}]
+		});
+
+		this.subscribe('reuniones',()=>{
+			return [{reunionId:$stateParams.reunionId}]
+		});
+		this.subscribe('medios',()=>{
+			return [{reunionId:$stateParams.reunionId}]
+		});
+		this.subscribe('AllCategorias',()=>{
+			return [{}]
+		});
+		this.subscribe('usuarios',()=>{
+			return [{}]
+		});
+
+
+		
 		this.quitarhk=function(obj){
 			if(Array.isArray(obj)){
 				for (var i = 0; i < obj.length; i++) {
@@ -43,6 +64,9 @@ angular
 			},
 			miReunion : function() {
 				return Reuniones.findOne($stateParams.reunionId);
+			},
+			medios:function(){
+				return Medios.find({reunion_id:$stateParams.reunionId}); 
 			},
 			reunion : function() {
 				if(rc.miReunion.todosTemas == undefined){
@@ -80,11 +104,13 @@ angular
 						})
 					}
 				}
-				if(rc.miReunion.medios == undefined)
+				/*if(rc.miReunion.medios == undefined)
 					rc.miReunion.medios = [];
-				
+				*/	
+
 				rc.miReunion.categoria = Categorias.findOne(rc.miReunion.categoria_id);
 					
+
 				return rc.miReunion;
 			},
 			acuerdos : function() {
@@ -169,13 +195,29 @@ angular
 					buttonClicked: function(index) {
 						if(index == 0){
 							//Si Agrega Foto
-						    var options = { limit: 3 }; 
+						    var options = { limit: 3, allowEdit: true, quality: 25, height:512, width:512}; 
 						
 						    $cordovaCapture.captureImage(options).then(function(imageData) {
 							    var i, path, len;
+							    console.log("foto");
+							    
 							    for (i = 0, len = imageData.length; i < len; i += 1) {
-							        path = imageData[i].fullPath;
-							        rc.reunion.medios.push({tipo: "foto", data : path})
+							        path = imageData[i].fullPath; 
+							        var reader  = new FileReader();
+							        var archivo=imageData[i];
+							        var path=archivo.fullPath.split('/');
+							        var filename= path.pop();
+							        path = 'file:///'+path.join('/');
+							        console.log(path,filename)
+							   		$cordovaFile.readAsDataURL(path,filename).then(function (success) {
+									        console.log('success');
+									       
+									        Medios.insert({reunion_id : rc.reunion._id,tipo: "foto", data : success });
+									      }, function (error) {
+									      	console.log(error);
+									      });
+							   		
+							        console.log(imageData);
 							    }
 							    
 						      // Success! Image data is here
@@ -192,8 +234,22 @@ angular
 						    $cordovaCapture.captureAudio(options).then(function(audioData) {
 						      var i, path, len;
 							    for (i = 0, len = audioData.length; i < len; i += 1) {
-							        path = audioData[i].fullPath;
-							        rc.reunion.medios.push({tipo: "audio", data : path})
+							        path = audioData[i].fullPath; 
+							        var reader  = new FileReader();
+							        var archivo=audioData[i];
+							        var path=archivo.fullPath.split('/');
+							        var filename= path.pop();
+							        path = 'file:///'+path.join('/');
+							        console.log(path,filename)
+							   		$cordovaFile.readAsDataURL(path,filename).then(function (success) {
+									        console.log('success');
+
+									         Medios.insert({reunion_id : rc.reunion._id,tipo: "audio", data : success });
+									      }, function (error) {
+									      	console.log(error);
+									      });
+							   		
+							        console.log(audioData);
 							    }
 						      
 						    }, function(err) {
@@ -208,8 +264,22 @@ angular
 						    $cordovaCapture.captureVideo(options).then(function(videoData) {
 							    var i, path, len;
 							    for (i = 0, len = videoData.length; i < len; i += 1) {
-							        path = videoData[i].fullPath;
-							        rc.reunion.medios.push({tipo: "video", data : path})
+							        path = videoData[i].fullPath; 
+							        var reader  = new FileReader();
+							        var archivo=videoData[i];
+							        var path=archivo.fullPath.split('/');
+							        var filename= path.pop();
+							        path = 'file:///'+path.join('/');
+							        console.log(path,filename)
+							   		$cordovaFile.readAsDataURL(path,filename).then(function (success) {
+									        console.log('success');
+
+									        Medios.insert({reunion_id : rc.reunion._id,tipo: "video", data : success });
+									      }, function (error) {
+									      	console.log(error);
+									      });
+							   		
+							        console.log(videoData);
 							    }
 						    }, function(err) {
 						      // An error occurred. Show a message to the user
@@ -324,21 +394,21 @@ angular
 	  
 	  this.reproducir = function(medio){
 		  if(medio.tipo == "foto"){
-			  _.each(rc.reunion.medios, function(medio){
+			  _.each(rc.medios, function(medio){
 				  if(medio.tipo == "foto"){
 					  rc.fotos.push(medio);
 				  }
 			  });
 			  $scope.modalFoto.show();
 		  }else if(medio.tipo == "audio"){
-			  _.each(rc.reunion.medios, function(medio){
+			  _.each(rc.medios, function(medio){
 				  if(medio.tipo == "audio"){
 					  rc.audios.push(medio);
 				  }
 			  });
 			  $scope.modalAudio.show();
 		  }else if(medio.tipo == "video"){
-			  _.each(rc.reunion.medios, function(medio){
+			  _.each(rc.medios, function(medio){
 				  if(medio.tipo == "video"){
 					  rc.videos.push(medio);
 				  }

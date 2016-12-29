@@ -1,13 +1,15 @@
 angular
   .module('FLOKsports')
   .controller('CategoriasCtrl', function CategoriasCtrl($scope, $reactive, $state, $stateParams, $ionicPopup) {
-	$reactive(this).attach($scope);
-  	this.shouldShowDelete = false;
+		$reactive(this).attach($scope);
+  		this.shouldShowDelete = false;
+  		this.subscribe('AllCategorias',()=>{
+			return [{}]
+		});
 		this.shouldShowReorder = false;
 		this.listCanSwipe = true;
 		this.helpers({
 			categorias() {
-				console.log(Categorias.find({estatus : true}).fetch())
 				return Categorias.find({estatus : true});
 			}
 		});
