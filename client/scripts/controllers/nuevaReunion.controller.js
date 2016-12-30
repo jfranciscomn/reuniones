@@ -156,8 +156,8 @@ angular
 		
 		this.save	= function(){
 			this.quitarhk(this.reunion);
-			
-			if($stateParams.reunionId != undefined && $stateParams.siguiente != undefined){
+			console.log("state save", $stateParams);
+			if($stateParams.reunionId != undefined && $stateParams.siguiente == undefined){
 				delete this.reunion._id
 				this.quitarhk(this.reunion);
 				_.each(this.reunion.users, function(invitado){
