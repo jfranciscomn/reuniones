@@ -5,6 +5,7 @@ angular
     'ngSanitize',
     'ionic',
     'ion-datetime-picker',
+    'angular-chrono',
     'ngCordova',
     'pascalprecht.translate',
     'angularMoment'

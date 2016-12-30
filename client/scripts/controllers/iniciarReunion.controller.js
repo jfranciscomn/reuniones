@@ -1,7 +1,7 @@
 angular
 	.module('FLOKsports')
 	.controller('IniciarReunionCtrl', function NuevaReunionCtrl($scope, $sce, $reactive, $state, $stateParams, $ionicPopup, 
-			$ionicHistory, $ionicModal, $ionicActionSheet, $timeout, $cordovaEmailComposer, $cordovaCapture, $cordovaFile) {
+			$ionicHistory, $ionicModal, $ionicActionSheet, $timeout, $cordovaEmailComposer, $cordovaCapture, $cordovaFile, chronoService) {
 
 
 		let rc = $reactive(this).attach($scope);
@@ -16,6 +16,10 @@ angular
 		this.verGenerales = false;
 		this.verTemas = false;
 		this.verBarra = true;
+		this.time = Date.now();
+		this.timerStop = true;
+        chronoService.addTimer('myTimer', { interval: 500 });
+        chronoService.start();
 		
 		this.fotos = [];
 		this.audios = [];
@@ -52,7 +56,15 @@ angular
 			}
 			return obj;
 		}
-		
+		this.stopTimer=function(){
+			if(this.timerStop)
+				chronoService.stop();
+			else
+				chronoService.start();
+			this.timerStop=!this.timerStop
+			//console.log('stop');
+			//console.log(adc.timers.myTimer.current)
+		}
 		this.helpers({
 			registrados : function() {
 				return Meteor.users.find({},{},{ sort : { "profile.name" : 1 }}).fetch();
@@ -97,7 +109,7 @@ angular
 							rc.esFavorita = false;
 							
 						//Ver los temas como un listado con posibilidad de ser seleccionado.
-						console.log(rc.miReunion.temas);
+						//console.log(rc.miReunion.temas);
 						if(rc.miReunion.temas != undefined){
 							var todosTemas = rc.miReunion.temas.split(', ');
 							rc.miReunion.todosTemas = [];
@@ -133,10 +145,10 @@ angular
 
 
 			_.each(rc.reuniones, function(reun, index){
-				console.log(reun._id,rc.reunion._id)
+				//console.log(reun._id,rc.reunion._id)
 				if(reun._id===rc.reunion._id){
 					x = anterior;
-					console.log("uno",x)
+					//console.log("uno",x)
 				}
 				anterior=reun;
 			});
@@ -149,10 +161,10 @@ angular
 
 
 			_.each(rc.reuniones, function(reun, index){
-				console.log(reun._id,rc.reunion._id)
+				//console.log(reun._id,rc.reunion._id)
 				if(anterior._id===rc.reunion._id){
 					x = reun;
-					console.log("uno",x)
+					//console.log("uno",x)
 				}
 				anterior=reun;
 			});
@@ -188,7 +200,7 @@ angular
 
 					
 				} else {
-				console.log('You are not sure');
+				//console.log('You are not sure');
 				}
 			});	
 		}
@@ -222,7 +234,7 @@ angular
 
 					
 				} else {
-				console.log('You are not sure');
+				//console.log('You are not sure');
 				}
 			});	
 		}
@@ -292,7 +304,7 @@ angular
 					titleText: participante.invitado.profile.name,
 					cancelText: 'Cancelar',
 					cancel: function() {
-	        	console.log("canceló");
+	        	//console.log("canceló");
 		      },
 					buttonClicked: function(index) {
 						if(index == 0){
@@ -303,8 +315,8 @@ angular
 							rc.reunion.notas += "\n " + participante.invitado.profile.name + " (" + participante.invitado.profile.email + ")";
 						}else if(index == 2){
 							//Si excluyes de la reunión
-							console.log("index", index);
-							console.log("participante", participante);
+							//console.log("index", index);
+							//console.log("participante", participante);
 							_.each(rc.reunion.users, function(parti, index){
 								if(participante.user == parti.user){
 									rc.reunion.users.splice(index, 1);
@@ -312,7 +324,7 @@ angular
 							});
 							rc.reunion.users.splice(index, 1);
 						}
-						console.log(index);
+						//console.log(index);
 						return true;
 					},
 					destructiveButtonClicked: function() {
@@ -345,7 +357,7 @@ angular
 						
 						    $cordovaCapture.captureImage(options).then(function(imageData) {
 							    var i, path, len;
-							    console.log("foto");
+							    //console.log("foto");
 							    
 							    for (i = 0, len = imageData.length; i < len; i += 1) {
 							        path = imageData[i].fullPath; 
@@ -354,22 +366,22 @@ angular
 							        var path=archivo.fullPath.split('/');
 							        var filename= path.pop();
 							        path = 'file:///'+path.join('/');
-							        console.log(path,filename)
+							        //console.log(path,filename)
 							   		$cordovaFile.readAsDataURL(path,filename).then(function (success) {
-									        console.log('success');
+									        //console.log('success');
 									       
 									        Medios.insert({reunion_id : rc.reunion._id,tipo: "foto", data : success });
 									      }, function (error) {
-									      	console.log(error);
+									      	//console.log(error);
 									      });
 							   		
-							        console.log(imageData);
+							        //console.log(imageData);
 							    }
 							    
 						      // Success! Image data is here
 						    }, function(err) {
 						      // An error occurred. Show a message to the user
-						      console.log("error image", err); 
+						      //console.log("error image", err); 
 						    });
 							
 						}else if(index == 1){
@@ -386,7 +398,7 @@ angular
 							        var path=archivo.fullPath.split('/');
 							        var filename= path.pop();
 							        path = 'file:///'+path.join('/');
-							        console.log(path,filename)
+							       //console.log(path,filename)
 							   		$cordovaFile.readAsDataURL(path,filename).then(function (success) {
 									        console.log('success');
 
@@ -395,12 +407,12 @@ angular
 									      	console.log(error);
 									      });
 							   		
-							        console.log(audioData);
+							       // console.log(audioData);
 							    }
 						      
 						    }, function(err) {
 						      // An error occurred. Show a message to the user
-						      console.log("error audio", err);
+						     //console.log("error audio", err);
 						    });
 							
 						}else if(index == 2){
@@ -416,23 +428,23 @@ angular
 							        var path=archivo.fullPath.split('/');
 							        var filename= path.pop();
 							        path = 'file:///'+path.join('/');
-							        console.log(path,filename)
+							        //console.log(path,filename)
 							   		$cordovaFile.readAsDataURL(path,filename).then(function (success) {
-									        console.log('success');
+									       // console.log('success');
 
 									        Medios.insert({reunion_id : rc.reunion._id,tipo: "video", data : success });
 									      }, function (error) {
 									      	console.log(error);
 									      });
 							   		
-							        console.log(videoData);
+							      //  console.log(videoData);
 							    }
 						    }, function(err) {
 						      // An error occurred. Show a message to the user
 						      console.log("error video", err);
 						    });
 						}
-						console.log(index);
+						//console.log(index);
 						return true;
 					}
 	   	});
@@ -440,7 +452,7 @@ angular
 		
 		//Tomar Asistencia
 		this.asistencia = function(participante){
-			console.log("asistio", participante);
+			//console.log("asistio", participante);
 			if(participante.asistio == false){
 				participante.asistio = true;
 			}				
@@ -483,7 +495,7 @@ angular
 			else{
 				_.each(rc.reunion.users, function(invitado, index){
 					if(invitado.user == participante._id){
-						console.log("index", index);
+						//console.log("index", index);
 						rc.reunion.users.splice(index, 1);
 					}
 				})
@@ -504,9 +516,9 @@ angular
 	  //Mostrar modal para seleccionar participantes
 	  this.selParticipantes = function() {
 		  _.each(rc.registrados, function(registrado, index){
-				console.log(index, "registrado", registrado);
+				//console.log(index, "registrado", registrado);
 				_.each(rc.reunion.users, function(invitado, indexInvitado){
-					console.log(indexInvitado, "invitado", invitado)
+					//console.log(indexInvitado, "invitado", invitado)
 					if(registrado._id == invitado.user){
 						registrado.invitado = true;
 						registrado.estatus = invitado.estatus;
