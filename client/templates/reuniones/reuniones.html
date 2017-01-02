@@ -12,36 +12,46 @@
   <!-- Botones cuando es iPad -->
   <div class="bar bar-subheader" ng-if="rc.isIPad">
 	  <div class="button-bar">
-		  <a class="button botonHoy" ng-click="rc.cambiarFiltro('hoy')">Hoy</a>
-		  <a class="button botonSemana" ng-click="rc.cambiarFiltro('semana')">Semana</a>
-		  <a class="button botonMes" ng-click="rc.cambiarFiltro('mes')">Mes</a>
-		  <a class="button botonFuturo" ng-click="rc.cambiarFiltro('futuro')">Futuro</a>
-		  <a class="button botonProxima" ng-click="rc.cambiarFiltro('todas')">Todas</a>
+		  <a class="button botonHoy" ng-click="rc.cambiarFiltro('hoy')">
+			 <i class="fa fa-check" style="color: white;"></i> Hoy ({{rc.hoy.length}})
+			</a>
+		  <a class="button botonSemana" ng-click="rc.cambiarFiltro('semana')">
+			  <i class="fa fa-calendar-o" style="color: white;"></i> Semana ({{rc.semana.length}})
+			</a>
+		  <a class="button botonMes" ng-click="rc.cambiarFiltro('mes')">
+			  <i class="fa fa-calendar" style="color: white;"></i> Mes ({{rc.mes.length}})
+			</a>
+		  <a class="button botonFuturo" ng-click="rc.cambiarFiltro('futuro')">
+			  <i class="fa fa-calendar-plus-o" style="color: white;"></i> Futuro ({{rc.futuro.length}})
+			</a>
+		  <a class="button botonProxima" ng-click="rc.cambiarFiltro('todas')">
+			  <i class="fa fa-calendar" style="color: white;"></i> Todas ({{rc.reuniones.length}})
+			</a>
 		</div>
   </div>
 	<!-- Botones cuando no es iPad -->
   <div class="bar bar-subheader menuSuperior" style="height: {{rc.deviceWidthR / 1.5}}px;" ng-if="!rc.isIPad">
-	  <a class="button hoy" ng-click="rc.cambiarFiltro('hoy')"> 
+	  <a class="button button-energized hoy" ng-click="rc.cambiarFiltro('hoy')"> 
 	  	<i class="fa fa-check" style="font-size: 50pt; color: white; margin-top:10px;"></i><br/>
 	  	<div style="font-size: 20pt; color: white; margin: -10px 0px 0px 0px; ">{{rc.hoy.length}}</div>
 	  	<div style="font-size: 12pt; color: white; margin: -5px 0px 0px 0px; ">{{ 'HOY' | translate }}</div>
 	  </a>
-	  <a class="button semana" ng-click="rc.cambiarFiltro('semana')">
+	  <a class="button semana button-positive" ng-click="rc.cambiarFiltro('semana')">
 		  <i class="fa fa-calendar-o" style="font-size: 15pt; color: white; margin-top:10px;"></i><br/>
 		  <div style="font-size: 15pt; color: white; margin: -12px 0px 0px 0px; ">{{rc.semana.length}}</div>
 		  <div style="font-size: 9pt; color: white; margin: -15px 0px 0px 0px;">{{ 'SEMANA' | translate }} </div>
 		</a>
-	  <a class="button mes" ng-click="rc.cambiarFiltro('mes')">
+	  <a class="button mes button-calm" ng-click="rc.cambiarFiltro('mes')">
 	  	<i class="fa fa-calendar" style="font-size: 15pt; color: white; margin-top:10px;"></i><br/> 
 	  	<div style="font-size: 15pt; color: white; margin: -12px 0px 0px 0px; ">{{rc.mes.length}}</div>
 	  	<div style="font-size: 8pt; color: white; margin: -15px 0px 0px 0px">{{ 'MES' | translate }} </div>
 	  </a>
-	  <a class="button proxima" ng-click="rc.cambiarFiltro('todas')"> 
+	  <a class="button proxima button-assertive" ng-click="rc.cambiarFiltro('todas')"> 
 	  	<i class="fa fa-calendar" style="font-size: 15pt; color: white; margin-top:10px;"></i><br/>
 	  	<div style="font-size: 15pt; color: white; margin: -12px 0px 0px 0px; ">{{rc.reuniones.length}}</div>
 	  	<div style="font-size: 8pt; color: white; margin: -15px 0px 0px 0px">{{ 'TODAS' | translate }} </div>
 	  </a>
-	  <a class="button futuro" ng-click="rc.cambiarFiltro('futuro')"> 
+	  <a class="button futuro button-royal" ng-click="rc.cambiarFiltro('futuro')"> 
 	  	<i class="fa fa-calendar-plus-o" style="font-size: 15pt; color: white; margin-top:10px;"></i><br/>
 	  	<div style="font-size: 15pt; color: white; margin: -12px 0px 0px 0px; ">{{rc.futuro.length}}</div>
 	  	<div style="font-size: 8pt; color: white; margin: -15px 0px 0px 0px">{{ 'FUTURO' | translate }} </div>

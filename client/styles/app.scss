@@ -10279,9 +10279,12 @@ progress {
       }
     }
   }
+  
+  //#34789c = #9b3639
+  //265a75 = #75292b
   &.button-assertive {
     border-color: transparent;
-    background-color: #33779B;
+    background-color: #eb4e52;
     color: #fff;
     &:hover {
       color: #fff;
@@ -10289,7 +10292,7 @@ progress {
     }
     &.active, &.activated {
       border-color: #a2a2a2;
-      background-color: #265a75;
+      background-color: #cd494e;
     }
     &.button-clear {
       border-color: transparent;
@@ -10302,11 +10305,11 @@ progress {
       background: none;
     }
     &.button-outline {
-      border-color: #33779B;
+      border-color: #913437;
       background: transparent;
-      color: #33779B;
+      color: #913437;
       &.active, &.activated {
-        background-color: #33779B;
+        background-color: #913437;
         box-shadow: none;
         color: #fff;
       }
@@ -11771,8 +11774,12 @@ ion-spinner.spinner-on-load {
 .auth-outer {
   background-color: transparent !important;
   ion-view {
-    background-color: transparent;
+    background-color: #fedc34;
     box-shadow: none !important;
+    background-image: url("/images/fondoLogin.png");
+    background-size: 100%;
+    background-repeat: no-repeat;
+		background-attachment: fixed;
   }
   ion-header-bar {
     background-color: transparent;
@@ -11863,15 +11870,15 @@ ion-spinner.spinner-on-load {
   .tabs .tab-item {
     font-weight: bold;
     text-transform: uppercase;
-    background: #3E454C;
-    color: #e6e6e6;
+    background: rgba(254, 220, 52, 0.37);
+    color: black;
     -webkit-transition: all 0.1s ease;
     transition: all 0.1s ease;
     &.active, &.activated {
       margin-top: 0;
       margin-bottom: -2px;
       border-width: 0px 0px 4px 0px !important;
-      border-color: #ffc900 !important;
+      border-color: #fedc34 !important;
       border-style: solid;
     }
   }

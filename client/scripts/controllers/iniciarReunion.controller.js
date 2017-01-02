@@ -15,6 +15,8 @@ angular
 		this.verGenerales = false;
 		this.verTemas = false;
 		this.verBarra = true;
+		this.verBarraInformacion = true;
+		this.verTitulo = true;
 		this.time = Date.now();
 		this.timerStop = true;
         chronoService.addTimer('myTimer', { interval: 500 });

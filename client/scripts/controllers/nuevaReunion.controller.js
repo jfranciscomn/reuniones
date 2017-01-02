@@ -8,6 +8,10 @@ angular
 		this.opcion = {};
 		this.opcion.participantes = [];
 		this.registrados = "";
+		this.fechaInicio = "";
+		this.horaInicio = "";
+		this.ubicacion = "";
+		
 		this.subscribe('usuarios',()=>{
 			return [{}]
 		});
@@ -48,6 +52,9 @@ angular
 				console.log("state", $stateParams)
 				if($stateParams.reunionId != undefined && $stateParams.siguiente == undefined){
 					var reunion = Reuniones.findOne($stateParams.reunionId);	
+					rc.fechaInicio = reunion.fecha;
+					rc.horaInicio = reunion.horaInicio;
+					rc.ubicacion = reunion.ubicacion;
 				}else if($stateParams.reunionId != undefined && $stateParams.siguiente != undefined){
 					var reunion = Reuniones.findOne($stateParams.reunionId);	
 					delete reunion._id;
@@ -160,13 +167,16 @@ angular
 			if($stateParams.reunionId != undefined && $stateParams.siguiente == undefined){
 				delete this.reunion._id
 				this.quitarhk(this.reunion);
-				_.each(this.reunion.users, function(invitado){
-					delete invitado.objeto;
-					if(invitado.user != Meteor.userId()){
-						invitado.estatus = 1;
-					}
-				})
-				this.reunion.estatus = 1;
+				if(rc.fechaInicio != rc.reunion.fecha || rc.horaInicio != rc.reunion.horaInicio || rc.ubicacion != rc.reunion.ubicacion){
+					_.each(this.reunion.users, function(invitado){
+						delete invitado.objeto;
+						if(invitado.user != Meteor.userId()){
+							invitado.estatus = 1;
+						}
+					})
+					this.reunion.estatus = 1;
+				}
+				
 				Reuniones.update({ _id : $stateParams.reunionId },{ $set : this.reunion });
 				this.sendNotification(this.reunion, "update");
 			}

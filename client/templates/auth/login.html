@@ -1,12 +1,12 @@
 <ion-view class="login-view auth-view" cache-view="false" >
-  <ion-content scroll="false" >
+  <ion-content>
     <div class="row">
       <div class="col" style="text-align: center;">
 	      <img src="images/logo.png" class="text-white" width="165" style="margin-bottom: 10%; margin-top: 10%"/>
         <div class="card login-container" content-tabs tabsdata='tabsdata'>
           <form name="login_form" class="" novalidate ng-cloak>
-            <my-tabs>
-              <my-tab title="Email">
+	          <my-tabs>
+              <my-tab title="Mis Reuniones">
                 <div class="list">
                   <label class="item item-input">
                     <input type="email" placeholder="{{ 'EMAIL' | translate }}" name="user_email" ng-model="lc.credentials.email" required>
@@ -19,17 +19,17 @@
               
             </my-tabs>
             <div class="item item-body bottom-content">
-              <button type="submit" class="button button-positive button-block" ng-click="lc.login()" >
+              <button type="submit" class="button button-energized button-block" ng-click="lc.login()" >
                 {{ 'INICIARSESION' | translate }}
               </button>
             </div>
           </form>
         </div>
         <div class="alternative-actions" style="text-align: left;">
-          <a class="forgot-password button button-small button-clear button-light" ui-sref="auth.forgot-password">
+          <a class="forgot-password button button-small button-clear button-light" style="color:black;" ui-sref="auth.forgot-password">
             {{ 'OLVIDASTECONTRASENA' | translate }}
           </a>
-          <a class="sign-up button button-small button-clear button-light" ui-sref="auth.signup">
+          <a class="sign-up button button-small button-clear button-light" style="color:black" ui-sref="auth.signup">
             {{ 'REGISTRO' | translate }}
           </a>
         </div>

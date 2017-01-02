@@ -31,6 +31,7 @@ angular
 				var reuniones = Reuniones.find({users:{ $elemMatch: {user: Meteor.userId(), estatus : 1} }}).fetch();
 				if(reuniones.length > 0){
 					_.each(reuniones, function(reunion){
+						console.log(reunion);
 						reunion.ownerObj = Meteor.users.findOne(reunion.owner);
 					})
 				}

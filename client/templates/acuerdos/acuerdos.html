@@ -11,11 +11,21 @@
   <!-- Botones cuando es iPad -->
   <div class="bar bar-subheader" ng-if="ac.isIPad">
 	  <div class="button-bar">
-		  <a class="button botonHoy" ng-click="ac.cambiarFiltro('hoy')">Hoy</a>
-		  <a class="button botonSemana" ng-click="ac.cambiarFiltro('semana')">Semana</a>
-		  <a class="button botonMes" ng-click="ac.cambiarFiltro('mes')">Mes</a>
-		  <a class="button botonFuturo" ng-click="ac.cambiarFiltro('futuro')">Futuro</a>
-		  <a class="button botonProxima" ng-click="ac.cambiarFiltro('todas')">Todas</a>
+		  <a class="button botonHoy" ng-click="ac.cambiarFiltro('hoy')">
+			 <i class="fa fa-check" style="color: white;"></i> Hoy ({{ac.hoy.length}})
+			</a>
+		  <a class="button botonSemana" ng-click="ac.cambiarFiltro('semana')">
+			  <i class="fa fa-calendar-o" style="color: white;"></i> Semana ({{ac.semana.length}})
+			</a>
+		  <a class="button botonMes" ng-click="ac.cambiarFiltro('mes')">
+			  <i class="fa fa-calendar" style="color: white;"></i> Mes ({{ac.mes.length}})
+			</a>
+		  <a class="button botonFuturo" ng-click="ac.cambiarFiltro('futuro')">
+			  <i class="fa fa-calendar-plus-o" style="color: white;"></i> Futuro ({{ac.futuro.length}})
+			</a>
+		  <a class="button botonProxima" ng-click="ac.cambiarFiltro('todas')">
+			  <i class="fa fa-calendar" style="color: white;"></i> Todas ({{ac.reuniones.length}})
+			</a>
 		</div>
   </div>
 	<!-- Botones cuando no es iPad -->

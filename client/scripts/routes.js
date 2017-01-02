@@ -132,7 +132,7 @@ angular.module('FLOKsports').config(function ($translateProvider) {
 		EMAIL: 'Mail',
 		PASSWORD: 'Password',
 		INICIARSESION: 'Login',
-		OLVIDASTECONTRASENA: 'Forgot password ?',
+		OLVIDASTECONTRASENA: 'Forgot your password?',
 		REGISTRO: 'Registry',
 		REGISTRAR: 'To Register',
 		//Preferencias de Reunion
@@ -263,7 +263,7 @@ angular.module('FLOKsports').config(function ($translateProvider) {
 		EMAIL: 'Correo',
 		PASSWORD: 'Contraseña',
 		INICIARSESION: 'Iniciar sesión',
-		OLVIDASTECONTRASENA: 'Olvidaste contraseña ?',
+		OLVIDASTECONTRASENA: '¿Olvidaste tu contraseña?',
 		REGISTRO: 'Registro',
 		REGISTRAR: 'Registrar',
 		//Preferencias de Reunion
@@ -391,7 +391,7 @@ angular.module('FLOKsports').config(function ($translateProvider) {
 		EMAIL: 'e-mail',
 		PASSWORD: 'Senha',
 		INICIARSESION: 'Iniciar sessão',
-		OLVIDASTECONTRASENA: 'Olvidaste contraseña ?',
+		OLVIDASTECONTRASENA: '¿Olvidaste tu contraseña?',
 		REGISTRO: 'Inscrição',
 		REGISTRAR: 'Registro',
 		//Preferencias de Reunion

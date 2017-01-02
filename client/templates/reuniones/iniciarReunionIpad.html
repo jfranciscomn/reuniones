@@ -17,22 +17,33 @@
 				<div class="row">
 					<div class="col">
 						<div class="button-bar">
-
+ 
 							<button class="button bg-color-green icon ion-arrow-swap" ng-click="irc.guardar()"  ></button>
 						  <button class="button button-small icon ion-arrow-left-a" ng-click="irc.reunionAnterior()" ng-disabled="!irc.getAnterior()"></button>
 						  <button class="button button-small icon ion-arrow-right-a" ng-click="irc.reunionSiguiente()" ng-disabled="!irc.getSiguiente()"></button>
-
 						  <button class="button button-small icon ion-folder"></button>
 						  <button class="button button-small icon ion-email" ng-click="irc.enviarEmail()"></button>
 						  <button class="button button-small icon ion-trash-a" ng-click="irc.eliminar(irc.reunion)"></button>
 						  <button class="button button-small icon ion-mic-a"></button>
 						  <button class="button button-small icon ion-ios-star" ng-click="irc.favorita()"></button>
 						  <button class="button button-small icon ion-close" ng-click="irc.cerrar()"></button>
+						  <button ng-class="(irc.verBarraInformacion) ? 'button button-small icon ion-chevron-up': 'button button-small icon ion-chevron-down' " ng-click="irc.verBarraInformacion = !irc.verBarraInformacion"></button>
 						  <button ng-class="(irc.verBarra) ? 'button button-small icon ion-chevron-right': 'button button-small icon ion-chevron-left' " ng-click="irc.verBarra = !irc.verBarra"></button>
 						</div>
 					</div>
 				</div>
 				<div class="row">
+					<div class="col">
+						<h3 ng-show="irc.verTitulo" on-double-tap="irc.verTitulo = !irc.verTitulo">Título : {{irc.reunion.titulo}}</h3>
+						<label class="item item-input-inset item-stacked-label" ng-show="!irc.verTitulo">
+							<label class="item-input-wrapper">
+								<input type="text" ng-model='irc.reunion.titulo' class="full" >
+							</label>
+						</label>
+						<button class="button button-primary" ng-click="irc.guardar()" ng-show="!irc.verTitulo">Hecho</button>
+					</div>
+				</div>
+				<div class="row" ng-show="irc.verBarraInformacion">
 					<div class="col-75">
 						<div class="card" style="margin: 5px !important;">
 						  <div class="item">
@@ -57,7 +68,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="row">
+				<div class="row" ng-show="irc.verBarraInformacion">
 					<div class="col">
 						<div class="card" style="margin: 0px !important;">
 						  <div class="item">
