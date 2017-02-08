@@ -32,7 +32,7 @@
 			<div class="item item-input-inset item-stacked-label">
 				<span class="input-label">{{ 'CATEGORIA' | translate }}</span>
 				<label class="item-input-wrapper">
-					<select ng-model='nrc.reunion.categoria_id'  style="width: 100%">
+					<select ng-model='nrc.reunion.categoria_id'  ng-change="nrc.cambioCategoria()" style="width: 100%">
 						<option value="{{categoria._id}}" ng-repeat="categoria in nrc.categorias">{{categoria.nombre}}</option>
 					</select>
 				</label>
@@ -46,7 +46,7 @@
 			<div class="item item-input-inset item-stacked-label">
 	      <span class="input-label">{{ 'TEMAS' | translate }}</span>
 		    <label class="item-input-wrapper">
-		      <input type="text" placeholder="{{ 'TEMAS' | translate }}" ng-model="nrc.reunion.temas" class="full">
+		      <tags-input placeholder="{{ 'TEMAS' | translate }}" ng-model="nrc.reunion.temas" replace-spaces-with-dashes="false" class="full"></tags-input>    
 		    </label>
 		  </div>
 			<label class="item item-input-inset">

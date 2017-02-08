@@ -126,6 +126,14 @@ angular
 			  });
 
 		}
+		this.cambioCategoria = function(){
+			console.log("asd")
+			var cat = Categorias.findOne(this.reunion.categoria_id);
+			console.log(this.reunion.categoria_id)
+			//console.log(cat);
+			if(!this.reunion.temas)
+			this.reunion.temas = cat.temas;
+		}
 
 		this.sendNotification =function (meeting, tipo) {
 			var participans =[]
@@ -163,7 +171,7 @@ angular
 		
 		this.save	= function(){
 			this.quitarhk(this.reunion);
-			console.log("state save", $stateParams);
+			//console.log("state save", $stateParams);
 			if($stateParams.reunionId != undefined && $stateParams.siguiente == undefined){
 				delete this.reunion._id
 				this.quitarhk(this.reunion);

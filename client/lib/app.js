@@ -8,7 +8,9 @@ angular
     'angular-chrono',
     'ngCordova',
     'pascalprecht.translate',
-    'angularMoment'
+    'angularMoment',
+    'ionic-color-picker',
+    'ngTagsInput'
 
   ])
   .config(function($ionicConfigProvider) {

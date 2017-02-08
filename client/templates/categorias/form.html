@@ -11,10 +11,16 @@
         <span class="input-label">Nombre</span>
         <input type="text" ng-model='ncc.categoria.nombre'>
       </label>
+
+      
       <label class="item item-input item-stacked-label">
         <span class="input-label">Color</span>
-        <input type="color" ng-model='ncc.categoria.color'>
-      </label>      
+        <button class="button" color-picker="" color-mode="name" ng-model="ncc.categoria.color" modal-title="Color" color-box="{{ncc.categoria.color}}">
+              {{&apos;          &apos; }} 
+            </button>
+      </label>  
+      
+      <tags-input placeholder="Agregar Tema"  ng-model="ncc.categoria.temas" replace-spaces-with-dashes="false"></tags-input>    
     </ul>
   </ion-content>
 </ion-view>
