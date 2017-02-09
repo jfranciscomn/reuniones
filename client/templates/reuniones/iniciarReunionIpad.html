@@ -24,7 +24,7 @@
 						  <button class="button button-small icon ion-folder"></button>
 						  <button class="button button-small icon ion-email" ng-click="irc.enviarEmail()"></button>
 						  <button class="button button-small icon ion-trash-a" ng-click="irc.eliminar(irc.reunion)"></button>
-						  <button class="button button-small icon ion-mic-a"></button>
+						  <button class="button button-small icon ion-mic-a" ng-click="irc.notaVoz()"></button>
 						  <button class="button button-small icon ion-ios-star" ng-click="irc.favorita()"></button>
 						  <button class="button button-small icon ion-close" ng-click="irc.cerrar()"></button>
 						  <button ng-class="(irc.verBarraInformacion) ? 'button button-small icon ion-chevron-up': 'button button-small icon ion-chevron-down' " ng-click="irc.verBarraInformacion = !irc.verBarraInformacion"></button>
@@ -134,7 +134,7 @@
 				    <ion-scroll direction="y" style="height: 100px">
 							<div class="list">
 							  <a class="item item-icon-left" ng-click="irc.reproducir(medio)" ng-repeat="medio in irc.medios">
-							    <i ng-class="(medio.tipo == 'foto') ? 'icon ion-image' : (medio.tipo == 'audio') ? 'icon ion-mic-a' : 'icon ion-videocamera'" ></i>
+							    <i ng-class="(medio.tipo == 'link') ? 'icon ion-link' : (medio.tipo == 'foto') ? 'icon ion-image' : (medio.tipo == 'audio') ? 'icon ion-mic-a' : 'icon ion-videocamera'" ></i>
 							  </a>
 							</div>
 					  </ion-scroll>

@@ -25,6 +25,7 @@ angular
 		this.fotos = [];
 		this.audios = [];
 		this.videos = [];
+		this.links =[];
 
 		this.subscribe('acuerdos',()=>{
 			return [{categoria_id : this.getReactively("reunion.categoria_id"), estatus : 1}]
@@ -358,14 +359,45 @@ angular
 					}
 	   	});
 		};
+		this.notaVoz = function(){
+
+			//Si Agrega Audio
+		    var options = { limit: 3, duration: 10 };
 		
+		    $cordovaCapture.captureAudio(options).then(function(audioData) {
+		      var i, path, len;
+			    for (i = 0, len = audioData.length; i < len; i += 1) {
+			        path = audioData[i].fullPath; 
+			        var reader  = new FileReader();
+			        var archivo=audioData[i];
+			        var path=archivo.fullPath.split('/');
+			        var filename= path.pop();
+			        path = 'file:///'+path.join('/');
+			       //console.log(path,filename)
+			   		$cordovaFile.readAsDataURL(path,filename).then(function (success) {
+					        console.log('success');
+
+					         Medios.insert({reunion_id : rc.reunion._id,tipo: "audio", data : success });
+					      }, function (error) {
+					      	console.log(error);
+					      });
+			   		
+			       // console.log(audioData);
+			    }
+		      
+		    }, function(err) {
+		      // An error occurred. Show a message to the user
+		     //console.log("error audio", err);
+		    });
+		}
 		//Action Sheet Medios
 		this.mostrarMedios = function(participante) {
 	   	var hideSheet = $ionicActionSheet.show({
 		    buttons: [
 						{ text: 'Foto' },
 						{ text: 'Audio' },
-						{ text: 'Video' }
+						{ text: 'Video' },
+						{ text: 'Links'}
 					],
 					titleText: "Agregar Medio",
 					cancelText: 'Cancelar',
@@ -465,9 +497,29 @@ angular
 						      console.log("error video", err);
 						    });
 						}
+						else if(index == 3){
+							var popupCategoria = $ionicPopup.show({
+								template:'<ul class="list list-inset"><label class="item item-input"><span class="input-label">link</span><input type="text" ng-model="irc.link"></label></ul>',
+								title: 'Agregar',
+								scope: $scope,
+								buttons: [
+							      { text: 'Cancel' },
+							      {
+							        text: '<b>Save</b>',
+							        type: 'button-positive',
+							        onTap: function(e) {
+							        	console.log(rc.link)
+							        	Medios.insert({reunion_id : rc.reunion._id,tipo: "link", data : rc.link });
+							          	
+							        }
+							      }
+							    ]
+							});
+						}
 						//console.log(index);
 						return true;
 					}
+					
 	   	});
 		};
 		
@@ -590,6 +642,13 @@ angular
 			  _.each(rc.medios, function(medio){
 				  if(medio.tipo == "video"){
 					  rc.videos.push(medio);
+				  }
+			  });
+			  $scope.modalVideo.show();
+		  }else if(medio.tipo == "link"){
+			  _.each(rc.medios, function(medio){
+				  if(medio.tipo == "link"){
+					  rc.links.push(medio);
 				  }
 			  });
 			  $scope.modalVideo.show();
