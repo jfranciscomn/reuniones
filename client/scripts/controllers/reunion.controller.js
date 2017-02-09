@@ -16,6 +16,20 @@ angular
 		this.subscribe('AllReuniones',()=>{
 			return [{}]
 		});
+		this.quitarhk=function(obj){
+			if(Array.isArray(obj)){
+				for (var i = 0; i < obj.length; i++) {
+					obj[i] =this.quitarhk(obj[i]);
+				}
+			}
+			else if(obj !== null && typeof obj === 'object'){
+				delete obj.$$hashKey;
+				for (var name in obj) {
+						obj[name] = this.quitarhk(obj[name]);
+				}	
+			}
+			return obj;
+		}
 		this.helpers({
 			reunion : function() {
 				var reunion = Reuniones.findOne($stateParams.reunionId);
@@ -70,10 +84,11 @@ angular
 							usuario.estatus = estatus;
 						}
 					})
+					reunion = rc.quitarhk (reunion)
 					Reuniones.update({ _id : reunion._id}, { $set : { users: reunion.users, estatus : 2 }});
 					rc.sendNotification(reunion,notification)
 					if(reunion.estatus==2){
-						rc.saveDate(reunion)
+						//rc.saveDate(reunion)
 					}
 				}
 			});

@@ -20,11 +20,13 @@
 </ion-item>
 <ion-item>			
   <h2>{{ 'TEMAS' | translate}}</h2>
-  <p>{{rc.reunion.temas}}</p>
+  
+  <p><tags-input placeholder="{{ 'TEMAS' | translate }}" ng-model="rc.reunion.temas" replace-spaces-with-dashes="false" class="full" disabled></tags-input></p>
 </ion-item>			  
 <ion-item>			
   <h2>{{ 'CONVOCA' | translate}}</h2>
   <p>{{rc.reunion.convoca}}</p>
+
 </ion-item>
 <ion-item>
   <h2>{{ 'PARTICIPANTES' | translate}}</h2>

@@ -127,11 +127,11 @@ angular
 						//Ver los temas como un listado con posibilidad de ser seleccionado.
 						//console.log(rc.miReunion.temas);
 						if(rc.miReunion.temas != undefined){
-							var todosTemas = rc.miReunion.temas.split(', ');
+						//	var todosTemas = rc.miReunion.temas.split(', ');
 							rc.miReunion.todosTemas = [];
-							_.each(todosTemas, function(tema){
+							_.each(rc.miReunion.temas, function(tema){
 								rc.miReunion.todosTemas.push({
-									nombre : tema,
+									nombre : tema.text,
 									seleccionado : false
 								})
 							})
