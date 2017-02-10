@@ -59,10 +59,9 @@
 					<div class="col-25">
 						<div class="card" style="margin: 5px 5px 0px 3px;">
 						  <div class="item">
-							  <p>Duración <button class="button button-small" ng-click="irc.stopTimer()"><i class="icon ion-stop"></i></button></p>
-							   <div chrono-timer timer-name="myTimer" start-time="irc.time">
-							        {{ hours }}:{{ minutes|zeropad }}:{{ seconds|zeropad }}
-							    </div><br/>
+							  <p>Duración <button class="button button-small" ng-click="irc.stopTimerr()"><i class="icon ion-stop"></i></button></p>
+							   {{irc.formatoStr(irc.reunion.segundos)}}
+							   <br/>
 							  <button class="button icon ion-pricetag button-small"></button>
 						  </div>
 						</div>

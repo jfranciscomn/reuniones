@@ -1,7 +1,7 @@
 angular
 	.module('FLOKsports')
 	.controller('IniciarReunionCtrl', function NuevaReunionCtrl($scope, $sce, $reactive, $state, $stateParams, $ionicPopup, 
-			$ionicHistory, $ionicModal, $ionicActionSheet, $timeout, $cordovaEmailComposer, $cordovaCapture, $cordovaFile, chronoService) {
+			$ionicHistory, $ionicModal, $ionicActionSheet, $timeout, $cordovaEmailComposer, $cordovaCapture, $cordovaFile, $interval) {
 
 		let rc = $reactive(this).attach($scope);
 		window.rc = rc;
@@ -18,9 +18,9 @@ angular
 		this.verBarraInformacion = true;
 		this.verTitulo = true;
 		this.time = Date.now();
-		this.timerStop = true;
-        chronoService.addTimer('myTimer', { interval: 500 });
-        chronoService.start();
+		this.timeStopr = false;
+        //chronoService.addTimer('myTimer', { interval: 500 });
+        //chronoService.start();
 		
 		this.fotos = [];
 		this.audios = [];
@@ -58,27 +58,45 @@ angular
 			}
 			return obj;
 		}
-		this.stopTimer=function(){
-			if(this.timerStop){
-				chronoService.stop();
-				this.timestop  = Date.now();
-				 chronoService.removeTimer('myTimer', { interval: 500 });
+
+		rc.autoSave= $interval(function(){
+			console.log("autoSave")
+			rc.guardar()
+		},30000)
+		
+ 
+		$scope.$on("$ionicView.leave", function(event, data){
+		   // handle event
+		   $interval.cancel(rc.segundero);
+		   $interval.cancel(rc.autoSave);
+		   //console.log("ya me sali");
+		});
+		this.formatoStr=function(s){
+			var segundos = s%60;
+			var minutos = Math.floor(s/60)%60
+			var horas = Math.floor(s/3600)
+
+			if(segundos<10)
+				segundos ='0'+segundos;
+			if(minutos<10)
+				minutos = '0'+ minutos;
+			if (horas<10)
+				horas = '0'+horas;
+
+			return horas+':'+minutos+':'+segundos;
+		}
+		this.stopTimerr=function(){
+			if(this.timeStopr){
+				//$scope.$broadcast('timer-stop');
+				rc.segundero = $interval(function(){rc.reunion.segundos=rc.reunion.segundos+1; rc.segundos++; console.log("a",rc.reunion.segundos)}, 1000);
+				this.timeStopr =false;
 			}
 			else{
-				
-				var x = Date.now()-this.timestop;
-				//console.log(this.timestop)
-				//console.log(x)
-				//console.log(this.time)
-				this.time =this.time+x;
-				chronoService.addTimer('myTimer', { interval: 500 });
-				//chronoService.timers.myTimer.started=this.time
-				//console.log(this.time)
-				//console.log(chronoService.timers.myTimer)
-				chronoService.start();
+				$interval.cancel(rc.segundero);
+				this.timeStopr= true;
+
 			}
-			this.timerStop=!this.timerStop
-			//console.log('stop');
+			
 			
 		}
 		this.helpers({
@@ -99,6 +117,24 @@ angular
 				return Medios.find({reunion_id:$stateParams.reunionId}); 
 			},
 			reunion : function() {
+				//myVar = setInterval(function, milliseconds);
+				if(!rc.miReunion.segundos){
+					rc.miReunion.segundos = 0;
+					rc.segundos=0;
+				}
+				else{
+					rc.segundos=rc.miReunion.segundos;
+				}
+				if(rc.segundero)
+				{
+					console.log("borre");
+					$interval.cancel(rc.segundero);
+					rc.segundero= undefined;
+				}
+				if(!rc.segundero && rc.timeStopr==false)
+					rc.segundero = $interval(function(){rc.reunion.segundos=rc.reunion.segundos+1; rc.segundos++; console.log("a",rc.reunion.segundos)}, 1000);
+				
+
 				if(rc.miReunion.todosTemas == undefined){
 					if(this.getReactively("miReunion")){
 						_.each(rc.miReunion.users, function(invitado){
