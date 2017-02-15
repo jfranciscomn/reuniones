@@ -84,8 +84,8 @@ angular
 				return reuniones;
 			},
 		});
-		}else if($stateParams.tipo == "futuras"){
-			console.log("futuras", $stateParams.tipo);
+		}else if($stateParams.tipo == "futuro"){
+			console.log("futuro", $stateParams.tipo);
 			rc.hoy = new Date;
 			rc.y =rc.hoy.getFullYear(), rc.m =rc.hoy.getMonth();
 			rc.helpers({

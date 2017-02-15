@@ -190,8 +190,13 @@ angular
 			}
 			else{
 				Reuniones.insert(this.reunion);
-				this.sendNotification(this.reunion, "insert");
-				this.saveDate(this.reunion);
+				try{
+					this.sendNotification(this.reunion, "insert");
+					this.saveDate(this.reunion);
+				}
+				catch (e) {
+					console.log(e);
+				}
 			}
 			Categorias.update({_id:this.reunion.categoria_id},{$set:{temas:this.reunion.temas}})
 			

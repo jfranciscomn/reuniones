@@ -26,6 +26,12 @@ angular.module("FLOKsports").run(function ($rootScope, $state) {
 
 angular.module('FLOKsports').config(function ($translateProvider) {
   $translateProvider.translations('en', {
+    //Date
+    WEEKDAYS: "Su,Mo,Tu,We,Th,Fr,Sa",
+    MONTHS: "January,February,March,April,May,June,July,August,September,October,November,December",
+    OK: "Ok",
+    CANCEL: "Cancel",
+
 		//Layout
 	  HOLA: 'Hi ',
 	  BIENVENIDO:'Welcome',
@@ -157,6 +163,12 @@ angular.module('FLOKsports').config(function ($translateProvider) {
 		
   });
   $translateProvider.translations('es', {
+    //Date
+    WEEKDAYS: "Do,Lu,Ma,Mi,ju,Vi,Sá",
+    MONTHS: "Enero,Febrero,Marzo,Abril,Mayo,Junio,Julio,Agosto,Septiembre,Octubre,Noviembre,Diciembre",
+    OK: "Aceptar",
+    CANCEL: "Cancelar",
+
 		//Layout
 	  HOLA: 'Hola ',
 	  BIENVENIDO:'Bienvenid@',

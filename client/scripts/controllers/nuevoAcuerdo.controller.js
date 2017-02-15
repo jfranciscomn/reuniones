@@ -173,6 +173,7 @@ angular
 				query: {userId:{$in:participans}}
 			});
 		}
+
 		
 		this.save  = function(){
 			this.quitarhk(this.acuerdo);
@@ -205,7 +206,14 @@ angular
 			this.sendNotification(rc.acuerdo);
 			$ionicHistory.goBack();
 		}
+		this.bajarPrioridad =function () {
+			this.acuerdo.prioridad = this.acuerdo.prioridad>=50? this.acuerdo.prioridad-50:0; 
+		}
 		
+		this.subirPrioridad =function () {
+			this.acuerdo.prioridad = this.acuerdo.prioridad<=50? this.acuerdo.prioridad+50:100; 
+		}
+
 		this.getConfirmados = function(usuarios){
 			var confirmados = 0;
 			_.each(usuarios, function(usuario){

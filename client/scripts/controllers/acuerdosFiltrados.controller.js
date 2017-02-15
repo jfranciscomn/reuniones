@@ -111,8 +111,8 @@ angular
 				return acuerdos;
 			},
 		});
-		}else if($stateParams.tipo == "futuras"){
-			console.log("futuras", $stateParams.tipo);
+		}else if($stateParams.tipo == "futuro"){
+			console.log("futuro", $stateParams.tipo);
 			rc.hoy = new Date;
 			rc.y =rc.hoy.getFullYear(), rc.m =rc.hoy.getMonth();
 			rc.helpers({
@@ -125,7 +125,7 @@ angular
 							{responsables	:{ $elemMatch: {user:Meteor.userId()}}},
 							{seguidores		:{ $elemMatch: {user:Meteor.userId()}}}
 						]}, 
-						{fechaInicio : { $gt: new Date(rc.y, rc.m + 1, 0)}}
+						{fechaInicio : { $gt: new Date(rc.y, rc.m + 1,0)}}
 					]}).fetch();
 					console.log(acuerdos);
 					return acuerdos;

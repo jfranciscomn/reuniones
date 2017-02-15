@@ -693,11 +693,101 @@ angular
 	  
 	  this.enviarEmail = function(){
 	  		var correos = [];
+	  		var nombrePaticipantes =[];
 	  		console.log("enviar Email")
 	  		for (userid in  this.reunion.users){
 	  			var participante = this.reunion.users[userid];
 	  			correos.push(participante.invitado.profile.email);
+	  			nombrePaticipantes.push(participante.invitado.profile.nombre);
 	  		}
+	  		var temas = _.reduce( this.reunion.temas, function(memo, num){ return memo + ';' + num.text; }, "");
+
+	  		var tabla=`<table order="1" cellspacing="0" cellpadding="0" width="100%" style="background-color:rgb(251,236,181);border-collapse:collapse;border:none;background-position:initial initial;background-repeat:initial initial">\
+				      <tbody>
+				        <tr>
+				          <td colspan="4" style="text-align:center;font-size:24pt;border:1.5pt solid black;padding:0.75pt" >
+				            Minuta de reunión
+				          </td>
+				        </tr>
+				        <tr>
+				          <td width="10%" style="border:1.5pt solid black;padding:0.75pt">
+				            Reunion
+				          </td>
+				          <td width="40%" style="border:1.5pt solid black;padding:0.75pt;background-color:white">
+				            `+this.reunion.titulo+`
+				          </td >
+				          <td width="10%" style="border:1.5pt solid black;padding:0.75pt">
+				            Fecha
+				          </td>
+				          <td width="40%" style="border:1.5pt solid black;padding:0.75pt;background-color:white">
+				            `+this.reunion.fecha.toLocaleDateString();+`
+				          </td >
+				        </tr>
+				        <tr>
+				          <td width="10%" style="border:1.5pt solid black;padding:0.75pt">
+				            Lugar
+				          </td>
+				          <td width="40%" style="border:1.5pt solid black;padding:0.75pt;background-color:white">
+				            `+this.reunion.ubicacion+`
+				          </td >
+				          <td width="10%" style="border:1.5pt solid black;padding:0.75pt">
+				            Organizador
+				          </td>
+				          <td width="40%" style="border:1.5pt solid black;padding:0.75pt;background-color:white">
+				            `+this.reunion.owner+`
+				          </td >
+				        </tr>
+				        <tr>
+				          <td rowspan="3" width="10%" style="border:1.5pt solid black;padding:0.75pt">
+				            Participantes
+				          </td>
+				          <td rowspan="3" width="40%" style="border:1.5pt solid black;padding:0.75pt;background-color:white">
+				            `+nombrePaticipantes.join(",")+`
+				          </td >
+				          <td width="10%" style="border:1.5pt solid black;padding:0.75pt">
+				            Duracion
+				          </td>
+				          <td width="40%" style="border:1.5pt solid black;padding:0.75pt;background-color:white">
+				          `+ this.formatoStr(this.reunion.segundos)+`
+				          </td >
+				        </tr>
+				        <tr>
+					      <td width="10%" style="border:1.5pt solid black;padding:0.75pt">
+					        Categoria
+					      </td>
+					      <td width="40%" style="border:1.5pt solid black;padding:0.75pt;background-color:white">
+					       `+ this.reunion.categoria.nombre+`
+					      </td >
+					    </tr>
+					    <tr>
+				          <td width="10%" style="border:1.5pt solid black;padding:0.75pt">
+				            Tema
+				          </td>
+				          <td width="40%" style="border:1.5pt solid black;padding:0.75pt;background-color:white">
+				          `+ temas+`
+				          </td >
+				        </tr>
+				        <tr>
+				          <td width="10%" style="border:1.5pt solid black;padding:0.75pt">
+				            Siguiente Reunion
+				          </td>
+				          <td width="40%" style="border:1.5pt solid black;padding:0.75pt;background-color:white">
+				            
+				          </td >
+				          <td colspan="2"  width="50%" style="border:1.5pt solid black;padding:0.75pt">
+				           
+				          </td>
+				        </tr>
+				        <tr>
+				          <td colspan="4" width="100%" style="border:1.5pt solid black;padding:0.75pt">
+				            Notas
+				          </td>
+				        </tr>
+				        <tr>
+				          <td colspan="4" width="100%" style="border:1.5pt solid black;padding:0.75pt;background-color:white;white-space: pre;>
+				          `+ temas+`
+				          </td >
+				        </tr>`;		
 	  		var temas="<h1>Temas</h1><ul>"
 	  		for(var temaid in this.reunion.todosTemas){
 	  			var tema = this.reunion.todosTemas[temaid];
