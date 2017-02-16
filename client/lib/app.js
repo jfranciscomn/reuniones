@@ -27,7 +27,7 @@ angular
     $ionicPickerI18n.weekdays = ["Do", "Lu", "Ma", "Mi", "ju", "Vi", "Sá"];
     $ionicPickerI18n.months = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
     $ionicPickerI18n.ok = "Aceptar";
-    $ionicPickerI18n.cancel = "Cancelar";
+    $ionicPickerI18n.cancel ="Cancelar";
 
     $translate('WEEKDAYS').then(
       function (translation) {

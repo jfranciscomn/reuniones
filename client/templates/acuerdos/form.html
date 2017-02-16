@@ -41,7 +41,7 @@
 -->
 			<div class="item" date ion-datetime-picker ng-model="nac.acuerdo.fechaInicio">
 	      <span class="input-label">{{ 'FECHAINICIO' | translate}}</span>
-        {{nac.acuerdo.fechaInicio| date: "dd-MM-yyyy"}}
+        {{nac.acuerdo.fechaInicio| date: "HH:mm"}}
 	    </div>
       <div class="item" datetime ion-datetime-picker ng-model="nac.acuerdo.fechaLimite">
 	      <span class="input-label">{{ 'FECHALIMITE' | translate}}</span>
@@ -64,9 +64,9 @@
 		    <span class="input-label color-yellow" ng-show="nac.acuerdo.prioridad >= 50 && nac.acuerdo.prioridad <= 99">{{ 'MEDIA' | translate }}</span>
 		    <span class="input-label color-red" ng-show="nac.acuerdo.prioridad == 100">{{ 'ALTA' | translate }}</span>
 		    <label class="item-input-wrapper">
-	        	<i class="icon ion-minus-round" ng-click="nac.bajarPrioridad()"></i>
+	        <i class="icon ion-minus-round"></i>
 			    <input type="range" min="0" max="100" value="50" step="50" ng-model="nac.acuerdo.prioridad">
-			    <i class="icon ion-plus-round" ng-click="nac.subirPrioridad()"></i>
+			    <i class="icon ion-plus-round"></i>
 		    </label>
       </label>
       <div class="item item-input-inset item-stacked-label">

@@ -76,14 +76,16 @@ angular
 					reunion.username = (Meteor.userId() != undefined) ? Meteor.user().username : "";
 					reunion.estatus = 1;
 					reunion.fecha = new Date();
-					reunion.horaInicio = moment().format("hh:mm a");					
+					//reunion.horaInicio = moment().format("hh:mm a");		
+					reunion.horaInicio=  reunion.fecha;
+					console.log(reunion.horaInicio)			
 					reunion.convoca = Meteor.user().profile.name;
 					var preferenciasReunion = PreferenciasReunion.findOne({owner : Meteor.userId()});
 					console.log("preferencias", preferenciasReunion);
 					if(preferenciasReunion != undefined && preferenciasReunion.duracionReunion != undefined){
-						reunion.horaFin = moment().add(preferenciasReunion.duracionReunion, "minutes").format("hh:mm a");
+						reunion.horaFin = moment().add(preferenciasReunion.duracionReunion, "minutes").toDate();
 					}else{
-						reunion.horaFin = moment().format("hh:mm a");
+						reunion.horaFin = reunion.horaInicio;
 					}
 				}
 				return reunion;
@@ -113,10 +115,17 @@ angular
 			var iminute = meeting.horaInicio.getMinutes()
 			var fhour = meeting.horaFin.getHours()
 			var fminute = meeting.horaFin.getMinutes()
+			console.log({
+			    title: meeting.titulo,
+			    location: meeting.ubicacion,
+			    notes:  _.reduce( meeting.temas, function(memo, num){ return memo + ';' + num.text; }, ""), 
+			    startDate: new Date(year,month,date,ihour,iminute,0,0),
+			    endDate:  new Date(year,month,date,fhour,fminute,0,0)
+			  })
 			$cordovaCalendar.createEvent({
 			    title: meeting.titulo,
 			    location: meeting.ubicacion,
-			    notes: meeting.temas,
+			    notes: _.reduce( meeting.temas, function(memo, num){ return memo + ';' + num.text; }, ""),
 			    startDate: new Date(year,month,date,ihour,iminute,0,0),
 			    endDate:  new Date(year,month,date,fhour,fminute,0,0)
 			  }).then(function (result) {
@@ -293,8 +302,8 @@ angular
 			var preferenciasReunion = PreferenciasReunion.findOne({owner : Meteor.userId()});
 			if(preferenciasReunion != undefined){
 				console.log(preferenciasReunion.duracionReunion);
-				rc.reunion.horaInicio = moment(horaInicio).format("hh:mm a");
-				rc.reunion.horaFin = moment(horaInicio).add(preferenciasReunion.duracionReunion, 'minutes').format("hh:mm a");
+				rc.reunion.horaInicio = horaInicio;
+				rc.reunion.horaFin = moment(horaInicio).add(preferenciasReunion.duracionReunion, 'minutes').toDate();
 			}else{
 				rc.reunion.horaFin = rc.reunion.horaInicio;
 			}

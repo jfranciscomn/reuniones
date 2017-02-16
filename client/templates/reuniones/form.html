@@ -31,14 +31,14 @@
 	    </div>
 			<div class="item item-input-inset item-stacked-label item-icon-right">
 				<span class="input-label">{{ 'CATEGORIA' | translate }}</span>
-				<label class="item-input-wrapper ">
-					<select ng-model='nrc.reunion.categoria_id'  ng-change="nrc.cambioCategoria()" style="width: 95%">
-						<option value="{{categoria._id}}" ng-repeat="categoria in nrc.categorias">{{categoria.nombre}}</option>
-					</select>
+				<div class="row">
+					<label class="item-input-wrapper " style="width: 90%">
+						<select style="width:100%" ng-model='nrc.reunion.categoria_id'  ng-change="nrc.cambioCategoria()" >
+							<option value="{{categoria._id}}" ng-repeat="categoria in nrc.categorias">{{categoria.nombre}}</option>
+						</select>
+					</label>
 					<button class="button button-icon ion-plus" ng-click="nrc.agregarCategoria()"></button>
-					 
-				</label>
-				
+				</div>
 					   
 					
 			</div>
