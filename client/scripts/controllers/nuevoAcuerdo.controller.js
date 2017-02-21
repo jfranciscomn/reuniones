@@ -173,6 +173,17 @@ angular
 				query: {userId:{$in:participans}}
 			});
 		}
+		this.validarAcuerdo = function () {
+			if(!this.reunion || !this.reunion.titulo || this.reunion.titulo.trim().length==0){
+				return 1;
+			}
+
+			if(!this.reunion.categoria_id)
+				this.reunion.categoria_id = "";
+			
+
+			return 0;
+		}
 		
 		this.save  = function(){
 			this.quitarhk(this.acuerdo);
@@ -202,6 +213,9 @@ angular
   			if(rc.acuerdo.calendario)
       			this.saveDate()
 			}
+
+			Categorias.update({_id:this.acuerdo.categoria_id},{$set:{temas:this.acuerdo.temas}})
+			
 			this.sendNotification(rc.acuerdo);
 			$ionicHistory.goBack();
 		}
@@ -224,6 +238,46 @@ angular
 				}
 			})
 			return pendientes;
+		}
+
+		this.cambioCategoria = function(){
+			console.log("Cambio Categoria")
+			var cat = Categorias.findOne(this.acuerdo.categoria_id);
+			console.log(this.acuerdo.categoria_id)
+			console.log(cat )
+			//console.log(cat);
+			//if(!this.reunion.temas)
+			this.acuerdo.temas = cat.temas;
+		}
+
+		this.agregarCategoria = function(){
+			this.categoria ={};
+			console.log("agregarCategoria");
+			var popupCategoria = $ionicPopup.show({
+				template:'<ul class="list list-inset"><label class="item item-input"><span class="input-label">Nombre</span><input type="text" ng-model="nac.categoria.nombre"></label></ul>',
+				title: 'Nueva Categoria',
+				scope: $scope,
+				buttons: [
+			      { text: 'Cancel' },
+			      {
+			        text: '<b>Save</b>',
+			        type: 'button-positive',
+			        onTap: function(e) {
+			        	console.log(rc.categoria)
+			        	//if(!rc.reunion.temas)
+			          		rc.categoria.temas=[]
+			          	//else 
+			          	//	rc.categoria.temas=rc.reunion.temas
+
+			          	rc.categoria.owner=Meteor.userId();
+			          	var x = Categorias.insert(rc.categoria)
+			          	rc.acuerdo.categoria_id=x;
+			          	rc.cambioCategoria();
+			          	//console.log(x)
+			        }
+			      }
+			    ]
+			});
 		}
 		
 		this.getRechazados = function(usuarios){

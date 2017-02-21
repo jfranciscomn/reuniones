@@ -1,4 +1,4 @@
-<ion-view class="forms-view">
+<form name="aform" novalidate="">
   <ion-nav-buttons side="right">
     <button menu-toggle="right" class="button button-icon icon ion-android-checkmark-circle" ng-click='nac.save()'></button>
   </ion-nav-buttons>
@@ -11,25 +11,28 @@
   <ion-content>
     <ion-list>
 	    <div class="item item-input-inset item-stacked-label">
-	      <span class="input-label">{{ 'CATEGORIA' | translate}}</span>
-		    <label class="item-input-wrapper">
-		      <select ng-model="nac.acuerdo.categoria_id" style="width: 100%">
-			      <option ng-repeat="categoria in nac.categorias" value="{{categoria._id}}">{{categoria.nombre}}</option>
-			    </select>
-		    </label>
+	      		<span class="input-label">{{ 'CATEGORIA' | translate}}</span>
+		    	<div class="row">
+					<label class="item-input-wrapper " style="width: 90%">
+						<select style="width:100%" ng-model='nac.acuerdo.categoria_id'  ng-change="nac.cambioCategoria()" >
+							<option value="{{categoria._id}}" ng-repeat="categoria in nac.categorias">{{categoria.nombre}}</option>
+						</select>
+					</label>
+					<button class="button button-icon ion-plus" ng-click="nac.agregarCategoria()"></button>
+				</div>
 		  </div>
+	    <label class="item item-input-inset item-stacked-label" ng-class="{ 'has-errors' : aform.titulo.$invalid, 'no-errors' : aform.titulo.$valid}">
+        	<span class="input-label">{{ 'ACUERDO' | translate}}</span>
+        	<label class="item-input-wrapper" > 
+	        	<input name="titulo" type="text" ng-model="nac.acuerdo.titulo" class="full" ng-minlength="5" required>
+        	</label>
+      	</label>
 	    <label class="item item-input-inset item-stacked-label">
-        <span class="input-label">{{ 'ACUERDO' | translate}}</span>
-        <label class="item-input-wrapper">
-	        <input type="text" ng-model="nac.acuerdo.titulo" class="full">
-        </label>
-      </label>
-      <label class="item item-input-inset item-stacked-label">
-        <span class="input-label">{{ 'DESCRIPCION' | translate}}</span>
-        <label class="item-input-wrapper">
-	        <textarea type="text" ng-model="nac.acuerdo.descripcion" rows="3" style="width: 100%; background-color: transparent;"></textarea>
-        </label>
-      </label>
+	        <span class="input-label">{{ 'DESCRIPCION' | translate}}</span>
+	        <label class="item-input-wrapper">
+		        <textarea type="text" ng-model="nac.acuerdo.descripcion" rows="3" style="width: 100%; background-color: transparent;"></textarea>
+	        </label>
+	    </label>
 <!--  
 			<label class="item item-input">
         <span class="input-label">{{ 'FECHAINICIO' | translate}}</span>
@@ -39,11 +42,11 @@
         <span class="input-label">{{ 'FECHAINICIO' | translate}}</span>
         <input type="date" ng-model="nac.acuerdo.fechaInicio">
 -->
-			<div class="item" date ion-datetime-picker ng-model="nac.acuerdo.fechaInicio">
-	      <span class="input-label">{{ 'FECHAINICIO' | translate}}</span>
-        {{nac.acuerdo.fechaInicio| date: "HH:mm"}}
+		<div class="item" datetime ion-datetime-picker ng-model="nac.acuerdo.fechaInicio">
+	    	<span class="input-label">{{ 'FECHAINICIO' | translate}}</span>
+        	{{nac.acuerdo.fechaInicio| date: "dd-MM-yyyy H:mm:ss"}}
 	    </div>
-      <div class="item" datetime ion-datetime-picker ng-model="nac.acuerdo.fechaLimite">
+      	<div class="item" datetime ion-datetime-picker ng-model="nac.acuerdo.fechaLimite">
 	      <span class="input-label">{{ 'FECHALIMITE' | translate}}</span>
         {{nac.acuerdo.fechaLimite| date: "dd-MM-yyyy H:mm:ss"}}
 	    </div>
@@ -112,12 +115,18 @@
         <input type="date" ng-model="nac.acuerdo.hasta">
       </label>
 -->
-      <div class="item timeline-item" ng-click="nac.selSeguidores()">
+      	<div class="item timeline-item" ng-click="nac.selSeguidores()">
 	      {{ 'SEGUIDORES' | translate}}
-	      <div class="timeline-stats">
-          <i class="ion-person color-green"></i> {{nac.acuerdo.seguidores.length}}
-        </div>
-	    </div>
+	      	<div class="timeline-stats">
+         		<i class="ion-person color-green"></i> {{nac.acuerdo.seguidores.length}}
+        	</div>
+	  	</div>
+	  	<div class="item item-input-inset item-stacked-label">
+	      	<span class="input-label">{{ 'TEMAS' | translate }}</span>
+			<label class="item-input-wrapper">
+			      <tags-input placeholder="{{ 'TEMAS' | translate }}" ng-model="nac.acuerdo.temas" replace-spaces-with-dashes="false" class="full"></tags-input>    
+			</label>
+		</div>
 	    <div class="item item-input-inset item-stacked-label">
 	      <span class="input-label">{{ 'TEMAS' | translate}}</span>
 		    <label class="item-input-wrapper">
@@ -161,7 +170,7 @@
 		    </div>
 		</div>
   </ion-content>
-</ion-view>
+</form>
 <style>
 	.bar.app-top-bar {
 	  background-color: #82e79d;
