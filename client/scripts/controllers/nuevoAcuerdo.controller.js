@@ -174,20 +174,47 @@ angular
 			});
 		}
 		this.validarAcuerdo = function () {
-			if(!this.reunion || !this.reunion.titulo || this.reunion.titulo.trim().length==0){
+			if(!this.acuerdo || !this.acuerdo.titulo || this.acuerdo.titulo.trim().length==0){
 				return 1;
 			}
 
-			if(!this.reunion.categoria_id)
-				this.reunion.categoria_id = "";
+			if(!this.acuerdo.categoria_id)
+				this.acuerdo.categoria_id = "";
+			if(!this.acuerdo.fechaInicio)
+				this.acuerdo.fechaInicio = new Date();
+			if(!this.acuerdo.fechaLimite)
+				this.acuerdo.fechaLimite = new Date();
+			if(!this.acuerdo.descripcion)
+				this.acuerdo.descripcion = "";
+			if(!this.acuerdo.prioridad)
+				this.acuerdo.prioridad = 0;
+			if(!this.acuerdo.estatus)
+				this.acuerdo.estatus = 1;
+			if(!this.acuerdo.temas)
+				this.acuerdo.temas = [];
 			
-
 			return 0;
+		}
+		this.valido = function (atributo) {
+			// body...
+			
+			if(!this.acuerdo || !this.acuerdo.titulo || this.acuerdo.titulo.trim().length==0)
+				return "has-errors";
+			return "";
 		}
 		
 		this.save  = function(){
 			this.quitarhk(this.acuerdo);
-	
+			
+			if(this.validarAcuerdo()==1){
+
+				var alertPopup = $ionicPopup.alert({
+     				title: 'Error',
+     				template: 'Titulo Invalido'
+   				});
+   				return;
+			}
+			
 			if(this.acuerdoId){
 				delete this.acuerdo._id
 				if(this.acuerdo.fechaLimite != this.fechaLimite){
@@ -206,18 +233,19 @@ angular
 			else{
 				
 				rc.acuerdo.createdAt = new Date();
-  			rc.acuerdo.owner = Meteor.userId();
-  			rc.acuerdo.username = Meteor.user().username;
+  				rc.acuerdo.owner = Meteor.userId();
+  				rc.acuerdo.username = Meteor.user().username;
 
-  			Acuerdos.insert(rc.acuerdo);
-  			if(rc.acuerdo.calendario)
-      			this.saveDate()
+  				Acuerdos.insert(rc.acuerdo);
+  				if(rc.acuerdo.calendario)
+      				this.saveDate()
 			}
 
 			Categorias.update({_id:this.acuerdo.categoria_id},{$set:{temas:this.acuerdo.temas}})
 			
 			this.sendNotification(rc.acuerdo);
 			$ionicHistory.goBack();
+			
 		}
 		
 		this.getConfirmados = function(usuarios){
