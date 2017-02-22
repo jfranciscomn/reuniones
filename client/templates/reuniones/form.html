@@ -13,8 +13,8 @@
 		<ul class="list">
 			<label class="item item-input-inset item-stacked-label">
 				<span class="input-label">{{ 'TITULO' | translate }}</span>
-				<label class="item-input-wrapper">
-					<input type="text" ng-model='nrc.reunion.titulo' class="full">
+				<label class="item-input-wrapper" ng-class="nrc.valido('titulo')">
+					<input type="text" ng-model='nrc.reunion.titulo' class="full" ng-minlength="3" required>
 				</label>
 			</label>
 			<div class="item" date ion-datetime-picker ng-model="nrc.reunion.fecha" button-ok="Aceptar" button-cancel="Cancelar" monday-first title="Hola">
@@ -49,11 +49,11 @@
 				</label>
 			</label>
 			<div class="item item-input-inset item-stacked-label">
-	      <span class="input-label">{{ 'TEMAS' | translate }}</span>
-		    <label class="item-input-wrapper">
-		      <tags-input placeholder="{{ 'TEMAS' | translate }}" ng-model="nrc.reunion.temas" replace-spaces-with-dashes="false" class="full"></tags-input>    
-		    </label>
-		  </div>
+	      		<span class="input-label">{{ 'TEMAS' | translate }}</span>
+			    <label class="item-input-wrapper">
+			      <tags-input placeholder="{{ 'TEMAS' | translate }}" ng-model="nrc.reunion.temas" replace-spaces-with-dashes="false" class="full"></tags-input>    
+			    </label>
+		  	</div>
 			<label class="item item-input-inset">
 				<span class="input-label">{{ 'CONVOCA' | translate }}</span>
 				<label class="item-input-wrapper">

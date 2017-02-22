@@ -180,6 +180,15 @@ angular
 		
 		this.save	= function(){
 			this.quitarhk(this.reunion);
+
+			if(this.validarReunion()==1){
+
+				var alertPopup = $ionicPopup.alert({
+     				title: 'Error',
+     				template: 'Titulo Invalido'
+   				});
+   				return;
+			}
 			//console.log("state save", $stateParams);
 			if($stateParams.reunionId != undefined && $stateParams.siguiente == undefined){
 				delete this.reunion._id
@@ -297,17 +306,23 @@ angular
 				$state.go("app.iniciarReunionCel", {reunionId : reunion._id});
 			}*/
 		}
+		this.disminuirHoraInicio = function (horaFin) {
+			if(rc.reunion.horaInicio> horaFin)
+				rc.reunion.horaInicio = new Date(horaFin.getTime());
+
+		}
 		
 		this.aumentarHoraFin = function(horaInicio){
 			var preferenciasReunion = PreferenciasReunion.findOne({owner : Meteor.userId()});
 			if(preferenciasReunion != undefined){
 				console.log(preferenciasReunion.duracionReunion);
 				rc.reunion.horaInicio = horaInicio;
+				if(rc.reunion.horaFin < moment(horaInicio).add(preferenciasReunion.duracionReunion, 'minutes').toDate() )
 				rc.reunion.horaFin = moment(horaInicio).add(preferenciasReunion.duracionReunion, 'minutes').toDate();
-			}else{
-				rc.reunion.horaFin = rc.reunion.horaInicio;
 			}
-			
+			else if( rc.reunion.horaFin < rc.reunion.horaInicio){
+				rc.reunion.horaFin = new Date( rc.reunion.horaInicio.getTime() );
+			}
 		}
 
 		this.agregarCategoria = function(){
@@ -340,6 +355,45 @@ angular
 			});
 		}
 		
+
+		this.valido = function (atributo) {
+			if(!this.reunion || !this.reunion.titulo || this.reunion.titulo.trim().length==0)
+				return "has-errors";
+			return "";
+		}
+
+		this.validarReunion = function () {
+			if(!this.reunion || !this.reunion.titulo || this.reunion.titulo.trim().length==0){
+				return 1;
+			}
+
+
+			if(!this.reunion.categoria_id)
+				this.reunion.categoria_id = "";
+
+			if(!this.reunion.fecha)
+				this.reunion.fecha = new Date();
+
+			if(!this.reunion.horaInicio)
+				this.reunion.horaInicio = new Date();
+
+			if(!this.reunion.horaFin)
+				this.reunion.horaFin = new Date();
+
+			if(!this.reunion.fecha)
+				this.reunion.fecha = new Date();
+
+			if(!this.reunion.ubicacion)
+				this.reunion.ubicacion = "";
+
+			if(!this.reunion.temas)
+				this.reunion.temas = [];
+
+			if(!this.reunion.fecha)
+				this.reunion.fecha = new Date();
+
+			return 0;
+		}
 });
 
 

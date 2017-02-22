@@ -192,7 +192,7 @@ angular
 				this.acuerdo.estatus = 1;
 			if(!this.acuerdo.temas)
 				this.acuerdo.temas = [];
-			
+
 			return 0;
 		}
 		this.valido = function (atributo) {
@@ -347,4 +347,16 @@ angular
 	  this.cerrarModalSeguidores = function() {
 	    $scope.modal.hide();
 	  };
+
+	  this.aumentarFin = function (fechaInicio) {
+	  	if(this.acuerdo.fechaLimite && fechaInicio>this.acuerdo.fechaLimite)
+	  			this.reunion.fechaLimite = new Date(fechaInicio.getTime());
+	  };
+
+	  this.disminuirIncio = function (fechaLimite) {
+	  	if(this.reunion.fechaInicio>fechaLimite)
+	  			this.reunion.fechaInicio = new Date(fechaLimite.getTime());
+	  };
+
+
 });

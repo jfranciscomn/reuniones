@@ -250,7 +250,7 @@ angular
 						if(resSave){
 							rc.guardar();
 						}
-						$state.go("app.editarReunion", {reunionId : siguiente._id});
+						$state.go("app.iniciarReunionIpad", {reunionId : siguiente._id});
 					});
 
 					
@@ -283,7 +283,7 @@ angular
 						if(resSave){
 							rc.guardar();
 						}
-						$state.go("app.editarReunion", {reunionId : anterior._id});
+						$state.go("app.iniciarReunionIpad", {reunionId : anterior._id});
 					});
 
 					
@@ -702,6 +702,8 @@ angular
 	  		}
 	  		var temas = _.reduce( this.reunion.temas, function(memo, num){ return memo + ';' + num.text; }, "");
 
+	  		var acuerdos = "";
+
 	  		var tabla=`<table order="1" cellspacing="0" cellpadding="0" width="100%" style="background-color:rgb(251,236,181);border-collapse:collapse;border:none;background-position:initial initial;background-repeat:initial initial">\
 				      <tbody>
 				        <tr>
@@ -785,9 +787,45 @@ angular
 				        </tr>
 				        <tr>
 				          <td colspan="4" width="100%" style="border:1.5pt solid black;padding:0.75pt;background-color:white;white-space: pre;>
-				          `+ temas+`
+				          `+ this.reunion.notas+`
 				          </td >
-				        </tr>`;		
+				        </tr>
+				        <tr>
+				          <td colspan="4" width="100%" style="border:1.5pt solid black;padding:0.75pt;background-color:white">
+				          asd
+				          </td >
+				        </tr>
+				        <tr>
+				          <td colspan="4" width="100%" style="border:1.5pt solid black;padding:0.75pt;text-align:center">
+				            Seguimiento de acuerdos de la reunión anterior
+				          </td>
+				        </tr>
+				        <tr>
+				          <td colspan="4" width="100%" style="border:1.5pt solid black;padding:0.75pt;background-color:white">
+				            <table width="100%"  style="background-color:rgb(251,236,181);border-collapse:collapse;border:none;background-position:initial initial;background-repeat:initial initial">
+				              <tr>
+				                <td   style="border:1.5pt solid black;padding:0.75pt;text-align:center">
+				                  Tema
+				                </td>
+				                <td   style="border:1.5pt solid black;padding:0.75pt;text-align:center">
+				                  Acuerdo
+				                </td>
+				                <td   style="border:1.5pt solid black;padding:0.75pt;text-align:center">
+				                  Descripcion
+				                </td>
+				                <td   style="border:1.5pt solid black;padding:0.75pt;text-align:center">
+				                  Responsable
+				                </td>
+				                <td   style="border:1.5pt solid black;padding:0.75pt;text-align:center">
+				                  Fecha Limite
+				                </td>
+				                <td   style="border:1.5pt solid black;padding:0.75pt;text-align:center">
+				                  Estatus
+				                </td>
+				                <td   style="border:1.5pt solid black;padding:0.75pt;text-align:center">
+				                  Nota
+				                </td>
+				              </tr>`;		
 	  		var temas="<h1>Temas</h1><ul>"
 	  		for(var temaid in this.reunion.todosTemas){
 	  			var tema = this.reunion.todosTemas[temaid];
