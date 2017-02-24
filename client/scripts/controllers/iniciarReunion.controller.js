@@ -704,102 +704,97 @@ angular
 
 	  		var acuerdos = "";
 
-	  		var tabla=`<table order="1" cellspacing="0" cellpadding="0" width="100%" style="background-color:rgb(251,236,181);border-collapse:collapse;border:none;background-position:initial initial;background-repeat:initial initial">\
-				      <tbody>
-				        <tr>
-				          <td colspan="4" style="text-align:center;font-size:24pt;border:1.5pt solid black;padding:0.75pt" >
-				            Minuta de reunión
-				          </td>
-				        </tr>
-				        <tr>
-				          <td width="10%" style="border:1.5pt solid black;padding:0.75pt">
-				            Reunion
-				          </td>
-				          <td width="40%" style="border:1.5pt solid black;padding:0.75pt;background-color:white">
-				            `+this.reunion.titulo+`
-				          </td >
-				          <td width="10%" style="border:1.5pt solid black;padding:0.75pt">
-				            Fecha
-				          </td>
-				          <td width="40%" style="border:1.5pt solid black;padding:0.75pt;background-color:white">
-				            `+this.reunion.fecha.toLocaleDateString();+`
-				          </td >
-				        </tr>
-				        <tr>
-				          <td width="10%" style="border:1.5pt solid black;padding:0.75pt">
-				            Lugar
-				          </td>
-				          <td width="40%" style="border:1.5pt solid black;padding:0.75pt;background-color:white">
-				            `+this.reunion.ubicacion+`
-				          </td >
-				          <td width="10%" style="border:1.5pt solid black;padding:0.75pt">
-				            Organizador
-				          </td>
-				          <td width="40%" style="border:1.5pt solid black;padding:0.75pt;background-color:white">
-				            `+this.reunion.owner+`
-				          </td >
-				        </tr>
-				        <tr>
-				          <td rowspan="3" width="10%" style="border:1.5pt solid black;padding:0.75pt">
-				            Participantes
-				          </td>
-				          <td rowspan="3" width="40%" style="border:1.5pt solid black;padding:0.75pt;background-color:white">
-				            `+nombrePaticipantes.join(",")+`
-				          </td >
-				          <td width="10%" style="border:1.5pt solid black;padding:0.75pt">
-				            Duracion
-				          </td>
-				          <td width="40%" style="border:1.5pt solid black;padding:0.75pt;background-color:white">
-				          `+ this.formatoStr(this.reunion.segundos)+`
-				          </td >
-				        </tr>
-				        <tr>
-					      <td width="10%" style="border:1.5pt solid black;padding:0.75pt">
-					        Categoria
-					      </td>
-					      <td width="40%" style="border:1.5pt solid black;padding:0.75pt;background-color:white">
-					       `+ this.reunion.categoria.nombre+`
-					      </td >
-					    </tr>
-					    <tr>
-				          <td width="10%" style="border:1.5pt solid black;padding:0.75pt">
-				            Tema
-				          </td>
-				          <td width="40%" style="border:1.5pt solid black;padding:0.75pt;background-color:white">
-				          `+ temas+`
-				          </td >
-				        </tr>
-				        <tr>
-				          <td width="10%" style="border:1.5pt solid black;padding:0.75pt">
-				            Siguiente Reunion
-				          </td>
-				          <td width="40%" style="border:1.5pt solid black;padding:0.75pt;background-color:white">
-				            
-				          </td >
-				          <td colspan="2"  width="50%" style="border:1.5pt solid black;padding:0.75pt">
-				           
-				          </td>
-				        </tr>
-				        <tr>
-				          <td colspan="4" width="100%" style="border:1.5pt solid black;padding:0.75pt">
-				            Notas
-				          </td>
-				        </tr>
-				        <tr>
-				          <td colspan="4" width="100%" style="border:1.5pt solid black;padding:0.75pt;background-color:white;white-space: pre;>
-				          `+ this.reunion.notas+`
-				          </td >
-				        </tr>
-				        <tr>
-				          <td colspan="4" width="100%" style="border:1.5pt solid black;padding:0.75pt;background-color:white">
-				          asd
-				          </td >
-				        </tr>
-				        <tr>
-				          <td colspan="4" width="100%" style="border:1.5pt solid black;padding:0.75pt;text-align:center">
-				            Seguimiento de acuerdos de la reunión anterior
-				          </td>
-				        </tr>
+	  		var tabla=`
+
+				        <table order="1" cellspacing="0" cellpadding="0" width="100%" style="background-color:rgb(251,236,181);border-collapse:collapse;border:none;background-position:initial initial;background-repeat:initial initial">
+					      <tbody>
+					        <tr>
+					          <td colspan="4" style="text-align:center;font-size:24pt;border:1.5pt solid black;padding:0.75pt" >
+					            Minuta de reunión
+					          </td>
+					        </tr>
+					        <tr>
+					          <td width="10%" style="border:1.5pt solid black;padding:0.75pt">
+					            Reunion
+					          </td>
+					          <td width="40%" style="border:1.5pt solid black;padding:0.75pt;background-color:white">
+					            `+this.reunion.titulo+`
+					          </td >
+					          <td width="10%" style="border:1.5pt solid black;padding:0.75pt">
+					            Fecha
+					          </td>
+					          <td width="40%" style="border:1.5pt solid black;padding:0.75pt;background-color:white">
+					          	 `+this.reunion.fecha+`
+					          </td >
+					        </tr>
+					        <tr>
+					          <td width="10%" style="border:1.5pt solid black;padding:0.75pt">
+					            Lugar
+					          </td>
+					          <td width="40%" style="border:1.5pt solid black;padding:0.75pt;background-color:white">
+					            `+this.reunion.ubicacion+`
+					          </td >
+					          <td width="10%" style="border:1.5pt solid black;padding:0.75pt">
+					            Organizador
+					          </td>
+					          <td width="40%" style="border:1.5pt solid black;padding:0.75pt;background-color:white">
+					            `+this.reunion.owner+`
+					          </td >
+					        </tr>
+					        <tr>
+					          <td rowspan="3" width="10%" style="border:1.5pt solid black;padding:0.75pt">
+					            Participantes
+					          </td>
+					          <td rowspan="3" width="40%" style="border:1.5pt solid black;padding:0.75pt;background-color:white">
+					            
+					          </td >
+					          <td width="10%" style="border:1.5pt solid black;padding:0.75pt">
+					            Duracion
+					          </td>
+					          <td width="40%" style="border:1.5pt solid black;padding:0.75pt;background-color:white">
+					           
+					          </td >
+					        </tr>
+					        <tr>
+					          <td width="10%" style="border:1.5pt solid black;padding:0.75pt">
+					            Categoria
+					          </td>
+					          <td width="40%" style="border:1.5pt solid black;padding:0.75pt;background-color:white">
+					          </td >
+					        </tr>
+					        <tr>
+					          <td width="10%" style="border:1.5pt solid black;padding:0.75pt">
+					            Tema
+					          </td>
+					          <td width="40%" style="border:1.5pt solid black;padding:0.75pt;background-color:white">
+					          </td >
+					        </tr>
+					        <tr>
+					          <td width="10%" style="border:1.5pt solid black;padding:0.75pt">
+					            Siguiente Reunion
+					          </td>
+					          <td width="40%" style="border:1.5pt solid black;padding:0.75pt;background-color:white">
+					            
+					          </td >
+					          <td colspan="2"  width="50%" style="border:1.5pt solid black;padding:0.75pt">
+					           
+					          </td>
+					        </tr>
+					        <tr>
+					          <td colspan="4" width="100%" style="border:1.5pt solid black;padding:0.75pt">
+					            Notas
+					          </td>
+					        </tr>
+					        <tr>
+					          <td colspan="4" width="100%" style="border:1.5pt solid black;padding:0.75pt;background-color:white">
+					          asd
+					          </td >
+					        </tr>
+					        <tr>
+					          <td colspan="4" width="100%" style="border:1.5pt solid black;padding:0.75pt;text-align:center">
+					            Seguimiento de acuerdos de la reunión anterior
+					          </td>
+					        </tr>
 				        <tr>
 				          <td colspan="4" width="100%" style="border:1.5pt solid black;padding:0.75pt;background-color:white">
 				            <table width="100%"  style="background-color:rgb(251,236,181);border-collapse:collapse;border:none;background-position:initial initial;background-repeat:initial initial">
@@ -826,23 +821,123 @@ angular
 				                  Nota
 				                </td>
 				              </tr>`;		
-	  		var temas="<h1>Temas</h1><ul>"
-	  		for(var temaid in this.reunion.todosTemas){
-	  			var tema = this.reunion.todosTemas[temaid];
-	  			temas+= "<li>"+tema.nombre+"</li>"
-	  		}
-	  		temas+="</ul>"
 
-	  		var participantes="<h1>Temas</h1><ul>"
-	  		for(var userid in this.reunion.users){
-	  			var participante = this.reunion.users[userid];
-	  			participantes+= "<li>"+participante.invitado.profile.name+"("+participante.invitado.profile.email+")</li>"
-	  		}
-	  		participantes+="</ul>"
+			_.each(rc.acuerdosRetrasados,function(_acuerdo){
+				var trAcuerdo =`<tr>
+			                <td   style="border:1.5pt solid black;padding:0.75pt;background-color:white">
+			                  `+_.reduce(_acuerdo.temas,function(memo,tema){return memo+tema.text+";"},"")+`
+			                </td>
+			                <td   style="border:1.5pt solid black;padding:0.75pt;background-color:white">
+			                  `+_acuerdo.titulo+`
+			                </td>
+			                <td   style="border:1.5pt solid black;padding:0.75pt;background-color:white">
+			                  `+_acuerdo.descripcion+`
+			                </td>
+			                <td   style="border:1.5pt solid black;padding:0.75pt;background-color:white">
+			                  Responsable
+			                </td>
+			                <td   style="border:1.5pt solid black;padding:0.75pt;background-color:white">
+			                  `+_acuerdo.fechaLimite+`
+			                </td>
+			                <td   style="border:1.5pt solid black;padding:0.75pt;background-color:white">
+			                  `+_acuerdo.estatus+`
+			                </td>
+			                <td   style="border:1.5pt solid black;padding:0.75pt;background-color:white">
+			                  
+			                </td>
+			              </tr>`
+			   tabla = tabla + trAcuerdo
 
-	  		var categoria = "";//"<h1>"+this.reunion.categoria.nombre+"</h1>"
+			});
+			tabla = tabla + `</table>
+						          </td>
+						        </tr>
+						        <tr>
+						          <td colspan="4" width="100%" style="border:1.5pt solid black;padding:0.75pt;text-align:center">
+						            Acuerdos
+						          </td>
+						        </tr>
+						        <tr>
+						          <td colspan="4" width="100%" style="border:1.5pt solid black;padding:0.75pt;background-color:white">
+						            <table width="100%"  style="background-color:rgb(251,236,181);border-collapse:collapse;border:none;background-position:initial initial;background-repeat:initial initial">
+						              <tr>
+						                <td   style="border:1.5pt solid black;padding:0.75pt;text-align:center">
+						                  Tema
+						                </td>
+						                <td   style="border:1.5pt solid black;padding:0.75pt;text-align:center">
+						                  Acuerdo
+						                </td>
+						                <td   style="border:1.5pt solid black;padding:0.75pt;text-align:center">
+						                  Descripcion
+						                </td>
+						                <td   style="border:1.5pt solid black;padding:0.75pt;text-align:center">
+						                  Responsable
+						                </td>
+						                <td   style="border:1.5pt solid black;padding:0.75pt;text-align:center">
+						                  Fecha Limite
+						                </td>
+						                <td   style="border:1.5pt solid black;padding:0.75pt;text-align:center">
+						                  Estatus
+						                </td>
+						                <td   style="border:1.5pt solid black;padding:0.75pt;text-align:center">
+						                  Nota
+						                </td>
+						              </tr>`;
+			_.each(rc.acuerdos,function(_acuerdo){
+				var trAcuerdo =`<tr>
+			                <td   style="border:1.5pt solid black;padding:0.75pt;background-color:white">
+			                  `+_.reduce(_acuerdo.temas,function(memo,tema){return memo+tema.text+";"},"")+`
+			                </td>
+			                <td   style="border:1.5pt solid black;padding:0.75pt;background-color:white">
+			                  `+_acuerdo.titulo+`
+			                </td>
+			                <td   style="border:1.5pt solid black;padding:0.75pt;background-color:white">
+			                  `+_acuerdo.descripcion+`
+			                </td>
+			                <td   style="border:1.5pt solid black;padding:0.75pt;background-color:white">
+			                  Responsable
+			                </td>
+			                <td   style="border:1.5pt solid black;padding:0.75pt;background-color:white">
+			                  `+_acuerdo.fechaLimite+`
+			                </td>
+			                <td   style="border:1.5pt solid black;padding:0.75pt;background-color:white">
+			                  `+_acuerdo.estatus+`
+			                </td>
+			                <td   style="border:1.5pt solid black;padding:0.75pt;background-color:white">
+			                  
+			                </td>
+			              </tr>`
+			   tabla = tabla + trAcuerdo
 
-	  		$cordovaEmailComposer.isAvailable().then(function() {
+			});
+
+			tabla = tabla +`</table>
+				          </td>
+				        </tr>
+				        <tr>
+				          <td colspan="2" style="border:1.5pt solid black;padding:0.75pt;text-align:center">
+				            Participantes
+				          </td>
+				          <td colspan="2" style="border:1.5pt solid black;padding:0.75pt;text-align:center">
+				            Firmas
+				          </td>
+				        </tr>
+				        <tr>
+				          <td colspan="2" style="border:1.5pt solid black;padding:0.75pt;background-color:white">
+				            Participantes
+				          </td>
+				          <td colspan="2" style="border:1.5pt solid black;padding:0.75pt;background-color:white">
+				            Firmas
+				          </td>
+				        </tr>
+				      </tbody>
+				    </table>
+				  `;
+		
+
+	  		console.log(tabla)
+
+	  		/*$cordovaEmailComposer.isAvailable().then(function() {
 			   console.log("esta disponible");
 			 }, function () {
 			   console.log("no está disponible");
@@ -851,13 +946,13 @@ angular
 			  var email = {
 			    to: correos,
 			    subject: 'Reunion: '+this.reunion.titulo,
-			    body: categoria+participantes+temas,
+			    body: tabla,
 			    isHtml: true
 			  };
 			
 			 $cordovaEmailComposer.open(email).then(null, function () {
 			   console.log("cancelado")
-			 });
+			 });*/
 	  }
 	  this.finalizar = function() {
 		  var tempId = rc.reunion._id;
